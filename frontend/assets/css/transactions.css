@@ -1,0 +1,230 @@
+/* ===============================
+   Transactions Page CSS
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f5f7fb;
+    overflow-x: hidden;
+}
+
+.add-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.add-btn:hover {
+    background: #1d4ed8;
+}
+
+/* Summary Cards */
+
+.transaction-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+}
+
+.card h3 {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    font-size: 28px;
+}
+
+.income {
+    border-left: 6px solid #22c55e;
+}
+
+.expense {
+    border-left: 6px solid #ef4444;
+}
+
+.balance {
+    border-left: 6px solid #3b82f6;
+}
+
+
+/* Filter Section */
+
+.filter-section {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.filter-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-box label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.filter-box select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    background: #fff;
+}
+
+/* Table */
+
+.table-section {
+
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+
+}
+
+table {
+
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+th {
+
+    background: #2563eb;
+    color: white;
+    padding: 15px;
+    text-align: left;
+
+}
+
+td {
+
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+
+}
+
+tr:hover {
+
+    background: #f9fafb;
+
+}
+
+/* Tags */
+
+.income-tag {
+
+    background: #dcfce7;
+    color: #166534;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+
+}
+
+.expense-tag {
+
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+
+}
+
+/* Buttons */
+
+.edit-btn {
+
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 8px;
+
+}
+
+.delete-btn {
+
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+
+}
+
+.edit-btn:hover {
+
+    opacity: .85;
+
+}
+
+.delete-btn:hover {
+
+    opacity: .85;
+
+}
+
+/* Responsive */
+
+@media(max-width:900px) {
+
+    .summary {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .filter-section {
+
+        flex-direction: column;
+
+    }
+
+    .filter-section input,
+    .filter-section select {
+
+        width: 100%;
+
+    }
+
+    table {
+
+        display: block;
+        overflow-x: auto;
+
+    }
+
+}

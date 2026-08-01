@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/transactions.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="user-profile">
+
+                <div class="avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <h3>Welcome!</h3>
+
+                <p>Archita</p>
+
+            </div>
+
+            <ul class="menu">
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house"></i>
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="budget.html">
+                        <i class="fa-solid fa-wallet"></i>
+                        Budget
+                    </a>
+                </li>
+
+                <li class="active">
+                    <a href="#">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        Transactions
+                    </a>
+                </li>
+
+                <li>
+                    <a href="analytics.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Analytics
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="settings.html">
+                        <i class="fa-solid fa-gear"></i>
+                        Settings
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <!-- Main Content -->
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Transactions</h1>
+                    <p>Track your income, expenses, and financial activity in one organized place.</p>
+                </div>
+
+                <button class="add-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Transaction
+                </button>
+
+            </header>
+
+            <!-- Summary Cards -->
+
+            <section class="transaction-summary">
+
+                <div class="card income">
+
+                    <h3>Total Income</h3>
+
+                    <h2>₹15,000</h2>
+
+                </div>
+
+                <div class="card expense">
+
+                    <h3>Total Expense</h3>
+
+                    <h2>₹8,700</h2>
+
+                </div>
+
+                <div class="card balance">
+
+                    <h3>Current Balance</h3>
+
+                    <h2>₹6,300</h2>
+
+                </div>
+
+            </section>
+
+            <!-- Search -->
+
+            <!-- Filter Section -->
+
+            <section class="filter-section">
+
+                <!-- Type -->
+                <div class="filter-box">
+                    <label>Type</label>
+                    <select id="typeFilter">
+                        <option value="all">All</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+
+                <!-- Category -->
+                <div class="filter-box">
+                    <label>Category</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option>Salary</option>
+                        <option>Food</option>
+                        <option>Groceries</option>
+                        <option>Travel</option>
+                        <option>Shopping</option>
+                        <option>Bills</option>
+                        <option>Rent</option>
+                        <option>Entertainment</option>
+                        <option>Healthcare</option>
+                        <option>Education</option>
+                        <option>Investment</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <!-- Month -->
+                <div class="filter-box">
+                    <label>Month</label>
+                    <select id="monthFilter">
+                        <option value="all">All Months</option>
+                        <option>January</option>
+                        <option>February</option>
+                        <option>March</option>
+                        <option>April</option>
+                        <option>May</option>
+                        <option>June</option>
+                        <option>July</option>
+                        <option>August</option>
+                        <option>September</option>
+                        <option>October</option>
+                        <option>November</option>
+                        <option>December</option>
+                    </select>
+                </div>
+
+            </section>
+
+            <!-- Transactions Table -->
+
+            <section class="table-section">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Date</th>
+
+                            <th>Category</th>
+
+                            <th>Type</th>
+
+                            <th>Amount</th>
+
+                            <th>Status</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>28 Jul 2026</td>
+
+                            <td>Food</td>
+
+                            <td>
+                                <span class="expense-tag">
+                                    Expense
+                                </span>
+                            </td>
+
+                            <td>₹120</td>
+
+                            <td>Completed</td>
+
+                            <td>
+
+                                <button class="edit-btn">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="delete-btn">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>27 Jul 2026</td>
+
+                            <td>Salary</td>
+
+                            <td>
+
+                                <span class="income-tag">
+
+                                    Income
+
+                                </span>
+
+                            </td>
+
+                            <td>₹2500</td>
+
+                            <td>Completed</td>
+
+                            <td>
+
+                                <button class="edit-btn">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="delete-btn">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>26 Jul 2026</td>
+
+                            <td>Shopping</td>
+
+                            <td>
+
+                                <span class="expense-tag">
+
+                                    Expense
+
+                                </span>
+
+                            </td>
+
+                            <td>₹340</td>
+
+                            <td>Completed</td>
+
+                            <td>
+
+                                <button class="edit-btn">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="delete-btn">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>25 Jul 2026</td>
+
+                            <td>Freelance</td>
+
+                            <td>
+
+                                <span class="income-tag">
+
+                                    Income
+
+                                </span>
+
+                            </td>
+
+                            <td>₹900</td>
+
+                            <td>Completed</td>
+
+                            <td>
+
+                                <button class="edit-btn">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button class="delete-btn">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="js/theme.js"></script>
+    <script src="js/transactions.js"></script>
+
+</body>
+
+</html>
