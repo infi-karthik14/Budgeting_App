@@ -1,314 +1,73 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-    background:#f4f8fc;
-    display:flex;
-}
-
-/* Sidebar */
-
-.sidebar{
-    width:250px;
-    height:100vh;
-    background:#0d6efd;
-    color:#fff;
-    position:fixed;
-    left:0;
-    top:0;
-    padding:25px;
-}
-
-.logo{
-    text-align:center;
-    margin-bottom:40px;
-    font-size:28px;
-    font-weight:700;
-}
-
-.sidebar ul{
-    list-style:none;
-    padding:0;
-}
-
-.sidebar ul li{
-    margin:15px 0;
-}
-
-.sidebar ul li a{
-    text-decoration:none;
-    color:#fff;
-    display:block;
-    padding:12px 18px;
-    border-radius:10px;
-    transition:.3s;
-    font-size:17px;
-}
-
-.sidebar ul li a i{
-    margin-right:10px;
-}
-
-.sidebar ul li a:hover,
-.sidebar ul li.active a{
-    background:#ffffff;
-    color:#0d6efd;
-}
-
-/* Main Content */
-
-.main-content{
-    margin-left:270px;
-    width:calc(100% - 270px);
-    padding:30px;
-}
-
-/* Navbar */
-
-.navbar{
-    padding:15px 25px;
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    font-weight:600;
-}
-
-.profile img{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-}
-
-/* Dashboard Cards */
+/* ===========================
+   Dashboard Summary Cards
+=========================== */
 
 .dashboard-card{
-    border:none;
-    border-radius:18px;
-    color:#ffffff;
-    overflow:hidden;
-    transition:.3s;
-    box-shadow:0 10px 25px rgba(0,0,0,.10);
+    border: none;
+    border-radius: 18px;
+    color: #fff;
+    padding: 25px;
+    min-height: 170px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
 }
 
 .dashboard-card:hover{
-    transform:translateY(-6px);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.20);
 }
 
-.dashboard-card .card-body{
-    position:relative;
-    padding:25px;
-}
-
-.dashboard-card h6{
-    font-size:18px;
-    margin-bottom:12px;
-}
-
-.dashboard-card h2{
-    font-size:34px;
-    font-weight:700;
-}
-
-.card-icon{
-    position:absolute;
-    right:20px;
-    bottom:18px;
-    font-size:50px;
-    opacity:.25;
-}
+/* Card Colors */
 
 .income{
-    background:linear-gradient(135deg,#198754,#4dd4ac);
+    background: linear-gradient(135deg,#28a745,#20c997);
 }
 
 .expense{
-    background:linear-gradient(135deg,#dc3545,#ff7b89);
+    background: linear-gradient(135deg,#dc3545,#ff6b6b);
 }
 
 .balance{
-    background:linear-gradient(135deg,#0d6efd,#58a6ff);
-}
-/* Chart Cards */
-
-.card{
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    background: linear-gradient(135deg,#0d6efd,#4dabf7);
 }
 
-.card-header{
-    border-radius: 15px 15px 0 0 !important;
+.ai-card{
+    background: linear-gradient(135deg,#6f42c1,#9b59b6);
+}
+
+/* Heading */
+
+.dashboard-card h6{
+    font-size: 15px;
     font-weight: 600;
-    font-size: 18px;
+    opacity: .9;
+    margin-bottom: 12px;
 }
 
-.card:not(.dashboard-card).card-body{
-    background: #fff;
-    border-radius: 0 0 15px 15px;
-}
-.dashboard-card  .card-body{
-    background: transparent !important;
-}
-.dashboard-card h6,
-.dashboard-card h2,
-.dashboard-card  .card-icon{
-    color :#ffffff
+/* Amount */
+
+.dashboard-card h2{
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
-/* Charts */
+/* Extra Text */
 
-canvas{
-    width: 100% !important;
-    max-height: 320px;
+.dashboard-card p{
+    font-size: 14px;
+    margin: 0;
+    opacity: .9;
 }
 
-/* Table */
+/* Icon */
 
-.table{
-    margin-bottom: 0;
-}
-
-.table thead th{
-    text-align: center;
-    font-weight: 600;
-}
-
-.table tbody td{
-    text-align: center;
-    vertical-align: middle;
-}
-
-.table tbody tr:hover{
-    background: #f5f9ff;
-}
-
-.badge{
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb{
-    background: #0d6efd;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-track{
-    background: #e9ecef;
-}
-
-/* Responsive */
-
-@media (max-width:991px){
-
-    .sidebar{
-        width: 100%;
-        height: auto;
-        position: relative;
-        padding: 15px;
-    }
-
-    .sidebar ul{
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    }
-
-    .sidebar ul li{
-        margin: 8px;
-    }
-
-    .main-content{
-        margin-left: 0;
-        width: 100%;
-        padding: 20px;
-    }
-}
-
-@media (max-width:768px){
-
-    .dashboard-card h2{
-        font-size: 28px;
-    }
-
-    .card-icon{
-        font-size: 40px;
-    }
-
-    .navbar h4{
-        font-size: 22px;
-    }
-
-    .profile span{
-        display: none;
-    }
-
-    canvas{
-        max-height: 250px;
-    }
-
-    .table{
-        font-size: 14px;
-    }
-}
-
-@media (max-width:576px){
-
-    .logo{
-        font-size: 22px;
-    }
-
-    .sidebar ul li a{
-        font-size: 15px;
-        padding: 10px;
-    }
-
-    .dashboard-card{
-        margin-bottom: 15px;
-    }
-
-    .card-header h5{
-        font-size: 16px;
-    }
-}
-/* Dark Theme */
-
-
-
-body.dark-theme{
-    background-color:#121212;
-    color:white;
-}
-
-body.dark-theme .navbar{
-    background:#1a1a1a !important;
-}
-
-body.dark-theme .card{
-    background:#222;
-    color:white;
-}
-
-body.dark-theme section{
-    background:#181818 !important;
-}
-
-#themeToggle{
-    border-radius:8px;
-    cursor:pointer;
+.card-icon{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 50px;
+    opacity: .25;
 }

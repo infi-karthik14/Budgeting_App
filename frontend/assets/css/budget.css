@@ -421,3 +421,27 @@ body {
         width: 120px;
     }
 }
+
+.chart-card,
+.goal-card,
+.tips-card,
+.footer{
+    margin-top:30px;
+}
+
+.footer{
+    margin-top:40px;
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:25px;
+    border-radius:12px 12px 0 0;
+}
+
+.footer h4{
+    margin-bottom:10px;
+}
+
+.footer p{
+    margin:5px 0;
+}

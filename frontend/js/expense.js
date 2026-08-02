@@ -1,20 +1,18 @@
-const themeToggle = document.getElementById("themeToggle");
+const ctx = document.getElementById("expenseChart");
 
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark-theme");
-    if (themeToggle) themeToggle.innerHTML = "☀️";
-}
-
-if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark-theme");
-
-        if (document.body.classList.contains("dark-theme")) {
-            localStorage.setItem("theme", "dark");
-            themeToggle.innerHTML = "☀️";
-        } else {
-            localStorage.setItem("theme", "light");
-            themeToggle.innerHTML = "🌙";
-        }
-    });
-}
+new Chart(ctx, {
+    type: "doughnut",
+    data: {
+        labels: ["Food", "Shopping", "Travel", "Bills", "Health"],
+        datasets: [{
+            data: [5000, 8000, 3000, 7000, 2000],
+            backgroundColor: [
+                "#FF6384",
+                "#36A2EB",
+                "#FFCE56",
+                "#4BC0C0",
+                "#9966FF"
+            ]
+        }]
+    }
+});

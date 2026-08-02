@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budgeting Dashboard</title>
@@ -29,55 +32,78 @@
         <i class="bi bi-wallet2"></i>
         Budgeting
     </h2>
+<ul>
 
-    <ul>
+    <li class="active">
+        <a href="dashboard.html">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
+    </li>
 
-        <li class="active">
-            <a href="#">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
-            </a>
-        </li>
+    <li>
+        <a href="income.html">
+            <i class="bi bi-cash-stack"></i>
+            Income
+        </a>
+    </li>
 
-        <li>
-            <a href="income.html">
-                <i class="bi bi-cash-stack"></i>
-                Income
-            </a>
-        </li>
+    <li>
+        <a href="expense.html">
+            <i class="bi bi-credit-card"></i>
+            Expense
+        </a>
+    </li>
 
-        <li>
-            <a href="expense.html">
-                <i class="bi bi-credit-card"></i>
-                Expense
-            </a>
-        </li>
+    <li>
+        <a href="budget.html">
+            <i class="bi bi-piggy-bank"></i>
+            Budget
+        </a>
+    </li>
 
-        <li>
-            <a href="#">
-                <i class="bi bi-bar-chart-line"></i>
-                Reports
-            </a>
-        </li>
+    <li>
+        <a href="transactions.html">
+            <i class="bi bi-clock-history"></i>
+            Transactions
+        </a>
+    </li>
 
-        <li>
-            <a href="#">
-                <i class="bi bi-gear"></i>
-                Settings
-            </a>
-        </li>
+    <li>
+        <a href="analytics.html">
+            <i class="bi bi-bar-chart-line"></i>
+            Analytics
+        </a>
+    </li>
 
-        <li>
-            <a href="login.html">
-                <i class="bi bi-box-arrow-right"></i>
-                Logout
-            </a>
-        </li>
-        <li class ="nav-item ms-2">
-<button id="themeToggle" class="btn btn-danger"> 🌜Dark Mode</button>
-</li>
+    <li>
+        <a href="profile.html">
+            <i class="bi bi-person-circle"></i>
+            Profile
+        </a>
+    </li>
 
-    </ul>
+    <li>
+        <a href="settings.html">
+            <i class="bi bi-gear"></i>
+            Settings
+        </a>
+    </li>
+
+    <li>
+        <a href="login.html">
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+        </a>
+    </li>
+
+    <li class="mt-3">
+        <button id="themeToggle" class="btn btn-outline-light w-100">
+            🌙 Dark Mode
+        </button>
+    </li>
+
+</ul>
 
 </div>
 
@@ -91,11 +117,32 @@
 
 <div class="container-fluid">
 
-<h4 class="fw-bold">
+<div class="d-flex align-items-center">
+
+<h4 class="fw-bold me-4">
 Dashboard
 </h4>
 
-<div class="profile">
+<input
+type="search"
+class="form-control"
+placeholder="Search Transactions..."
+style="width:250px;">
+
+</div>
+
+<div class="d-flex align-items-center">
+
+<i class="bi bi-bell-fill fs-4 me-4 text-primary"></i>
+
+<img src="https://i.pravatar.cc/45"
+class="rounded-circle">
+
+<span class="ms-2 fw-semibold">
+Welcome, Karthik
+</span>
+
+</div>
 
 <img src="https://i.pravatar.cc/45"
 class="rounded-circle">
@@ -110,134 +157,261 @@ Welcome, User
 
 </nav>
 
-<!-- Summary Cards -->
+<!-- Welcome Banner -->
 
-<div class="row g-4">
+<div class="card shadow-sm border-0 mb-4">
 
-<div class="col-md-4">
+    <div class="card-body d-flex justify-content-between align-items-center">
 
-<div class="card dashboard-card income">
+        <div>
 
-<div class="card-body">
+            <h3 class="fw-bold mb-2">
+                👋 Welcome Back, Karthik!
+            </h3>
 
-<h6>Total Income</h6>
-
-<h2>₹50,000</h2>
-
-<i class="bi bi-arrow-down-circle-fill card-icon"></i>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-4">
-
-<div class="card dashboard-card expense">
-
-<div class="card-body">
-
-<h6>Total Expense</h6>
-
-<h2>₹20,000</h2>
-
-<i class="bi bi-arrow-up-circle-fill card-icon"></i>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="col-md-4">
-
-<div class="card dashboard-card balance">
-
-<div class="card-body">
-
-<h6>Current Balance</h6>
-
-<h2>₹30,000</h2>
-
-<i class="bi bi-wallet-fill card-icon"></i>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Income vs Expense Chart -->
-
-<div class="card shadow mt-5">
-
-<div class="card-header bg-primary text-white">
-
-<h5 class="mb-0">
-Income vs Expense
-</h5>
-
-</div>
-
-<div class="card-body">
-
-<canvas id="lineChart" height="100"></canvas>
-
-</div>
-
-</div>
-
-<!-- Row for Pie Chart & Bar Chart -->
-
-<div class="row mt-4">
-
-<div class="col-lg-6">
-
-<div class="card shadow">
-
-<div class="card-header bg-success text-white">
-
-<h5 class="mb-0">
-Expense Category
-</h5>
-
-</div>
-
-<div class="card-body">
-
-<canvas id="pieChart"></canvas>
-
-</div>
-
-</div>
-
-</div>
-<!-- Monthly Savings Bar Chart -->
-
-<div class="col-lg-6">
-
-    <div class="card shadow">
-
-        <div class="card-header bg-info text-white">
-
-            <h5 class="mb-0">
-                Monthly Savings
-            </h5>
+            <p class="text-muted mb-0">
+                Here's your financial overview for this month.
+            </p>
 
         </div>
 
-        <div class="card-body">
+        <div>
 
-            <canvas id="barChart"></canvas>
+            <i class="bi bi-wallet2 text-primary"
+               style="font-size:60px;"></i>
 
         </div>
 
     </div>
 
 </div>
+
+<!-- Summary Cards -->
+
+
+<div class="row g-4 mb-4">
+
+    <!-- Total Income -->
+    <div class="col-lg-3 col-md-6">
+
+        <div class="card dashboard-card income shadow h-100">
+
+            <div class="card-body">
+
+                <h6>Total Income</h6>
+
+                <h2>₹50,000</h2>
+
+                <p class="mb-0">+12% from last month</p>
+
+                <i class="bi bi-arrow-down-circle-fill card-icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Total Expense -->
+    <div class="col-lg-3 col-md-6">
+
+        <div class="card dashboard-card expense shadow h-100">
+
+            <div class="card-body">
+
+                <h6>Total Expense</h6>
+
+                <h2>₹20,000</h2>
+
+                <p class="mb-0">5 transactions today</p>
+
+                <i class="bi bi-arrow-up-circle-fill card-icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Current Balance -->
+    <div class="col-lg-3 col-md-6">
+
+        <div class="card dashboard-card balance shadow h-100">
+
+            <div class="card-body">
+
+                <h6>Current Balance</h6>
+
+                <h2>₹30,000</h2>
+
+                <p class="mb-0">Available Balance</p>
+
+                <i class="bi bi-wallet-fill card-icon"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+<!-- AI Prediction Card -->
+
+<div class="col-md-3">
+    <div class="card dashboard-card ai-card">
+        <div class="card-body">
+            <h6>AI Prediction</h6>
+            <h2>₹1,850</h2>
+            <p>Expected expense today</p>
+            <i class="bi bi-robot card-icon"></i>
+        </div>
+    </div>
+</div>
+
+<!--Monthly Budget Usage -->
+
+<div class="card shadow mt-4">
+
+<div class="card-body">
+
+<h5>Monthly Budget Usage</h5>
+
+<div class="progress mt-3">
+
+<div class="progress-bar bg-success"
+style="width:65%;">
+
+65%
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- Today's Summary -->
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-warning text-dark">
+
+        <h5 class="mb-0">
+            Today's Summary
+        </h5>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+
+                <h6>Today's Income</h6>
+
+                <h4 class="text-success">
+                    ₹2,000
+                </h4>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>Today's Expense</h6>
+
+                <h4 class="text-danger">
+                    ₹850
+                </h4>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>Transactions Today</h6>
+
+                <h4 class="text-primary">
+                    8
+                </h4>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <h6>Today's Savings</h6>
+
+                <h4 class="text-success">
+                    ₹1,150
+                </h4>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Charts Section -->
+
+<div class="row mt-4">
+
+    <!-- Income vs Expense -->
+    <div class="col-lg-8 mb-4">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-primary text-white">
+                Income vs Expense
+            </div>
+
+            <div class="card-body">
+                <canvas id="lineChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Expense Categories -->
+    <div class="col-lg-4 mb-4">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-success text-white">
+                Expense Categories
+            </div>
+
+            <div class="card-body">
+                <canvas id="pieChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-info text-white">
+                Monthly Savings
+            </div>
+
+            <div class="card-body">
+                <canvas id="barChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -246,11 +420,7 @@ Expense Category
 <div class="card shadow mt-4">
 
     <div class="card-header bg-dark text-white">
-
-        <h5 class="mb-0">
-            Recent Transactions
-        </h5>
-
+        <h5 class="mb-0">Recent Transactions</h5>
     </div>
 
     <div class="card-body">
@@ -262,13 +432,11 @@ Expense Category
                 <thead class="table-primary">
 
                     <tr>
-
                         <th>Date</th>
                         <th>Category</th>
                         <th>Type</th>
                         <th>Amount</th>
                         <th>Status</th>
-
                     </tr>
 
                 </thead>
@@ -276,53 +444,43 @@ Expense Category
                 <tbody>
 
                     <tr>
-
                         <td>01 Aug 2026</td>
                         <td>Salary</td>
                         <td>Income</td>
-                        <td class="text-success fw-bold">+ ₹40,000</td>
-                        <td><span class="badge bg-success">Completed</span></td>
-
+                        <td class="text-success fw-bold">+ ₹50,000</td>
+                        <td><span class="badge bg-success">Received</span></td>
                     </tr>
 
                     <tr>
-
                         <td>03 Aug 2026</td>
                         <td>Food</td>
                         <td>Expense</td>
                         <td class="text-danger fw-bold">- ₹500</td>
                         <td><span class="badge bg-danger">Paid</span></td>
-
                     </tr>
 
                     <tr>
-
                         <td>05 Aug 2026</td>
                         <td>Shopping</td>
                         <td>Expense</td>
-                        <td class="text-danger fw-bold">- ₹2,500</td>
+                        <td class="text-danger fw-bold">- ₹2,000</td>
                         <td><span class="badge bg-danger">Paid</span></td>
-
                     </tr>
 
                     <tr>
-
-                        <td>07 Aug 2026</td>
-                        <td>Freelancing</td>
+                        <td>08 Aug 2026</td>
+                        <td>Freelance</td>
                         <td>Income</td>
                         <td class="text-success fw-bold">+ ₹8,000</td>
-                        <td><span class="badge bg-success">Received</span></td>
-
+                        <td><span class="badge bg-success">Completed</span></td>
                     </tr>
 
                     <tr>
-
                         <td>10 Aug 2026</td>
                         <td>Electricity Bill</td>
                         <td>Expense</td>
                         <td class="text-danger fw-bold">- ₹1,200</td>
                         <td><span class="badge bg-warning text-dark">Pending</span></td>
-
                     </tr>
 
                 </tbody>
@@ -335,16 +493,79 @@ Expense Category
 
 </div>
 
+<!-- Quick Action Buttons -->
+
+<div class="row mt-4">
+
+    <div class="col-md-3">
+        <button class="btn btn-success w-100 p-3"
+onclick="location.href='income.html'">
+💰 Add Income
+</button>
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-danger w-100 p-3"
+onclick="location.href='expense.html'">
+💳 Add Expense
+</button>
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-primary w-100 p-3"
+onclick="location.href='analytics.html'">
+📊 View Reports
+</button>
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-warning w-100 p-3"
+onclick="location.href='budget.html'">
+🎯 Set Budget
+</button>
+    </div>
+
+    <!-- Savings Goal -->
+    
+    <div class="card shadow mt-4">
+    
+        <div class="card-header bg-success text-white">
+    
+            <h5 class="mb-0">
+                🎯 Savings Goal
+            </h5>
+    
+        </div>
+    
+        <div class="card-body">
+    
+            <h6>New Laptop</h6>
+    
+            <p>₹25,000 saved of ₹80,000</p>
+    
+            <div class="progress">
+    
+                <div class="progress-bar bg-success"
+                     style="width:31%;">
+                    31%
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    </div>
 </div>
 <!-- End Main Content -->
 
-<!-- Bootstrap JS -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Dashboard JS -->
 
 <script src="js/dashboard.js"></script>
 
+
 </body>
+<footer class="text-center text-muted mt-5 mb-3">
+
+    © 2026 Budgeting App | Developed by Budgeting Team
+
+</footer>
 </html>

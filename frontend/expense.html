@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/expense.css">
+    <link rel="stylesheet" href="assets/css/expense.css">
 </head>
 
 <body>
@@ -202,6 +202,55 @@
                     </select>
 
                 </div>
+                <div class="col-md-6 mb-3">
+    <label class="form-label">Payment Method</label>
+
+    <select class="form-select">
+        <option>Cash</option>
+        <option>UPI</option>
+        <option>Debit Card</option>
+        <option>Credit Card</option>
+        <option>Bank Transfer</option>
+    </select>
+</div>
+
+<div class="col-md-6 mb-3">
+    <label class="form-label">City</label>
+
+    <input type="text"
+           class="form-control"
+           placeholder="Delhi">
+</div>
+
+<div class="col-md-6 mb-3">
+    <label class="form-label">Monthly Income</label>
+
+    <input type="number"
+           class="form-control"
+           placeholder="50000">
+</div>
+
+<div class="col-md-6 mb-3">
+    <label class="form-label">Monthly Budget</label>
+
+    <input type="number"
+           class="form-control"
+           placeholder="30000">
+</div>
+
+<div class="col-md-6 mb-3">
+    <label class="form-label">Day of Week</label>
+
+    <select class="form-select">
+        <option>Monday</option>
+        <option>Tuesday</option>
+        <option>Wednesday</option>
+        <option>Thursday</option>
+        <option>Friday</option>
+        <option>Saturday</option>
+        <option>Sunday</option>
+    </select>
+</div>
                 <div class="col-12 mb-3">
                     <label class="form-label">Description</label>
                     <textarea class="form-control"
@@ -223,40 +272,99 @@
 
 </section>
 
+<!-- AI Prediction -->
+<section class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">🤖 AI Expense Prediction</h4>
+        </div>
+
+        <div class="card-body text-center">
+
+            <h2 class="text-danger">₹2,150</h2>
+
+            <p class="text-muted">
+                Predicted Expense Amount
+            </p>
+
+            <button class="btn btn-warning">
+                Predict Expense
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
 <!-- Recent Expense Table -->
 <section class="container mt-5">
 
     <div class="card p-4">
 
-        <h3 class="mb-4">Recent Expenses</h3>
+    <div class="d-flex justify-content-between align-items-center mb-3">
 
-        <table class="table table-hover">
+        <h3>Recent Expenses</h3>
+
+        <button class="btn btn-primary">
+            <i class="bi bi-download"></i> Export CSV
+        </button>
+
+    </div>
+
+    <input
+        type="search"
+        class="form-control mb-3"
+        placeholder="🔍 Search Expense by Name or Category">
+
+    <table class="table table-hover">
 
             <thead class="table-primary">
 
                 <tr>
-                    <th>Date</th>
-                    <th>Expense</th>
-                    <th>Category</th>
-                    <th>Amount</th>
-                </tr>
+    <th>Date</th>
+    <th>Expense</th>
+    <th>Category</th>
+    <th>Amount</th>
+    <th>Action</th>
+</tr>
 
             </thead>
 
             <tbody>
 
                 <tr>
-                    <td>01 Aug 2026</td>
-                    <td>Electricity Bill</td>
-                    <td>Bills</td>
-                    <td class="text-danger">₹2,500</td>
-                </tr>
+    <td>01 Aug 2026</td>
+    <td>Electricity Bill</td>
+    <td>Bills</td>
+    <td class="text-danger">₹2,500</td>
+    <td>
+        <button class="btn btn-sm btn-primary">
+            <i class="bi bi-pencil"></i>
+        </button>
+
+        <button class="btn btn-sm btn-danger">
+            <i class="bi bi-trash"></i>
+        </button>
+    </td>
+</tr>
 
                 <tr>
                     <td>29 Jul 2026</td>
                     <td>Groceries</td>
                     <td>Food</td>
                     <td class="text-danger">₹1,850</td>
+                    <td>
+        <button class="btn btn-sm btn-primary">
+            <i class="bi bi-pencil"></i>
+        </button>
+
+        <button class="btn btn-sm btn-danger">
+            <i class="bi bi-trash"></i>
+        </button>
+    </td>
                 </tr>
 
                 <tr>
@@ -264,6 +372,15 @@
                     <td>Petrol</td>
                     <td>Travel</td>
                     <td class="text-danger">₹3,000</td>
+                    <td>
+        <button class="btn btn-sm btn-primary">
+            <i class="bi bi-pencil"></i>
+        </button>
+
+        <button class="btn btn-sm btn-danger">
+            <i class="bi bi-trash"></i>
+        </button>
+    </td>
                 </tr>
 
                 <tr>
@@ -271,11 +388,80 @@
                     <td>Movie</td>
                     <td>Entertainment</td>
                     <td class="text-danger">₹700</td>
+                    <td>
+        <button class="btn btn-sm btn-primary">
+            <i class="bi bi-pencil"></i>
+        </button>
+
+        <button class="btn btn-sm btn-danger">
+            <i class="bi bi-trash"></i>
+        </button>
+    </td>
                 </tr>
 
             </tbody>
 
         </table>
+
+    </div>
+
+</section>
+
+<!-- Expense Category Chart -->
+
+<section class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h5 class="mb-0">
+                Expense Category Distribution
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <canvas id="expenseChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Financial Tips -->
+
+<section class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-info text-white">
+
+            <h5 class="mb-0">
+                💡 Financial Tips
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <ul class="mb-0">
+
+                <li>Track every expense to understand your spending habits.</li>
+
+                <li>Keep your monthly expenses below your planned budget.</li>
+
+                <li>Avoid unnecessary impulse purchases.</li>
+
+                <li>Review your expenses every week.</li>
+
+                <li>Try to save at least 20% of your monthly income.</li>
+
+            </ul>
+
+        </div>
 
     </div>
 
@@ -297,7 +483,7 @@
             Contact
         </p>
 
-        <p>Email : support@budgetingapp.com</p>
+        <p>Email : rastogi.karthik1409@gmail.com</p>
 
         <p>© 2026 Budgeting App. All Rights Reserved.</p>
 
@@ -306,8 +492,8 @@
 </footer>
 
 
-<!-- Bootstrap JS -->
-<script src="js/expense.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="assets/js/expense.js"></script>
 
 </body>
 </html>
