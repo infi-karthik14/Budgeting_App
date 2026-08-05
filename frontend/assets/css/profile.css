@@ -2,16 +2,6 @@
    PROFILE PAGE
 ================================= */
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background: #f5f7fb;
-    font-family: 'Poppins', sans-serif;
-    color: #17233c;
-}
 
 /* =================================
    PAGE HEADER
@@ -53,7 +43,7 @@ body {
 
     border: 1px solid #dbe3f0;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
     background: white;
 
@@ -108,7 +98,7 @@ body {
 
     background: white;
 
-    border-radius: 15px;
+    border-radius: 12px;
 
     padding: 24px 24px 20px;
 
@@ -116,7 +106,7 @@ body {
 
     border-left: 5px solid #7c3aed;
 
-    box-shadow: 0 4px 16px rgba(35, 53, 84, 0.07);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 
     text-align: center;
 }
@@ -268,7 +258,7 @@ body {
 .profile-info-card {
     background: white;
 
-    border-radius: 15px;
+    border-radius: 12px;
 
     padding: 22px 26px;
 
@@ -276,7 +266,7 @@ body {
 
     border-left: 5px solid #2867e8;
 
-    box-shadow: 0 4px 16px rgba(35, 53, 84, 0.07);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
 
@@ -284,7 +274,7 @@ body {
    CARD HEADER
 ================================= */
 
-.card-header {
+.profile-card-header {
     display: flex;
     align-items: center;
 
@@ -299,7 +289,7 @@ body {
     width: 40px;
     height: 40px;
 
-    border-radius: 10px;
+    border-radius: 50%;
 
     background: #eaf1ff;
 
@@ -326,6 +316,10 @@ body {
     font-size: 12px;
 
     color: #7b8798;
+}
+
+.full-width{
+grid-column:1/-1;
 }
 
 
@@ -369,7 +363,7 @@ body {
 
     border: 1px solid #d7dde7;
 
-    border-radius: 9px;
+    border-radius: 12px;
 
     background: white;
 
@@ -402,7 +396,7 @@ body {
 .form-group textarea:focus {
     border-color: #3973ed;
 
-    box-shadow: 0 0 0 3px rgba(57, 115, 237, 0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
 
@@ -430,7 +424,7 @@ body {
 
     padding: 0 18px;
 
-    border-radius: 8px;
+    border-radius: 12px;
 
     font-size: 13px;
 
@@ -459,7 +453,7 @@ body {
 
     border: none;
 
-    box-shadow: 0 4px 10px rgba(40, 103, 232, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
 

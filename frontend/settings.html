@@ -8,7 +8,7 @@
     <title>Settings</title>
 
 
-      <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
     <link rel="stylesheet" href="assets/css/settings.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -19,9 +19,9 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
 
-        <div class="profile-box">
+        <div class="user-profile">
 
-            <div class="profile-icon">
+            <div class="avatar">
                 <i class="fa-solid fa-user"></i>
             </div>
 
@@ -30,39 +30,47 @@
 
         </div>
 
-        <nav class="sidebar-menu">
+        <ul class="menu">
 
-            <a href="dashboard.html">
-                <i class="fa-solid fa-house"></i>
-                <span>Dashboard</span>
-            </a>
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-house"></i>
+                    Dashboard
+                </a>
+            </li>
 
-            <a href="budget.html">
-                <i class="fa-solid fa-wallet"></i>
-                <span>Budget</span>
-            </a>
+            <li>
+                <a href="budget.html">
+                    <i class="fa-solid fa-house"></i>
+                    Budget
+                </a>
+            </li>
 
             <a href="transactions.html">
-                <i class="fa-solid fa-money-bill-transfer"></i>
-                <span>Transactions</span>
+                <i class="fa-solid fa-house"></i>
+                Transactions
             </a>
 
             <a href="analytics.html">
-                <i class="fa-solid fa-chart-pie"></i>
-                <span>Analytics</span>
+                <i class="fa-solid fa-wallet"></i>
+                Analytics
             </a>
 
-            <a href="profile.html">
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
-            </a>
+            <li>
+                <a href="profile.html">
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+                </a>
 
-            <a href="settings.html" class="active">
-                <i class="fa-solid fa-gear"></i>
-                <span>Settings</span>
-            </a>
+            </li>
 
-        </nav>
+            <li class="active">
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    Settings
+                </a>
+            </li>
+        </ul>
 
     </aside>
 
@@ -315,10 +323,7 @@
             </button>
 
         </div>
-
-
     </main>
-
 
     <script src="js/theme.js"></script>
     <script src="js/settings.js"></script>

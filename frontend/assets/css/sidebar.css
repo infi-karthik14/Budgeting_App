@@ -1,164 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
-/* ==========================
-   SIDEBAR
-========================== */
+body {
+    margin: 0;
+    padding: 0;
+     color: #17233c;
+    background: #f5f7fb;
+}
+
+/* SIDEBAR */
 
 .sidebar {
     width: 260px;
     height: 100vh;
-
+    display: flex;
     position: fixed;
     left: 0;
     top: 0;
-
-    display: flex;
     flex-direction: column;
-
-    background: linear-gradient(
-        180deg,
-        #16213e 0%,
-        #0f172a 100%
-    );
-
-    color: #fff;
-
-    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
-
+    background: linear-gradient(180deg, #17233f, #0d172d);
+    color: white;
     overflow: hidden;
 }
 
 
-/* ==========================
-   MAIN CONTENT
-========================== */
+/* MAIN CONTENT */
 
 .main-content {
     margin-left: 260px;
-
-    width: calc(100% - 260px);
-
     min-height: 100vh;
-
     padding: 30px;
-
-    background: #f4f7fc;
+    background: #f5f7fb;
+    box-sizing: border-box;
+    overflow-x: auto;
 }
 
-/* ==========================
-   USER PROFILE
-========================== */
+/* USER PROFILE */
 
-.user-profile{
-
-    padding:35px 20px;
-
-    text-align:center;
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-
+.user-profile {
+    padding: 35px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
 
-.avatar{
-
-    width:90px;
-    height:90px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    font-size:38px;
-
-    color:white;
-
-    background:linear-gradient(135deg,#4f8cff,#7c3aed);
-
-    box-shadow:0 15px 30px rgba(79,140,255,.35);
-
+.avatar {
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 38px;
+    color: white;
+    background: linear-gradient(135deg, #4f8cff, #7c3aed);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
-.user-profile h3{
-
-    margin-top:18px;
-
-    font-size:28px;
-
+.user-profile h3 {
+    margin-top: 18px;
+    font-size: 28px;
 }
 
-.user-profile p{
-
-    color:#cbd5e1;
-
-    margin-top:8px;
-
+.user-profile p {
+    color: #cbd5e1;
+    margin-top: 8px;
 }
 
-.menu{
-
-    list-style:none;
-
-    margin-top:25px;
-
-    padding:0 15px;
-
+.menu {
+    list-style: none;
+    margin-top: 25px;
+    padding: 0 15px;
 }
 
-.menu li{
-
-    margin-bottom:12px;
-
+.menu li {
+    margin-bottom: 12px;
 }
 
-.menu a{
-
-    text-decoration:none;
-
-    color:#dbe4ff;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    padding:14px 18px;
-
-    border-radius:14px;
-
-    transition:.3s;
-
-    font-size:17px;
-
+.menu a {
+    height: 54px;
+    text-decoration: none;
+    color: #dbe4ff;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    margin-bottom: 8px;
+    border-radius: 14px;
+    transition: .3s;
+    font-size: 17px;
+    font-weight: 500;
 }
 
-.menu a i{
-
-    width:22px;
-
-    text-align:center;
-
+.menu a i {
+    width: 22px;
+    text-align: center;
 }
 
-.menu a:hover{
-
-    background:rgba(255,255,255,.08);
-
-    transform:translateX(6px);
-
+.menu a:hover {
+    background: rgba(255, 255, 255, .08);
+    transform: translateX(6px);
 }
 
-.menu li.active a{
+.menu li.active a {
 
-    background:linear-gradient(135deg,#4f8cff,#7c3aed);
+    background: linear-gradient(135deg, #4f8cff, #7c3aed);
 
-    color:white;
+    color: white;
 
-    box-shadow:0 10px 25px rgba(79,140,255,.35);
-
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
 .topbar {
@@ -166,7 +120,8 @@
     align-items: flex-start;
     justify-content: space-between;
 
-    margin-bottom: 12px; /* reduce gap before boxes */
+    margin-bottom: 12px;
+    /* reduce gap before boxes */
 }
 
 .topbar h1 {
@@ -182,32 +137,19 @@
     color: #7a8798;
 }
 
-.add-btn{
 
-    border:none;
-
-    color:white;
-
-    cursor:pointer;
-
-    padding:14px 24px;
-
-    border-radius:14px;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    background:linear-gradient(135deg,#4f8cff,#7c3aed);
-
-    transition:.3s;
-
+.add-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+      font-size: 16px;
+    font-weight: 600;
 }
 
-.add-btn:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 12px 25px rgba(79,140,255,.35);
-
+.add-btn:hover {
+    background: #1d4ed8;
 }

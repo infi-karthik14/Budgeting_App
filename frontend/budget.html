@@ -10,189 +10,187 @@
 
     <link rel="stylesheet" href="assets/css/sidebar.css">
     <link rel="stylesheet" href="assets/css/budget.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-    <!-- Sidebar -->
-    <aside class="sidebar">
 
+    <div class="container">
+        <aside class="sidebar">
 
-        <!-- User Profile -->
+            <!-- User Profile -->
 
-        <div class="user-profile">
+            <div class="user-profile">
 
-            <div class="avatar">
-                <i class="fa-solid fa-user"></i>
-            </div>
-
-            <h3>Welcome!</h3>
-
-            <p>Archita</p>
-
-        </div>
-
-        <ul class="menu">
-
-            <li>
-                <a href="dashboard.html">
-                    <i class="fa-solid fa-house"></i>
-                    Dashboard
-                </a>
-            </li>
-
-            <li class="active">
-    <a href="budget.html">
-                    <i class="fa-solid fa-wallet"></i>
-                    Budget
-                </a>
-            </li>
-
-            <li>
-                <a href="transactions.html">
-                    <i class="fa-solid fa-money-bill-transfer"></i>
-                    Transactions
-                </a>
-            </li>
-
-            <li>
-                <a href="analytics.html">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    Analytics
-                </a>
-            </li>
-
-            <li>
-                <a href="profile.html">
+                <div class="avatar">
                     <i class="fa-solid fa-user"></i>
-                    Profile
-                </a>
-            </li>
+                </div>
 
-            <li>
-                <a href="settings.html">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
-            </li>
+                <h3>Welcome!</h3>
 
-        </ul>
-
-    </aside>
-
-    <!-- Main Content -->
-
-    <main class="main-content">
-
-        <!-- Navbar -->
-
-        <header class="topbar">
-
-            <div>
-                <h1>Budget Management</h1>
-                <p>Plan your budget, track your spending, and stay in control of your finances.</p>
-            </div>
-
-            <button class="add-btn">
-                <i class="fa-solid fa-plus"></i>
-                Add Budget
-            </button>
-
-        </header>
-
-
-        <!-- Summary Cards -->
-
-        <section class="summary">
-
-            <div class="card budget">
-
-                <i class="fa-solid fa-wallet"></i>
-
-                <h3>Total Budget</h3>
-
-                <h2>₹12,000</h2>
+                <p>Archita</p>
 
             </div>
 
+            <ul class="menu">
 
-            <div class="card spent">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fa-solid fa-house"></i>
+                        Dashboard
+                    </a>
+                </li>
 
-                <i class="fa-solid fa-arrow-trend-down"></i>
+                <li class="active">
+                    <a href="budget.html">
+                        <i class="fa-solid fa-wallet"></i>
+                        Budget
+                    </a>
+                </li>
 
-                <h3>Total Spent</h3>
+                <li>
+                    <a href="transactions.html">
+                        <i class="fa-solid fa-money-bill-transfer"></i>
+                        Transactions
+                    </a>
+                </li>
 
-                <h2>₹6,800</h2>
+                <li>
+                    <a href="analytics.html">
+                        <i class="fa-solid fa-chart-pie"></i>
+                        Analytics
+                    </a>
+                </li>
 
-            </div>
+                <li>
+                    <a href="profile.html">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                </li>
 
+                <li>
+                    <a href="settings.html">
+                        <i class="fa-solid fa-gear"></i>
+                        Settings
+                    </a>
+                </li>
 
-            <div class="card remaining">
-                <i class="fa-solid fa-piggy-bank"></i>
+            </ul>
 
-                <h3>Remaining</h3>
+        </aside>
 
-                <h2>₹5,200</h2>
+        <!-- Main Content -->
 
-            </div>
+        <main class="main-content">
 
-        </section>
+            <!-- Navbar -->
 
-        <section class="budget-form">
+            <header class="topbar">
 
-    <h2>Add New Budget</h2>
+                <div>
+                    <h1>Budget Management</h1>
+                    <p>Plan your budget, track your spending, and stay in control of your finances.</p>
+                </div>
 
-    <form>
-<div class="row g-3">
+                <button class="add-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Budget
+                </button>
 
-    <div class="col-md-3">
-        <input type="text" class="form-control" placeholder="Budget Name">
-    </div>
-
-    <div class="col-md-3">
-        <select class="form-select">
-            <option>Food</option>
-            <option>Travel</option>
-            <option>Shopping</option>
-        </select>
-    </div>
-
-    <div class="col-md-2">
-        <input type="number" class="form-control" placeholder="Amount">
-    </div>
-
-    <div class="col-md-2">
-        <input type="date" class="form-control">
-    </div>
-
-    <div class="col-md-2">
-        <button class="btn btn-primary w-100">
-            Save Budget
-        </button>
-    </div>
-
-</div>
-    </form>
-
-</section>
-
-<div class="table-actions">
-
-    <input
-        type="search"
-        placeholder="Search Category">
-
-    <button>
-        Export CSV
-    </button>
-
-</div>
+            </header>
 
 
-        <!-- Budget Categories -->
+            <!-- Summary Cards -->
 
-        <section class="budget-card">
+            <section class="summary">
+
+                <div class="card budget">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    <h3>Total Budget</h3>
+
+                    <h2>₹12,000</h2>
+
+                </div>
+
+                <section class="budget-form">
+
+                    <h2>Add New Budget</h2>
+
+                    <form>
+                        <div class="row g-3">
+
+                            <div class="col-md-3">
+                                <input type="text" class="form-control" placeholder="Budget Name">
+                            </div>
+
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option>Food</option>
+                                    <option>Travel</option>
+                                    <option>Shopping</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="number" class="form-control" placeholder="Amount">
+                            </div>
+
+                            <div class="col-md-2">
+                                <input type="date" class="form-control">
+                            </div>
+
+                            <div class="col-md-2">
+                                <button class="btn btn-primary w-100">
+                                    Save Budget
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </section>
+
+                <div class="table-actions">
+
+                    <input type="search" placeholder="Search Category">
+
+                    <button>
+                        Export CSV
+                    </button>
+
+                </div>
+
+
+                <div class="card spent">
+
+                    <i class="fa-solid fa-arrow-trend-down"></i>
+
+                    <h3>Total Spent</h3>
+
+                    <h2>₹6,800</h2>
+
+                </div>
+
+
+                <div class="card remaining">
+                    <i class="fa-solid fa-piggy-bank"></i>
+
+                    <h3>Remaining</h3>
+
+                    <h2>₹5,200</h2>
+
+                </div>
+
+            </section>
+
+
+            <!-- Budget Categories -->
+
+            <section class="budget-card">
 
 
                 <h2 class="table-title">Budget Categories</h2>
@@ -362,110 +360,103 @@
                                     </div>
                                 </td>
                             </tr>
-
                         </tbody>
-
                     </table>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Budget Analytics Chart -->
+            <!-- Budget Analytics Chart -->
 
-<section class="budget-chart">
+            <section class="budget-chart">
 
-    <h2 class="table-title">
-        Budget Analytics
-    </h2>
+                <h2 class="table-title">
+                    Budget Analytics
+                </h2>
 
-    <div class="card-body">
+                <div class="card-body">
 
-        <canvas id="budgetChart" height="100"></canvas>
+                    <canvas id="budgetChart" height="100"></canvas>
 
+                </div>
+
+            </section>
+
+            <!-- Savings Goal -->
+
+            <section class="goal-card">
+
+                <h2>🎯 Savings Goal</h2>
+
+                <h4>Buy a New Laptop</h4>
+
+                <p>₹32,000 saved of ₹50,000</p>
+
+                <div class="progress">
+
+                    <div class="progress-bar green" style="width:64%;">
+
+                        64%
+
+                    </div>
+
+                </div>
+
+                <p class="mt-3">
+                    Keep saving! You're getting closer to your goal.
+                </p>
+
+            </section>
+
+            <!-- Budget Tips -->
+
+            <section class="tips-card">
+
+                <h2>💡 Budget Tips</h2>
+
+                <div class="card-body">
+
+                    <ul>
+
+                        <li>Save at least 20% of your monthly income.</li>
+
+                        <li>Track your expenses every day.</li>
+
+                        <li>Review your budget at the end of each week.</li>
+
+                        <li>Avoid unnecessary impulse purchases.</li>
+
+                        <li>Increase your savings goal gradually every month.</li>
+
+                    </ul>
+                </div>
+            </section>
+        </main>
     </div>
-
-</section>
-
-<!-- Savings Goal -->
-
-<section class="goal-card">
-
-    <h2>🎯 Savings Goal</h2>
-
-    <h4>Buy a New Laptop</h4>
-
-    <p>₹32,000 saved of ₹50,000</p>
-
-    <div class="progress">
-
-        <div class="progress-bar green"
-             style="width:64%;">
-
-            64%
-
-        </div>
-
-    </div>
-
-    <p class="mt-3">
-        Keep saving! You're getting closer to your goal.
-    </p>
-
-</section>
-
-<!-- Budget Tips -->
-
-<section class="tips-card">
-
-    <h2>💡 Budget Tips</h2>
-
-    <div class="card-body">
-
-        <ul>
-
-            <li>Save at least 20% of your monthly income.</li>
-
-            <li>Track your expenses every day.</li>
-
-            <li>Review your budget at the end of each week.</li>
-
-            <li>Avoid unnecessary impulse purchases.</li>
-
-            <li>Increase your savings goal gradually every month.</li>
-
-        </ul>
-
-    </div>
-
-</section>
-
-
-    </main>
 
     <script src="js/theme.js"></script>
-<script src="js/budget.js"></script>
+    <script src="js/budget.js"></script>
 
-<!-- Footer -->
+    <!-- Footer -->
 
-<footer class="footer">
-    <div class="container">
+    <footer class="footer">
+        <div class="container">
 
-        <h4>Budgeting App</h4>
+            <h4>Budgeting App</h4>
+            <p>
+                Dashboard |
+                Income |
+                Expense |
+                Budget |
+                Analytics
+            </p>
 
-        <p>
-            Dashboard |
-            Income |
-            Expense |
-            Budget |
-            Analytics
-        </p>
+            <p>Email : rastogi.karthik1409@gmail.com</p>
 
-        <p>Email : rastogi.karthik1409@gmail.com</p>
+            <p>© 2026 Budgeting App. All Rights Reserved.</p>
 
-        <p>© 2026 Budgeting App. All Rights Reserved.</p>
-
-    </div>
-</footer>
+        </div>
+    </footer>
 
 </body>
+
 </html>
