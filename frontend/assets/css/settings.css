@@ -2,133 +2,7 @@
    SETTINGS PAGE
 ================================ */
 
-* {
-    box-sizing: border-box;
-}
 
-body {
-    margin: 0;
-    background: #f5f7fb;
-    color: #17233c;
-    font-family: 'Poppins', sans-serif;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-
-/* ================================
-   SIDEBAR
-================================ */
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 280px;
-    height: 100vh;
-
-    background: linear-gradient(180deg, #17233f, #0d172d);
-
-    color: white;
-
-    overflow: hidden;
-}
-
-
-/* PROFILE */
-
-.profile-box {
-    height: 255px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.profile-icon {
-    width: 96px;
-    height: 96px;
-
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: linear-gradient(135deg, #4d80ff, #7738e9);
-
-    font-size: 42px;
-
-    margin-bottom: 15px;
-
-    box-shadow: 0 10px 25px rgba(71, 100, 255, 0.25);
-}
-
-.profile-box h2 {
-    margin: 0;
-
-    font-size: 30px;
-    font-weight: 700;
-}
-
-.profile-box p {
-    margin: 4px 0 0;
-
-    font-size: 17px;
-    color: #c6cede;
-}
-
-
-/* SIDEBAR MENU */
-
-.sidebar-menu {
-    padding: 25px 16px;
-}
-
-.sidebar-menu a {
-    height: 54px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 18px;
-
-    padding: 0 20px;
-
-    margin-bottom: 8px;
-
-    border-radius: 15px;
-
-    text-decoration: none;
-
-    color: #d7dff0;
-
-    font-size: 18px;
-    font-weight: 500;
-
-    transition: 0.25s ease;
-}
-
-.sidebar-menu a i {
-    width: 22px;
-    text-align: center;
-}
-
-.sidebar-menu a:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-}
-
-.sidebar-menu a.active {
-    background: linear-gradient(90deg, #4f83ff, #7c36e9);
-
-    color: white;
-
-    box-shadow: 0 8px 20px rgba(81, 90, 240, 0.3);
-}
 
 /* HEADER */
 
@@ -167,31 +41,13 @@ body {
 .settings-card {
     background: white;
 
-    border-radius: 16px;
-
-    padding: 26px 28px;
-
-    margin-bottom: 26px;
-
-    box-shadow: 0 5px 20px rgba(35, 53, 84, 0.08);
-
-    border: 1px solid #edf0f5;
-}
-
-/* =================================
-   COLORED LEFT BORDER
-================================= */
-
-.settings-card {
-    background: white;
-
-    border-radius: 13px;
+    border-radius: 12px;
 
     padding: 17px 21px;
 
     margin-bottom: 17px;
 
-    box-shadow: 0 3px 14px rgba(35, 53, 84, 0.06);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 
     border: 1px solid #edf0f5;
 
@@ -232,7 +88,7 @@ body {
 
 /* CARD HEADER */
 
-.card-header {
+.settings-card-header {
     display: flex;
     align-items: center;
 
@@ -247,7 +103,7 @@ body {
     width: 37px;
     height: 37px;
 
-    border-radius: 9px;
+    border-radius: 12px;
 
     display: flex;
     align-items: center;
@@ -299,9 +155,7 @@ body {
 
 
 
-/* ================================
-   SETTING ROW
-================================ */
+/* SETTING ROW */
 
 .setting-row {
     min-height: 64px;
@@ -338,9 +192,7 @@ body {
 }
 
 
-/* ================================
-   TOGGLE SWITCH
-================================ */
+/* TOGGLE SWITCH */
 
 .switch {
     position: relative;
@@ -366,7 +218,7 @@ body {
 
     background: #d1d3d6;
 
-    border-radius: 30px;
+    border-radius: 12px;
 
     transition: 0.3s;
 }
@@ -386,7 +238,7 @@ body {
 
     border-radius: 50%;
 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 
     transition: 0.3s;
 }
@@ -447,7 +299,7 @@ body {
 .form-group select:focus {
     border-color: #3973ed;
 
-    box-shadow: 0 0 0 3px rgba(57, 115, 237, 0.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
 
@@ -506,7 +358,7 @@ body {
 
     color: white;
 
-    box-shadow: 0 5px 12px rgba(40, 103, 232, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 }
 
 .save-btn:hover {
@@ -568,7 +420,7 @@ body.dark-mode canvas {
 @media (max-width: 1000px) {
 
     .sidebar {
-        width: 220px;
+        width: 260px;
     }
 
     .main-content {
@@ -577,73 +429,8 @@ body.dark-mode canvas {
         padding: 28px 22px;
     }
 
-    .profile-box h2 {
-        font-size: 24px;
-    }
-
     .sidebar-menu a {
         font-size: 15px;
-    }
-
-}
-
-
-@media (max-width: 700px) {
-
-    .sidebar {
-        position: relative;
-
-        width: 100%;
-        height: auto;
-    }
-
-    .profile-box {
-        height: 180px;
-    }
-
-    .sidebar-menu {
-        display: flex;
-
-        overflow-x: auto;
-
-        padding: 12px;
-    }
-
-    .sidebar-menu a {
-        flex-shrink: 0;
-
-        margin: 0 4px;
-    }
-
-    .main-content {
-        margin-left: 0;
-
-        padding: 22px 15px;
-    }
-
-    .page-header h1 {
-        font-size: 30px;
-    }
-
-    .settings-card {
-        padding: 20px;
-    }
-
-    .setting-row {
-        align-items: flex-start;
-
-        padding: 20px 0;
-    }
-
-    .settings-actions {
-        justify-content: stretch;
-    }
-
-    .reset-btn,
-    .save-btn {
-        flex: 1;
-
-        justify-content: center;
     }
 
 }
@@ -673,7 +460,7 @@ body.dark-mode canvas {
 
     font-size: 14px;
 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
 
     animation: slideIn 0.3s ease;
 

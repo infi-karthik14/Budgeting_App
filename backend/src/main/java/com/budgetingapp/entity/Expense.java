@@ -9,14 +9,17 @@ public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private long UserId;
     private double monthlyIncome;
     private double monthlyBudget;
     private String category;
     private String paymentMethod;
     private String city;
+    private String title;
     private String dayOfWeek;
+    private double amount;
     private double predictedExpense;
+    private String expenseDate; // Changed from LocalDate to String
 
     public Expense() {
     }
@@ -83,5 +86,36 @@ public class Expense {
 
     public void setPredictedExpense(double predictedExpense) {
         this.predictedExpense = predictedExpense;
+    }
+    public Long getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(Long userId) {
+        this.UserId = userId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getExpenseDate() {
+        return expenseDate;
+    }
+
+    public void setExpenseDate(String expenseDate) {
+        this.expenseDate = expenseDate;
     }
 }
