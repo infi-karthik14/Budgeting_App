@@ -211,3 +211,46 @@
     box-shadow:0 12px 25px rgba(79,140,255,.35);
 
 }
+/* ================================
+   DARK MODE
+================================ */
+
+body.dark-mode {
+    background: #101827;
+    color: #ffffff;
+}
+
+body.dark-mode .main-content {
+    background: #101827;
+}
+
+body.dark-mode .summary-card,
+body.dark-mode .chart-card,
+body.dark-mode .report-card {
+    background: #182235;
+    color: #ffffff;
+    border-color: #2c3b55;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode th,
+body.dark-mode td,
+body.dark-mode li,
+body.dark-mode label {
+    color: #ffffff;
+}
+
+body.dark-mode .report-table thead {
+    background: #2867e8;
+}
+
+body.dark-mode .report-table td {
+    border-color: #2c3b55;
+}
+
+body.dark-mode canvas {
+    background: transparent;
+}

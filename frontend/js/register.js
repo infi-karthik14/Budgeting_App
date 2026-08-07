@@ -52,13 +52,51 @@ confirmPassword.addEventListener("keyup", () => {
 
 const form = document.getElementById("registerForm");
 
-form.addEventListener("submit", function(e){
+form.addEventListener("submit", function (e) {
 
-    if(password.value !== confirmPassword.value){
+    e.preventDefault();
 
-        e.preventDefault();
+    if (password.value !== confirmPassword.value) {
+
         alert("Passwords do not match!");
+        return;
 
     }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const email = document.getElementById("email").value;
+
+    // Check if email already exists
+    const existingUser = users.find(user => user.email === email);
+
+    if (existingUser) {
+
+        alert("This email is already registered!");
+        return;
+
+    }
+
+    const newUser = {
+
+        name: document.getElementById("fullName").value,
+
+        email: email,
+
+        phone: document.getElementById("phone").value,
+
+        password: password.value
+
+    };
+
+    users.push(newUser);
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Registration Successful!");
+
+    form.reset();
+
+    window.location.href = "login.html";
 
 });

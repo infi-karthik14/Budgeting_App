@@ -52,24 +52,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     darkModeToggle.addEventListener("change", function () {
 
-        if (this.checked) {
+    document.body.classList.toggle("dark-mode", this.checked);
 
-            document.body.classList.add("dark-mode");
+    const settings =
+        JSON.parse(localStorage.getItem("budgetSettings")) || {};
 
-        } else {
+    settings.darkMode = this.checked;
 
-            document.body.classList.remove("dark-mode");
+    localStorage.setItem(
+        "budgetSettings",
+        JSON.stringify(settings)
+    );
 
-        }
-
-    });
+});
 
 
     /* ================================
        SAVE SETTINGS
     ================================= */
 
-    saveBtn.addEventListener("click", function () {
+    saveBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();
 
         const settings = {
 
@@ -107,7 +111,9 @@ document.addEventListener("DOMContentLoaded", function () {
        RESET SETTINGS
     ================================= */
 
-    resetBtn.addEventListener("click", function () {
+    resetBtn.addEventListener("click", function (e) {
+
+    e.preventDefault();
 
         const confirmReset =
             confirm("Are you sure you want to reset all settings?");

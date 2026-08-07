@@ -228,3 +228,69 @@ tr:hover {
     }
 
 }
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    margin-top:20px;
+}
+
+.card-header{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.footer{
+    margin-top:40px;
+    padding:25px;
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    border-radius:15px;
+}
+/* ================================
+   DARK MODE
+================================ */
+
+body.dark-mode {
+    background: #101827;
+    color: #ffffff;
+}
+
+body.dark-mode .main-content {
+    background: #101827;
+}
+
+body.dark-mode .summary-card,
+body.dark-mode .chart-card,
+body.dark-mode .report-card {
+    background: #182235;
+    color: #ffffff;
+    border-color: #2c3b55;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode th,
+body.dark-mode td,
+body.dark-mode li,
+body.dark-mode label {
+    color: #ffffff;
+}
+
+body.dark-mode .report-table thead {
+    background: #2867e8;
+}
+
+body.dark-mode .report-table td {
+    border-color: #2c3b55;
+}
+
+body.dark-mode canvas {
+    background: transparent;
+}

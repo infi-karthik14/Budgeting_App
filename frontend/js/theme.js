@@ -40,3 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const settings =
+        JSON.parse(localStorage.getItem("budgetSettings")) || {};
+
+    if (settings.darkMode) {
+        document.body.classList.add("dark-mode");
+    }
+
+});

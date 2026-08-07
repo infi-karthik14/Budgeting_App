@@ -187,6 +187,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+
+    // ==========================
+// LINE CHART
+// ==========================
+
+const lineCanvas = document.getElementById("lineChart");
+
+if (lineCanvas) {
+
+    new Chart(lineCanvas, {
+
+        type: "line",
+
+        data: {
+
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+
+            datasets: [{
+
+                label: "Savings",
+
+                data: [1400, 1700, 1900, 1700, 2000, 2200],
+
+                borderColor: "#3b82f6",
+
+                backgroundColor: "rgba(59,130,246,0.2)",
+
+                fill: true,
+
+                tension: 0.4
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false
+
+        }
+
+    });
+
+}
     // ==========================
     // Table Hover Effect
     // ==========================

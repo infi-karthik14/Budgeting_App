@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions</title>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="stylesheet" href="assets/css/sidebar.css">
     <link rel="stylesheet" href="assets/css/transactions.css">
 
@@ -128,6 +132,26 @@
             </section>
 
             <!-- Search -->
+             <section class="search-section">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchTransaction"
+            placeholder="🔍 Search Transactions">
+
+    </div>
+
+    <button class="export-btn">
+
+        <i class="fa-solid fa-file-export"></i>
+
+        Export CSV
+
+    </button>
+
+</section>
 
             <!-- Filter Section -->
 
@@ -367,12 +391,85 @@
 
             </section>
 
+            <section class="chart-section">
+
+    <h2>Monthly Transactions</h2>
+
+    <div class="chart-card">
+
+        <canvas id="transactionChart"></canvas>
+
+    </div>
+
+</section>
+
+<section class="activity-section">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>📋 Recent Activity</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <ul>
+                <li>💰 Salary credited - ₹15,000</li>
+                <li>🍔 Food expense - ₹120</li>
+                <li>🛒 Shopping - ₹340</li>
+                <li>✈️ Travel expense - ₹900</li>
+                <li>🎯 Budget updated successfully</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="tips-section">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>💡 Transaction Tips</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <ul>
+                <li>Track every transaction immediately.</li>
+                <li>Review your expenses weekly.</li>
+                <li>Categorize transactions properly.</li>
+                <li>Export your transaction history every month.</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
         </main>
 
     </div>
 
     <script src="js/theme.js"></script>
     <script src="js/transactions.js"></script>
+
+    
+
+
+ <footer class="footer">
+    <h3>Budgeting App</h3>
+    <p>Dashboard | Budget | Transactions | Analytics | Profile | Settings</p>
+    <p>Email: support@budgetingapp.com</p>
+    <p>© 2026 Budgeting App. All Rights Reserved.</p>
+</footer>
 
 </body>
 

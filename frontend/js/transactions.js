@@ -59,3 +59,26 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+const ctx = document.getElementById("transactionChart");
+
+if (ctx) {
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+            datasets: [{
+                label: "Transactions",
+                data: [15, 20, 18, 25, 30, 28]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+}

@@ -522,67 +522,42 @@ body {
 
 body.dark-mode {
     background: #101827;
-    color: #f4f7fb;
-}
-
-body.dark-mode .page-header h1 {
     color: #ffffff;
 }
 
-body.dark-mode .page-header p {
-    color: #aab5c7;
+body.dark-mode .main-content {
+    background: #101827;
 }
 
-body.dark-mode .settings-card {
+body.dark-mode .summary-card,
+body.dark-mode .chart-card,
+body.dark-mode .report-card {
     background: #182235;
-
-    border-color: #27344b;
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+    border-color: #2c3b55;
 }
 
-body.dark-mode .card-header {
-    border-color: #2a374d;
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode th,
+body.dark-mode td,
+body.dark-mode li,
+body.dark-mode label {
+    color: #ffffff;
 }
 
-body.dark-mode .card-header h2 {
-    color: #f5f7fb;
+body.dark-mode .report-table thead {
+    background: #2867e8;
 }
 
-body.dark-mode .card-header p {
-    color: #aab5c7;
+body.dark-mode .report-table td {
+    border-color: #2c3b55;
 }
 
-body.dark-mode .setting-row {
-    border-color: #2a374d;
-}
-
-body.dark-mode .setting-info h3 {
-    color: #f0f3f8;
-}
-
-body.dark-mode .setting-info p {
-    color: #aab5c7;
-}
-
-body.dark-mode .form-group label {
-    color: #e4e9f2;
-}
-
-body.dark-mode .form-group select {
-    background: #111a2a;
-
-    color: white;
-
-    border-color: #344157;
-}
-
-body.dark-mode .reset-btn {
-    background: #182235;
-
-    border-color: #344157;
-
-    color: #e6ebf3;
+body.dark-mode canvas {
+    background: transparent;
 }
 
 
@@ -741,4 +716,35 @@ body.dark-mode .reset-btn {
         transform: translateY(20px);
     }
 
+}
+/* TEXT COLORS */
+body.dark-mode .card-header h2,
+body.dark-mode .card-header p,
+body.dark-mode .setting-info h3,
+body.dark-mode .setting-info p,
+body.dark-mode .form-group label {
+    color: #ffffff;
+}
+
+/* ICONS */
+body.dark-mode .header-icon {
+    background: #24324a;
+}
+
+/* DROPDOWNS */
+body.dark-mode select {
+    background: #101827;
+    color: white;
+    border: 1px solid #3b4a63;
+}
+
+/* SETTINGS CARDS */
+body.dark-mode .settings-card {
+    background: #182235;
+    border-color: #2d3c55;
+}
+
+/* SETTING ROW */
+body.dark-mode .setting-row {
+    border-bottom: 1px solid #2d3c55;
 }

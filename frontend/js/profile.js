@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const uploadImage = document.getElementById("uploadImage");
 
     const inputs = document.querySelectorAll(
-        ".profile-details input, .profile-details textarea"
-    );
+    ".profile-form input, .profile-form textarea"
+);
+    
 
     // ============================
     // Disable fields initially
