@@ -1,11 +1,138 @@
-/* Testimonials */
-
-.card{
-    border-radius:15px;
-    transition:0.3s;
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8fafc;
 }
 
-.card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 12px 25px rgba(0,0,0,.2);
+.hero{
+    padding:90px 0;
+}
+
+.navbar-brand{
+    font-size:28px;
+    font-weight:700;
+}
+
+.btn{
+    border-radius:30px;
+}
+
+.footer{
+    background:#0d1b2a;
+    color:#fff;
+}
+
+.footer a{
+    color:#ddd;
+    text-decoration:none;
+}
+
+.footer a:hover{
+    color:#ffc107;
+}
+
+/* Smooth Transition */
+
+body,
+.navbar,
+.card,
+.sidebar,
+.footer,
+table,
+input,
+select,
+button {
+
+    transition: all .3s ease;
+
+}
+
+/* Dark Theme */
+
+body.dark-theme{
+
+    background:#121212;
+    color:#ffffff;
+
+}
+
+body.dark-theme .navbar{
+
+    background:#1f1f1f !important;
+
+}
+
+body.dark-theme .card{
+
+    background:#1e1e1e;
+    color:white;
+
+}
+
+body.dark-theme .sidebar{
+
+    background:#181818;
+
+}
+
+body.dark-theme table{
+
+    color:white;
+
+}
+
+body.dark-theme th{
+
+    background:#2c2c2c;
+
+}
+
+body.dark-theme td{
+
+    background:#1e1e1e;
+
+}
+
+body.dark-theme input,
+body.dark-theme select{
+
+    background:#2a2a2a;
+    color:white;
+    border:1px solid #555;
+
+}
+
+body.dark-theme .footer{
+
+    background:#111;
+
+}
+
+body.dark-theme a{
+
+    color:#4da3ff;
+
+}
+
+.stats h2{
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.stats p{
+    font-size: 1.1rem;
+    margin: 0;
+    color: #f8f9fa;
+}
+
+body.dark .stats{
+    background:#0d6efd !important;
+}
+
+.hero-video{
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.2);
 }

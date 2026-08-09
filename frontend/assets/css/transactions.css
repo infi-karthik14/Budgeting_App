@@ -1,281 +1,185 @@
-/* Transactions Page CSS */
-
-
-.add-btn {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.add-btn:hover {
-    background: #1d4ed8;
-}
-
-/* Summary Cards */
-
-.transaction-summary {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-}
-
-.card h3 {
-    color: #555;
-    margin-bottom: 10px;
-}
-
-.card h2 {
-    font-size: 28px;
-}
-
 .income {
-    border-left: 6px solid #22c55e;
+    background: linear-gradient(135deg, #00c853, #43e97b);
+    color: #fff;
 }
 
 .expense {
-    border-left: 6px solid #ef4444;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: #fff;
 }
 
 .balance {
-    border-left: 6px solid #3b82f6;
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+    color: #fff;
+}
+
+.transaction {
+    background: linear-gradient(135deg, #7b2ff7, #9d50ff);
+    color: #fff;
+}
+
+.badge {
+
+    padding: 8px 14px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+}
+
+.btn-sm {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 10px;
 }
 
 
-/* Filter Section */
-
-.filter-section {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 25px;
+.card-icon{
+    position:absolute;
+    right:20px;
+    bottom:20px;
+    font-size:60px;
+    opacity:.18;
 }
 
-.filter-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.dashboard-card{
+    position:relative;
+    overflow:hidden;
 }
 
-.filter-box label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 8px;
+.table-responsive {
+    overflow-x: auto;
 }
 
-.filter-box select {
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    outline: none;
-    font-size: 15px;
-    background: #fff;
-}
-
-/* Table */
-
-.table-section {
-
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-}
-
-table {
-
+.table {
     width: 100%;
-    border-collapse: collapse;
-
+    table-layout: fixed;
 }
 
-th {
-
-    background: #2563eb;
-    color: white;
-    padding: 15px;
-    text-align: left;
-
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
 }
 
-td {
-
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-
+.table th:last-child,
+.table td:last-child {
+    width: 130px;
 }
 
-tr:hover {
-
-    background: #f9fafb;
-
+.card-body.table-responsive {
+    padding: 0;
 }
 
-/* Tags */
-
-.income-tag {
-
-    background: #dcfce7;
-    color: #166534;
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-size: 14px;
-
+.table {
+    margin-bottom: 0;
 }
 
-.expense-tag {
-
-    background: #fee2e2;
-    color: #991b1b;
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-size: 14px;
-
+.action-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
 }
 
-/* Buttons */
-
-.edit-btn {
-
-    background: #f59e0b;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 12px;
-    cursor: pointer;
-    margin-right: 8px;
-
+.action-buttons .btn{
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.delete-btn {
-
-    background: #ef4444;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 12px;
-    cursor: pointer;
-
+.row.mt-4.mb-4{
+    margin-top:30px;
 }
 
-.edit-btn:hover {
-
-    opacity: .85;
-
+.row.mt-4.mb-4 .card{
+    height:100%;
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
 }
 
-.delete-btn:hover {
-
-    opacity: .85;
-
+.transaction-card-header{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    padding:18px 22px;
+    border:none;
 }
 
-/* Responsive */
-
-@media(max-width:900px) {
-
-    .transaction-summary {
-
-        grid-template-columns: 1fr;
-
-    }
-
-    .filter-section {
-
-        flex-direction: column;
-
-    }
-
-    .filter-section input,
-    .filter-section select {
-
-        width: 100%;
-
-    }
-
-    table {
-
-        display: block;
-        overflow-x: auto;
-
-    }
-
+.transaction-card-header h5{
+    margin:0;
+    color:#fff;
+    font-weight:600;
 }
 
-.card{
-    background:#fff;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    margin-top:20px;
+.transaction-card-header i{
+    color:#fff;
 }
 
-.card-header{
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:15px;
+.row.mt-4.mb-4 .card-body{
+    padding:22px;
 }
 
-.footer{
-    margin-top:40px;
-    padding:25px;
-    background:#2563eb;
-    color:white;
-    text-align:center;
-    border-radius:15px;
-}
-/* ================================
-   DARK MODE
-================================ */
-
-body.dark-mode {
-    background: #101827;
-    color: #ffffff;
+.row.mt-4.mb-4 ul{
+    margin:0;
+    padding-left:20px;
 }
 
-body.dark-mode .main-content {
-    background: #101827;
+.row.mt-4.mb-4 li{
+    margin-bottom:12px;
+    color:#4b5563;
 }
 
-body.dark-mode .summary-card,
-body.dark-mode .chart-card,
-body.dark-mode .report-card {
-    background: #182235;
-    color: #ffffff;
-    border-color: #2c3b55;
+
+.recent-card{
+    background: linear-gradient(135deg,#32a9e0,#43e97b);
+    color:#000000;
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 30px rgba(0,200,83,.25);
 }
 
-body.dark-mode h1,
-body.dark-mode h2,
-body.dark-mode h3,
-body.dark-mode p,
-body.dark-mode th,
-body.dark-mode td,
-body.dark-mode li,
-body.dark-mode label {
-    color: #ffffff;
+.recent-card .card-header{
+    background:transparent;
+    border:black;
 }
 
-body.dark-mode .report-table thead {
-    background: #2867e8;
+.recent-card .card-header h5,
+.recent-card .card-body,
+.recent-card li{
+    color:#000000;
 }
 
-body.dark-mode .report-table td {
-    border-color: #2c3b55;
+.tips-card{
+    background: linear-gradient(135deg,#b898ec,#c43cfa);
+    color:#000000;
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 30px rgba(123,47,247,.25);
 }
 
-body.dark-mode canvas {
-    background: transparent;
+.tips-card .card-header{
+    background:transparent;
+    border:black;
+}
+
+.tips-card .card-header h5,
+.tips-card .card-body,
+.tips-card li{
+    color:#000000;
+}
+
+.recent-card .card-header i,
+.tips-card .card-header i{
+    color: #000 !important;
 }

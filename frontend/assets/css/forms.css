@@ -1,44 +1,264 @@
+/* ===========================
+   Google Font
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ===========================
+   Body
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
+
     font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#e3f2fd,#f8f9fa);
+
+    background:url("../../images/3.png") no-repeat center center;
+
+    background-size:cover;
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
 }
 
-.card{
-    border:none;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 15px 40px rgba(0,0,0,0.15);
+/* Dark overlay */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.18);
+
+    z-index:-1;
+
 }
 
-.bg-primary{
-    background:linear-gradient(135deg,#0d6efd,#4facfe)!important;
+/* ===========================
+   Register Card
+=========================== */
+
+.register-card{
+    width:420px;
+    padding:35px;
+
+    background:rgba(180,220,255,0.22);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:25px;
+
+    box-shadow:
+        0 8px 32px rgba(31,38,135,.20),
+        inset 0 1px 0 rgba(255,255,255,.35);
 }
+
+/* ===========================
+   Logo
+=========================== */
+
+.logo{
+
+    font-size:55px;
+
+    color:#0d6efd;
+
+}
+
+/* ===========================
+   Headings
+=========================== */
+
+.register-card h2{
+
+    color:#ffffff;
+
+    font-weight:700;
+
+}
+
+.subtitle{
+
+    color:#eeeeee;
+
+}
+
+/* ===========================
+   Inputs
+=========================== */
 
 .form-control{
+
     height:50px;
-    border-radius:0 10px 10px 0;
+
+    background:rgba(173,216,255,.25);
+
+    border:1px solid rgba(255,255,255,.30);
+
+    color:white;
+
+    border-radius:12px;
+
 }
+
+.form-control::placeholder{
+
+    color:rgba(255,255,255,.85);
+
+}
+
+.form-control:focus{
+
+    background:rgba(255,255,255,.30);
+
+    color:#ffffff;
+
+    border-color:#0d6efd;
+
+    box-shadow:none;
+
+}
+
+/* ===========================
+   Password Eye
+=========================== */
 
 .input-group-text{
-    border-radius:10px 0 0 10px;
-    background:#fff;
+
+    background:rgba(173,216,255,.25);
+
+    border:1px solid rgba(255,255,255,.30);
+
+    color:white;
+
 }
 
-.btn{
+/* ===========================
+   Button
+=========================== */
+.btn-primary{
     height:50px;
-    border-radius:10px;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    background:linear-gradient(135deg,#0d6efd,#3b82f6);
+    transition:background 0.3s ease;
+}
+
+.btn-primary:hover{
+    background:linear-gradient(135deg,#0b5ed7,#084298);
+    border:none;
+    transform:none;
+    box-shadow:none;
+}
+
+/* ===========================
+   Links
+=========================== */
+
+a{
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+a:hover{
+
+    color:#0d6efd;
+
+}
+
+/* ===========================
+   HR
+=========================== */
+
+hr{
+
+    border-color:rgba(255,255,255,.35);
+
+}
+
+/* ===========================
+   Password Message
+=========================== */
+
+#passwordMessage{
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:14px;
+
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:576px){
+
+.register-card{
+
+width:100%;
+
+padding:25px;
+
+}
+
+.logo{
+
+font-size:45px;
+
+}
+
+.register-card h2{
+
+font-size:28px;
+
+}
+
+}
+
+.register-card h2,
+.register-card p,
+.register-card label,
+.register-card a{
+
+    color:white;
+
+}
+
+.login-link{
+    color:#ffffff;
     font-weight:600;
     transition:0.3s;
 }
 
-.btn:hover{
-    transform:translateY(-3px);
-}
-
-a{
+.login-link:hover{
+    color:#0d6efd !important;
     text-decoration:none;
-}
-
-img{
-    max-width:220px;
 }

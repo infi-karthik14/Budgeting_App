@@ -121,3 +121,70 @@ body.dark-mode .report-table td {
 body.dark-mode canvas {
     background: transparent;
 }
+
+/* Default (Light Theme) */
+.testimonials h2{
+    color: #212529;
+    transition: color 0.3s ease;
+}
+
+/* Dark Theme */
+body.dark-mode .testimonials h2{
+    color: #ffffff;
+}
+
+/* ===== Global Dark Mode ===== */
+
+body.dark-mode{
+    background:#101827;
+    color:#ffffff;
+}
+
+body.dark-mode .hero{
+    background:#101827;
+}
+
+body.dark-mode .bg-light{
+    background:#101827 !important;
+}
+
+body.dark-mode .bg-white{
+    background:#101827 !important;
+}
+
+body.dark-mode .card{
+    background:#182235;
+    color:#ffffff;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+body.dark-mode .card p,
+body.dark-mode .card h1,
+body.dark-mode .card h2,
+body.dark-mode .card h3,
+body.dark-mode .card h4,
+body.dark-mode .card h5{
+    color:#ffffff;
+}
+
+body.dark-mode .stats{
+    background:#0d6efd !important;
+}
+
+body.dark-mode footer{
+    background:#0f172a;
+}
+
+body.dark-mode footer a{
+    color:#ffffff;
+}
+
+body.dark-mode footer a:hover{
+    color:#ffc107;
+}
+
+body.dark-mode .testimonials h2,
+body.dark-mode #features h2,
+body.dark-mode h2{
+    color:#ffffff;
+}

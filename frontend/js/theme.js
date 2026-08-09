@@ -1,39 +1,40 @@
-// ===============================
-// Global Theme Manager
-// ===============================
+// ==========================================
+// Budgeting App - Global Theme Manager
+// ==========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    // Get toggle button (only available on Settings page)
-    const themeToggle = document.getElementById("theme-toggle");
+    const themeToggle = document.getElementById("themeToggle");
 
-    // Load saved theme
-    const savedTheme = localStorage.getItem("theme");
+    // Default theme = Light
+    let currentTheme = localStorage.getItem("theme") || "light";
 
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-
-        if (themeToggle) {
-            themeToggle.checked = true;
-        }
+    if (!currentTheme) {
+        currentTheme = "light";
+        localStorage.setItem("theme", currentTheme);
     }
 
-    // Toggle theme (only on Settings page)
+    // Apply saved theme
+    applyTheme(currentTheme);
+
+    // Toggle button (only available on Settings page)
     if (themeToggle) {
 
-        themeToggle.addEventListener("change", function () {
+        themeToggle.addEventListener("click", () => {
 
-            if (this.checked) {
+            if (document.body.classList.contains("dark-mode")) {
 
-                document.body.classList.add("dark");
-                localStorage.setItem("theme", "dark");
+                currentTheme = "light";
 
             } else {
 
-                document.body.classList.remove("dark");
-                localStorage.setItem("theme", "light");
+                currentTheme = "dark";
 
             }
+
+            localStorage.setItem("theme", currentTheme);
+
+            applyTheme(currentTheme);
 
         });
 
@@ -41,13 +42,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+// ==========================================
+// Apply Theme
+// ==========================================
 
-    const settings =
-        JSON.parse(localStorage.getItem("budgetSettings")) || {};
+function applyTheme(theme) {
 
-    if (settings.darkMode) {
+    const themeToggle = document.getElementById("themeToggle");
+
+    if (theme === "dark") {
+
         document.body.classList.add("dark-mode");
+
+        if (themeToggle) {
+
+            themeToggle.innerHTML =
+                '<i class="fa-solid fa-sun"></i> Light Mode';
+
+            themeToggle.classList.remove("btn-primary");
+            themeToggle.classList.add("btn-warning");
+
+        }
+
+    } else {
+
+        document.body.classList.remove("dark-mode");
+
+        if (themeToggle) {
+
+            themeToggle.innerHTML =
+                '<i class="fa-solid fa-moon"></i> Dark Mode';
+
+            themeToggle.classList.remove("btn-warning");
+            themeToggle.classList.add("btn-primary");
+
+        }
+
     }
 
-});
+}

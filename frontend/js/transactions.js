@@ -82,3 +82,14 @@ if (ctx) {
         }
     });
 }
+
+const profileImage = localStorage.getItem("profileImage");
+const userName = localStorage.getItem("userName");
+
+if(profileImage){
+    document.getElementById("profileImage").src = profileImage;
+}
+
+if(userName){
+    document.getElementById("userName").textContent = userName;
+}

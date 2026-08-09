@@ -1,1 +1,161 @@
+/* ===========================
+   BODY
+=========================== */
 
+body{
+    margin:0;
+    padding:0;
+    font-family:'Poppins',sans-serif;
+
+    background:url("../../images/3.png") center center/cover no-repeat;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Dark overlay for better glass effect */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.20);
+    z-index:-1;
+}
+
+/* ===========================
+   LOGIN CARD
+=========================== */
+
+.login-card{
+    width: 400px;
+    padding: 35px;
+    border-radius: 20px;
+
+    background: rgba(80, 170, 255, 0.15);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(147, 197, 253, 0.35);
+
+    box-shadow: 0 8px 32px rgba(30, 64, 175, 0.25);
+}
+/* ===========================
+   LOGO
+=========================== */
+
+.logo{
+    font-size:55px;
+    color:#0d6efd;
+}
+
+/* ===========================
+   HEADINGS
+=========================== */
+
+.login-card h2{
+    color:#ffffff;
+    font-weight:700;
+}
+
+.login-card p,
+.login-card label{
+    color:#ffffff;
+}
+
+/* ===========================
+   INPUTS
+=========================== */
+
+.form-control{
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    color:#fff;
+}
+
+.form-control::placeholder{
+    color:rgba(255,255,255,.75);
+}
+
+.form-control:focus{
+    background:rgba(255,255,255,.28);
+    color:#fff;
+    border-color:#0d6efd;
+    box-shadow:none;
+}
+
+.input-group-text{
+    background:rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.35);
+    color:#fff;
+    cursor:pointer;
+}
+
+.form-control,
+.input-group-text{
+    background: rgba(80, 170, 255, 0.15);
+    border: 1px solid rgba(147, 197, 253, 0.35);
+}
+
+/* ===========================
+   CHECKBOX
+=========================== */
+
+.form-check-input{
+    background:transparent;
+    border-color:white;
+}
+
+.form-check-input:checked{
+    background:#0d6efd;
+}
+
+/* ===========================
+   LINKS
+=========================== */
+
+a{
+    text-decoration:none;
+    color:#ffffff;
+}
+
+a:hover{
+    color:#0d6efd;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.btn-primary{
+    border-radius:12px;
+    padding:10px;
+    font-weight:600;
+}
+
+/* ===========================
+   HR
+=========================== */
+
+hr{
+    border-color:rgba(255,255,255,.35);
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:576px){
+
+.login-card{
+    width:90%;
+    padding:25px;
+}
+
+.logo{
+    font-size:45px;
+}
+
+}

@@ -1,73 +1,261 @@
-/* ===========================
-   Dashboard Summary Cards
-=========================== */
-
-.dashboard-card{
-    border: none;
-    border-radius: 18px;
-    color: #fff;
-    padding: 25px;
-    min-height: 170px;
+/* Welcome Card */
+.welcome-card {
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: 0.3s ease;
+    height: 180px;
+    border-radius: 20px;
+    padding: 25px;
 }
 
-.dashboard-card:hover{
-    transform: translateY(-8px);
-    box-shadow: 0 18px 35px rgba(0,0,0,0.20);
+.welcome-card::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: rgba(255, 255, 255, .08);
+    right: -80px;
+    top: -80px;
+    border-radius: 50%;
+}
+
+.welcome-card>* {
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    left: -40px;
+    bottom: -60px;
+    background: rgba(255, 255, 255, .06);
+    border-radius: 50%;
+}
+
+.welcome-card h2 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.welcome-card p {
+    margin: 5px 0;
+    color: rgba(255, 255, 255, .9);
+}
+
+.welcome-icon {
+    font-size: 85px;
+    opacity: .9;
+}
+
+.btn:hover {
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
+
+    transform: translate(-4px);
+}
+
+/* Summary card */
+.dashboard-card {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    border-radius: 24px;
+    color: white;
+    min-height: 185px;
+    padding: 30px;
+    transition: all .35s ease;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .18);
+    cursor: pointer;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, .25);
+}
+
+.dashboard-card::before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, .12);
+    border-radius: 50%;
+    right: -70px;
+    top: -70px;
+}
+
+.dashboard-card h6 {
+    font-size: 14px;
+    opacity: .95;
+}
+
+.dashboard-card h2 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.card-icon {
+    position: absolute;
+    right: 25px;
+    bottom: 20px;
+    font-size: 60px;
+    opacity: .18;
 }
 
 /* Card Colors */
-
-.income{
-    background: linear-gradient(135deg,#28a745,#20c997);
+.income {
+    background: linear-gradient(135deg, #00c853, #43e97b);
 }
 
-.expense{
-    background: linear-gradient(135deg,#dc3545,#ff6b6b);
+.expense {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
 }
 
-.balance{
-    background: linear-gradient(135deg,#0d6efd,#4dabf7);
+.balance {
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
 }
 
-.ai-card{
-    background: linear-gradient(135deg,#6f42c1,#9b59b6);
+.ai-card {
+    background: linear-gradient(135deg, #7b2ff7, #9d50ff);
 }
 
-/* Heading */
 
-.dashboard-card h6{
-    font-size: 15px;
+
+/* Card Footer */
+
+.card-footer-info {
+
+    margin-top: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.card-footer-info small {
+
+    color: rgba(255, 255, 255, .85);
+
+    margin-top: 4px;
+
+}
+
+.trend {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    width: max-content;
+
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    font-size: 13px;
+
     font-weight: 600;
-    opacity: .9;
-    margin-bottom: 12px;
+
+    background: rgba(255, 255, 255, .20);
 }
 
-/* Amount */
+/* Today's Summary */
 
-.dashboard-card h2{
-    font-size: 34px;
-    font-weight: 700;
+.summary-box {
+    background: #fff;
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+    transition: .3s;
+    border: 1px solid #edf2ff;
+    overflow: hidden;
+}
+
+.summary-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 25px rgba(37, 99, 235, .15);
+}
+
+.summary-box i {
+    font-size: 32px;
+    color: #2563eb;
     margin-bottom: 10px;
 }
 
-/* Extra Text */
-
-.dashboard-card p{
-    font-size: 14px;
-    margin: 0;
-    opacity: .9;
+.summary-box h6 {
+    margin-top: 12px;
+    color: #64748b;
 }
 
-/* Icon */
+.summary-box h3 {
+    font-weight: 700;
+    margin-top: 8px;
+}
 
-.card-icon{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    font-size: 50px;
-    opacity: .25;
+#lineChart {
+    height: 320px !important;
+}
+
+#pieChart {
+    height: 320px !important;
+}
+
+#barChart {
+    height: 220px !important;
+}
+
+.dashboard-card,
+.summary-box,
+.card {
+    animation: fadeUp .5s ease;
+}
+
+@keyframes fadeUp {
+
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* Light Mode */
+.welcome-card h2 {
+    color: #17233c;
+}
+
+.welcome-card p {
+    color: #6b7280;
+}
+
+.welcome-icon {
+    color: #2563eb;
+}
+
+/* Dark Mode */
+body.dark-mode .welcome-card {
+    background: #182235;
+}
+
+body.dark-mode .welcome-card h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .welcome-card p {
+    color: #cbd5e1;
+}
+
+body.dark-mode .welcome-icon {
+    color: #60a5fa;
 }

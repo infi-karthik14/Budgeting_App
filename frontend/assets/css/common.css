@@ -1,0 +1,420 @@
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+   TOPBAR
+===========================================*/
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:20px;
+}
+
+.topbar h1{
+    font-size:36px;
+    font-weight:700;
+    color:#192944;
+}
+
+.topbar p{
+    margin-top:5px;
+    color:#7a8798;
+    font-size:15px;
+}
+
+.add-btn{
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.add-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+}
+
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar{
+    background:#fff;
+    border-radius:20px;
+    padding:18px 25px;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+/* ==========================================
+   SEARCH BOX
+========================================== */
+
+.search-box{
+    width:300px;
+}
+
+.search-box .input-group-text{
+    border-radius:12px 0 0 12px;
+}
+
+.search-box .form-control{
+    border-radius:0 12px 12px 0;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card{
+    border:none;
+    border-radius:20px;
+    background:#fff;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.3s ease;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+}
+
+.card-body{
+    padding:25px;
+}
+
+.card-header{
+    border:none;
+    font-weight:600;
+    font-size:18px;
+}
+
+/* ==========================================
+   TITLES
+========================================== */
+
+.section-title,
+.table-title{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:18px;
+    color:#1f2937;
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.form-control,
+.form-select{
+    height:48px;
+    border-radius:12px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 .2rem rgba(37,99,235,.15);
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.btn{
+    border-radius:12px;
+    font-weight:600;
+    transition:.3s;
+    padding: 10px 22px;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.progress{
+    height:14px;
+    border-radius:30px;
+    background:#e5e7eb;
+    overflow: hidden;
+}
+
+.progress-bar{
+    border-radius:30px;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table{
+    margin-bottom:0;
+}
+
+.table thead{
+    background:#2563eb;
+    color:#fff;
+}
+
+.table th{
+    border:none;
+    padding:15px;
+    font-weight:600;
+}
+
+.table td{
+    padding:15px;
+    vertical-align:middle;
+}
+
+.table tbody tr{
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#eef5ff;
+}
+
+/* ==========================================
+   CHART CARD
+========================================== */
+
+.chart-card{
+    background:#fff;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+canvas{
+    width:100%!important;
+    max-height:320px!important;
+}
+
+/* ==========================================
+   GOAL & TIPS
+========================================== */
+
+.goal-card,
+.tips-card{
+    background:#fff;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer{
+    margin-top:40px;
+    margin-left:290px;
+    padding:25px;
+    background:#c2cfec;
+    border-radius:15px;
+    text-align:center;
+}
+
+.footer h4{
+    margin-bottom:10px;
+    font-weight:700;
+    color:#17233c;
+}
+
+.footer p{
+    margin:6px 0;
+    color:#4b5563;
+    font-size:15px;
+}
+
+/* ==========================================
+   SPACING
+========================================== */
+
+section{
+    margin-bottom:25px;
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:20px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:992px){
+    
+    .main-content{
+        padding:20px;
+    }
+    
+    .search-box{
+        width:220px;
+    }
+    
+}
+
+@media(max-width:768px){
+    
+    .navbar{
+        padding:15px;
+    }
+    
+    .search-box{
+        width:100%;
+    }
+    
+    .main-content{
+        padding:15px;
+    }
+    
+    .section-title,
+    .table-title{
+        font-size:20px;
+    }
+    
+    .card-body{
+        padding:18px;
+    }
+    
+}
+
+/* ==========================================
+   CONTAINER WIDTH
+========================================== */
+
+.container,
+.container-fluid{
+    max-width:100%;
+}
+
+/* ==========================================
+   PAGE SPACING
+========================================== */
+
+.row{
+    margin-bottom: 20px;
+}
+
+/* ==========================================
+   SHADOW UTILITY
+========================================== */
+
+.shadow-card{
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+h1,h2,h3,h4,h5,h6{
+    font-weight:600;
+}
+
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.card{
+    animation:fadeUp .4s ease;
+}
+
+
+/* ==========================================
+   SEARCH BOX
+========================================== */
+
+.search-box .form-control {
+
+    border-radius: 0 12px 12px 0;
+
+}
+
+.search-box .input-group-text {
+
+    border-radius: 12px 0 0 12px;
+
+}
+
+
+
+/* ==========================================
+  DARK MODE
+========================================== */
+
+body.dark-mode{
+    background:#101827;
+    color:#fff;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .card,
+body.dark-mode .chart-card,
+body.dark-mode .goal-card,
+body.dark-mode .tips-card{
+    background:#182235;
+    color:#fff;
+}
+
+body.dark-mode .table th{
+    background:#2563eb;
+}
+
+body.dark-mode .table td{
+    color:#fff;
+    border-color:#2c3b55;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select{
+    background:#243247;
+    color:#fff;
+    border-color:#2c3b55;
+}
+
+body.dark-mode footer{
+    color:#d1d5db;
+}
+
+
