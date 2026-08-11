@@ -50,10 +50,8 @@
 }
 
 .btn:hover {
-
     box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
-
-    transform: translate(-4px);
+    transform: translateY(-3px);
 }
 
 /* Summary card */
@@ -210,26 +208,6 @@
     height: 220px !important;
 }
 
-.dashboard-card,
-.summary-box,
-.card {
-    animation: fadeUp .5s ease;
-}
-
-@keyframes fadeUp {
-
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-}
-
 /* Light Mode */
 .welcome-card h2 {
     color: #17233c;
@@ -258,4 +236,297 @@ body.dark-mode .welcome-card p {
 
 body.dark-mode .welcome-icon {
     color: #60a5fa;
+}
+
+/* ==========================================
+   COMMON WELCOME BANNER
+   Same as Dashboard
+========================================== */
+
+.welcome-card {
+
+    width: 100%;
+
+    min-height: 125px;
+
+    padding: 25px 30px;
+
+    margin-bottom: 25px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(135deg,
+            #07152d,
+            #12285c);
+
+    color: #ffffff;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, .15);
+}
+
+
+/* ==========================================
+   LEFT CONTENT
+========================================== */
+
+.welcome-content {
+
+    flex: 1;
+}
+
+
+.welcome-content h2 {
+
+    margin: 0 0 8px;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+
+.welcome-date {
+
+    margin: 0 0 4px;
+
+    font-size: 13px;
+
+    color: #dbeafe;
+}
+
+
+.welcome-message {
+
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #bfdbfe;
+}
+
+
+/* ==========================================
+   RIGHT SIDE
+========================================== */
+
+.welcome-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-left: auto;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   SEARCH BAR
+========================================== */
+
+.welcome-search {
+
+    width: 230px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, .13);
+
+    border: 1px solid rgba(255, 255, 255, .25);
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+.welcome-search i {
+
+    color: #dbeafe;
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+}
+
+
+.welcome-search input {
+
+    width: 100%;
+
+    height: 100%;
+
+    padding: 0;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+
+.welcome-search input::placeholder {
+
+    color: #cbd5e1;
+}
+
+
+/* ==========================================
+   NOTIFICATION BUTTON
+========================================== */
+
+.notification-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, .25);
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, .13);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+.notification-btn:hover {
+
+    background: rgba(255, 255, 255, .25);
+
+    transform: translateY(-2px);
+}
+
+
+.notification-btn i {
+
+    font-size: 16px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .welcome-card {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 18px;
+
+        padding: 22px;
+    }
+
+
+    .welcome-content h2 {
+
+        font-size: 24px;
+    }
+
+
+    .welcome-actions {
+
+        width: 100%;
+
+        margin-left: 0;
+    }
+
+
+    .welcome-search {
+
+        flex: 1;
+
+        width: auto;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .welcome-card {
+
+        padding: 18px;
+
+        border-radius: 16px;
+    }
+
+
+    .welcome-content h2 {
+
+        font-size: 21px;
+    }
+
+
+    .welcome-actions {
+
+        gap: 8px;
+    }
+
+
+    .welcome-search {
+
+        height: 40px;
+    }
+
+
+    .notification-btn {
+
+        width: 40px;
+
+        height: 40px;
+    }
+
 }

@@ -6,101 +6,212 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Analytics</title>
+    <title>Analytics | Budgeting App</title>
 
-    <link rel="stylesheet" href="assets/css/sidebar.css">
-    <link rel="stylesheet" href="assets/css/analytics.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="assets/css/common.css">
 
+    <!-- Sidebar CSS -->
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+
+    <!-- Analytics CSS -->
+    <link rel="stylesheet" href="assets/css/analytics.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
+
 <body>
 
-    <div class="container">
+    <div class="app-layout">
 
-        <!-- Sidebar -->
+
+        <!-- ==========================================
+             SIDEBAR
+        =========================================== -->
+
         <aside class="sidebar">
-
-            <!-- User Profile -->
 
             <div class="user-profile">
 
                 <div class="avatar">
-                    <i class="fa-solid fa-user"></i>
+
+                    <img id="profileImage" src="assets/images/default-user.png" alt="Profile Picture">
+
                 </div>
 
                 <h3>Welcome!</h3>
 
-                <p>Archita</p>
+                <p id="userName">Archita</p>
 
             </div>
+
 
             <ul class="menu">
 
                 <li>
+
                     <a href="dashboard.html">
-                        <i class="fa-solid fa-house"></i>
+
+                        <i class="bi bi-house"></i>
+
                         Dashboard
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="budget.html">
-                        <i class="fa-solid fa-wallet"></i>
+
+                        <i class="bi bi-wallet2"></i>
+
                         Budget
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="transactions.html">
-                        <i class="fa-solid fa-money-bill-transfer"></i>
+
+                        <i class="bi bi-credit-card"></i>
+
                         Transactions
+
                     </a>
+
                 </li>
+
 
                 <li class="active">
-                    <a href="#">
-                        <i class="fa-solid fa-chart-pie"></i>
+
+                    <a href="analytics.html">
+
+                        <i class="bi bi-bar-chart"></i>
+
                         Analytics
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="profile.html">
-                        <i class="fa-solid fa-user"></i>
+
+                        <i class="bi bi-person"></i>
+
                         Profile
+
                     </a>
+
                 </li>
 
+
                 <li>
+
                     <a href="settings.html">
-                        <i class="fa-solid fa-gear"></i>
+
+                        <i class="bi bi-gear"></i>
+
                         Settings
+
                     </a>
+
                 </li>
+
             </ul>
+
         </aside>
 
 
-        <!-- Main Content -->
+
+        <!-- ==========================================
+             MAIN CONTENT
+        =========================================== -->
+
         <main class="main-content">
 
-            <!-- PAGE HEADER -->
-            <header class="topbar">
 
-                <div>
-                    <h1>Analytics</h1>
-                    <p>Track your income, expenses and savings</p>
+            <!-- ==========================================
+                 COMMON WELCOME BANNER
+            =========================================== -->
+
+            <header class="welcome-card">
+
+                <!-- LEFT -->
+
+                <div class="welcome-content">
+
+                    <h2>
+                        📊 Analytics
+                    </h2>
+
+                    <p class="welcome-message">
+
+                        Track your income, expenses and savings.
+
+                    </p>
+
                 </div>
+
+
+                <!-- RIGHT -->
+
+                <div class="welcome-actions">
+
+
+                    <!-- SEARCH -->
+
+                    <div class="welcome-search">
+
+                        <i class="bi bi-search"></i>
+
+                        <input type="search" id="analyticsSearch" placeholder="Search...">
+
+                    </div>
+
+
+                    <!-- NOTIFICATION -->
+
+                    <button type="button" class="notification-btn" title="Notifications">
+
+                        <i class="bi bi-bell-fill"></i>
+
+                    </button>
+
+                </div>
+
             </header>
 
 
-            <!-- SUMMARY CARDS -->
-            <div class="analytics-summary">
+
+            <!-- ==========================================
+                 SUMMARY CARDS
+            =========================================== -->
+
+            <section class="analytics-summary">
+
 
                 <!-- TOTAL INCOME -->
 
@@ -110,21 +221,12 @@
 
                     <h3>Total Income</h3>
 
-                    <p class="amount">₹15,000</p>
-
-                    <div class="summary-card prediction-card">
-
-    <i class="fa-solid fa-robot"></i>
-
-    <h3>AI Prediction</h3>
-
-    <p class="amount">₹9,200</p>
-
-    <small>Next Month Expense</small>
-
-</div>
+                    <p class="amount">
+                        ₹15,000
+                    </p>
 
                 </div>
+
 
 
                 <!-- TOTAL EXPENSE -->
@@ -135,9 +237,12 @@
 
                     <h3>Total Expense</h3>
 
-                    <p class="amount">₹8,700</p>
+                    <p class="amount">
+                        ₹8,700
+                    </p>
 
                 </div>
+
 
 
                 <!-- TOTAL SAVINGS -->
@@ -148,22 +253,50 @@
 
                     <h3>Total Savings</h3>
 
-                    <p class="amount">₹6,300</p>
+                    <p class="amount">
+                        ₹6,300
+                    </p>
 
                 </div>
 
-            </div>
 
 
-            <!-- CHARTS -->
+                <!-- AI PREDICTION -->
+
+                <div class="summary-card prediction-card">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                    <h3>AI Prediction</h3>
+
+                    <p class="amount">
+                        ₹9,200
+                    </p>
+
+                    <small>
+                        Next Month Expense
+                    </small>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 CHARTS
+            =========================================== -->
 
             <section class="charts">
+
 
                 <!-- MONTHLY INCOME VS EXPENSE -->
 
                 <div class="chart-card income-expense-chart">
 
-                    <h2>Monthly Income vs Expense</h2>
+                    <h2>
+                        Monthly Income vs Expense
+                    </h2>
 
                     <div class="chart-container">
 
@@ -174,11 +307,14 @@
                 </div>
 
 
+
                 <!-- EXPENSE BY CATEGORY -->
 
                 <div class="chart-card category-chart">
 
-                    <h2>Expense by Category</h2>
+                    <h2>
+                        Expense by Category
+                    </h2>
 
                     <div class="chart-container">
 
@@ -190,99 +326,216 @@
 
             </section>
 
-            <!-- Monthly Savings -->
+
+
+            <!-- ==========================================
+                 MONTHLY SAVINGS
+            =========================================== -->
 
             <section class="chart-card">
 
-    <h2>Monthly Savings</h2>
+                <h2>
+                    Monthly Savings
+                </h2>
 
-    <div class="chart-container">
+                <div class="chart-container">
 
-        <canvas id="lineChart"></canvas>
+                    <canvas id="lineChart"></canvas>
 
-    </div>
+                </div>
 
-</section>
-
-<!-- Budget utilization -->
-
-<section class="report-card">
-
-    <h2>Budget Utilization</h2>
-
-    <div class="progress">
-
-        <div class="progress-bar"
-             style="width:68%;">
-
-            68%
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- AI Insights -->
-
-<section class="report-card">
-
-    <h2>🤖 AI Insights</h2>
-
-    <ul>
-
-        <li>Highest spending category: Food</li>
-
-        <li>Expected savings next month: ₹6,500</li>
-
-        <li>You are currently within budget.</li>
-
-        <li>Predicted expense: ₹9,200</li>
-
-    </ul>
-
-</section>
-
-<!-- Financial Health Score -->
-
-<section class="report-card">
-
-    <h2>❤️ Financial Health</h2>
-
-    <h1 style="color:green;">89 / 100</h1>
-
-    <p>Excellent Financial Status</p>
-
-</section>
-
-<!-- Budget Ti -->
-
-<section class="report-card">
-
-    <h2>💡 Budget Tips</h2>
-
-    <ul>
-
-        <li>Save at least 20% every month.</li>
-
-        <li>Reduce food expenses.</li>
-
-        <li>Track daily spending.</li>
-
-        <li>Invest part of your savings.</li>
-
-    </ul>
-
-</section>
+            </section>
 
 
-            <!-- MONTHLY REPORT -->
+
+            <!-- ==========================================
+                 BUDGET UTILIZATION
+            =========================================== -->
+
+            <section class="report-card">
+
+                <h2>
+                    Budget Utilization
+                </h2>
+
+                <div class="progress">
+
+                    <div class="progress-bar" style="width:68%;">
+
+                        68%
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 AI INSIGHTS
+            =========================================== -->
+
+            <section class="report-card ai-insights">
+
+                <div class="report-heading">
+
+                    <div class="report-icon">
+
+                        <i class="bi bi-stars"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            AI Insights
+                        </h2>
+
+                        <p>
+                            Smart analysis of your financial activity
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <ul>
+
+                    <li>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Highest spending category: Food
+
+                    </li>
+
+
+                    <li>
+
+                        <i class="bi bi-piggy-bank-fill"></i>
+
+                        Expected savings next month: ₹6,500
+
+                    </li>
+
+
+                    <li>
+
+                        <i class="bi bi-shield-check"></i>
+
+                        You are currently within budget.
+
+                    </li>
+
+
+                    <li>
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                        Predicted expense: ₹9,200
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 FINANCIAL HEALTH
+            =========================================== -->
+
+            <section class="report-card health-card">
+
+                <h2>
+
+                    <i class="bi bi-heart-pulse-fill"></i>
+
+                    Financial Health
+
+                </h2>
+
+
+                <div class="health-score">
+
+                    89
+
+                    <span>
+                        / 100
+                    </span>
+
+                </div>
+
+
+                <div class="progress health-progress">
+
+                    <div class="progress-bar" style="width:89%;">
+
+                    </div>
+
+                </div>
+
+
+                <p class="health-status">
+
+                    Excellent Financial Status
+
+                </p>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 BUDGET TIPS
+            =========================================== -->
+
+            <section class="report-card">
+
+                <h2>
+                    💡 Budget Tips
+                </h2>
+
+
+                <ul>
+
+                    <li>
+                        Save at least 20% every month.
+                    </li>
+
+                    <li>
+                        Reduce food expenses.
+                    </li>
+
+                    <li>
+                        Track daily spending.
+                    </li>
+
+                    <li>
+                        Invest part of your savings.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 MONTHLY REPORT
+            =========================================== -->
 
             <section class="report-section">
 
                 <div class="report-card">
 
-                    <h2>Monthly Report</h2>
+                    <h2>
+                        Monthly Report
+                    </h2>
+
 
                     <div class="report-table-wrapper">
 
@@ -291,35 +544,90 @@
                             <thead>
 
                                 <tr>
-                                    <th>Month</th>
-                                    <th>Income</th>
-                                    <th>Expense</th>
-                                    <th>Savings</th>
+
+                                    <th>
+                                        Month
+                                    </th>
+
+                                    <th>
+                                        Income
+                                    </th>
+
+                                    <th>
+                                        Expense
+                                    </th>
+
+                                    <th>
+                                        Savings
+                                    </th>
+
                                 </tr>
 
                             </thead>
 
+
                             <tbody>
 
                                 <tr>
-                                    <td>January</td>
-                                    <td>₹3500</td>
-                                    <td>₹2100</td>
-                                    <td>₹1400</td>
+
+                                    <td>
+                                        January
+                                    </td>
+
+                                    <td>
+                                        ₹3500
+                                    </td>
+
+                                    <td>
+                                        ₹2100
+                                    </td>
+
+                                    <td>
+                                        ₹1400
+                                    </td>
+
                                 </tr>
 
-                                <tr>
-                                    <td>February</td>
-                                    <td>₹4200</td>
-                                    <td>₹2500</td>
-                                    <td>₹1700</td>
-                                </tr>
 
                                 <tr>
-                                    <td>March</td>
-                                    <td>₹5000</td>
-                                    <td>₹3100</td>
-                                    <td>₹1900</td>
+
+                                    <td>
+                                        February
+                                    </td>
+
+                                    <td>
+                                        ₹4200
+                                    </td>
+
+                                    <td>
+                                        ₹2500
+                                    </td>
+
+                                    <td>
+                                        ₹1700
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        March
+                                    </td>
+
+                                    <td>
+                                        ₹5000
+                                    </td>
+
+                                    <td>
+                                        ₹3100
+                                    </td>
+
+                                    <td>
+                                        ₹1900
+                                    </td>
+
                                 </tr>
 
                             </tbody>
@@ -332,32 +640,100 @@
 
             </section>
 
+
         </main>
+
     </div>
 
-    
+
+
+    <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
     <footer class="footer">
-        
-        <h3>Budgeting App</h3>
-        
-        <p>
-            Dashboard |
-            Budget |
-            Transactions |
-            Analytics |
-            Profile |
-            Settings
-        </p>
-        
-        <p>Email : emailto:rastogi.karthik1409@gmail.com</p>
-        
-        <p>© 2026 Budgeting App. All Rights Reserved.</p>
-        
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <i class="bi bi-wallet2"></i>
+
+                <span>
+                    Budgeting App
+                </span>
+
+            </div>
+
+
+            <p class="footer-tagline">
+
+                Manage your money. Track your goals. Build your future.
+
+            </p>
+
+
+            <div class="footer-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="budget.html">
+                    Budget
+                </a>
+
+                <a href="transactions.html">
+                    Transactions
+                </a>
+
+                <a href="analytics.html">
+                    Analytics
+                </a>
+
+                <a href="profile.html">
+                    Profile
+                </a>
+
+                <a href="settings.html">
+                    Settings
+                </a>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <i class="bi bi-envelope"></i>
+
+                support@budgetingapp.com
+
+            </div>
+
+
+            <div class="footer-divider"></div>
+
+
+            <p class="copyright">
+
+                © 2026 Budgeting App. All Rights Reserved.
+
+            </p>
+
+        </div>
+
     </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
- <script src="js/analytics.js"></script>
- <script src="js/theme.js"></script>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="assets/js/analytics.js"></script>
+
+    <script src="assets/js/theme.js"></script>
+
 </body>
 
 </html>

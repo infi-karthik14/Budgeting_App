@@ -10,7 +10,6 @@ public class Budget {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-<<<<<<< HEAD
     private Double monthlyIncome;
     private Double monthlyBudget;
     private String category;
@@ -25,34 +24,10 @@ public class Budget {
     }
 
     // Getters
-=======
-    private Long userId;
-
-    private double monthlyIncome;
-
-    private double monthlyBudget;
-
-    private int month;
-
-    private int year;
-
-    public Budget() {
-    }
-
-    public Budget(Long userId, double monthlyIncome, double monthlyBudget, int month, int year) {
-        this.userId = userId;
-        this.monthlyIncome = monthlyIncome;
-        this.monthlyBudget = monthlyBudget;
-        this.month = month;
-        this.year = year;
-    }
-
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     public Long getId() {
         return id;
     }
 
-<<<<<<< HEAD
     public Double getMonthlyIncome() {
         return monthlyIncome;
     }
@@ -65,13 +40,10 @@ public class Budget {
         return category;
     }
 
-=======
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     public Long getUserId() {
         return userId;
     }
 
-<<<<<<< HEAD
     public String getStartDate() {
         return StartDate;
     }
@@ -90,13 +62,10 @@ public class Budget {
 
 
     // Setters
-=======
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     public void setId(Long id) {
         this.id = id;
     }
 
-<<<<<<< HEAD
     public void setMonthlyIncome(Double monthlyIncome) {
         this.monthlyIncome = monthlyIncome;
     }
@@ -109,13 +78,10 @@ public class Budget {
         this.category = category;
     }
 
-=======
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-<<<<<<< HEAD
     public void setStartDate(String startDate) {
         this.StartDate = startDate;
     }   
@@ -146,37 +112,5 @@ public class Budget {
                 ", budgetamount=" + BudgetAmount +
                 ", budgetName='" + BudgetName + '\'' +
                 '}';
-=======
-    public double getMonthlyIncome() {
-        return monthlyIncome;
-    }
-
-    public void setMonthlyIncome(double monthlyIncome) {
-        this.monthlyIncome = monthlyIncome;
-    }
-
-    public double getMonthlyBudget() {
-        return monthlyBudget;
-    }
-
-    public void setMonthlyBudget(double monthlyBudget) {
-        this.monthlyBudget = monthlyBudget;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     }
 }

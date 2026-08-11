@@ -1,0 +1,547 @@
+/* =========================================
+   ADD TRANSACTION PAGE
+========================================= */
+
+/* Make page work properly with sidebar + footer */
+body {
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+    min-height: calc(100vh - 180px);
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.transaction-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.transaction-page-header h1 {
+    margin: 0;
+
+    font-size: 34px;
+    font-weight: 700;
+
+    color: #192944;
+}
+
+.transaction-page-header p {
+    margin: 6px 0 0;
+
+    color: #718096;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-btn {
+    display: inline-flex;
+
+    align-items: center;
+    gap: 8px;
+
+    padding: 11px 17px;
+
+    border: 1px solid #d8e0ec;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #2867e8;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: .25s;
+}
+
+.back-btn:hover {
+    background: #eef4ff;
+
+    color: #1e58d0;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   TRANSACTION CARD
+========================================= */
+
+.transaction-form-card {
+
+    width: min(950px, 100%);
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #edf0f5;
+
+    border-left: 5px solid #2867e8;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.transaction-form-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding-bottom: 20px;
+
+    margin-bottom: 25px;
+
+    border-bottom: 1px solid #edf0f5;
+}
+
+.transaction-icon {
+
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: #eaf1ff;
+
+    color: #2867e8;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.transaction-form-header h2 {
+
+    margin: 0;
+
+    font-size: 21px;
+
+    font-weight: 600;
+
+    color: #1c2b45;
+}
+
+.transaction-form-header p {
+
+    margin: 4px 0 0;
+
+    font-size: 13px;
+
+    color: #7b8798;
+}
+
+
+/* =========================================
+   FORM GRID
+========================================= */
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px 25px;
+}
+
+
+/* =========================================
+   FORM GROUP
+========================================= */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.form-group label {
+
+    margin-bottom: 7px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #33415a;
+}
+
+
+/* =========================================
+   INPUT / SELECT
+========================================= */
+
+.form-control {
+
+    width: 100%;
+
+    height: 45px;
+
+    box-sizing: border-box;
+
+    padding: 0 13px;
+
+    border: 1px solid #d7dde7;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    color: #1c293d;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+.form-control:focus {
+
+    border-color: #3973ed;
+
+    box-shadow:
+        0 0 0 3px rgba(57, 115, 237, .10);
+}
+
+
+/* =========================================
+   AMOUNT
+========================================= */
+
+.amount-input {
+
+    position: relative;
+
+    width: 100%;
+}
+
+.amount-input span {
+
+    position: absolute;
+
+    left: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #2867e8;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    z-index: 2;
+}
+
+.amount-input .form-control {
+
+    padding-left: 32px;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.transaction-message {
+
+    min-height: 24px;
+
+    margin-top: 20px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.transaction-message.success {
+
+    color: #16a34a;
+}
+
+.transaction-message.error {
+
+    color: #dc2626;
+}
+
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
+.form-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding-top: 20px;
+
+    margin-top: 5px;
+
+    border-top: 1px solid #edf0f5;
+}
+
+
+.cancel-btn,
+.save-transaction-btn {
+
+    min-height: 44px;
+
+    padding: 0 20px;
+
+    border-radius: 11px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    box-sizing: border-box;
+}
+
+
+.cancel-btn {
+
+    background: #ffffff;
+
+    color: #5c6778;
+
+    border: 1px solid #d8dee8;
+}
+
+.cancel-btn:hover {
+
+    background: #f4f6f9;
+
+    color: #374151;
+}
+
+
+.save-transaction-btn {
+
+    border: none;
+
+    background: #2867e8;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 16px rgba(40, 103, 232, .22);
+}
+
+.save-transaction-btn:hover {
+
+    background: #1e58d0;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode .transaction-page-header h1 {
+    color: #ffffff;
+}
+
+body.dark-mode .transaction-page-header p {
+    color: #94a3b8;
+}
+
+body.dark-mode .back-btn {
+
+    background: #182235;
+
+    border-color: #2c3b55;
+
+    color: #60a5fa;
+}
+
+body.dark-mode .back-btn:hover {
+    background: #22304a;
+}
+
+body.dark-mode .transaction-form-card {
+
+    background: #182235;
+
+    border-color: #2c3b55;
+
+    color: #ffffff;
+}
+
+body.dark-mode .transaction-form-header {
+    border-color: #2c3b55;
+}
+
+body.dark-mode .transaction-form-header h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .transaction-form-header p {
+    color: #94a3b8;
+}
+
+body.dark-mode .transaction-icon {
+
+    background: #22304a;
+
+    color: #60a5fa;
+}
+
+body.dark-mode .form-group label {
+    color: #cbd5e1;
+}
+
+body.dark-mode .form-control {
+
+    background: #243247;
+
+    color: #ffffff;
+
+    border-color: #2c3b55;
+}
+
+body.dark-mode .form-control:focus {
+
+    border-color: #60a5fa;
+
+    box-shadow:
+        0 0 0 3px rgba(96, 165, 250, .12);
+}
+
+body.dark-mode .amount-input span {
+    color: #60a5fa;
+}
+
+body.dark-mode .form-actions {
+    border-color: #2c3b55;
+}
+
+body.dark-mode .cancel-btn {
+
+    background: #243247;
+
+    color: #cbd5e1;
+
+    border-color: #2c3b55;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .transaction-page-header {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .transaction-form-card {
+
+        padding: 22px;
+    }
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .transaction-page-header h1 {
+        font-size: 28px;
+    }
+
+    .transaction-form-card {
+        padding: 18px;
+    }
+
+    .form-actions {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .cancel-btn,
+    .save-transaction-btn {
+
+        width: 100%;
+    }
+}

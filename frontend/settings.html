@@ -2,331 +2,715 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Settings</title>
 
 
+    <!-- ==========================================
+         BOOTSTRAP CSS
+    =========================================== -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- ==========================================
+         BOOTSTRAP ICONS
+    =========================================== -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- ==========================================
+         COMMON CSS
+    =========================================== -->
+
+    <link rel="stylesheet" href="assets/css/common.css">
+
     <link rel="stylesheet" href="assets/css/sidebar.css">
+
+    <link rel="stylesheet" href="assets/css/theme.css">
+
+
+    <!-- ==========================================
+         SETTINGS CSS
+    =========================================== -->
+
     <link rel="stylesheet" href="assets/css/settings.css">
 
+
+    <!-- ==========================================
+         FONT AWESOME
+    =========================================== -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
+
 
 <body>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
 
-        <div class="user-profile">
+    <!-- ==========================================
+         APP LAYOUT
+    =========================================== -->
 
-            <div class="avatar">
-                <i class="fa-solid fa-user"></i>
-            </div>
-
-            <h2>Welcome!</h2>
-            <p>Archita</p>
-
-        </div>
-
-        <ul class="menu">
-
-            <li>
-                <a href="dashboard.html">
-                    <i class="fa-solid fa-house"></i>
-                    Dashboard
-                </a>
-            </li>
-
-            <li>
-                <a href="budget.html">
-                    <i class="fa-solid fa-house"></i>
-                    Budget
-                </a>
-            </li>
-
-            <a href="transactions.html">
-                <i class="fa-solid fa-house"></i>
-                Transactions
-            </a>
-
-            <a href="analytics.html">
-                <i class="fa-solid fa-wallet"></i>
-                Analytics
-            </a>
-
-            <li>
-                <a href="profile.html">
-                    <i class="fa-solid fa-user"></i>
-                    Profile
-                </a>
-
-            </li>
-
-            <li class="active">
-                <a href="#">
-                    <i class="fa-solid fa-gear"></i>
-                    Settings
-                </a>
-            </li>
-        </ul>
-
-    </aside>
+    <div class="app-layout">
 
 
-    <!-- MAIN CONTENT -->
-    <main class="main-content">
+        <!-- ==========================================
+             SIDEBAR
+        =========================================== -->
 
-        <!-- HEADER -->
-        <div class="page-header">
+        <aside class="sidebar">
 
-            <div>
-                <h1>Settings</h1>
-                <p>Manage your application preferences</p>
-            </div>
+            <!-- User Profile -->
 
-        </div>
+            <div class="user-profile">
 
+                <div class="avatar">
 
-        <!-- APPEARANCE -->
-        <section class="settings-card appearance-card">
+                    <img id="profileImage" src="assets/images/default-user.png" alt="Profile Picture">
 
-            <div class="card-header">
-
-                <div class="header-icon appearance-icon">
-                    <i class="fa-solid fa-moon"></i>
                 </div>
 
-                <div>
-                    <h2>Appearance</h2>
-                    <p>Customize how your budget app looks</p>
-                </div>
+                <h3>Welcome!</h3>
+
+                <p id="userName">
+                    Archita
+                </p>
 
             </div>
 
-            <div class="setting-row">
 
-                <div class="setting-info">
+            <!-- Navigation -->
 
-                    <h3>Dark Mode</h3>
+            <ul class="menu">
+
+                <li>
+
+                    <a href="dashboard.html">
+
+                        <i class="bi bi-house"></i>
+
+                        <span>
+                            Dashboard
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="budget.html">
+
+                        <i class="bi bi-wallet2"></i>
+
+                        <span>
+                            Budget
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="transactions.html">
+
+                        <i class="bi bi-credit-card"></i>
+
+                        <span>
+                            Transactions
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="analytics.html">
+
+                        <i class="bi bi-bar-chart"></i>
+
+                        <span>
+                            Analytics
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="profile.html">
+
+                        <i class="bi bi-person"></i>
+
+                        <span>
+                            Profile
+                        </span>
+
+                    </a>
+
+                </li>
+
+
+                <li class="active">
+
+                    <a href="settings.html">
+
+                        <i class="bi bi-gear"></i>
+
+                        <span>
+                            Settings
+                        </span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+
+        <!-- ==========================================
+             MAIN CONTENT
+        =========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ==========================================
+     COMMON WELCOME BANNER
+=========================================== -->
+
+            <div class="welcome-card settings-welcome-card">
+
+                <!-- LEFT -->
+
+                <div class="welcome-content">
+
+                    <h2>
+                        ⚙️ Settings
+                    </h2>
 
                     <p>
-                        Switch between light and dark appearance
+                        Manage your application preferences
                     </p>
 
                 </div>
 
-                <label class="switch">
 
-                    <input type="checkbox" id="darkModeToggle">
+                <!-- RIGHT -->
 
-                    <span class="slider"></span>
+                <div class="welcome-actions">
 
-                </label>
+                    <!-- SEARCH -->
 
-            </div>
+                    <div class="welcome-search">
 
-        </section>
+                        <i class="bi bi-search"></i>
 
+                        <input type="search" id="settingsSearch" placeholder="Search...">
 
-        <!-- NOTIFICATIONS -->
-        <section class="settings-card notification-card">
+                    </div>
 
-            <div class="card-header">
 
-                <div class="header-icon notification-icon">
-                    <i class="fa-solid fa-bell"></i>
-                </div>
+                    <!-- NOTIFICATION -->
 
-                <div>
-                    <h2>Notifications</h2>
-                    <p>Manage your notification preferences</p>
-                </div>
+                    <button type="button" class="notification-btn" title="Notifications">
 
-            </div>
+                        <i class="bi bi-bell-fill"></i>
 
-            <div class="setting-row">
+                    </button>
 
-                <div class="setting-info">
-
-                    <h3>Email Notifications</h3>
-
-                    <p>
-                        Receive important updates and reminders by email
-                    </p>
-
-                </div>
-
-                <label class="switch">
-
-                    <input type="checkbox" id="emailToggle" checked>
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-
-            <div class="setting-row">
-
-                <div class="setting-info">
-
-                    <h3>Budget Alerts</h3>
-
-                    <p>
-                        Get notified when you are close to your budget limit
-                    </p>
-
-                </div>
-
-                <label class="switch">
-
-                    <input type="checkbox" id="budgetAlertToggle" checked>
-
-                    <span class="slider"></span>
-
-                </label>
-
-            </div>
-
-        </section>
-
-
-        <!-- CURRENCY -->
-        <section class="settings-card currency-card">
-
-            <div class="card-header">
-
-                <div class="header-icon currency-icon">
-                    <i class="fa-solid fa-dollar-sign"></i>
-                </div>
-
-                <div>
-                    <h2>Currency</h2>
-                    <p>Select your preferred currency</p>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="currency">
-                    Currency
-                </label>
-
-                <select id="currency">
-
-                    <option value="INR">INR (₹)</option>
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
-                    <option value="GBP">GBP (£)</option>
-                    <option value="JPY">JPY (¥)</option>
-
-                </select>
-
-            </div>
-
-        </section>
-
-
-        <!-- LANGUAGE -->
-        <section class="settings-card language-card">
-
-            <div class="card-header">
-
-                <div class="header-icon language-icon">
-                    <i class="fa-solid fa-language"></i>
-                </div>
-
-                <div>
-                    <h2>Language</h2>
-                    <p>Select your preferred language</p>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-
-                <label for="language">
-                    Language
-                </label>
-
-                <select id="language">
-
-                    <option value="English">English</option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="French">French</option>
-                    <option value="Spanish">Spanish</option>
-
-                </select>
-
-            </div>
-
-        </section>
-
-
-        <!-- GENERAL -->
-        <section class="settings-card general-card">
-
-            <div class="card-header">
-
-                <div class="header-icon general-icon">
-                    <i class="fa-solid fa-sliders"></i>
-                </div>
-
-                <div>
-                    <h2>General</h2>
-                    <p>Manage general application preferences</p>
                 </div>
 
             </div>
 
 
-            <div class="setting-row">
 
-                <div class="setting-info">
+            <!-- ==========================================
+                 APPEARANCE
+            =========================================== -->
 
-                    <h3>Auto Save</h3>
+            <section class="settings-card appearance-card">
 
-                    <p>
-                        Automatically save your changes
-                    </p>
+
+                <div class="card-header">
+
+                    <div class="header-icon appearance-icon">
+
+                        <i class="fa-solid fa-moon"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Appearance
+                        </h2>
+
+                        <p>
+                            Customize how your budget app looks
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <label class="switch">
 
-                    <input type="checkbox" id="autoSaveToggle" checked>
+                <div class="setting-row">
 
-                    <span class="slider"></span>
+                    <div class="setting-info">
 
-                </label>
+                        <h3>
+                            Dark Mode
+                        </h3>
+
+                        <p>
+                            Switch between light and dark appearance
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="darkModeToggle">
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 NOTIFICATIONS
+            =========================================== -->
+
+            <section class="settings-card notification-card">
+
+
+                <div class="card-header">
+
+                    <div class="header-icon notification-icon">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Notifications
+                        </h2>
+
+                        <p>
+                            Manage your notification preferences
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Email Notifications -->
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>
+                            Email Notifications
+                        </h3>
+
+                        <p>
+                            Receive important updates and reminders by email
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="emailToggle" checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- Budget Alerts -->
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>
+                            Budget Alerts
+                        </h3>
+
+                        <p>
+                            Get notified when you are close to your budget limit
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="budgetAlertToggle" checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 CURRENCY
+            =========================================== -->
+
+            <section class="settings-card currency-card">
+
+
+                <div class="card-header">
+
+                    <div class="header-icon currency-icon">
+
+                        <i class="fa-solid fa-dollar-sign"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Currency
+                        </h2>
+
+                        <p>
+                            Select your preferred currency
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="currency">
+                        Currency
+                    </label>
+
+
+                    <select id="currency">
+
+                        <option value="INR">
+                            INR (₹)
+                        </option>
+
+                        <option value="USD">
+                            USD ($)
+                        </option>
+
+                        <option value="EUR">
+                            EUR (€)
+                        </option>
+
+                        <option value="GBP">
+                            GBP (£)
+                        </option>
+
+                        <option value="JPY">
+                            JPY (¥)
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 LANGUAGE
+            =========================================== -->
+
+            <section class="settings-card language-card">
+
+
+                <div class="card-header">
+
+                    <div class="header-icon language-icon">
+
+                        <i class="fa-solid fa-language"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Language
+                        </h2>
+
+                        <p>
+                            Select your preferred language
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="language">
+                        Language
+                    </label>
+
+
+                    <select id="language">
+
+                        <option value="English">
+                            English
+                        </option>
+
+                        <option value="Hindi">
+                            Hindi
+                        </option>
+
+                        <option value="French">
+                            French
+                        </option>
+
+                        <option value="Spanish">
+                            Spanish
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 GENERAL
+            =========================================== -->
+
+            <section class="settings-card general-card">
+
+
+                <div class="card-header">
+
+                    <div class="header-icon general-icon">
+
+                        <i class="fa-solid fa-sliders"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            General
+                        </h2>
+
+                        <p>
+                            Manage general application preferences
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-info">
+
+                        <h3>
+                            Auto Save
+                        </h3>
+
+                        <p>
+                            Automatically save your changes
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input type="checkbox" id="autoSaveToggle" checked>
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ==========================================
+                 ACTION BUTTONS
+            =========================================== -->
+
+            <div class="settings-actions">
+
+
+                <button type="button" class="reset-btn" id="resetBtn">
+
+                    <i class="fa-solid fa-rotate-left"></i>
+
+                    Reset
+
+                </button>
+
+
+                <button type="button" class="save-btn" id="saveBtn">
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Save Settings
+
+                </button>
 
             </div>
 
-        </section>
+        </main>
 
 
-        <!-- ACTION BUTTONS -->
-        <div class="settings-actions">
 
-            <button type="button" class="reset-btn" id="resetBtn">
-                <i class="fa-solid fa-rotate-left"></i>
-                Reset
-            </button>
+        <!-- ==========================================
+                 FOOTER
+            =========================================== -->
 
-            <button type="button" class="save-btn" id="saveBtn">
-                <i class="fa-solid fa-check"></i>
-                Save Settings
-            </button>
+        <footer class="footer">
 
-        </div>
-    </main>
+            <div class="footer-content">
 
-    <script src="js/theme.js"></script>
-    <script src="js/settings.js"></script>
+
+                <div class="footer-brand">
+
+                    <i class="bi bi-wallet2"></i>
+
+                    <span>
+                        Budgeting App
+                    </span>
+
+                </div>
+
+
+                <p class="footer-tagline">
+
+                    Manage your money.
+                    Track your goals.
+                    Build your future.
+
+                </p>
+
+
+                <div class="footer-links">
+
+                    <a href="dashboard.html">
+                        Dashboard
+                    </a>
+
+                    <a href="budget.html">
+                        Budget
+                    </a>
+
+                    <a href="transactions.html">
+                        Transactions
+                    </a>
+
+                    <a href="analytics.html">
+                        Analytics
+                    </a>
+
+                    <a href="profile.html">
+                        Profile
+                    </a>
+
+                    <a href="settings.html">
+                        Settings
+                    </a>
+
+                </div>
+
+
+                <div class="footer-contact">
+
+                    <i class="bi bi-envelope"></i>
+
+                    <span>
+                        support@budgetingapp.com
+                    </span>
+
+                </div>
+
+
+                <div class="footer-divider"></div>
+
+
+                <p class="copyright">
+
+                    © 2026 Budgeting App.
+                    All Rights Reserved.
+
+                </p>
+
+            </div>
+
+        </footer>
+
+
+
+    </div>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="assets/js/theme.js"></script>
+
+    <script src="assets/js/settings.js"></script>
+
 
 </body>
 

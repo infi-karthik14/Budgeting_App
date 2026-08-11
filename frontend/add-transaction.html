@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Transaction | Budgeting App</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Common CSS -->
+     <link rel="stylesheet" href="assets/css/common.css">
+
+    <!-- Common Sidebar CSS -->
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+
+    <!-- Add Transaction CSS -->
+    <link rel="stylesheet" href="assets/css/add-transaction.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- User Profile -->
+
+        <div class="user-profile">
+
+            <div class="avatar">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            <h3>Welcome!</h3>
+
+            <p id="userName">
+                Archita
+            </p>
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <ul class="menu">
+
+            <li>
+
+                <a href="dashboard.html">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="budget.html">
+
+                    <i class="fa-solid fa-wallet"></i>
+
+                    Budget
+
+                </a>
+
+            </li>
+
+
+            <!-- ACTIVE -->
+
+            <li class="active">
+
+                <a href="transactions.html">
+
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+
+                    Transactions
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="analytics.html">
+
+                    <i class="fa-solid fa-chart-pie"></i>
+
+                    Analytics
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="profile.html">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Profile
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="settings.html">
+
+                    <i class="fa-solid fa-gear"></i>
+
+                    Settings
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
+
+    <main class="main-content">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="transaction-page-header">
+
+            <div>
+
+                <h1 id="transactionPageTitle">
+                    Add Transaction
+                </h1>
+
+                <p>
+                    Record your income and expenses easily.
+                </p>
+
+            </div>
+
+
+            <a href="transactions.html" class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Back to Transactions
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================================
+             TRANSACTION FORM CARD
+        ========================================== -->
+
+        <section class="transaction-form-card">
+
+
+            <!-- CARD HEADER -->
+
+            <div class="transaction-form-header">
+
+                <div class="transaction-icon">
+
+                    <i class="fa-solid fa-receipt"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        Transaction Details
+                    </h2>
+
+                    <p>
+                        Enter the details of your transaction.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FORM -->
+
+            <form id="transactionForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- =================================
+                         TYPE
+                    ================================== -->
+
+                    <div class="form-group">
+
+                        <label for="transactionType">
+
+                            Transaction Type
+
+                        </label>
+
+
+                        <select id="transactionType" class="form-control" required>
+
+                            <option value="">
+                                Select Type
+                            </option>
+
+                            <option value="income">
+                                Income
+                            </option>
+
+                            <option value="expense">
+                                Expense
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         CATEGORY
+                    ================================== -->
+
+                    <div class="form-group">
+
+                        <label for="category">
+
+                            Category
+
+                        </label>
+
+
+                        <select id="category" class="form-control" required>
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Salary">
+                                Salary
+                            </option>
+
+                            <option value="Freelance">
+                                Freelance
+                            </option>
+
+                            <option value="Food">
+                                Food
+                            </option>
+
+                            <option value="Groceries">
+                                Groceries
+                            </option>
+
+                            <option value="Travel">
+                                Travel
+                            </option>
+
+                            <option value="Shopping">
+                                Shopping
+                            </option>
+
+                            <option value="Bills">
+                                Bills
+                            </option>
+
+                            <option value="Rent">
+                                Rent
+                            </option>
+
+                            <option value="Entertainment">
+                                Entertainment
+                            </option>
+
+                            <option value="Healthcare">
+                                Healthcare
+                            </option>
+
+                            <option value="Education">
+                                Education
+                            </option>
+
+                            <option value="Investment">
+                                Investment
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         AMOUNT
+                    ================================== -->
+
+                    <div class="form-group">
+
+                        <label for="amount">
+
+                            Amount
+
+                        </label>
+
+
+                        <div class="amount-input">
+
+                            <span>₹</span>
+
+
+                            <input type="number" id="amount" class="form-control" placeholder="Enter amount" min="1"
+                                step="0.01" required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         DATE
+                    ================================== -->
+
+                    <div class="form-group">
+
+                        <label for="transactionDate">
+
+                            Date
+
+                        </label>
+
+
+                        <input type="date" id="transactionDate" class="form-control" required>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         PAYMENT METHOD
+                    ================================== -->
+
+                    <div class="form-group">
+
+                        <label for="paymentMethod">
+
+                            Payment Method
+
+                        </label>
+
+
+                        <select id="paymentMethod" class="form-control" required>
+
+                            <option value="">
+                                Select Payment Method
+                            </option>
+
+                            <option value="Cash">
+                                Cash
+                            </option>
+
+                            <option value="UPI">
+                                UPI
+                            </option>
+
+                            <option value="Debit Card">
+                                Debit Card
+                            </option>
+
+                            <option value="Credit Card">
+                                Credit Card
+                            </option>
+
+                            <option value="Bank Transfer">
+                                Bank Transfer
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         DESCRIPTION
+                    ================================== -->
+
+                    <div class="form-group">
+
+                        <label for="description">
+
+                            Description
+
+                        </label>
+
+
+                        <input type="text" id="description" class="form-control" placeholder="Enter description">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- MESSAGE -->
+
+                <div id="transactionMessage" class="transaction-message">
+                </div>
+
+
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="form-actions">
+
+
+                    <a href="transactions.html" class="cancel-btn">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                        Cancel
+
+                    </a>
+
+
+                    <button type="submit" class="save-transaction-btn">
+
+                        <i class="fa-solid fa-check"></i>
+
+                        <span>
+                            Save Transaction
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+
+
+
+    <!-- ==========================================
+     COMMON FOOTER
+=========================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+                <i class="bi bi-wallet2"></i>
+                <span>Budgeting App</span>
+            </div>
+
+            <p class="footer-tagline">
+                Manage your money. Track your goals. Build your future.
+            </p>
+
+            <div class="footer-links">
+
+                <a href="dashboard.html">Dashboard</a>
+
+                <a href="budget.html">Budget</a>
+
+                <a href="transactions.html">Transactions</a>
+
+                <a href="analytics.html">Analytics</a>
+
+                <a href="profile.html">Profile</a>
+
+                <a href="settings.html">Settings</a>
+
+            </div>
+
+            <div class="footer-contact">
+
+                <i class="bi bi-envelope"></i>
+
+                support@budgetingapp.com
+
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <p class="copyright">
+                © 2026 Budgeting App. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="js/theme.js"></script>
+
+    <script src="js/add-transaction.js"></script>
+
+
+</body>
+
+</html>

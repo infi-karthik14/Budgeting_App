@@ -2,7 +2,6 @@ package com.budgetingapp.dto;
 
 public class BudgetRequest {
 
-<<<<<<< HEAD
     private Double monthlyIncome;
     private Double monthlyBudget;
     private String category;
@@ -37,30 +36,12 @@ public class BudgetRequest {
 
     public String getCategory() {
         return category;
-=======
-    private Long userId;
-    private double monthlyIncome;
-    private double monthlyBudget;
-    private int month;
-    private int year;
-
-    public BudgetRequest() {
-    }
-
-    public BudgetRequest(Long userId, double monthlyIncome, double monthlyBudget, int month, int year) {
-        this.userId = userId;
-        this.monthlyIncome = monthlyIncome;
-        this.monthlyBudget = monthlyBudget;
-        this.month = month;
-        this.year = year;
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     }
 
     public Long getUserId() {
         return userId;
     }
 
-<<<<<<< HEAD
     public String getStartDate() {
         return StartDate;
     }
@@ -92,13 +73,10 @@ public class BudgetRequest {
         this.category = category;
     }
 
-=======
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-<<<<<<< HEAD
     public void setStartDate(String startDate) {
         this.StartDate = startDate;
     }
@@ -127,37 +105,5 @@ public class BudgetRequest {
                 ", budgetamount=" + BudgetAmount +
                 ", budgetName='" + BudgetName + '\'' +
                 '}';
-=======
-    public double getMonthlyIncome() {
-        return monthlyIncome;
-    }
-
-    public void setMonthlyIncome(double monthlyIncome) {
-        this.monthlyIncome = monthlyIncome;
-    }
-
-    public double getMonthlyBudget() {
-        return monthlyBudget;
-    }
-
-    public void setMonthlyBudget(double monthlyBudget) {
-        this.monthlyBudget = monthlyBudget;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
->>>>>>> 1c084a1ad13f47dea69fed45d07930d2896aa02d
     }
 }

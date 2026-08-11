@@ -1,157 +1,36 @@
 /* ==========================================
-   GLOBAL THEME
+   GLOBAL THEME TRANSITION
 ========================================== */
 
-*{
-    transition: background-color .3s ease,
-                color .3s ease,
-                border-color .3s ease,
-                box-shadow .3s ease;
+* {
+    transition:
+        background-color .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
 }
 
-body{
-    background:#f8f9fa;
-    color:#212529;
-}
 
 /* ==========================================
-   DARK MODE
+   LANDING PAGE DARK MODE
 ========================================== */
 
-body.dark-mode{
-    background:#121212;
-    color:#f5f5f5;
+/* These rules are mainly for the landing/home page */
+
+body.dark-mode .hero {
+    background: #181818 !important;
+    color: #ffffff;
 }
 
-/* Navbar */
-
-body.dark-mode .navbar{
-    background:#1c1c1c !important;
+body.dark-mode .bg-light {
+    background: #101827 !important;
 }
 
-body.dark-mode .navbar-brand,
-body.dark-mode .nav-link{
-    color:#ffffff !important;
+body.dark-mode .bg-white {
+    background: #101827 !important;
 }
 
-body.dark-mode .nav-link:hover{
-    color:#0d6efd !important;
-}
-
-/* Hero */
-
-body.dark-mode .hero{
-    background:#181818 !important;
-    color:#ffffff;
-}
-
-/* Cards */
-
-body.dark-mode .card{
-    background:#1f1f1f;
-    color:#ffffff;
-    border:1px solid #333;
-}
-
-body.dark-mode .card p,
-body.dark-mode .card h2,
-body.dark-mode .card h3,
-body.dark-mode .card h4,
-body.dark-mode .card h5{
-    color:#ffffff;
-}
-
-/* Sections */
-
-body.dark-mode section{
-    background:transparent;
-    color:#ffffff;
-}
-
-/* Tables */
-
-body.dark-mode table{
-    background:#1f1f1f;
-    color:#ffffff;
-}
-
-body.dark-mode thead{
-    background:#0d6efd;
-}
-
-body.dark-mode td{
-    border-color:#333;
-}
-
-/* Forms */
-
-body.dark-mode input,
-body.dark-mode textarea,
-body.dark-mode select{
-    background:#2b2b2b;
-    color:#ffffff;
-    border:1px solid #555;
-}
-
-body.dark-mode input::placeholder{
-    color:#bbbbbb;
-}
-
-/* Sidebar */
-
-body.dark-mode .sidebar{
-    background:#1b1b1b;
-}
-
-body.dark-mode .sidebar a{
-    color:#ffffff;
-}
-
-body.dark-mode .sidebar a:hover{
-    background:#0d6efd;
-}
-
-/* Footer */
-
-body.dark-mode .footer{
-    background:#111111;
-    color:#ffffff;
-}
-
-body.dark-mode .footer a{
-    color:#dddddd;
-}
-
-body.dark-mode .footer a:hover{
-    color:#0d6efd;
-}
-
-/* Buttons */
-
-body.dark-mode .btn-outline-primary{
-    color:#ffffff;
-    border-color:#0d6efd;
-}
-
-body.dark-mode .btn-outline-light{
-    color:#ffffff;
-    border-color:#ffffff;
-}
-
-/* Progress */
-
-body.dark-mode .progress{
-    background:#444;
-}
-
-/* Theme Button */
-
-#themeToggle{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
+body.dark-mode .testimonials h2,
+body.dark-mode #features h2 {
+    color: #ffffff;
 }
