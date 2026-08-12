@@ -1,0 +1,375 @@
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+.page-title {
+    margin-bottom: 25px;
+}
+
+.page-title h1 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1d2b44;
+}
+
+.page-title p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   SUMMARY CARDS
+========================================== */
+
+.income-summary-card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+}
+
+.income-summary-card .card-body {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 22px;
+}
+
+.summary-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e9f8ef;
+    color: #198754;
+
+    font-size: 22px;
+}
+
+.income-summary-card h6 {
+    margin: 0 0 5px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.income-summary-card h2 {
+    margin: 0 0 3px;
+    color: #198754;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.income-summary-card small {
+    color: #8994a5;
+}
+
+
+/* ==========================================
+   FORM CARD
+========================================== */
+
+.income-form-card,
+.recent-income-card {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .07);
+    overflow: hidden;
+}
+
+.income-form-card .card-header,
+.recent-income-card .card-header {
+    background: #ffffff;
+    border-bottom: 1px solid #edf0f5;
+    padding: 20px 24px;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.form-header-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #e9f8ef;
+    color: #198754;
+
+    font-size: 19px;
+}
+
+.form-header h2 {
+    margin: 0 0 3px;
+    font-size: 19px;
+    color: #1d2b44;
+}
+
+.form-header p {
+    margin: 0;
+    color: #7b8798;
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   FORM
+========================================== */
+
+.income-form-card .card-body {
+    padding: 28px;
+}
+
+.form-label {
+    color: #334155;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.form-control,
+.form-select {
+    min-height: 45px;
+    border: 1px solid #dce2eb;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+textarea.form-control {
+    min-height: auto;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, .10);
+}
+
+.input-group-text {
+    background: #e9f8ef;
+    color: #198754;
+    border-color: #dce2eb;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   FORM ACTIONS
+========================================== */
+
+.income-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.income-actions .btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   MESSAGE
+========================================== */
+
+.income-message {
+    min-height: 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   RECENT INCOME
+========================================== */
+
+.recent-income-card .card-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #1d2b44;
+}
+
+.recent-income-card .table {
+    margin-bottom: 0;
+}
+
+.recent-income-card thead th {
+    background: #f5f8fc;
+    color: #526075;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.recent-income-card tbody td {
+    color: #526075;
+    font-size: 13px;
+}
+
+.income-amount {
+    color: #198754 !important;
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   TIPS
+========================================== */
+
+.income-tips {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 20px 24px;
+    margin-bottom: 25px;
+
+    border-radius: 16px;
+
+    background: #fff8e6;
+    border: 1px solid #ffe6a8;
+}
+
+.tips-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #fff0c2;
+    color: #d99a00;
+}
+
+.income-tips h3 {
+    margin: 0 0 4px;
+    font-size: 15px;
+    color: #614600;
+}
+
+.income-tips p {
+    margin: 0;
+    font-size: 12px;
+    color: #806b3d;
+}
+
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-mode .page-title h1,
+body.dark-mode .form-header h2,
+body.dark-mode .recent-income-card .card-header h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .page-title p,
+body.dark-mode .form-header p,
+body.dark-mode .income-summary-card h6 {
+    color: #94a3b8;
+}
+
+body.dark-mode .income-form-card,
+body.dark-mode .recent-income-card {
+    background: #182235;
+}
+
+body.dark-mode .income-form-card .card-header,
+body.dark-mode .recent-income-card .card-header {
+    background: #182235;
+    border-color: #2d3c55;
+}
+
+body.dark-mode .form-label {
+    color: #dbe4f0;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background: #111827;
+    color: #ffffff;
+    border-color: #334155;
+}
+
+body.dark-mode .recent-income-card thead th {
+    background: #111827;
+    color: #cbd5e1;
+}
+
+body.dark-mode .recent-income-card tbody td {
+    color: #cbd5e1;
+}
+
+body.dark-mode .income-tips {
+    background: #332b18;
+    border-color: #5b4b25;
+}
+
+body.dark-mode .income-tips h3 {
+    color: #f6c76a;
+}
+
+body.dark-mode .income-tips p {
+    color: #c9b77e;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .page-title h1 {
+        font-size: 24px;
+    }
+
+    .income-form-card .card-body {
+        padding: 20px;
+    }
+
+    .income-actions {
+        justify-content: stretch;
+    }
+
+    .income-actions .btn {
+        flex: 1;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .income-tips {
+        align-items: flex-start;
+    }
+
+    .income-actions {
+        flex-direction: column;
+    }
+
+}

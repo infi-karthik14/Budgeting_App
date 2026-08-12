@@ -1,462 +1,555 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Budgeting App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Budgeting App | Smart Financial Management</title>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<link 
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/theme.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Landing Page CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
+
 
 <body>
 
-<!-- Navbar -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow sticky-top">
-    
-<div class="collapse navbar-collapse" id="menu">
+    <!-- ==================================================
+         NAVBAR
+    ================================================== -->
 
-    <ul class="navbar-nav me-auto">
+    <nav class="navbar navbar-expand-lg landing-navbar sticky-top">
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-        </li>
+        <div class="container">
 
-        <li class="nav-item">
-            <a class="nav-link" href="#features">Features</a>
-        </li>
+            <!-- Brand -->
 
-        <li class="nav-item">
-            <a class="nav-link" href="about.html">About Us</a>
-        </li>
+            <a class="navbar-brand" href="index.html">
 
-        <li class="nav-item">
-            <a class="nav-link" href="contactus.html">Contact Us</a>
-        </li>
+                <span class="brand-icon">
+                    <i class="bi bi-wallet2"></i>
+                </span>
 
-    </ul>
+                <span>
+                    Budgeting App
+                </span>
 
-    <div class="d-flex gap-2">
-        <a href="login.html" class="btn btn-light">
-            <i class="fa-solid fa-right-to-bracket"></i> Login
-        </a>
-
-        <a href="register.html" class="btn btn-warning">
-            <i class="fa-solid fa-user-plus"></i> Register
-        </a>
-    </div>
-
-</div>
-
-</nav>
-
-<!-- Hero Section -->
-
-<section class="hero bg-light">
-
-<div class="container">
-
-<div class="row align-items-center">
-
-<div class="col-lg-6">
-
-<h1 class="display-4 fw-bold">
-
-Take Control of Your Finances with Smart Budgeting 
-
-</h1>
-
-<p class="lead">
-
-Track your income, expenses, budgets, and spending insights in one secure place. Get AI-powered expense predictions and detailed analytics to manage your money smarter
-
-</p>
-
-<a href="register.html" class="btn btn-primary btn-lg me-2">
-
-Get Started
-
-</a>
-
-<a href="login.html" class="btn btn-outline-primary btn-lg">
-
-Login
-
-</a>
-
-<a href="#features" class="btn btn-success btn-lg">
-
-Learn More
-
-</a>
-
-</div>
-
-<div class="col-lg-6 text-center">
-
-<video class="img-fluid hero-video"
-       autoplay
-       muted
-       loop
-       playsinline>
-    <source src="images/login-img.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+            </a>
 
 
- 
+            <!-- Mobile Button -->
 
- <!-- Testimonials -->
-<section class="py-5 testimonials">
-    <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
 
-        <h2 class="text-center fw-bold mb-5">What Our Users Say</h2>
+                <span class="navbar-toggler-icon"></span>
 
-        <div class="row">
+            </button>
 
-            <div class="col-md-4">         
-                <div class="card shadow p-4 text-center h-100">
-                    <h5>Aditya Chauhan</h5>
-                    <p class="text-warning">★★★★★</p>
-                    <p>"This Budgeting App helped me save money every month. Highly recommended!"</p>
+
+            <!-- Navigation -->
+
+            <div class="collapse navbar-collapse" id="mainMenu">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">
+                            Features
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            About Us
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactus.html">
+                            Contact Us
+                        </a>
+                    </li>
+
+                </ul>
+
+
+                <!-- Auth Buttons -->
+
+                <div class="auth-buttons">
+
+                    <a href="login.html" class="btn login-btn">
+
+                        <i class="fa-solid fa-right-to-bracket"></i>
+
+                        Login
+
+                    </a>
+
+
+                    <a href="register.html" class="btn register-btn">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Register
+
+                    </a>
+
                 </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="card shadow p-4 text-center h-100">
-                    <h5>Karthik Rastogi</h5>
-                    <p class="text-warning">★★★★★</p>
-                    <p>"Very simple interface and easy to manage my income and expenses."</p>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow p-4 text-center h-100">
-                    <h5>Jahnvi Tripathi</h5>
-                    <p class="text-warning">★★★★★</p>
-                    <p>"A perfect budgeting app for students and professionals."</p>
-                </div>
             </div>
 
         </div>
 
-    </div>
-</section>
+    </nav>
 
-<!-- Features -->
 
-<section id="features" class="py-5">
 
-<div class="container">
+    <!-- ==================================================
+         HERO / WELCOME BANNER
+    ================================================== -->
 
-<h2 class="text-center mb-5 fw-bold">
+    <section class="hero-section">
 
-Awesome Features
+        <div class="container">
 
-</h2>
+            <div class="hero-card">
 
-<div class="row g-4">
+                <div class="row align-items-center g-5">
 
-<div class="col-md-4">
+                    <!-- Hero Content -->
 
-<div class="card text-center shadow h-100">
+                    <div class="col-lg-6">
 
-<div class="card-body">
+                        <span class="hero-badge">
 
-<i class="fa-solid fa-money-bill-wave fa-3x text-success mb-3"></i>
+                            <i class="bi bi-stars"></i>
 
-<h4>Income Tracker</h4>
+                            Smart Financial Management
 
-<p>Keep records of every income source.</p>
+                        </span>
 
-</div>
 
-</div>
+                        <h1>
 
-</div>
+                            Take Control of Your
 
-<div class="col-md-4">
+                            <span>Finances</span>
 
-<div class="card text-center shadow h-100">
+                        </h1>
 
-<div class="card-body">
 
-<i class="fa-solid fa-credit-card fa-3x text-danger mb-3"></i>
+                        <p class="hero-description">
 
-<h4>Expense Manager</h4>
+                            Track your income, manage expenses, plan budgets
+                            and understand your financial habits — all from
+                            one simple and intelligent platform.
 
-<p>Track daily expenses with ease.</p>
+                        </p>
 
-</div>
 
-</div>
+                        <div class="hero-buttons">
 
-</div>
+                            <a href="register.html" class="btn primary-btn">
 
-<div class="col-md-4">
+                                Get Started
 
-<div class="card text-center shadow h-100">
+                                <i class="bi bi-arrow-right"></i>
 
-<div class="card-body">
+                            </a>
 
-<i class="fa-solid fa-chart-pie fa-3x text-primary mb-3"></i>
 
-<h4>Analytics</h4>
+                            <a href="login.html" class="btn secondary-btn">
 
-<p>Visualize your spending using charts.</p>
+                                <i class="bi bi-box-arrow-in-right"></i>
 
-</div>
+                                Login
 
-</div>
+                            </a>
 
-</div>
+                        </div>
 
-<div class="col-md-4">
 
-<div class="card text-center shadow h-100">
+                        <div class="hero-features">
 
-<div class="card-body">
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Easy to use
+                            </span>
 
-<i class="fa-solid fa-piggy-bank fa-3x text-warning mb-3"></i>
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Smart analytics
+                            </span>
 
-<h4>Budget Planner</h4>
+                            <span>
+                                <i class="bi bi-check-circle-fill"></i>
+                                Secure
+                            </span>
 
-<p>Set monthly budgets and save more.</p>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
 
-</div>
+                    <!-- Hero Visual -->
 
-<div class="col-md-4">
+                    <div class="col-lg-6">
 
-<div class="card text-center shadow h-100">
+                        <div class="hero-visual">
 
-<div class="card-body">
+                            <div class="floating-card income-floating">
 
-<i class="fa-solid fa-clock-rotate-left fa-3x text-info mb-3"></i>
+                                <i class="bi bi-arrow-down-circle-fill"></i>
 
-<h4>Transactions</h4>
+                                <div>
+                                    <small>Income</small>
+                                    <strong>₹50,000</strong>
+                                </div>
 
-<p>View complete transaction history.</p>
+                            </div>
 
-</div>
 
-</div>
+                            <div class="dashboard-preview">
 
-</div>
+                                <div class="preview-header">
 
-<div class="col-md-4">
+                                    <div>
+                                        <small>Current Balance</small>
 
-<div class="card text-center shadow h-100">
+                                        <h3>₹30,000</h3>
+                                    </div>
 
-<div class="card-body">
+                                    <i class="bi bi-wallet-fill"></i>
 
-<i class="fa-solid fa-user fa-3x text-secondary mb-3"></i>
+                                </div>
 
-<h4>User Profile</h4>
 
-<p>Manage your account securely.</p>
+                                <div class="preview-chart">
 
-</div>
+                                    <div class="chart-bars">
 
-</div>
+                                        <span style="height:45%"></span>
+                                        <span style="height:65%"></span>
+                                        <span style="height:50%"></span>
+                                        <span style="height:80%"></span>
+                                        <span style="height:60%"></span>
+                                        <span style="height:90%"></span>
+                                        <span style="height:72%"></span>
 
-</div>
+                                    </div>
 
-</div>
+                                </div>
 
-</div>
 
-</section>
+                                <div class="preview-bottom">
 
-<!-- Why choose us -->
+                                    <div>
 
-<section class="py-5">
+                                        <small>Income</small>
 
-    <div class="container">
+                                        <strong class="text-success">
+                                            + ₹50,000
+                                        </strong>
 
-        <h2 class="text-center fw-bold mb-5">
-            Why Choose Budgeting App?
-        </h2>
+                                    </div>
 
-        <div class="row text-center">
+                                    <div>
 
-            <div class="col-md-3">
-                <i class="fa-solid fa-shield-halved fa-3x text-primary mb-3"></i>
-                <h5>Secure</h5>
-                <p>Your financial data is protected with secure authentication.</p>
-            </div>
+                                        <small>Expense</small>
 
-            <div class="col-md-3">
-                <i class="fa-solid fa-brain fa-3x text-success mb-3"></i>
-                <h5>AI Powered</h5>
-                <p>Predict future expenses using Machine Learning.</p>
-            </div>
+                                        <strong class="text-danger">
+                                            - ₹20,000
+                                        </strong>
 
-            <div class="col-md-3">
-                <i class="fa-solid fa-chart-line fa-3x text-warning mb-3"></i>
-                <h5>Smart Analytics</h5>
-                <p>Visualize your spending with interactive charts.</p>
-            </div>
+                                    </div>
 
-            <div class="col-md-3">
-                <i class="fa-solid fa-mobile-screen-button fa-3x text-info mb-3"></i>
-                <h5>Responsive</h5>
-                <p>Works perfectly on desktop, tablet and mobile.</p>
-            </div>
+                                </div>
 
-        </div>
+                            </div>
 
-    </div>
 
-</section>
+                            <div class="floating-card expense-floating">
 
-<!-- Statistics -->
-<section class="stats py-5 bg-primary text-white">
+                                <i class="bi bi-arrow-up-circle-fill"></i>
 
-    <div class="container">
+                                <div>
+                                    <small>Expenses</small>
+                                    <strong>₹20,000</strong>
+                                </div>
 
-        <div class="row text-center">
+                            </div>
 
-            <div class="col-md-3 col-6 mb-4">
-                <h2 class="counter" data-target="5000">0+</h2>
-                <p>Transactions</p>
-            </div>
+                        </div>
 
-            <div class="col-md-3 col-6 mb-4">
-                <h2 class="counter" data-target="100">0+</h2>
-                <p>Users</p>
-            </div>
+                    </div>
 
-            <div class="col-md-3 col-6 mb-4">
-                <h2>95%</h2>
-                <p>Prediction Accuracy</p>
-            </div>
+                </div>
 
-            <div class="col-md-3 col-6 mb-4">
-                <h2>24/7</h2>
-                <p>Support</p>
             </div>
 
         </div>
 
-    </div>
-
-</section>
-<!-- CTA -->
-
-<section class="bg-primary text-white text-center py-5">
-
-<div class="container">
-
-<h2>Start Saving Today!</h2>
-
-<p>Create your free account and take control of your finances.</p>
-
-<a href="register.html" class="btn btn-warning btn-lg">
-
-Create Account
-
-</a>
-
-</div>
-
-</section>
+    </section>
 
 
-<!-- Premium Footer -->
-<footer class="footer">
 
-    <div class="container">
+    <!-- ==================================================
+         TRUST / STATS
+    ================================================== -->
 
-        <div class="row">
+    <section class="stats-section">
 
-            <!-- About -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h3>💰 Budgeting App</h3>
+        <div class="container">
+
+            <div class="row g-4 text-center">
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="stat-item">
+
+                        <i class="bi bi-receipt"></i>
+
+                        <h3>5K+</h3>
+
+                        <p>Transactions</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="stat-item">
+
+                        <i class="bi bi-people"></i>
+
+                        <h3>100+</h3>
+
+                        <p>Users</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="stat-item">
+
+                        <i class="bi bi-graph-up-arrow"></i>
+
+                        <h3>95%</h3>
+
+                        <p>Prediction Accuracy</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-6 col-lg-3">
+
+                    <div class="stat-item">
+
+                        <i class="bi bi-headset"></i>
+
+                        <h3>24/7</h3>
+
+                        <p>Support</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         FEATURES
+    ================================================== -->
+
+    <section id="features" class="features-section">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span>
+                    WHAT WE OFFER
+                </span>
+
+                <h2>
+                    Everything You Need to
+                    <strong>Manage Your Money</strong>
+                </h2>
+
                 <p>
-                    Manage your income, expenses and savings with a simple,
-                    secure and smart budgeting solution.
+                    Powerful tools designed to make personal finance
+                    simple, organized and easier to understand.
                 </p>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h4>Quick Links</h4>
-
-                <ul class="footer-links">
-
-                    <li><a href="index.html">🏠 Home</a></li>
-
-                    <li><a href="about.html">ℹ️ About</a></li>
-
-                    <li><a href="#features">✨ Features</a></li>
-
-                    <li><a href="contactus.html">📞 Contact</a></li>
-
-                </ul>
 
             </div>
 
-            <!-- Resources -->
-            <div class="col-lg-3 col-md-6 mb-4">
 
-                <h4>Resources</h4>
+            <div class="row g-4">
 
-                <ul class="footer-links">
 
-                    <li><a href="privacy.html">🔒 Privacy Policy</a></li>
+                <!-- Income -->
 
-                    <li><a href="terms.html">📜 Terms & Conditions</a></li>
+                <div class="col-md-6 col-lg-4">
 
-                    <li><a href="dashboard.html">📊 Dashboard</a></li>
+                    <div class="feature-card">
 
-                    <li><a href="https://github.com/">🐙 GitHub</a></li>
+                        <div class="feature-icon income-icon">
+                            <i class="bi bi-cash-stack"></i>
+                        </div>
 
-                </ul>
+                        <h4>Income Tracker</h4>
 
-            </div>
+                        <p>
+                            Record and monitor all your income sources
+                            in one organized place.
+                        </p>
 
-            <!-- Contact -->
-            <div class="col-lg-3 col-md-6">
+                    </div>
 
-                <h4>Contact</h4>
+                </div>
 
-                <p>📧 support@budgetingapp.com</p>
 
-                <p>📱 +91 9876543210</p>
+                <!-- Expenses -->
 
-                <p>📍 India</p>
+                <div class="col-md-6 col-lg-4">
 
-                <div class="social-icons">
+                    <div class="feature-card">
 
-                    <a href="#"><i class="fab fa-github"></i></a>
+                        <div class="feature-icon expense-icon">
+                            <i class="bi bi-credit-card"></i>
+                        </div>
 
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <h4>Expense Manager</h4>
 
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                        <p>
+                            Track your daily expenses and understand
+                            where your money is going.
+                        </p>
 
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+
+                </div>
+
+
+                <!-- Budget -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon budget-icon">
+                            <i class="bi bi-wallet2"></i>
+                        </div>
+
+                        <h4>Budget Planner</h4>
+
+                        <p>
+                            Create monthly budgets and keep your
+                            spending under control.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Analytics -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon analytics-icon">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </div>
+
+                        <h4>Smart Analytics</h4>
+
+                        <p>
+                            Visualize your financial activity through
+                            clear and interactive charts.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Transactions -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon transaction-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+
+                        <h4>Transactions</h4>
+
+                        <p>
+                            Access your complete income and expense
+                            history whenever you need it.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI -->
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon ai-icon">
+                            <i class="bi bi-stars"></i>
+                        </div>
+
+                        <h4>AI Insights</h4>
+
+                        <p>
+                            Get intelligent insights and predictions
+                            to make better financial decisions.
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -464,23 +557,383 @@ Create Account
 
         </div>
 
-        <hr>
+    </section>
 
-        <div class="text-center">
 
-            <p>
-                © 2026 Budgeting App | Made with ❤️ by Budgeting Team
-            </p>
+
+    <!-- ==================================================
+         WHY CHOOSE US
+    ================================================== -->
+
+    <section class="why-section">
+
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-6">
+
+                    <span class="section-label">
+                        WHY BUDGETING APP?
+                    </span>
+
+                    <h2>
+                        Build Better Financial
+                        <span>Habits.</span>
+                    </h2>
+
+                    <p>
+                        Managing money shouldn't be complicated.
+                        Our platform brings your financial information
+                        together so you can understand, plan and improve
+                        your financial life.
+                    </p>
+
+
+                    <div class="why-list">
+
+                        <div>
+                            <i class="bi bi-shield-check"></i>
+
+                            <div>
+                                <h5>Secure</h5>
+                                <p>
+                                    Your account and financial information
+                                    are protected.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <i class="bi bi-lightning-charge"></i>
+
+                            <div>
+                                <h5>Simple</h5>
+                                <p>
+                                    A clean interface makes financial
+                                    management easier.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <i class="bi bi-graph-up"></i>
+
+                            <div>
+                                <h5>Insightful</h5>
+                                <p>
+                                    Understand your spending through
+                                    meaningful analytics.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-lg-6">
+
+                    <div class="why-visual">
+
+                        <div class="why-main-card">
+
+                            <div class="d-flex justify-content-between align-items-center">
+
+                                <div>
+
+                                    <small>Monthly Savings</small>
+
+                                    <h2>₹12,500</h2>
+
+                                </div>
+
+                                <i class="bi bi-piggy-bank-fill"></i>
+
+                            </div>
+
+
+                            <div class="progress mt-4">
+
+                                <div class="progress-bar" style="width:78%;">
+                                </div>
+
+                            </div>
+
+
+                            <div class="d-flex justify-content-between mt-2">
+
+                                <small>Goal Progress</small>
+
+                                <small>78%</small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
+    </section>
 
-</footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/theme.js"></script>
-<script src="js/index.js"></script>
+
+    <!-- ==================================================
+         TESTIMONIALS
+    ================================================== -->
+
+    <section class="testimonials-section">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <span>
+                    USER EXPERIENCE
+                </span>
+
+                <h2>
+                    What Our Users Say
+                </h2>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <div class="col-md-4">
+
+                    <div class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            "The app makes it really easy to understand
+                            where my money is going every month."
+                        </p>
+
+                        <h5>Aditya Chauhan</h5>
+
+                        <small>
+                            Student
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            "The interface is simple and the analytics
+                            help me keep my spending under control."
+                        </p>
+
+                        <h5>Karthik Rastogi</h5>
+
+                        <small>
+                            User
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+                            "A useful budgeting solution for students
+                            and professionals."
+                        </p>
+
+                        <h5>Jahnvi Tripathi</h5>
+
+                        <small>
+                            User
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================================================
+         CTA
+    ================================================== -->
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div>
+                    <h2>Ready to Take Control?</h2>
+                    <p>Start managing your money smarter today.</p>
+                </div>
+                <a href="register.html" class="btn cta-btn">
+                    Create Free Account
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+
+    <footer class="landing-footer">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Brand -->
+                <div class="col-lg-4">
+                    <a href="index.html" class="footer-brand">
+                        <span>
+                            <i class="bi bi-wallet2"></i>
+                        </span>
+                        Budgeting App
+                    </a>
+                    <p>
+                        Manage your money. Track your goals. Build your future.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-6 col-lg-2">
+                    <h5>Quick Links</h5>
+                    <a href="index.html">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="about.html">About Us</a>
+                </div>
+
+                <!-- Account -->
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>Account</h5>
+
+                    <a href="login.html">Login</a>
+
+                    <a href="register.html">Register</a>
+
+                    <a href="dashboard.html">Dashboard</a>
+
+                    <a href="profile.html">Profile</a>
+
+                </div>
+
+                <!-- Contact -->
+
+                <div class="col-lg-4">
+
+                    <h5>Contact Us</h5>
+
+                    <p>
+
+                        <i class="bi bi-envelope"></i> support@budgetingapp.com
+                    </p>
+                    <p>
+
+                        <i class="bi bi-telephone"></i>
+
+                        +91 9876543210
+
+                    </p>
+
+                    <p>
+                        <i class="bi bi-geo-alt"></i>
+
+                        India
+
+                    </p>
+
+
+                    <div class="social-icons">
+
+                        <a href="#"> <i class="bi bi-github"></i> </a>
+
+
+                        <a href="#">
+
+                            <i class="bi bi-linkedin"></i> </a>
+
+                        <a href="#">
+
+                            <i class="bi bi-instagram"></i>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+
+                <p>
+
+                    © 2026 Budgeting App. All Rights Reserved.
+
+                </p>
+
+                <p>
+
+                    Made with ❤️
+
+                    Budgeting Team
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap .bundle.min.js">
+
+    </script>
+
+    <!-- Index JS -->
+
+    <script src="assets/js/index.js"></script>
+
 </body>
 
 </html>

@@ -1,155 +1,219 @@
-// ==========================================
-// PROFILE PAGE
-// ==========================================
+/* =========================================================
+   BACHAT BUDDY - PROFILE
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
-  const profilePic = document.getElementById("profilePic");
-  const uploadImage = document.getElementById("uploadImage");
+document.addEventListener("DOMContentLoaded", async function () {
+  /* =====================================================
+       CHECK LOGIN
+    ===================================================== */
 
-  const fullName = document.getElementById("fullName");
-  const email = document.getElementById("email");
-  const phone = document.getElementById("phone");
-  const address = document.getElementById("address");
-  const bio = document.getElementById("bio");
+  const loggedIn = sessionStorage.getItem("loggedIn");
 
-  const saveBtn = document.getElementById("saveBtn");
-  const cancelBtn = document.querySelector(".cancel-btn");
+  const userEmail = sessionStorage.getItem("userEmail");
 
-  // ==========================================
-  // LOAD PROFILE DATA
-  // ==========================================
+  if (loggedIn !== "true" || !userEmail) {
+    window.location.href = "login.html";
 
-  const savedProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
-
-  if (savedProfile.fullName) {
-    fullName.value = savedProfile.fullName;
+    return;
   }
 
-  if (savedProfile.email) {
-    email.value = savedProfile.email;
-  }
+  /* =====================================================
+       GET HTML ELEMENTS
+    ===================================================== */
 
-  if (savedProfile.phone) {
-    phone.value = savedProfile.phone;
-  }
+  const userName = document.getElementById("userName");
 
-  if (savedProfile.address) {
-    address.value = savedProfile.address;
-  }
+  const navbarUserName = document.getElementById("navbarUserName");
 
-  if (savedProfile.bio) {
-    bio.value = savedProfile.bio;
-  }
+  const profileName = document.getElementById("profileName");
 
-  if (savedProfile.profileImage) {
-    profilePic.src = savedProfile.profileImage;
-  }
+  const fullNameInput = document.getElementById("fullName");
 
-  // ==========================================
-  // PROFILE IMAGE UPLOAD
-  // ==========================================
+  const emailInput = document.getElementById("email");
 
-  uploadImage.addEventListener("change", function () {
-    const file = this.files[0];
+  const phoneInput = document.getElementById("phone");
 
-    if (!file) {
-      return;
+  const profileEmail = document.getElementById("profileEmail");
+
+  const profilePhone = document.getElementById("profilePhone");
+
+  /* =====================================================
+       GET USER FROM BACKEND
+    ===================================================== */
+
+  try {
+    const response = await fetch(
+      "http://localhost:8080/api/auth/user?email=" +
+        encodeURIComponent(userEmail),
+    );
+
+    if (!response.ok) {
+      throw new Error("Unable to fetch user information.");
     }
 
-    if (!file.type.startsWith("image/")) {
-      alert("Please select a valid image.");
+    const user = await response.json();
 
-      return;
+    console.log("User data:", user);
+
+    /* =================================================
+           USER DATA
+        ================================================= */
+
+    const fullName = user.fullName || user.name || "User";
+
+    const email = user.email || "";
+
+    const phone = user.phoneNumber || "";
+
+    /* =================================================
+           UPDATE SIDEBAR
+        ================================================= */
+
+    if (userName) {
+      userName.textContent = fullName;
     }
 
-    const reader = new FileReader();
+    /* =================================================
+           UPDATE NAVBAR
+        ================================================= */
 
-    reader.onload = function (event) {
-      profilePic.src = event.target.result;
-    };
-
-    reader.readAsDataURL(file);
-  });
-
-  // ==========================================
-  // SAVE PROFILE
-  // ==========================================
-
-  saveBtn.addEventListener("click", function () {
-    const profile = {
-      fullName: fullName.value.trim(),
-
-      email: email.value.trim(),
-
-      phone: phone.value.trim(),
-
-      address: address.value.trim(),
-
-      bio: bio.value.trim(),
-
-      profileImage: profilePic.src,
-    };
-
-    localStorage.setItem("userProfile", JSON.stringify(profile));
-
-    // Keep existing sidebar data synchronized
-    localStorage.setItem("userName", profile.fullName);
-
-    localStorage.setItem("profileImage", profile.profileImage);
-
-    showMessage("Profile updated successfully!");
-  });
-
-  // ==========================================
-  // CANCEL
-  // ==========================================
-
-  cancelBtn.addEventListener("click", function () {
-    const savedProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
-
-    fullName.value = savedProfile.fullName || "Archita";
-
-    email.value = savedProfile.email || "archita@example.com";
-
-    phone.value = savedProfile.phone || "+91 98765 43210";
-
-    address.value = savedProfile.address || "Lucknow, Uttar Pradesh";
-
-    bio.value =
-      savedProfile.bio ||
-      "Passionate about personal finance and smart budgeting.";
-
-    profilePic.src = savedProfile.profileImage || "https://i.pravatar.cc/200";
-  });
-
-  // ==========================================
-  // SUCCESS MESSAGE
-  // ==========================================
-
-  function showMessage(message) {
-    const oldMessage = document.querySelector(".profile-message");
-
-    if (oldMessage) {
-      oldMessage.remove();
+    if (navbarUserName) {
+      navbarUserName.textContent = fullName;
     }
 
-    const messageBox = document.createElement("div");
+    /* =================================================
+           UPDATE PROFILE NAME
+        ================================================= */
 
-    messageBox.className = "profile-message";
+    if (profileName) {
+      profileName.textContent = fullName;
+    }
 
-    messageBox.innerHTML = `
-            <i class="fa-solid fa-circle-check"></i>
-            <span>${message}</span>
-        `;
+    /* =================================================
+           UPDATE FULL NAME INPUT
+        ================================================= */
 
-    document.body.appendChild(messageBox);
+    if (fullNameInput) {
+      fullNameInput.value = fullName;
+    }
 
-    setTimeout(function () {
-      messageBox.classList.add("hide");
+    /* =================================================
+           UPDATE EMAIL INPUT
+        ================================================= */
 
-      setTimeout(function () {
-        messageBox.remove();
-      }, 300);
-    }, 2500);
+    if (emailInput) {
+      emailInput.value = email;
+    }
+
+    /* =================================================
+           UPDATE PHONE INPUT
+        ================================================= */
+
+    if (phoneInput) {
+      phoneInput.value = phone;
+    }
+
+    /* =================================================
+           UPDATE PROFILE SUMMARY EMAIL
+        ================================================= */
+
+    if (profileEmail) {
+      profileEmail.textContent = email;
+    }
+
+    /* =================================================
+           UPDATE PROFILE SUMMARY PHONE
+        ================================================= */
+
+    if (profilePhone) {
+      profilePhone.textContent = "+91 " + phone;
+    }
+
+    /* =================================================
+           UPDATE SESSION DATA
+        ================================================= */
+
+    sessionStorage.setItem("userId", user.id);
+
+    sessionStorage.setItem("userName", user.name);
+
+    sessionStorage.setItem("fullName", fullName);
+
+    sessionStorage.setItem("userEmail", email);
+
+    sessionStorage.setItem("phoneNumber", phone);
+  } catch (error) {
+    console.error("Profile error:", error);
+
+    alert("Unable to load your profile. Please try again.");
+  }
+
+  /* =====================================================
+       LOGOUT
+    ===================================================== */
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function () {
+      const confirmLogout = confirm("Are you sure you want to logout?");
+
+      if (!confirmLogout) {
+        return;
+      }
+
+      sessionStorage.clear();
+
+      window.location.href = "login.html";
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const email = sessionStorage.getItem("userEmail");
+
+  if (!email) {
+    alert("Please login first.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://localhost:8080/api/auth/user?email=${encodeURIComponent(email)}`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Unable to load profile");
+    }
+
+    const user = await response.json();
+
+    console.log("User from backend:", user);
+
+    // Name
+    const profileName = document.getElementById("profileName");
+
+    if (profileName) {
+      profileName.textContent = user.fullName || user.name;
+    }
+
+    // Email
+    const profileEmail = document.getElementById("profileEmail");
+
+    if (profileEmail) {
+      profileEmail.textContent = user.email;
+    }
+
+    // Phone
+    const profilePhone = document.getElementById("profilePhone");
+
+    if (profilePhone) {
+      profilePhone.textContent = user.phoneNumber;
+    }
+  } catch (error) {
+    console.error("Profile loading error:", error);
+
+    alert("Unable to load your profile. Please try again.");
   }
 });

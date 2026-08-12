@@ -1,60 +1,604 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Privacy Policy | Budgeting App</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/privacy.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="assets/css/common.css">
+
+    <!-- Sidebar -->
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+
+    <!-- Theme -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+
+    <!-- Privacy CSS -->
+    <link rel="stylesheet" href="assets/css/privacy.css">
+
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
-            💰 Budgeting App
-        </a>
+    <div class="app-layout">
+
+
+        <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="user-profile">
+
+                <div class="avatar">
+
+                    <img id="profileImage" src="assets/images/default-user.png" alt="Profile Picture">
+
+                </div>
+
+                <h3>Welcome!</h3>
+
+                <p id="userName">
+                    Archita
+                </p>
+
+            </div>
+
+
+            <ul class="menu">
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="bi bi-house"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="budget.html">
+                        <i class="bi bi-wallet2"></i>
+                        <span>Budget</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="transactions.html">
+                        <i class="bi bi-credit-card"></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="analytics.html">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="settings.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ==========================================
+             WELCOME BANNER
+        =========================================== -->
+
+            <div class="welcome-card">
+
+                <div class="welcome-content">
+
+                    <h2>
+                        👋 Welcome Back, Archita!
+                    </h2>
+
+                    <p>
+                        Your privacy and security are important to us.
+                    </p>
+
+                </div>
+
+
+                <div class="welcome-actions">
+
+                    <div class="welcome-search">
+
+                        <i class="bi bi-search"></i>
+
+                        <input type="search" id="pageSearch" placeholder="Search...">
+
+                    </div>
+
+
+                    <button type="button" class="notification-btn" title="Notifications">
+
+                        <i class="bi bi-bell-fill"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+             PAGE TITLE
+        =========================================== -->
+
+            <div class="privacy-title">
+
+                <div class="privacy-title-icon">
+
+                    <i class="bi bi-shield-lock-fill"></i>
+
+                </div>
+
+                <div>
+
+                    <h1>
+                        Privacy Policy
+                    </h1>
+
+                    <p>
+                        Learn how Budgeting App handles and protects your information.
+                    </p>
+
+                    <small>
+                        Last Updated: August 2026
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+             INTRODUCTION
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-info-circle-fill"></i>
+                    Introduction
+                </h2>
+
+                <p>
+                    Welcome to Budgeting App. We respect your privacy and
+                    are committed to protecting the information you provide
+                    while using our application.
+                </p>
+
+                <p>
+                    This Privacy Policy explains what information may be
+                    collected, how it is used, and the measures taken to
+                    protect your information.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             INFORMATION WE COLLECT
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-database-fill"></i>
+                    Information We Collect
+                </h2>
+
+                <p>
+                    Depending on how you use the application, we may collect
+                    the following types of information:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Account information such as your name and email address.
+                    </li>
+
+                    <li>
+                        Financial information that you choose to enter,
+                        such as income, expenses and budgets.
+                    </li>
+
+                    <li>
+                        Profile information that you voluntarily provide.
+                    </li>
+
+                    <li>
+                        Messages and information submitted through our
+                        Contact Us form.
+                    </li>
+
+                    <li>
+                        Application usage information required to improve
+                        the user experience.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- ==========================================
+             HOW WE USE INFORMATION
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-gear-wide-connected"></i>
+                    How We Use Your Information
+                </h2>
+
+                <p>
+                    Information provided to the Budgeting App may be used to:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Create and manage your account.
+                    </li>
+
+                    <li>
+                        Display your income, expenses and budget information.
+                    </li>
+
+                    <li>
+                        Generate financial summaries and analytics.
+                    </li>
+
+                    <li>
+                        Provide budgeting and financial insights.
+                    </li>
+
+                    <li>
+                        Respond to support requests.
+                    </li>
+
+                    <li>
+                        Improve application functionality and performance.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- ==========================================
+             FINANCIAL DATA
+        =========================================== -->
+
+            <section class="privacy-card highlight-card">
+
+                <div class="highlight-icon">
+
+                    <i class="bi bi-wallet2"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Your Financial Data
+                    </h2>
+
+                    <p>
+                        Your financial information is used to provide budgeting,
+                        tracking and analytical features. You should only enter
+                        information that you are comfortable storing within
+                        the application.
+                    </p>
+
+                    <p>
+                        Never enter banking passwords, card PINs, OTPs or
+                        other highly sensitive authentication credentials
+                        into the Budgeting App.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==========================================
+             DATA SECURITY
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-shield-check"></i>
+                    Data Security
+                </h2>
+
+                <p>
+                    We take reasonable measures to protect information
+                    associated with your account from unauthorized access,
+                    alteration or disclosure.
+                </p>
+
+                <p>
+                    However, no electronic storage or transmission system
+                    can be guaranteed to be completely secure.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             DATA SHARING
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-share-fill"></i>
+                    Data Sharing
+                </h2>
+
+                <p>
+                    We do not intend to sell your personal information.
+                    Information may only be shared when necessary to:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Provide application functionality.
+                    </li>
+
+                    <li>
+                        Respond to legal or regulatory requirements.
+                    </li>
+
+                    <li>
+                        Protect the security and integrity of the application.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- ==========================================
+             COOKIES
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-cookie"></i>
+                    Cookies and Local Storage
+                </h2>
+
+                <p>
+                    The application may use browser storage mechanisms,
+                    such as local storage, to maintain preferences and
+                    application data during development or local usage.
+                </p>
+
+                <p>
+                    These mechanisms help provide a consistent user
+                    experience and may be replaced or supplemented by
+                    server-side storage when the backend is integrated.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             YOUR RIGHTS
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-person-check-fill"></i>
+                    Your Rights
+                </h2>
+
+                <p>
+                    Depending on applicable laws and regulations, you may
+                    have rights regarding your personal information,
+                    including the ability to:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Request access to your information.
+                    </li>
+
+                    <li>
+                        Request correction of inaccurate information.
+                    </li>
+
+                    <li>
+                        Request deletion of information where applicable.
+                    </li>
+
+                    <li>
+                        Ask questions about how your information is used.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- ==========================================
+             POLICY UPDATES
+        =========================================== -->
+
+            <section class="privacy-card">
+
+                <h2>
+                    <i class="bi bi-arrow-repeat"></i>
+                    Changes to This Policy
+                </h2>
+
+                <p>
+                    This Privacy Policy may be updated when the application,
+                    its features or applicable requirements change.
+                </p>
+
+                <p>
+                    Any updated version will include a revised
+                    "Last Updated" date.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             CONTACT
+        =========================================== -->
+
+            <section class="privacy-contact">
+
+                <div class="privacy-contact-icon">
+
+                    <i class="bi bi-headset"></i>
+
+                </div>
+
+                <div>
+
+                    <h2>
+                        Questions About Privacy?
+                    </h2>
+
+                    <p>
+                        If you have questions about this Privacy Policy,
+                        please contact our support team.
+                    </p>
+
+                </div>
+
+                <a href="contactus.html">
+
+                    Contact Us
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </section>
+
+
+        </main>
+
+
+        <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+        <footer class="footer">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <i class="bi bi-wallet2"></i>
+
+                    <span>
+                        Budgeting App
+                    </span>
+
+                </div>
+
+
+                <p class="footer-tagline">
+
+                    Manage your money.
+                    Track your goals.
+                    Build your future.
+
+                </p>
+
+
+                <div class="footer-links">
+
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="budget.html">Budget</a>
+                    <a href="transactions.html">Transactions</a>
+                    <a href="analytics.html">Analytics</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="settings.html">Settings</a>
+
+                </div>
+
+
+                <div class="footer-contact">
+
+                    <i class="bi bi-envelope"></i>
+
+                    <span>
+                        support@budgetingapp.com
+                    </span>
+
+                </div>
+
+
+                <div class="footer-divider"></div>
+
+
+                <p class="copyright">
+
+                    © 2026 Budgeting App.
+                    All Rights Reserved.
+
+                </p>
+
+            </div>
+
+        </footer>
+
+
     </div>
-</nav>
 
-<div class="container py-5">
 
-    <h1 class="text-center mb-4">Privacy Policy</h1>
+    <script src="assets/js/theme.js"></script>
 
-    <p>
-        Your privacy is important to us. Budgeting App collects only the
-        information required to provide budgeting and financial tracking
-        services.
-    </p>
-
-    <h3>Information We Collect</h3>
-
-    <ul>
-        <li>Name</li>
-        <li>Email Address</li>
-        <li>Income & Expense Records</li>
-    </ul>
-
-    <h3>How We Use Your Data</h3>
-
-    <p>
-        We use your information only to improve your experience and keep
-        your financial records secure.
-    </p>
-
-    <h3>Security</h3>
-
-    <p>
-        We use secure practices to protect your personal information.
-    </p>
-
-    <a href="index.html" class="btn btn-primary mt-4">
-        Back to Home
-    </a>
-
-</div>
-<script src="js/theme.js"></script>
 </body>
+
 </html>

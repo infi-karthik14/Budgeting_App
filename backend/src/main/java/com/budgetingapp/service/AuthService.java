@@ -2,9 +2,14 @@ package com.budgetingapp.service;
 
 import com.budgetingapp.dto.LoginRequest;
 import com.budgetingapp.dto.RegisterRequest;
+import com.budgetingapp.dto.UserResponse;
 import com.budgetingapp.entity.User;
 import com.budgetingapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import com.budgetingapp.dto.UserResponse;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthService {
@@ -15,18 +20,27 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-    // Register User
+    // =====================================================
+    // REGISTER USER
+    // =====================================================
+
     public String register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
+
             return "Email already exists!";
         }
 
         User user = new User();
-        user.setName(request.getName());
+
+        user.setName(request.getFullName());
+
         user.setFullName(request.getFullName());
+
         user.setEmail(request.getEmail());
+
         user.setPassword(request.getPassword());
+
         user.setPhoneNumber(request.getPhoneNumber());
 
         userRepository.save(user);
@@ -34,21 +48,82 @@ public class AuthService {
         return "Registration Successful!";
     }
 
-    // Login User
-    public String login(LoginRequest request) {
+    // =====================================================
+    // LOGIN USER
+    // =====================================================
 
-        User user = userRepository.findByEmail(request.getEmail())
+    public Map<String, Object> login(LoginRequest request) {
+
+        User user = userRepository
+                .findByEmail(request.getEmail())
                 .orElse(null);
 
+        // User doesn't exist
+
         if (user == null) {
-            return "User not found!";
+
+            Map<String, Object> response = new HashMap<>();
+
+            response.put("success", false);
+
+            response.put("message", "User not found!");
+
+            return response;
         }
+
+        // Wrong password
 
         if (!user.getPassword().equals(request.getPassword())) {
-            return "Invalid Password!";
+
+            Map<String, Object> response = new HashMap<>();
+
+            response.put("success", false);
+
+            response.put("message", "Invalid Password!");
+
+            return response;
         }
 
-        return "Login Successful!";
+        // =================================================
+        // LOGIN SUCCESS
+        // =================================================
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("success", true);
+
+        response.put("message", "Login Successful!");
+
+        response.put("id", user.getId());
+
+        response.put("name", user.getName());
+
+        response.put("fullName", user.getFullName());
+
+        response.put("email", user.getEmail());
+
+        response.put("phoneNumber", user.getPhoneNumber());
+
+        return response;
     }
 
+    /*
+     * ==================================================
+     * GET USER BY EMAIL
+     * ==================================================
+     */
+
+    public UserResponse getUserByEmail(String email) {
+
+        User user = userRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getPhoneNumber());
+    }
 }

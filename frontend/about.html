@@ -1,252 +1,1260 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>About Us | Budgeting App</title>
+
+
+    <!-- ==================================================
+         BOOTSTRAP
+    ================================================== -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/about.css">
+
+    <!-- ==================================================
+         BOOTSTRAP ICONS
+    ================================================== -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!-- ==================================================
+         FONT AWESOME
+    ================================================== -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+
+    <!-- ==================================================
+         GOOGLE FONT
+    ================================================== -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- ==================================================
+         INDEX / COMMON LANDING PAGE CSS
+    ================================================== -->
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+    <!-- ==================================================
+         ABOUT PAGE CSS
+    ================================================== -->
+
+    <link rel="stylesheet" href="assets/css/about.css">
+
 </head>
+
 
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
 
-        <a class="navbar-brand fw-bold" href="index.html">
-            💰 Budgeting App
-        </a>
+    <!-- ==================================================
+         NAVBAR
+    ================================================== -->
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <nav class="navbar navbar-expand-lg landing-navbar sticky-top">
 
-        <div class="collapse navbar-collapse" id="menu">
+        <div class="container">
 
-            <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
-                </li>
+            <!-- BRAND -->
 
-                <li class="nav-item">
-                    <a class="nav-link active" href="about.html">About</a>
-                </li>
+            <a class="navbar-brand" href="index.html">
 
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
+                <span class="brand-icon">
 
-            </ul>
+                    <i class="bi bi-wallet2"></i>
+
+                </span>
+
+                <span>
+                    Budgeting App
+                </span>
+
+            </a>
+
+
+            <!-- MOBILE BUTTON -->
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aboutMenu"
+                aria-controls="aboutMenu" aria-expanded="false" aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- NAVIGATION -->
+
+            <div class="collapse navbar-collapse" id="aboutMenu">
+
+
+                <ul class="navbar-nav mx-auto">
+
+
+                    <!-- HOME -->
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="index.html">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- FEATURES -->
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="index.html#features">
+
+                            Features
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- ABOUT -->
+
+                    <li class="nav-item">
+
+                        <a class="nav-link active" href="about.html">
+
+                            About Us
+
+                        </a>
+
+                    </li>
+
+
+                    <!-- CONTACT -->
+
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="contactus.html">
+
+                            Contact Us
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+
+                <!-- AUTH BUTTONS -->
+
+                <div class="auth-buttons">
+
+
+                    <a href="login.html" class="btn login-btn">
+
+                        <i class="fa-solid fa-right-to-bracket"></i>
+
+                        Login
+
+                    </a>
+
+
+                    <a href="register.html" class="btn register-btn">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Register
+
+                    </a>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
-</nav>
+    </nav>
 
-<!-- Hero -->
-<section class="about-hero text-center text-white">
 
-    <div class="container">
 
-        <h1 class="display-4 fw-bold">
-            About Budgeting App
-        </h1>
+    <!-- ==================================================
+         ABOUT HERO
+    ================================================== -->
 
-        <p class="lead mt-3">
-            Smart budgeting made simple for everyone.
-        </p>
+    <section class="about-hero">
 
-    </div>
+        <div class="container">
 
-</section>
+            <div class="about-hero-content">
 
-<!-- About -->
-<section class="py-5">
 
-    <div class="container">
+                <span class="about-badge">
 
-        <div class="row align-items-center">
+                    <i class="bi bi-info-circle"></i>
 
-            <div class="col-lg-6">
+                    About Our Platform
 
-                <h2 class="fw-bold mb-3">
-                    Who We Are
+                </span>
+
+
+                <h1>
+
+                    Making Personal Finance
+                    <span>Simple & Smarter.</span>
+
+                </h1>
+
+
+                <p>
+
+                    Budgeting App is designed to help you understand,
+                    organize and improve your financial life through
+                    simple budgeting tools and smart financial insights.
+
+                </p>
+
+
+                <div class="about-hero-buttons">
+
+                    <a href="register.html" class="about-primary-btn">
+
+                        Get Started
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+
+                    <a href="contactus.html" class="about-secondary-btn">
+
+                        Contact Us
+
+                        <i class="bi bi-envelope"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         WHO WE ARE
+    ================================================== -->
+
+    <section class="about-section">
+
+        <div class="container">
+
+            <div class="row align-items-center g-5">
+
+
+                <!-- TEXT -->
+
+                <div class="col-lg-6">
+
+                    <span class="section-label">
+
+                        WHO WE ARE
+
+                    </span>
+
+
+                    <h2>
+
+                        Your Money.
+                        <span>Better Managed.</span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Budgeting App is a personal finance management
+                        platform created to make budgeting easier,
+                        clearer and more accessible.
+
+                    </p>
+
+
+                    <p>
+
+                        Instead of managing financial information
+                        across multiple notebooks, spreadsheets or
+                        applications, users can organize their income,
+                        expenses, budgets and transactions in one place.
+
+                    </p>
+
+
+                    <p>
+
+                        Our platform combines traditional budgeting
+                        tools with analytics and AI-powered insights
+                        to help users make more informed financial
+                        decisions.
+
+                    </p>
+
+
+                    <div class="about-points">
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Simple financial management
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Clear spending insights
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Smart budgeting tools
+                            </span>
+
+                        </div>
+
+
+                        <div>
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <span>
+                                Secure account management
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VISUAL -->
+
+                <div class="col-lg-6">
+
+                    <div class="about-visual">
+
+
+                        <div class="about-main-card">
+
+                            <div class="about-card-top">
+
+                                <div>
+
+                                    <small>
+                                        Current Balance
+                                    </small>
+
+                                    <h3>
+                                        ₹30,000
+                                    </h3>
+
+                                </div>
+
+
+                                <div class="about-card-icon">
+
+                                    <i class="bi bi-wallet-fill"></i>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="about-mini-chart">
+
+                                <span style="height:45%;"></span>
+
+                                <span style="height:60%;"></span>
+
+                                <span style="height:50%;"></span>
+
+                                <span style="height:75%;"></span>
+
+                                <span style="height:65%;"></span>
+
+                                <span style="height:90%;"></span>
+
+                                <span style="height:78%;"></span>
+
+                            </div>
+
+
+                            <div class="about-card-footer">
+
+                                <div>
+
+                                    <small>
+                                        Income
+                                    </small>
+
+                                    <strong class="text-success">
+                                        + ₹50,000
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <small>
+                                        Expenses
+                                    </small>
+
+                                    <strong class="text-danger">
+                                        - ₹20,000
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Floating Card -->
+
+                        <div class="about-floating-card">
+
+                            <i class="bi bi-piggy-bank-fill"></i>
+
+                            <div>
+
+                                <small>
+                                    Monthly Savings
+                                </small>
+
+                                <strong>
+                                    ₹12,500
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         MISSION & VISION
+    ================================================== -->
+
+    <section class="mission-section">
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <span>
+                    OUR PURPOSE
+                </span>
+
+                <h2>
+                    Mission & Vision
                 </h2>
 
                 <p>
-                    Budgeting App is a personal finance management platform that helps users
-                    track income, expenses, savings and budgets in one place.
+                    We want financial management to be simple
+                    enough for everyone.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- MISSION -->
+
+                <div class="col-md-6">
+
+                    <div class="purpose-card">
+
+
+                        <div class="purpose-icon mission-icon">
+
+                            <i class="bi bi-bullseye"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Our Mission
+                        </h3>
+
+
+                        <p>
+
+                            To help individuals build better financial
+                            habits by providing simple, organized and
+                            intelligent budgeting tools.
+
+                        </p>
+
+
+                        <ul>
+
+                            <li>
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Simplify money management
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Encourage responsible spending
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Help users achieve financial goals
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VISION -->
+
+                <div class="col-md-6">
+
+                    <div class="purpose-card">
+
+
+                        <div class="purpose-icon vision-icon">
+
+                            <i class="bi bi-rocket-takeoff"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Our Vision
+                        </h3>
+
+
+                        <p>
+
+                            To build a trusted personal finance platform
+                            that helps people make smarter decisions
+                            about their money.
+
+                        </p>
+
+
+                        <ul>
+
+                            <li>
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Smarter financial decisions
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Accessible financial insights
+
+                            </li>
+
+
+                            <li>
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Long-term financial confidence
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         WHY CHOOSE US
+    ================================================== -->
+
+    <section class="why-about-section">
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <span>
+                    WHY CHOOSE US
+                </span>
+
+                <h2>
+                    Built Around Your Financial Goals
+                </h2>
+
+                <p>
+                    Everything is designed to make managing your
+                    money easier and more meaningful.
+                </p>
+
+            </div>
+
+
+            <div class="row g-4">
+
+
+                <!-- CARD 1 -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="about-feature-card">
+
+                        <div class="about-feature-icon blue">
+
+                            <i class="bi bi-shield-check"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Secure
+                        </h4>
+
+
+                        <p>
+
+                            Keep your account and financial
+                            information protected.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 2 -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="about-feature-card">
+
+                        <div class="about-feature-icon green">
+
+                            <i class="bi bi-bar-chart-line"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Analytics
+                        </h4>
+
+
+                        <p>
+
+                            Understand your income and spending
+                            through clear visual reports.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 3 -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="about-feature-card">
+
+                        <div class="about-feature-icon purple">
+
+                            <i class="bi bi-stars"></i>
+
+                        </div>
+
+
+                        <h4>
+                            AI Powered
+                        </h4>
+
+
+                        <p>
+
+                            Get intelligent insights and expense
+                            predictions.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARD 4 -->
+
+                <div class="col-md-6 col-lg-3">
+
+                    <div class="about-feature-card">
+
+                        <div class="about-feature-icon orange">
+
+                            <i class="bi bi-phone"></i>
+
+                        </div>
+
+
+                        <h4>
+                            Responsive
+                        </h4>
+
+
+                        <p>
+
+                            Access your financial information across
+                            desktop, tablet and mobile.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================================
+         TEAM
+    ================================================== -->
+
+    <section class="team-section">
+
+        <div class="container">
+
+
+            <div class="section-heading">
+
+                <span>
+                    OUR TEAM
+                </span>
+
+                <h2>
+                    Built With Passion
+                </h2>
+
+                <p>
+                    A team focused on creating simple and useful
+                    financial technology.
+                </p>
+
+            </div>
+
+
+            <div class="row justify-content-center">
+
+
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="team-card">
+
+
+                        <div class="team-avatar">
+
+                            <i class="bi bi-people-fill"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Budgeting App Team
+                        </h3>
+
+
+                        <span>
+                            Finance & Technology
+                        </span>
+
+
+                        <p>
+
+                            Dedicated to building simple, secure and
+                            smart solutions for personal finance.
+
+                        </p>
+
+
+                        <div class="team-social">
+
+                            <a href="#">
+
+                                <i class="bi bi-github"></i>
+
+                            </a>
+
+
+                            <a href="#">
+
+                                <i class="bi bi-linkedin"></i>
+
+                            </a>
+
+
+                            <a href="mailto:support@budgetingapp.com">
+
+                                <i class="bi bi-envelope"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==================================================
+         CTA
+    ================================================== -->
+
+
+    <section class="about-cta">
+
+        <div class="container">
+
+            <div class="about-cta-card">
+
+                <div>
+
+                    <h2>
+
+                        Start Managing Your Money Smarter
+
+                    </h2>
+
+                    <p>
+
+                        Create your account and take the first step towards better financial habits.
+
+                    </p>
+
+                </div>
+
+                <a href="register.html" class="about-cta-btn">
+
+                    Create Account
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <i class="bi bi-arrow-right"></i>
+
+
+    <!-- ==================================================
+       FOOTER
+    ================================================== -->
+
+
+    <footer class="landing-footer">
+
+        <div class="container">
+
+            <div class="row g-5">
+
+                <!-- BRAND -->
+
+                <div class="col-lg-4">
+
+                    <a href="index.html" class="footer-brand">
+
+                        <span>
+
+                            <i class="bi bi-wallet2"></i>
+
+                        </span>
+
+                        Budgeting App
+
+                        <p>
+
+                            Manage your money. Track your goals. Build your future.
+
+                        </p>
+
+                </div>
+
+                <!-- QUICK LINKS -->
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>
+
+                        Quick Links
+
+                    </h5>
+
+                    <a href="index.html"> Home
+
+                    </a>
+
+                    <a href="index.html#features">
+
+                        Features
+                    </a>
+
+
+                    <a href="about.html"> About Us
+
+                    </a>
+
+                    <a href="contactus.html">
+
+                        Contact Us
+                    </a>
+
+                </div>
+
+
+                <!-- ACCOUNT -->
+
+                <div class="col-6 col-lg-2">
+
+                    <h5>
+
+                        Account
+
+                    </h5>
+
+                    <a href="login.html"> Login
+
+                    </a>
+
+                    <a href="register.html"> Register
+
+                    </a>
+
+                    <a href="dashboard.html"> Dashboard
+
+                    </a>
+
+                    <a href="profile.html">
+
+                        Profile
+                    </a>
+
+                </div>
+
+
+                <!-- CONTACT -->
+
+                <div class="col-lg-4">
+
+                    <h5>
+
+                        Contact Us
+
+                    </h5>
+
+                    <p>
+                        <i class="bi bi-envelope me-2"></i>
+
+                        support@budgetingapp.com
+
+                    </p>
+
+
+                    <p>
+                        <i class="bi bi-telephone me-2"></i>
+                        +91 9876543210
+                    </p>
+
+                    <p>
+
+                        <i class="bi bi-geo-alt me-2"></i>
+
+                        India
+                    </p>
+
+                    <div class="social-icons">
+
+                        <a href="#"> <i class="bi bi-github"></i>
+
+                        </a>
+
+                        <a href="#">
+
+                            <i class="bi bi-linkedin"></i> </a>
+
+                        <a href="#">
+
+                            <i class="bi bi-instagram"></i> </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- DIVIDER -->
+
+            <div class="footer-divider"></div>
+
+            <!-- COPYRIGHT -->
+
+            <div class="footer-bottom">
+
+                <p>
+
+                    © 2026 Budgeting App. All Rights Reserved.
+
                 </p>
 
                 <p>
-                    Our mission is to make money management simple, secure and accessible
-                    for students, professionals and families.
+
+                    Made with
+
+                    ❤️
+
+                    by Budgeting Team
+
                 </p>
 
             </div>
 
-            <div class="col-lg-6 text-center">
-
-                <img src="images/about.png"
-                     class="img-fluid"
-                     width="400"
-                     alt="Budgeting App">
-
-            </div>
-
         </div>
 
-    </div>
+    </footer>
 
-</section>
 
-<!-- Mission & Vision -->
-<section class="bg-light py-5">
+    <!-- ==================================================
+         BOOTSTRAP JS
+    ================================================== -->
 
-    <div class="container">
 
-        <div class="row">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap .bundle.min.js">
 
-            <div class="col-md-6">
+    </script>
 
-                <div class="card shadow p-4">
+    <!-- About Page JS -->
 
-                    <h3>🎯 Our Mission</h3>
+    <script>
 
-                    <p>
-                        To help everyone achieve financial stability through simple
-                        budgeting and expense tracking.
-                    </p>
+        document.addEventListener("DOMContentLoaded", function () {
 
-                </div>
+            const menu = document.getElementById("aboutMenu");
 
-            </div>
+            if (!menu) return;
 
-            <div class="col-md-6">
+            const links = menu.querySelectorAll(".nav-link");
 
-                <div class="card shadow p-4">
+            links.forEach(link => {
 
-                    <h3>🚀 Our Vision</h3>
+                link.addEventListener("click", function () {
 
-                    <p>
-                        To become the most trusted budgeting platform for personal finance management.
-                    </p>
+                    if (window.innerWidth < 992) {
+                        const collapse = bootstrap.Collapse.getInstance(menu);
 
-                </div>
+                        if (collapse) {
+                            collapse.hide();
+                        }
+                    }
+                });
+            });
+        });
 
-            </div>
 
-        </div>
+    </script>
 
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-</section>
-<!-- Why Choose Us -->
-<section class="py-5">
-    <div class="container">
+            /* ==========================================
+               MOBILE NAVBAR
+            ========================================== */
 
-        <h2 class="text-center fw-bold mb-5">Why Choose Us?</h2>
+            const menu = document.getElementById("aboutMenu");
 
-        <div class="row">
+            if (menu) {
 
-            <div class="col-md-4">
-                <div class="card shadow h-100 text-center p-4">
-                    <h3>💰</h3>
-                    <h4>Track Expenses</h4>
-                    <p>Monitor your daily spending with ease and stay within your budget.</p>
-                </div>
-            </div>
+                const links = menu.querySelectorAll(".nav-link");
 
-            <div class="col-md-4">
-                <div class="card shadow h-100 text-center p-4">
-                    <h3>📈</h3>
-                    <h4>Manage Income</h4>
-                    <p>Keep a record of all your income sources and financial growth.</p>
-                </div>
-            </div>
+                links.forEach(link => {
 
-            <div class="col-md-4">
-                <div class="card shadow h-100 text-center p-4">
-                    <h3>🎯</h3>
-                    <h4>Achieve Goals</h4>
-                    <p>Plan savings and reach your financial goals with confidence.</p>
-                </div>
-            </div>
+                    link.addEventListener("click", function () {
 
-        </div>
+                        if (window.innerWidth < 992) {
 
-    </div>
-</section>
+                            const collapse =
+                                bootstrap.Collapse.getInstance(menu);
 
-<!-- Team -->
-<section class="bg-light py-5">
+                            if (collapse) {
+                                collapse.hide();
+                            }
 
-    <div class="container">
+                        }
 
-        <h2 class="text-center fw-bold mb-5">Our Team</h2>
+                    });
 
-        <div class="row justify-content-center">
+                });
 
-            <div class="col-md-4">
+            }
 
-                <div class="card shadow text-center p-4">
 
-                    <img src="images/user.png"
-                         class="rounded-circle mx-auto mb-3"
-                         width="120"
-                         alt="Team Member">
+            /* ==========================================
+               PURPOSE CARDS
+            ========================================== */
 
-                    <h4>Budgeting App Team</h4>
+            const purposeCards =
+                document.querySelectorAll(".purpose-card");
 
-                    <p>
-                        Dedicated to building simple, secure and smart financial solutions.
-                    </p>
+            purposeCards.forEach(card => {
 
-                </div>
+                card.addEventListener("click", function () {
 
-            </div>
+                    purposeCards.forEach(item => {
+                        item.classList.remove("selected");
+                    });
 
-        </div>
+                    this.classList.add("selected");
 
-    </div>
+                });
 
-</section>
+            });
 
-<!-- Footer -->
 
-<footer class="footer">
+            /* ==========================================
+               FEATURE CARDS
+            ========================================== */
 
-    <div class="footer-content">
+            const featureCards =
+                document.querySelectorAll(".about-feature-card");
 
-        <h3>Budgeting App</h3>
+            featureCards.forEach(card => {
 
-        <div class="footer-links">
-            <a href="dashboard.html">Dashboard</a>
-            <a href="budget.html">Budget</a>
-            <a href="transactions.html">Transactions</a>
-            <a href="analytics.html">Analytics</a>
-            <a href="profile.html">Profile</a>
-            <a href="settings.html">Settings</a>
-        </div>
+                card.addEventListener("click", function () {
 
-        <p class="footer-email">
-            Email: support@budgetingapp.com
-        </p>
+                    featureCards.forEach(item => {
+                        item.classList.remove("selected");
+                    });
 
-        <p class="copyright">
-            © 2026 Budgeting App. All Rights Reserved.
-        </p>
+                    this.classList.add("selected");
 
-    </div>
+                });
 
-</footer>
+            });
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/theme.js"></script>
+
+            /* ==========================================
+               CTA BUTTON
+            ========================================== */
+
+            const ctaButton =
+                document.querySelector(".about-cta-btn");
+
+            if (ctaButton) {
+
+                ctaButton.addEventListener("click", function () {
+
+                    console.log(
+                        "User selected Create Account"
+                    );
+
+                });
+
+            }
+
+
+            console.log("About page initialized successfully.");
+
+        });
+    </script>
+
 </body>
+
 </html>

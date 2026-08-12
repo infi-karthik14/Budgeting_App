@@ -1,3 +1,77 @@
+/* =========================================================
+   BACHAT BUDDY - LOGGED IN USER
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const loggedIn = sessionStorage.getItem("loggedIn");
+
+    /* =====================================================
+       PROTECT DASHBOARD
+    ===================================================== */
+
+    if (loggedIn !== "true") {
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+
+    /* =====================================================
+       GET USER DATA
+    ===================================================== */
+
+    const fullName =
+        sessionStorage.getItem("fullName") || "User";
+
+    const email =
+        sessionStorage.getItem("userEmail") || "";
+
+
+    /* =====================================================
+       UPDATE USER NAME
+    ===================================================== */
+
+    const userName =
+        document.getElementById("userName");
+
+    if (userName) {
+
+        userName.textContent = fullName;
+
+    }
+
+
+    /* =====================================================
+       UPDATE NAVBAR USER NAME
+    ===================================================== */
+
+    const navbarUserName =
+        document.getElementById("navbarUserName");
+
+    if (navbarUserName) {
+
+        navbarUserName.textContent = fullName;
+
+    }
+
+
+    /* =====================================================
+       UPDATE EMAIL IF PRESENT
+    ===================================================== */
+
+    const navbarUserEmail =
+        document.getElementById("navbarUserEmail");
+
+    if (navbarUserEmail) {
+
+        navbarUserEmail.textContent = email;
+
+    }
+
+});
+
 // ==========================================
 // DASHBOARD
 // ==========================================

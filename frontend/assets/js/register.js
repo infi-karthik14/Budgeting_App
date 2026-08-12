@@ -1,92 +1,159 @@
+/* =========================================================
+   REGISTER PAGE
+   Bachat Buddy
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("registerForm");
+  const registerForm = document.getElementById("registerForm");
 
-  const name = document.getElementById("name");
+
+  const fullName = document.getElementById("fullName");
   const email = document.getElementById("email");
-
+  const phoneNumber = document.getElementById("phoneNumber");
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirmPassword");
-
   const terms = document.getElementById("terms");
 
-  const errorMessage = document.getElementById("errorMessage");
+  const registerBtn = document.getElementById("registerBtn");
 
-  // =================================
-  // SHOW / HIDE PASSWORD
-  // =================================
+  const errorMessage = document.getElementById("errorMessage");
+  const successMessage = document.getElementById("successMessage");
 
   const togglePassword = document.getElementById("togglePassword");
+  const toggleConfirmPassword = document.getElementById(
+    "toggleConfirmPassword",
+  );
+
+  const eyeIcon = document.getElementById("eyeIcon");
+  const confirmEyeIcon = document.getElementById("confirmEyeIcon");
+
+  /* =====================================================
+       PASSWORD VISIBILITY
+    ===================================================== */
 
   togglePassword.addEventListener("click", function () {
     if (password.type === "password") {
       password.type = "text";
 
-      this.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
     } else {
       password.type = "password";
 
-      this.innerHTML = '<i class="fa-solid fa-eye"></i>';
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
     }
   });
 
-  // =================================
-  // SHOW / HIDE CONFIRM PASSWORD
-  // =================================
-
-  const toggleConfirmPassword = document.getElementById(
-    "toggleConfirmPassword",
-  );
+  /* =====================================================
+       CONFIRM PASSWORD VISIBILITY
+    ===================================================== */
 
   toggleConfirmPassword.addEventListener("click", function () {
     if (confirmPassword.type === "password") {
       confirmPassword.type = "text";
 
-      this.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+      confirmEyeIcon.classList.remove("fa-eye");
+      confirmEyeIcon.classList.add("fa-eye-slash");
     } else {
       confirmPassword.type = "password";
 
-      this.innerHTML = '<i class="fa-solid fa-eye"></i>';
+      confirmEyeIcon.classList.remove("fa-eye-slash");
+      confirmEyeIcon.classList.add("fa-eye");
     }
   });
 
-  // =================================
-  // REGISTER USER
-  // =================================
+  /* =====================================================
+       REGISTER FORM
+    ===================================================== */
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+  registerForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    /* Clear previous messages */
 
     errorMessage.textContent = "";
+    successMessage.textContent = "";
 
-    const userName = name.value.trim();
+    /* =================================================
+           GET FORM VALUES
+        ================================================= */
 
-    const userEmail = email.value.trim().toLowerCase();
+    const nameValue = fullName.value.trim();
 
-    const userPassword = password.value;
+    const emailValue = email.value.trim();
 
-    const userConfirmPassword = confirmPassword.value;
+    const phoneValue = phoneNumber.value.trim();
 
-    // =================================
-    // VALIDATION
-    // =================================
+    const passwordValue = password.value;
 
-    if (userName.length < 3) {
-      errorMessage.textContent = "Name must contain at least 3 characters.";
+    const confirmValue = confirmPassword.value;
+
+    /* =================================================
+           FULL NAME VALIDATION
+        ================================================= */
+
+    if (nameValue.length < 2) {
+      errorMessage.textContent = "Please enter your full name.";
+
+      fullName.focus();
 
       return;
     }
 
-    if (userPassword.length < 6) {
-      errorMessage.textContent = "Password must contain at least 6 characters.";
+    /* =================================================
+           EMAIL VALIDATION
+        ================================================= */
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(emailValue)) {
+      errorMessage.textContent = "Please enter a valid email address.";
+
+      email.focus();
 
       return;
     }
 
-    if (userPassword !== userConfirmPassword) {
+    /* =================================================
+           PHONE VALIDATION
+        ================================================= */
+
+    if (!/^[0-9]{10}$/.test(phoneValue)) {
+      errorMessage.textContent = "Please enter a valid 10-digit phone number.";
+
+      phoneNumber.focus();
+
+      return;
+    }
+
+    /* =================================================
+           PASSWORD VALIDATION
+        ================================================= */
+
+    if (passwordValue.length < 8) {
+      errorMessage.textContent = "Password must contain at least 8 characters.";
+
+      password.focus();
+
+      return;
+    }
+
+    /* =================================================
+           CONFIRM PASSWORD
+        ================================================= */
+
+    if (passwordValue !== confirmValue) {
       errorMessage.textContent = "Passwords do not match.";
 
+      confirmPassword.focus();
+
       return;
     }
+
+    /* =================================================
+           TERMS & CONDITIONS
+        ================================================= */
 
     if (!terms.checked) {
       errorMessage.textContent = "Please accept the Terms & Conditions.";
@@ -94,52 +161,102 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // =================================
-    // GET EXISTING USERS
-    // =================================
+    /* =================================================
+           REQUEST DATA
+        ================================================= */
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const userData = {
+      fullName: nameValue,
 
-    // =================================
-    // CHECK DUPLICATE EMAIL
-    // =================================
+      email: emailValue,
 
-    const existingUser = users.find(
-      (user) => user.email.toLowerCase() === userEmail,
-    );
+      password: passwordValue,
 
-    if (existingUser) {
-      errorMessage.textContent = "An account with this email already exists.";
-
-      return;
-    }
-
-    // =================================
-    // CREATE USER
-    // =================================
-
-    const newUser = {
-      name: userName,
-
-      email: userEmail,
-
-      password: userPassword,
+      phoneNumber: Number(phoneValue),
     };
 
-    users.push(newUser);
+    /* =================================================
+           BUTTON LOADING STATE
+        ================================================= */
 
-    // =================================
-    // SAVE USER
-    // =================================
+    registerBtn.disabled = true;
 
-    localStorage.setItem("users", JSON.stringify(users));
+    registerBtn.innerHTML =
+      '<span class="spinner-border spinner-border-sm me-2"></span>' +
+      "Creating Account...";
 
-    // =================================
-    // SUCCESS
-    // =================================
+    try {
+      /* =================================================
+               SEND DATA TO SPRING BOOT
+            ================================================= */
 
-    alert("Account created successfully!");
+      const response = await fetch("http://localhost:8080/api/auth/register", {
+        method: "POST",
 
-    window.location.href = "login.html";
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(userData),
+      });
+
+      /* =================================================
+               GET SERVER RESPONSE
+            ================================================= */
+
+      const result = await response.text();
+
+      console.log("Server response:", result);
+
+      /* =================================================
+               REGISTRATION SUCCESS
+            ================================================= */
+
+      if (result === "Registration Successful!") {
+        successMessage.textContent =
+          "Account created successfully! Redirecting to login...";
+
+        registerForm.reset();
+
+        setTimeout(function () {
+          window.location.href = "login.html";
+        }, 1500);
+      } else if (result === "Email already exists!") {
+        /* =================================================
+               EMAIL ALREADY EXISTS
+            ================================================= */
+        errorMessage.textContent = "This email is already registered.";
+
+        registerBtn.disabled = false;
+
+        registerBtn.innerHTML =
+          '<i class="fa-solid fa-user-plus me-2"></i>' + "Create Account";
+      } else {
+        /* =================================================
+               OTHER SERVER RESPONSE
+            ================================================= */
+        errorMessage.textContent = result || "Registration failed.";
+
+        registerBtn.disabled = false;
+
+        registerBtn.innerHTML =
+          '<i class="fa-solid fa-user-plus me-2"></i>' + "Create Account";
+      }
+    } catch (error) {
+      /* =================================================
+           SERVER CONNECTION ERROR
+        ================================================= */
+
+      console.error("Registration error:", error);
+
+      errorMessage.textContent =
+        "Unable to connect to the server. " +
+        "Make sure Spring Boot is running.";
+
+      registerBtn.disabled = false;
+
+      registerBtn.innerHTML =
+        '<i class="fa-solid fa-user-plus me-2"></i>' + "Create Account";
+    }
   });
 });

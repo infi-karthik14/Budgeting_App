@@ -1,61 +1,628 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Terms & Conditions | Budgeting App</title>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/terms.css">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="assets/css/common.css">
+
+    <!-- Sidebar -->
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+
+    <!-- Theme -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+
+    <!-- Terms CSS -->
+    <link rel="stylesheet" href="assets/css/terms.css">
+
 </head>
+
 
 <body>
 
-<nav class="navbar navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="index.html">
-            💰 Budgeting App
-        </a>
+    <div class="app-layout">
+
+
+        <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="user-profile">
+
+                <div class="avatar">
+
+                    <img id="profileImage" src="assets/images/default-user.png" alt="Profile Picture">
+
+                </div>
+
+                <h3>Welcome!</h3>
+
+                <p id="userName">
+                    Archita
+                </p>
+
+            </div>
+
+
+            <ul class="menu">
+
+                <li>
+                    <a href="dashboard.html">
+                        <i class="bi bi-house"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="budget.html">
+                        <i class="bi bi-wallet2"></i>
+                        <span>Budget</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="transactions.html">
+                        <i class="bi bi-credit-card"></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="analytics.html">
+                        <i class="bi bi-bar-chart"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="profile.html">
+                        <i class="bi bi-person"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="settings.html">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+
+        <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+        <main class="main-content">
+
+
+            <!-- ==========================================
+             WELCOME BANNER
+        =========================================== -->
+
+            <div class="welcome-card">
+
+                <div class="welcome-content">
+
+                    <h2>
+                        👋 Welcome Back, Archita!
+                    </h2>
+
+                    <p>
+                        Understand the terms for using Budgeting App.
+                    </p>
+
+                </div>
+
+
+                <div class="welcome-actions">
+
+                    <div class="welcome-search">
+
+                        <i class="bi bi-search"></i>
+
+                        <input type="search" id="pageSearch" placeholder="Search...">
+
+                    </div>
+
+
+                    <button type="button" class="notification-btn" title="Notifications">
+
+                        <i class="bi bi-bell-fill"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+             PAGE TITLE
+        =========================================== -->
+
+            <div class="terms-title">
+
+                <div class="terms-title-icon">
+
+                    <i class="bi bi-file-earmark-text-fill"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Terms & Conditions
+                    </h1>
+
+                    <p>
+                        Please read these terms carefully before using the application.
+                    </p>
+
+                    <small>
+                        Last Updated: August 2026
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+             INTRODUCTION
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-info-circle-fill"></i>
+                    1. Introduction
+                </h2>
+
+                <p>
+                    Welcome to Budgeting App. These Terms & Conditions
+                    govern your use of the application and its features.
+                </p>
+
+                <p>
+                    By creating an account or using the application,
+                    you acknowledge that you have read and understood
+                    these terms.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             ELIGIBILITY
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-person-check-fill"></i>
+                    2. Account and Eligibility
+                </h2>
+
+                <p>
+                    You are responsible for providing accurate information
+                    when creating and maintaining your account.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Keep your account information accurate and up to date.
+                    </li>
+
+                    <li>
+                        Protect your account credentials from unauthorized use.
+                    </li>
+
+                    <li>
+                        Notify the appropriate support channel if you believe
+                        your account has been compromised.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- ==========================================
+             USE OF APPLICATION
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-grid-1x2-fill"></i>
+                    3. Use of the Application
+                </h2>
+
+                <p>
+                    Budgeting App is designed to help users record,
+                    organize and analyze personal financial information.
+                </p>
+
+                <p>
+                    You agree to use the application only for lawful
+                    purposes and in a manner that does not interfere
+                    with its operation or security.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             FINANCIAL INFORMATION
+        =========================================== -->
+
+            <section class="terms-card highlight-card">
+
+                <div class="highlight-icon">
+
+                    <i class="bi bi-wallet2"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        4. Financial Information
+                    </h2>
+
+                    <p>
+                        The Budgeting App provides budgeting and
+                        financial-tracking functionality. It is not
+                        a bank, investment advisor, financial institution
+                        or professional financial advisory service.
+                    </p>
+
+                    <p>
+                        Any analytics, predictions or budgeting suggestions
+                        displayed by the application should be considered
+                        informational and should not be treated as guaranteed
+                        financial advice.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==========================================
+             USER RESPONSIBILITY
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-shield-check"></i>
+                    5. User Responsibility
+                </h2>
+
+                <p>
+                    You are responsible for the information you enter
+                    into the application and for reviewing that information
+                    for accuracy.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Verify income and expense amounts before saving them.
+                    </li>
+
+                    <li>
+                        Review your budgets and financial reports regularly.
+                    </li>
+
+                    <li>
+                        Do not enter passwords, PINs, OTPs or other
+                        sensitive authentication credentials.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- ==========================================
+             PROHIBITED USE
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    6. Prohibited Use
+                </h2>
+
+                <p>
+                    You must not use the application to:
+                </p>
+
+                <ul>
+
+                    <li>
+                        Attempt unauthorized access to another user's account.
+                    </li>
+
+                    <li>
+                        Interfere with the application's security or operation.
+                    </li>
+
+                    <li>
+                        Upload malicious code or harmful content.
+                    </li>
+
+                    <li>
+                        Use the application for unlawful activities.
+                    </li>
+
+                    <li>
+                        Attempt to access data that you are not authorized to access.
+                    </li>
+
+                </ul>
+
+            </section>
+
+
+            <!-- ==========================================
+             INTELLECTUAL PROPERTY
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-c-circle-fill"></i>
+                    7. Intellectual Property
+                </h2>
+
+                <p>
+                    The application's design, interface, branding,
+                    source code, graphics and other original materials
+                    may be protected by applicable intellectual property laws.
+                </p>
+
+                <p>
+                    You may not reproduce, distribute or commercially
+                    exploit application materials without appropriate authorization.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             AVAILABILITY
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-cloud-check-fill"></i>
+                    8. Availability of the Service
+                </h2>
+
+                <p>
+                    We aim to keep the application available and functional,
+                    but continuous availability cannot be guaranteed.
+                </p>
+
+                <p>
+                    Features may occasionally be changed, updated,
+                    suspended or removed to improve the application.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             LIMITATION
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-shield-exclamation"></i>
+                    9. Limitation of Responsibility
+                </h2>
+
+                <p>
+                    You are responsible for maintaining appropriate backups
+                    of important information where necessary.
+                </p>
+
+                <p>
+                    Budgeting App should not be relied upon as the sole
+                    source for important financial records or decisions.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             CHANGES
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-arrow-repeat"></i>
+                    10. Changes to These Terms
+                </h2>
+
+                <p>
+                    These Terms & Conditions may be updated when the
+                    application's features, services or requirements change.
+                </p>
+
+                <p>
+                    The updated version will display a revised
+                    "Last Updated" date.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             TERMINATION
+        =========================================== -->
+
+            <section class="terms-card">
+
+                <h2>
+                    <i class="bi bi-person-x-fill"></i>
+                    11. Account Termination
+                </h2>
+
+                <p>
+                    Access to an account may be restricted or terminated
+                    where necessary to protect the application, its users,
+                    or comply with applicable requirements.
+                </p>
+
+            </section>
+
+
+            <!-- ==========================================
+             CONTACT
+        =========================================== -->
+
+            <section class="terms-contact">
+
+                <div class="terms-contact-icon">
+
+                    <i class="bi bi-headset"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        Questions About These Terms?
+                    </h2>
+
+                    <p>
+                        If you have any questions regarding these Terms & Conditions,
+                        please contact our support team.
+                    </p>
+
+                </div>
+
+
+                <a href="contactus.html">
+
+                    Contact Us
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </section>
+
+
+        </main>
+
+
+        <!-- ==========================================
+         FOOTER
+    =========================================== -->
+
+        <footer class="footer">
+
+            <div class="footer-content">
+
+                <div class="footer-brand">
+
+                    <i class="bi bi-wallet2"></i>
+
+                    <span>
+                        Budgeting App
+                    </span>
+
+                </div>
+
+
+                <p class="footer-tagline">
+
+                    Manage your money.
+                    Track your goals.
+                    Build your future.
+
+                </p>
+
+
+                <div class="footer-links">
+
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="budget.html">Budget</a>
+                    <a href="transactions.html">Transactions</a>
+                    <a href="analytics.html">Analytics</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="settings.html">Settings</a>
+
+                </div>
+
+
+                <div class="footer-contact">
+
+                    <i class="bi bi-envelope"></i>
+
+                    <span>
+                        support@budgetingapp.com
+                    </span>
+
+                </div>
+
+
+                <div class="footer-divider"></div>
+
+
+                <p class="copyright">
+
+                    © 2026 Budgeting App.
+                    All Rights Reserved.
+
+                </p>
+
+            </div>
+
+        </footer>
+
+
     </div>
-</nav>
 
-<div class="container terms-box mt-5 mb-5">
 
-    <h1 class="text-center mb-4">Terms & Conditions</h1>
-
-    <p>
-        Welcome to Budgeting App. By using this application, you agree to follow these terms and conditions.
-    </p>
-
-    <h3>1. User Responsibilities</h3>
-
-    <p>
-        Users are responsible for maintaining accurate financial information and protecting their account credentials.
-    </p>
-
-    <h3>2. Data Usage</h3>
-
-    <p>
-        Budgeting App stores your financial information only for budgeting and expense tracking purposes.
-    </p>
-
-    <h3>3. Security</h3>
-
-    <p>
-        We use reasonable security measures to protect your data. However, users should also keep their login credentials secure.
-    </p>
-
-    <h3>4. Changes</h3>
-
-    <p>
-        These terms may be updated periodically. Continued use of the application means you accept the updated terms.
-    </p>
-
-    <a href="index.html" class="btn btn-primary mt-4">
-        Back to Home
-    </a>
-
-</div>
+    <script src="assets/js/theme.js"></script>
 
 </body>
+
 </html>
