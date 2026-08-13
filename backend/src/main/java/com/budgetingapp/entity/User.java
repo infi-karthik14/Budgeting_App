@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
@@ -28,7 +29,16 @@ public class User {
     private String fullName;
 
     @Column(nullable = false)
-    private long phoneNumber;
+    private String phoneNumber;
+
+    @Column
+    private LocalDate dateOfBirth;
+
+    @Column
+    private String address;
+
+    @Column
+    private String bio;
 
     // Default Constructor
     public User() {
@@ -84,14 +94,37 @@ public class User {
         this.fullName = fullName;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     @Override
     public String toString() {
@@ -100,7 +133,10 @@ public class User {
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", address='" + address + '\'' +
+                ", bio='" + bio + '\'' +
                 '}';
     }
 }

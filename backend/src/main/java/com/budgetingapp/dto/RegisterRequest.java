@@ -5,7 +5,7 @@ public class RegisterRequest {
     private String fullName;
     private String email;
     private String password;
-    private long phoneNumber;
+    private String phoneNumber;
 
     public RegisterRequest() {
     }
@@ -34,11 +34,11 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }
