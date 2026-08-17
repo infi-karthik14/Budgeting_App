@@ -1,61 +1,89 @@
 /* =========================================================
    BACHAT BUDDY - LOGIN
+   Backend Connected Version
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
-  const loginForm = document.getElementById("loginForm");
+  /* =====================================================
+       GET HTML ELEMENTS
+    ===================================================== */
 
+  const loginForm = document.getElementById("loginForm");
   const email = document.getElementById("email");
   const password = document.getElementById("password");
-
   const remember = document.getElementById("remember");
-
   const loginBtn = document.getElementById("loginBtn");
-
   const errorMessage = document.getElementById("errorMessage");
-
   const togglePassword = document.getElementById("togglePassword");
   const eyeIcon = document.getElementById("eyeIcon");
+
+  /* =====================================================
+       CHECK REQUIRED ELEMENTS
+    ===================================================== */
+
+  if (!loginForm) {
+    console.error("ERROR: loginForm not found.");
+    return;
+  }
+
+  if (!email) {
+    console.error("ERROR: email input not found.");
+    return;
+  }
+
+  if (!password) {
+    console.error("ERROR: password input not found.");
+    return;
+  }
+
+  if (!loginBtn) {
+    console.error("ERROR: loginBtn not found.");
+    return;
+  }
+
+  if (!errorMessage) {
+    console.error("ERROR: errorMessage not found.");
+    return;
+  }
 
   /* =====================================================
        PASSWORD VISIBILITY
     ===================================================== */
 
-  if (togglePassword) {
+  if (togglePassword && eyeIcon) {
     togglePassword.addEventListener("click", function () {
       if (password.type === "password") {
         password.type = "text";
 
         eyeIcon.classList.remove("fa-eye");
         eyeIcon.classList.add("fa-eye-slash");
-
-        togglePassword.setAttribute("aria-label", "Hide password");
       } else {
         password.type = "password";
 
         eyeIcon.classList.remove("fa-eye-slash");
         eyeIcon.classList.add("fa-eye");
-
-        togglePassword.setAttribute("aria-label", "Show password");
       }
     });
   }
 
   /* =====================================================
-       LOGIN FORM
+       LOGIN FORM SUBMIT
     ===================================================== */
 
   loginForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
+    /* =================================================
+           CLEAR OLD MESSAGE
+        ================================================= */
+
     errorMessage.textContent = "";
 
     /* =================================================
-           GET VALUES
+           GET INPUT VALUES
         ================================================= */
 
     const emailValue = email.value.trim();
-
     const passwordValue = password.value;
 
     /* =================================================
@@ -88,6 +116,11 @@ document.addEventListener("DOMContentLoaded", function () {
       password: passwordValue,
     };
 
+    console.log("=================================");
+    console.log("LOGIN REQUEST");
+    console.log("Email:", emailValue);
+    console.log("=================================");
+
     /* =================================================
            BUTTON LOADING
         ================================================= */
@@ -98,11 +131,11 @@ document.addEventListener("DOMContentLoaded", function () {
       '<span class="spinner-border spinner-border-sm me-2"></span>' +
       "Logging in...";
 
-    try {
-      /* =================================================
-               SEND LOGIN REQUEST
-            ================================================= */
+    /* =================================================
+           SEND LOGIN REQUEST
+        ================================================= */
 
+    try {
       const response = await fetch("http://localhost:8080/api/auth/login", {
         method: "POST",
 
@@ -114,33 +147,150 @@ document.addEventListener("DOMContentLoaded", function () {
       });
 
       /* =================================================
-               READ JSON RESPONSE
+               READ RESPONSE
             ================================================= */
 
-      const result = await response.json();
+      const responseText = await response.text();
 
-      console.log("Login response:", result);
+      console.log("Login HTTP Status:", response.status);
+
+      console.log("Raw Login Response:", responseText);
+
+      let data = {};
+
+      try {
+        data = JSON.parse(responseText);
+      } catch (jsonError) {
+        console.warn("Backend did not return JSON.");
+
+        data = {
+          message: responseText.trim(),
+        };
+      }
+
+      const message = data.message || "";
+
+      console.log("Login Message:", message);
 
       /* =================================================
                LOGIN SUCCESS
             ================================================= */
 
-      if (result.success === true) {
-        /*
-         * Store login/session information
-         */
+      if (response.ok && message === "Login Successful!") {
+        console.log("LOGIN SUCCESSFUL");
+
+        /* =================================================
+                   STEP 1 - SAVE LOGIN STATUS
+                ================================================= */
 
         sessionStorage.setItem("loggedIn", "true");
 
-        sessionStorage.setItem("userId", result.id);
+        sessionStorage.setItem("userEmail", emailValue);
 
-        sessionStorage.setItem("userName", result.name);
+        console.log("loggedIn:", sessionStorage.getItem("loggedIn"));
 
-        sessionStorage.setItem("fullName", result.fullName);
+        console.log("userEmail:", sessionStorage.getItem("userEmail"));
 
-        sessionStorage.setItem("userEmail", result.email);
+        /* =================================================
+                   STEP 2 - GET USER PROFILE
+                   
+                   IMPORTANT:
+                   This gets the user's database ID.
+                ================================================= */
 
-        sessionStorage.setItem("phoneNumber", result.phoneNumber);
+        try {
+          console.log("Getting user profile...");
+
+          const userResponse = await fetch(
+            "http://localhost:8080/api/auth/user?email=" +
+              encodeURIComponent(emailValue),
+            {
+              method: "GET",
+
+              headers: {
+                "Content-Type": "application/json",
+              },
+            },
+          );
+
+          if (!userResponse.ok) {
+            throw new Error(
+              "Unable to get user profile. HTTP Status: " + userResponse.status,
+            );
+          }
+
+          const userData = await userResponse.json();
+
+          console.log("USER PROFILE:", userData);
+
+          /* =================================================
+                       STEP 3 - GET USER ID
+                    ================================================= */
+
+          const userId = userData.id ?? userData.userId;
+
+          if (userId === null || userId === undefined) {
+            throw new Error("User ID was not returned by backend.");
+          }
+
+          /* =================================================
+                       STEP 4 - SAVE USER ID
+                    ================================================= */
+
+          sessionStorage.setItem("userId", String(userId));
+
+          console.log("USER ID SAVED:", sessionStorage.getItem("userId"));
+
+          /* =================================================
+                       STEP 5 - SAVE USER NAME
+                    ================================================= */
+
+          const fullName =
+            userData.fullName ?? userData.name ?? userData.username;
+
+          if (fullName) {
+            sessionStorage.setItem("fullName", fullName);
+          }
+
+          /* =================================================
+                       STEP 6 - SAVE OTHER USER DATA
+                    ================================================= */
+
+          if (userData.email) {
+            sessionStorage.setItem("userEmail", userData.email);
+          }
+
+          if (userData.profileImage) {
+            sessionStorage.setItem("profileImage", userData.profileImage);
+          }
+
+          /* =================================================
+                       VERIFY SESSION
+                    ================================================= */
+
+          console.log("=================================");
+
+          console.log("SESSION DATA");
+
+          console.log("loggedIn:", sessionStorage.getItem("loggedIn"));
+
+          console.log("userId:", sessionStorage.getItem("userId"));
+
+          console.log("userEmail:", sessionStorage.getItem("userEmail"));
+
+          console.log("fullName:", sessionStorage.getItem("fullName"));
+
+          console.log("=================================");
+        } catch (profileError) {
+          console.error("USER PROFILE ERROR:", profileError);
+
+          errorMessage.textContent =
+            "Login successful, but unable to load user profile.";
+
+          resetLoginButton();
+
+          return;
+        }
 
         /* =================================================
                    REMEMBER ME
@@ -153,29 +303,61 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         /* =================================================
-                   REDIRECT TO DASHBOARD
+                   SUCCESS MESSAGE
                 ================================================= */
 
-        window.location.href = "dashboard.html";
+        errorMessage.textContent = "Login Successful!";
+
+        /* =================================================
+                   REDIRECT
+                ================================================= */
+
+        console.log("Redirecting to dashboard...");
+
+        setTimeout(function () {
+          window.location.href = "./dashboard.html";
+        }, 500);
 
         return;
       }
 
       /* =================================================
-               LOGIN FAILED
+               USER NOT FOUND
             ================================================= */
 
-      if (result.message === "User not found!") {
+      if (message === "User not found!") {
         errorMessage.textContent = "No account found with this email.";
-      } else if (result.message === "Invalid Password!") {
-        errorMessage.textContent = "Incorrect password.";
-      } else {
-        errorMessage.textContent = result.message || "Login failed.";
+
+        resetLoginButton();
+
+        return;
       }
+
+      /* =================================================
+               INVALID PASSWORD
+            ================================================= */
+
+      if (message === "Invalid Password!") {
+        errorMessage.textContent = "Incorrect password.";
+
+        resetLoginButton();
+
+        return;
+      }
+
+      /* =================================================
+               OTHER BACKEND RESPONSE
+            ================================================= */
+
+      errorMessage.textContent = message || "Login failed.";
 
       resetLoginButton();
     } catch (error) {
-      console.error("Login error:", error);
+      /* =================================================
+               CONNECTION ERROR
+            ================================================= */
+
+      console.error("LOGIN ERROR:", error);
 
       errorMessage.textContent =
         "Unable to connect to the server. " +
@@ -192,8 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function resetLoginButton() {
     loginBtn.disabled = false;
 
-    loginBtn.innerHTML =
-      '<i class="fa-solid fa-right-to-bracket me-2"></i>' + "Login";
+    loginBtn.innerHTML = "Login";
   }
 
   /* =====================================================

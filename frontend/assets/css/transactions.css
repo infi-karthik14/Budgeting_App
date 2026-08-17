@@ -826,3 +826,75 @@ body.dark-mode .modal .form-select {
     }
 
 }
+
+/* =====================================================
+   TRANSACTIONS TABLE FIX
+===================================================== */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.transactions-table {
+    width: 100%;
+    min-width: 800px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.transactions-table thead {
+    background: #0d6efd;
+    color: #ffffff;
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 14px 16px;
+    text-align: left;
+    vertical-align: middle;
+    color: #222222;
+    background: #ffffff;
+    border-bottom: 1px solid #dddddd;
+}
+
+.transactions-table tbody tr {
+    display: table-row !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.transactions-table tbody td {
+    display: table-cell !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Type badges */
+
+.income-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #d1fae5;
+    color: #15803d;
+    font-weight: 600;
+}
+
+.expense-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-weight: 600;
+}
+
+/* Action buttons */
+
+.edit-btn,
+.delete-btn {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}

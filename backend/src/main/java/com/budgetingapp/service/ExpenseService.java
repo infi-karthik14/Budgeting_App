@@ -10,7 +10,11 @@ import java.util.List;
 @Service
 public class ExpenseService {
 
-    private ExpenseRepository expenseRepository;
+    private final ExpenseRepository expenseRepository;
+
+    public ExpenseService(ExpenseRepository expenseRepository) {
+        this.expenseRepository = expenseRepository;
+    }
 
     // Add Expense
     public Expense addExpense(ExpenseRequest request) {
@@ -19,33 +23,50 @@ public class ExpenseService {
 
         expense.setMonthlyIncome(request.getMonthlyIncome());
         expense.setMonthlyBudget(request.getMonthlyBudget());
+
         expense.setCategory(request.getCategory());
         expense.setPaymentMethod(request.getPaymentMethod());
         expense.setCity(request.getCity());
+
+        expense.setTitle(request.getTitle());
         expense.setDayOfWeek(request.getDayOfWeek());
+
+        expense.setAmount(request.getAmount());
         expense.setPredictedExpense(request.getPredictedExpense());
+
+        expense.setExpenseDate(request.getExpenseDate());
+
         expense.setUserId(request.getUserId());
 
         return expenseRepository.save(expense);
     }
-    // get Expense By Id
+
+    // Get Expense By ID
     public Expense getExpense(Long id) {
-    return expenseRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Expense not found"));
-}
+
+        return expenseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Expense not found with id: " + id));
+    }
 
     // Get All Expenses
     public List<Expense> getAllExpenses() {
+
         return expenseRepository.findAll();
     }
 
     // Get Expenses By User
     public List<Expense> getExpensesByUser(Long userId) {
+
         return expenseRepository.findByUserId(userId);
     }
 
     // Delete Expense
     public void deleteExpense(Long id) {
+
+        if (!expenseRepository.existsById(id)) {
+            throw new RuntimeException("Expense not found with id: " + id);
+        }
+
         expenseRepository.deleteById(id);
     }
 
@@ -53,13 +74,24 @@ public class ExpenseService {
     public Expense updateExpense(Long id, ExpenseRequest request) {
 
         Expense expense = expenseRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Expense not found"));
+                .orElseThrow(() -> new RuntimeException("Expense not found with id: " + id));
+
+        expense.setMonthlyIncome(request.getMonthlyIncome());
+        expense.setMonthlyBudget(request.getMonthlyBudget());
+
+        expense.setCategory(request.getCategory());
+        expense.setPaymentMethod(request.getPaymentMethod());
+        expense.setCity(request.getCity());
 
         expense.setTitle(request.getTitle());
-        expense.setCategory(request.getCategory());
+        expense.setDayOfWeek(request.getDayOfWeek());
+
         expense.setAmount(request.getAmount());
-        expense.setUserId(request.getUserId());
+        expense.setPredictedExpense(request.getPredictedExpense());
+
         expense.setExpenseDate(request.getExpenseDate());
+
+        expense.setUserId(request.getUserId());
 
         return expenseRepository.save(expense);
     }

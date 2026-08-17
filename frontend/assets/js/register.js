@@ -6,7 +6,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const registerForm = document.getElementById("registerForm");
 
-
   const fullName = document.getElementById("fullName");
   const email = document.getElementById("email");
   const phoneNumber = document.getElementById("phoneNumber");
@@ -172,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       password: passwordValue,
 
-      phoneNumber: Number(phoneValue),
+      phoneNumber: phoneValue,
     };
 
     /* =================================================

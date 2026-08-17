@@ -3,7 +3,6 @@ package com.budgetingapp.repository;
 import com.budgetingapp.entity.Expense;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
@@ -15,12 +14,14 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     List<Expense> findByCategory(String category);
 
     // Get expenses between two dates
-    List<Expense> findByExpenseDateBetween(LocalDate startDate, LocalDate endDate);
+    List<Expense> findByExpenseDateBetween(String startDate, String endDate);
 
     // Get expenses of a user by category
     List<Expense> findByUserIdAndCategory(Long userId, String category);
 
     // Get expenses of a user between two dates
-    List<Expense> findByUserIdAndExpenseDateBetween(Long userId, LocalDate startDate, LocalDate endDate);   
-
+    List<Expense> findByUserIdAndExpenseDateBetween(
+            Long userId,
+            String startDate,
+            String endDate);
 }
