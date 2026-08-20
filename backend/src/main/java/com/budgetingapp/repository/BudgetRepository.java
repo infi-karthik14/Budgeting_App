@@ -8,13 +8,25 @@ import java.util.Optional;
 
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
-    // Get budget of a specific user
+    // ==========================================================
+    // GET ONE BUDGET BY USER
+    // ==========================================================
+
     Optional<Budget> findByUserId(Long userId);
 
-    // Get all budgets of a user
+    // ==========================================================
+    // GET ALL BUDGETS OF USER
+    // ==========================================================
+
     List<Budget> findAllByUserId(Long userId);
 
-    // Check if a user has already created a budget
-    boolean existsByUserId(Long userId);
+    // ==========================================================
+    // FIND BUDGET BY USER + CATEGORY + MONTH
+    // ==========================================================
 
+    Optional<Budget> findByUserIdAndCategoryAndStartDateAndEndDate(
+            Long userId,
+            String category,
+            String startDate,
+            String endDate);
 }

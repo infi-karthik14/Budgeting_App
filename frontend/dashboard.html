@@ -38,8 +38,8 @@
 
 
         <!-- ==================================================
-         SIDEBAR
-    =================================================== -->
+             SIDEBAR
+        =================================================== -->
 
         <aside class="sidebar">
 
@@ -53,7 +53,7 @@
 
                 <h3>Welcome!</h3>
 
-                <p id="userName">Archita</p>
+                <p id="userName">User</p>
 
             </div>
 
@@ -61,6 +61,7 @@
             <ul class="menu">
 
                 <li class="active">
+
                     <a href="dashboard.html">
 
                         <i class="bi bi-house"></i>
@@ -68,10 +69,12 @@
                         <span>Dashboard</span>
 
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a href="budget.html">
 
                         <i class="bi bi-wallet2"></i>
@@ -79,10 +82,12 @@
                         <span>Budget</span>
 
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a href="transactions.html">
 
                         <i class="bi bi-credit-card"></i>
@@ -90,10 +95,12 @@
                         <span>Transactions</span>
 
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a href="analytics.html">
 
                         <i class="bi bi-bar-chart"></i>
@@ -101,10 +108,12 @@
                         <span>Analytics</span>
 
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a href="profile.html">
 
                         <i class="bi bi-person"></i>
@@ -112,10 +121,12 @@
                         <span>Profile</span>
 
                     </a>
+
                 </li>
 
 
                 <li>
+
                     <a href="settings.html">
 
                         <i class="bi bi-gear"></i>
@@ -123,6 +134,7 @@
                         <span>Settings</span>
 
                     </a>
+
                 </li>
 
             </ul>
@@ -132,39 +144,51 @@
 
 
         <!-- ==================================================
-         MAIN CONTENT
-    =================================================== -->
+             MAIN CONTENT
+        =================================================== -->
 
         <main class="main-content">
 
+
             <!-- ==================================================
-     WELCOME BANNER
-================================================== -->
+                 WELCOME BANNER
+            =================================================== -->
 
             <div class="welcome-card">
 
-                <!-- LEFT -->
+
                 <div class="welcome-content">
 
                     <h2>
-                        👋 Welcome Back, <span id="navbarUserName">Archita</span>!
+
+                        👋 Welcome Back,
+                        <span id="navbarUserName">User</span>!
+
                     </h2>
 
-                    <p class="welcome-date">
-                        Monday, 10 August 2026
+
+                    <p class="welcome-date" id="currentDate">
+
+                        Loading date...
+
                     </p>
 
+
                     <p class="welcome-message">
+
                         Track your finances smarter with AI-powered insights.
+
                     </p>
 
                 </div>
 
 
-                <!-- RIGHT -->
+
                 <div class="welcome-actions">
 
-                    <!-- SEARCH BAR -->
+
+                    <!-- SEARCH -->
+
                     <div class="welcome-search">
 
                         <i class="bi bi-search"></i>
@@ -174,7 +198,9 @@
                     </div>
 
 
+
                     <!-- NOTIFICATION -->
+
                     <button type="button" class="notification-btn" title="Notifications">
 
                         <i class="bi bi-bell-fill"></i>
@@ -188,13 +214,13 @@
 
 
             <!-- ==================================================
-             SUMMARY CARDS
-        =================================================== -->
+                 SUMMARY CARDS
+            =================================================== -->
 
             <div class="row g-4 mb-4">
 
 
-                <!-- Income -->
+                <!-- TOTAL INCOME -->
 
                 <div class="col-lg-3 col-md-6">
 
@@ -204,7 +230,12 @@
 
                             <h6>Total Income</h6>
 
-                            <h2>₹50,000</h2>
+
+                            <h2 id="totalIncome">
+
+                                ₹0
+
+                            </h2>
 
 
                             <div class="card-footer-info">
@@ -213,12 +244,17 @@
 
                                     <i class="bi bi-arrow-up"></i>
 
-                                    12.3%
+                                    <span id="incomeTransactionCount">
+                                        0
+                                    </span>
 
                                 </span>
 
+
                                 <small>
-                                    Compared to last month
+
+                                    Income transactions
+
                                 </small>
 
                             </div>
@@ -234,7 +270,7 @@
 
 
 
-                <!-- Expense -->
+                <!-- TOTAL EXPENSE -->
 
                 <div class="col-lg-3 col-md-6">
 
@@ -244,7 +280,12 @@
 
                             <h6>Total Expense</h6>
 
-                            <h2>₹20,000</h2>
+
+                            <h2 id="totalExpense">
+
+                                ₹0
+
+                            </h2>
 
 
                             <div class="card-footer-info">
@@ -253,12 +294,19 @@
 
                                     <i class="bi bi-arrow-down"></i>
 
-                                    5 Transactions
+                                    <span id="expenseTransactionCount">
+                                        0
+                                    </span>
+
+                                    Transactions
 
                                 </span>
 
+
                                 <small>
-                                    Today's expenses
+
+                                    Expense transactions
+
                                 </small>
 
                             </div>
@@ -274,7 +322,7 @@
 
 
 
-                <!-- Balance -->
+                <!-- CURRENT BALANCE -->
 
                 <div class="col-lg-3 col-md-6">
 
@@ -284,7 +332,12 @@
 
                             <h6>Current Balance</h6>
 
-                            <h2>₹30,000</h2>
+
+                            <h2 id="currentBalance">
+
+                                ₹0
+
+                            </h2>
 
 
                             <div class="card-footer-info">
@@ -297,8 +350,11 @@
 
                                 </span>
 
+
                                 <small>
-                                    Current Balance
+
+                                    Income − Expenses
+
                                 </small>
 
                             </div>
@@ -314,7 +370,7 @@
 
 
 
-                <!-- AI Prediction -->
+                <!-- AI PREDICTION -->
 
                 <div class="col-lg-3 col-md-6">
 
@@ -324,7 +380,12 @@
 
                             <h6>AI Prediction</h6>
 
-                            <h2>₹1,850</h2>
+
+                            <h2 id="aiPrediction">
+
+                                ₹0
+
+                            </h2>
 
 
                             <div class="card-footer-info">
@@ -337,8 +398,11 @@
 
                                 </span>
 
+
                                 <small>
-                                    Expected expense today
+
+                                    Expected expense
+
                                 </small>
 
                             </div>
@@ -357,22 +421,104 @@
 
 
             <!-- ==================================================
-             MONTHLY BUDGET USAGE
-        =================================================== -->
+     MONTHLY BUDGET USAGE
+================================================== -->
 
             <div class="card mt-4">
 
                 <div class="card-body">
 
-                    <h5>
-                        Monthly Budget Usage
-                    </h5>
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <h5 class="mb-0">
+                            Monthly Budget Usage
+                        </h5>
+
+                        <span id="dashboardBudgetPercentage" class="fw-bold">
+                            0%
+                        </span>
+
+                    </div>
 
 
-                    <div class="progress mt-3">
+                    <!-- Progress Bar -->
 
-                        <div class="progress-bar bg-success" style="width:65%;">
-                            65%
+                    <div class="progress mt-3" style="height: 25px;">
+
+                        <div id="dashboardBudgetProgress" class="progress-bar bg-success" role="progressbar"
+                            style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+
+                            0%
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Budget Information -->
+
+                    <div class="row mt-3 g-3">
+
+                        <!-- Budget -->
+
+                        <div class="col-md-4">
+
+                            <div class="p-3 bg-light rounded">
+
+                                <small class="text-muted">
+                                    Monthly Budget
+                                </small>
+
+                                <h5 id="dashboardMonthlyBudget" class="mb-0 mt-1">
+
+                                    ₹0
+
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Spent -->
+
+                        <div class="col-md-4">
+
+                            <div class="p-3 bg-light rounded">
+
+                                <small class="text-muted">
+                                    Spent
+                                </small>
+
+                                <h5 id="dashboardMonthlySpent" class="mb-0 mt-1 text-danger">
+
+                                    ₹0
+
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Remaining -->
+
+                        <div class="col-md-4">
+
+                            <div class="p-3 bg-light rounded">
+
+                                <small class="text-muted">
+                                    Remaining
+                                </small>
+
+                                <h5 id="dashboardMonthlyRemaining" class="mb-0 mt-1 text-success">
+
+                                    ₹0
+
+                                </h5>
+
+                            </div>
+
                         </div>
 
                     </div>
@@ -381,11 +527,9 @@
 
             </div>
 
-
-
             <!-- ==================================================
-             TODAY'S SUMMARY
-        =================================================== -->
+                 TODAY'S SUMMARY
+            =================================================== -->
 
             <div class="row mt-4">
 
@@ -396,7 +540,9 @@
                         <div class="card-header bg-warning">
 
                             <h5 class="mb-0 fw-semibold">
+
                                 Today's Summary
+
                             </h5>
 
                         </div>
@@ -407,20 +553,34 @@
                             <div class="row g-3">
 
 
+                                <!-- TODAY INCOME -->
+
                                 <div class="col-md-3">
 
                                     <div class="summary-box">
 
                                         <i class="bi bi-cash-stack text-success"></i>
 
-                                        <h6>Today's Income</h6>
+                                        <h6>
 
-                                        <h3>₹2,000</h3>
+                                            Today's Income
+
+                                        </h6>
+
+
+                                        <h3 id="todayIncome">
+
+                                            ₹0
+
+                                        </h3>
 
                                     </div>
 
                                 </div>
 
+
+
+                                <!-- TODAY EXPENSE -->
 
                                 <div class="col-md-3">
 
@@ -428,14 +588,26 @@
 
                                         <i class="bi bi-credit-card text-danger"></i>
 
-                                        <h6>Today's Expense</h6>
+                                        <h6>
 
-                                        <h3>₹850</h3>
+                                            Today's Expense
+
+                                        </h6>
+
+
+                                        <h3 id="todayExpense">
+
+                                            ₹0
+
+                                        </h3>
 
                                     </div>
 
                                 </div>
 
+
+
+                                <!-- TODAY TRANSACTIONS -->
 
                                 <div class="col-md-3">
 
@@ -443,14 +615,26 @@
 
                                         <i class="bi bi-receipt text-primary"></i>
 
-                                        <h6>Transactions</h6>
+                                        <h6>
 
-                                        <h3>8</h3>
+                                            Transactions
+
+                                        </h6>
+
+
+                                        <h3 id="todayTransactions">
+
+                                            0
+
+                                        </h3>
 
                                     </div>
 
                                 </div>
 
+
+
+                                <!-- TODAY SAVINGS -->
 
                                 <div class="col-md-3">
 
@@ -458,14 +642,22 @@
 
                                         <i class="bi bi-piggy-bank text-warning"></i>
 
-                                        <h6>Savings</h6>
+                                        <h6>
 
-                                        <h3>₹1,150</h3>
+                                            Savings
+
+                                        </h6>
+
+
+                                        <h3 id="todaySavings">
+
+                                            ₹0
+
+                                        </h3>
 
                                     </div>
 
                                 </div>
-
 
                             </div>
 
@@ -480,13 +672,13 @@
 
 
             <!-- ==================================================
-             CHARTS
-        =================================================== -->
+                 CHARTS
+            =================================================== -->
 
             <div class="row mt-4">
 
 
-                <!-- Income vs Expense -->
+                <!-- INCOME VS EXPENSE -->
 
                 <div class="col-lg-8 mb-4">
 
@@ -503,7 +695,11 @@
 
                         <div class="card-body">
 
-                            <canvas id="lineChart"></canvas>
+                            <div style="height: 350px;">
+
+                                <canvas id="lineChart"></canvas>
+
+                            </div>
 
                         </div>
 
@@ -513,7 +709,7 @@
 
 
 
-                <!-- Expense Categories -->
+                <!-- EXPENSE CATEGORIES -->
 
                 <div class="col-lg-4 mb-4">
 
@@ -530,7 +726,11 @@
 
                         <div class="card-body">
 
-                            <canvas id="pieChart"></canvas>
+                            <div style="height: 350px;">
+
+                                <canvas id="pieChart"></canvas>
+
+                            </div>
 
                         </div>
 
@@ -538,12 +738,13 @@
 
                 </div>
 
-
             </div>
 
 
 
-            <!-- Monthly Savings -->
+            <!-- ==================================================
+                 MONTHLY SAVINGS
+            =================================================== -->
 
             <div class="row">
 
@@ -562,7 +763,11 @@
 
                         <div class="card-body">
 
-                            <canvas id="barChart"></canvas>
+                            <div style="height: 350px;">
+
+                                <canvas id="barChart"></canvas>
+
+                            </div>
 
                         </div>
 
@@ -575,15 +780,17 @@
 
 
             <!-- ==================================================
-             RECENT TRANSACTIONS
-        =================================================== -->
+                 RECENT TRANSACTIONS
+            =================================================== -->
 
             <div class="card mt-4">
 
                 <div class="card-header bg-dark text-white">
 
                     <h5 class="mb-0 fw-semibold">
+
                         Recent Transactions
+
                     </h5>
 
                 </div>
@@ -614,108 +821,14 @@
                             </thead>
 
 
-                            <tbody>
+                            <tbody id="recentTransactionsBody">
 
                                 <tr>
 
-                                    <td>01 Aug 2026</td>
+                                    <td colspan="5" class="text-center text-muted">
 
-                                    <td>Salary</td>
+                                        Loading transactions...
 
-                                    <td>Income</td>
-
-                                    <td class="text-success fw-bold">
-                                        + ₹50,000
-                                    </td>
-
-                                    <td>
-                                        <span class="badge bg-success">
-                                            Received
-                                        </span>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>03 Aug 2026</td>
-
-                                    <td>Food</td>
-
-                                    <td>Expense</td>
-
-                                    <td class="text-danger fw-bold">
-                                        - ₹500
-                                    </td>
-
-                                    <td>
-                                        <span class="badge bg-danger">
-                                            Paid
-                                        </span>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>05 Aug 2026</td>
-
-                                    <td>Shopping</td>
-
-                                    <td>Expense</td>
-
-                                    <td class="text-danger fw-bold">
-                                        - ₹2,000
-                                    </td>
-
-                                    <td>
-                                        <span class="badge bg-danger">
-                                            Paid
-                                        </span>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>08 Aug 2026</td>
-
-                                    <td>Freelance</td>
-
-                                    <td>Income</td>
-
-                                    <td class="text-success fw-bold">
-                                        + ₹8,000
-                                    </td>
-
-                                    <td>
-                                        <span class="badge bg-success">
-                                            Completed
-                                        </span>
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>10 Aug 2026</td>
-
-                                    <td>Electricity Bill</td>
-
-                                    <td>Expense</td>
-
-                                    <td class="text-danger fw-bold">
-                                        - ₹1,200
-                                    </td>
-
-                                    <td>
-                                        <span class="badge bg-warning text-dark">
-                                            Pending
-                                        </span>
                                     </td>
 
                                 </tr>
@@ -733,15 +846,18 @@
 
 
             <!-- ==================================================
-             QUICK ACTIONS
-        =================================================== -->
+                 QUICK ACTIONS
+            =================================================== -->
 
             <div class="row g-3 mt-4">
+
 
                 <div class="col-md-3">
 
                     <button class="btn btn-success w-100 p-3" onclick="location.href='income.html'">
+
                         💰 Add Income
+
                     </button>
 
                 </div>
@@ -750,7 +866,9 @@
                 <div class="col-md-3">
 
                     <button class="btn btn-danger w-100 p-3" onclick="location.href='expense.html'">
+
                         💳 Add Expense
+
                     </button>
 
                 </div>
@@ -759,7 +877,9 @@
                 <div class="col-md-3">
 
                     <button class="btn btn-primary w-100 p-3" onclick="location.href='analytics.html'">
+
                         📊 View Reports
+
                     </button>
 
                 </div>
@@ -768,7 +888,9 @@
                 <div class="col-md-3">
 
                     <button class="btn btn-warning w-100 p-3" onclick="location.href='budget.html'">
+
                         🎯 Set Budget
+
                     </button>
 
                 </div>
@@ -778,8 +900,8 @@
 
 
             <!-- ==================================================
-             SAVINGS GOAL
-        =================================================== -->
+                 SAVINGS GOAL
+            =================================================== -->
 
             <div class="row mt-4">
 
@@ -790,7 +912,9 @@
                         <div class="card-header bg-success text-white">
 
                             <h5 class="mb-0 fw-semibold">
+
                                 🎯 Savings Goal
+
                             </h5>
 
                         </div>
@@ -798,19 +922,34 @@
 
                         <div class="card-body">
 
-                            <h6>
+                            <h6 id="savingsGoalName">
+
                                 New Laptop
+
                             </h6>
 
+
                             <p>
-                                ₹25,000 saved of ₹80,000
+
+                                <span id="savingsGoalSaved">
+                                    ₹0
+                                </span>
+
+                                saved of
+
+                                <span id="savingsGoalTarget">
+                                    ₹0
+                                </span>
+
                             </p>
 
 
                             <div class="progress">
 
-                                <div class="progress-bar bg-success" style="width:31%;">
-                                    31%
+                                <div id="savingsGoalProgress" class="progress-bar bg-success" style="width: 0%;">
+
+                                    0%
+
                                 </div>
 
                             </div>
@@ -820,59 +959,100 @@
                     </div>
 
                 </div>
+
             </div>
+
         </main>
-        <!-- ==========================================
-         FOOTER
-    =========================================== -->
+
+
+
+        <!-- ==================================================
+             FOOTER
+        =================================================== -->
 
         <footer class="footer">
 
             <div class="footer-content">
 
+
                 <div class="footer-brand">
+
                     <i class="bi bi-wallet2"></i>
+
                     <span>Budgeting App</span>
+
                 </div>
 
+
                 <p class="footer-tagline">
+
                     Manage your money. Track your goals. Build your future.
+
                 </p>
+
 
                 <div class="footer-links">
 
-                    <a href="dashboard.html">Dashboard</a>
-                    <a href="budget.html">Budget</a>
-                    <a href="transactions.html">Transactions</a>
-                    <a href="analytics.html">Analytics</a>
-                    <a href="profile.html">Profile</a>
-                    <a href="settings.html">Settings</a>
+                    <a href="dashboard.html">
+                        Dashboard
+                    </a>
+
+                    <a href="budget.html">
+                        Budget
+                    </a>
+
+                    <a href="transactions.html">
+                        Transactions
+                    </a>
+
+                    <a href="analytics.html">
+                        Analytics
+                    </a>
+
+                    <a href="profile.html">
+                        Profile
+                    </a>
+
+                    <a href="settings.html">
+                        Settings
+                    </a>
 
                 </div>
+
 
                 <div class="footer-contact">
+
                     <i class="bi bi-envelope"></i>
+
                     support@budgetingapp.com
+
                 </div>
+
 
                 <div class="footer-divider"></div>
 
+
                 <p class="copyright">
+
                     © 2026 Budgeting App. All Rights Reserved.
+
                 </p>
 
             </div>
 
         </footer>
 
-        <!-- ==================================================
-             JAVASCRIPT
-        =================================================== -->
 
-
-        <script src="assets/js/theme.js"></script>
-        <script src="assets/js/dashboard.js"></script>
     </div>
+
+
+    <!-- ==================================================
+         JAVASCRIPT
+    =================================================== -->
+
+    <script src="assets/js/theme.js"></script>
+
+    <script src="assets/js/dashboard.js"></script>
 
 </body>
 

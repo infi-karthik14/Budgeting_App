@@ -4,16 +4,24 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Budget Management</title>
 
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Project CSS -->
     <link rel="stylesheet" href="assets/css/common.css">
 
     <link rel="stylesheet" href="assets/css/sidebar.css">
@@ -22,12 +30,14 @@
 
     <link rel="stylesheet" href="assets/css/budget.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 </head>
 
 
 <body>
+
+    <!-- ==================================================
+         APP LAYOUT
+    =================================================== -->
 
     <div class="app-layout">
 
@@ -38,7 +48,7 @@
 
         <aside class="sidebar">
 
-            <!-- User Profile -->
+            <!-- USER PROFILE -->
 
             <div class="user-profile">
 
@@ -50,7 +60,7 @@
 
                 <h3>Welcome!</h3>
 
-                <p id="userName">Archita</p>
+                <p id="userName">User</p>
 
             </div>
 
@@ -150,22 +160,16 @@
 
 
             <!-- ==================================================
-                 COMMON WELCOME HEADER
+                 WELCOME HEADER
             =================================================== -->
 
             <header class="welcome-card">
 
-
-                <!-- LEFT SIDE -->
-
                 <div class="welcome-content">
 
                     <h2>
-
                         💰 Budget
-
                     </h2>
-
 
                     <p class="welcome-message">
 
@@ -175,9 +179,6 @@
 
                 </div>
 
-
-
-                <!-- RIGHT SIDE -->
 
                 <div class="welcome-actions">
 
@@ -193,7 +194,6 @@
                     </div>
 
 
-
                     <!-- NOTIFICATION -->
 
                     <button type="button" class="notification-btn" title="Notifications">
@@ -201,7 +201,6 @@
                         <i class="bi bi-bell-fill"></i>
 
                     </button>
-
 
                 </div>
 
@@ -226,9 +225,13 @@
 
                             <h6>Total Budget</h6>
 
-                            <h2>₹40,000</h2>
+                            <h2 id="totalBudget">
+                                ₹0
+                            </h2>
 
-                            <small>Monthly Limit</small>
+                            <small>
+                                Monthly Limit
+                            </small>
 
                             <i class="fa-solid fa-wallet card-icon"></i>
 
@@ -237,7 +240,6 @@
                     </div>
 
                 </div>
-
 
 
                 <!-- TOTAL SPENT -->
@@ -250,9 +252,13 @@
 
                             <h6>Total Spent</h6>
 
-                            <h2>₹28,000</h2>
+                            <h2 id="totalSpent">
+                                ₹0
+                            </h2>
 
-                            <small>70% Used</small>
+                            <small>
+                                Current Spending
+                            </small>
 
                             <i class="fa-solid fa-arrow-trend-down card-icon"></i>
 
@@ -261,7 +267,6 @@
                     </div>
 
                 </div>
-
 
 
                 <!-- REMAINING -->
@@ -274,9 +279,13 @@
 
                             <h6>Remaining</h6>
 
-                            <h2>₹12,000</h2>
+                            <h2 id="remainingBudget">
+                                ₹0
+                            </h2>
 
-                            <small>Available Budget</small>
+                            <small>
+                                Available Budget
+                            </small>
 
                             <i class="fa-solid fa-piggy-bank card-icon"></i>
 
@@ -285,7 +294,6 @@
                     </div>
 
                 </div>
-
 
 
                 <!-- CATEGORIES -->
@@ -298,9 +306,13 @@
 
                             <h6>Categories</h6>
 
-                            <h2>8</h2>
+                            <h2 id="budgetCategoryCount">
+                                0
+                            </h2>
 
-                            <small>Budget Categories</small>
+                            <small>
+                                Budget Categories
+                            </small>
 
                             <i class="fa-solid fa-layer-group card-icon"></i>
 
@@ -315,14 +327,17 @@
 
 
             <!-- ==================================================
-                 ADD BUDGET FORM
+                 ADD NEW BUDGET
             =================================================== -->
 
             <div class="card form-card mb-4">
 
+
                 <div class="card-header bg-white">
 
-                    <h5>Add New Budget</h5>
+                    <h5>
+                        Add New Budget
+                    </h5>
 
                 </div>
 
@@ -332,47 +347,92 @@
                     <div class="row g-3">
 
 
+                        <!-- BUDGET NAME -->
+
                         <div class="col-md-3">
 
-                            <input type="text" class="form-control" placeholder="Budget Name">
+                            <label for="budgetName" class="form-label">
+                                Budget Name
+                            </label>
+
+                            <input type="text" id="budgetName" class="form-control" placeholder="e.g. Monthly Food">
 
                         </div>
 
 
+                        <!-- CATEGORY -->
+
                         <div class="col-md-3">
 
-                            <select class="form-select">
+                            <label for="category" class="form-label">
+                                Category
+                            </label>
 
-                                <option>Food</option>
+                            <select id="category" class="form-select">
 
-                                <option>Shopping</option>
+                                <option value="">
+                                    Select Category
+                                </option>
 
-                                <option>Travel</option>
+                                <option value="Food">
+                                    Food
+                                </option>
 
-                                <option>Bills</option>
+                                <option value="Shopping">
+                                    Shopping
+                                </option>
+
+                                <option value="Travel">
+                                    Travel
+                                </option>
+
+                                <option value="Bills">
+                                    Bills
+                                </option>
+
+                                <option value="Entertainment">
+                                    Entertainment
+                                </option>
 
                             </select>
 
                         </div>
 
 
+                        <!-- AMOUNT -->
+
                         <div class="col-md-2">
 
-                            <input type="number" class="form-control" placeholder="Amount">
+                            <label for="budgetAmount" class="form-label">
+                                Amount
+                            </label>
+
+                            <input type="number" id="budgetAmount" class="form-control" placeholder="Amount" min="1"
+                                step="0.01">
 
                         </div>
 
 
+                        <!-- MONTH -->
+
                         <div class="col-md-2">
 
-                            <input type="month" class="form-control">
+                            <label for="budgetMonth" class="form-label">
+                                Month
+                            </label>
+
+                            <input type="month" id="budgetMonth" class="form-control">
 
                         </div>
 
 
-                        <div class="col-md-2">
+                        <!-- SAVE -->
 
-                            <button class="btn btn-primary w-100" onclick="saveBudget()">
+                        <div class="col-md-2 d-flex align-items-end">
+
+                            <button type="button" class="btn btn-primary w-100" onclick="saveBudget()">
+
+                                <i class="bi bi-plus-circle me-1"></i>
 
                                 Save
 
@@ -389,7 +449,7 @@
 
 
             <!-- ==================================================
-                 MONTHLY BUDGET PROGRESS
+                 MONTHLY BUDGET USAGE
             =================================================== -->
 
             <div class="card mb-4">
@@ -400,16 +460,32 @@
 
                         <h5>Monthly Budget Usage</h5>
 
-                        <strong>70%</strong>
+                        <strong id="monthlyBudgetPercentage">
+                            0%
+                        </strong>
 
                     </div>
 
-
                     <div class="progress mt-3">
 
-                        <div class="progress-bar bg-success" style="width:70%;">
-
+                        <div id="monthlyBudgetProgress" class="progress-bar bg-success" role="progressbar"
+                            style="width:0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            0%
                         </div>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-2">
+
+                        <small>
+                            Spent:
+                            <strong id="monthlySpent">₹0</strong>
+                        </small>
+
+                        <small>
+                            Budget:
+                            <strong id="monthlyBudgetLimit">₹0</strong>
+                        </small>
 
                     </div>
 
@@ -432,6 +508,7 @@
 
                     <div class="card chart-card">
 
+
                         <div class="card-header bg-white">
 
                             <h5 class="mb-0">
@@ -445,7 +522,7 @@
                         </div>
 
 
-                        <div class="card-body">
+                        <div class="card-body" style="height: 350px;">
 
                             <canvas id="budgetChart"></canvas>
 
@@ -463,6 +540,7 @@
 
                     <div class="card chart-card">
 
+
                         <div class="card-header bg-white">
 
                             <h5 class="mb-0">
@@ -476,7 +554,7 @@
                         </div>
 
 
-                        <div class="card-body">
+                        <div class="card-body" style="height: 350px;">
 
                             <canvas id="pieChart"></canvas>
 
@@ -491,10 +569,11 @@
 
 
             <!-- ==================================================
-                 BUDGET CATEGORIES
+                 BUDGET CATEGORIES TABLE
             =================================================== -->
 
             <div class="card mb-4">
+
 
                 <div class="card-header bg-white">
 
@@ -511,148 +590,52 @@
 
                 <div class="card-body table-responsive">
 
+
                     <table class="table table-hover align-middle">
+
 
                         <thead>
 
                             <tr>
 
-                                <th>Category</th>
+                                <th>
+                                    Category
+                                </th>
 
-                                <th>Budget</th>
+                                <th>
+                                    Budget
+                                </th>
 
-                                <th>Spent</th>
+                                <th>
+                                    Spent
+                                </th>
 
-                                <th>Remaining</th>
+                                <th>
+                                    Remaining
+                                </th>
 
-                                <th>Status</th>
+                                <th>
+                                    Status
+                                </th>
+
+                                <th class="budget-actions-header">Actions</th>
 
                             </tr>
 
                         </thead>
 
 
-                        <tbody>
-
-
-                            <!-- FOOD -->
+                        <tbody id="budgetTableBody">
 
                             <tr>
 
-                                <td>Food</td>
+                                <td colspan="6" class="text-center">
 
-                                <td>₹10,000</td>
-
-                                <td>₹8,000</td>
-
-                                <td>₹2,000</td>
-
-                                <td>
-
-                                    <div class="progress">
-
-                                        <div class="progress-bar bg-success" style="width:80%">
-
-                                            80%
-
-                                        </div>
-
-                                    </div>
+                                    Loading budgets...
 
                                 </td>
 
                             </tr>
-
-
-
-                            <!-- SHOPPING -->
-
-                            <tr>
-
-                                <td>Shopping</td>
-
-                                <td>₹6,000</td>
-
-                                <td>₹3,200</td>
-
-                                <td>₹2,800</td>
-
-                                <td>
-
-                                    <div class="progress">
-
-                                        <div class="progress-bar bg-warning" style="width:55%">
-
-                                            55%
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-
-
-                            <!-- TRAVEL -->
-
-                            <tr>
-
-                                <td>Travel</td>
-
-                                <td>₹5,000</td>
-
-                                <td>₹2,500</td>
-
-                                <td>₹2,500</td>
-
-                                <td>
-
-                                    <div class="progress">
-
-                                        <div class="progress-bar bg-info" style="width:50%">
-
-                                            50%
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
-
-
-                            <!-- BILLS -->
-
-                            <tr>
-
-                                <td>Bills</td>
-
-                                <td>₹4,000</td>
-
-                                <td>₹3,900</td>
-
-                                <td>₹100</td>
-
-                                <td>
-
-                                    <div class="progress">
-
-                                        <div class="progress-bar bg-danger" style="width:98%">
-
-                                            98%
-
-                                        </div>
-
-                                    </div>
-
-                                </td>
-
-                            </tr>
-
 
                         </tbody>
 
@@ -662,7 +645,6 @@
 
             </div>
 
-
         </main>
 
     </div>
@@ -670,7 +652,7 @@
 
 
     <!-- ==================================================
-         COMMON FOOTER
+         FOOTER
     =================================================== -->
 
     <footer class="footer">
@@ -682,7 +664,9 @@
 
                 <i class="bi bi-wallet2"></i>
 
-                <span>Budgeting App</span>
+                <span>
+                    Budgeting App
+                </span>
 
             </div>
 

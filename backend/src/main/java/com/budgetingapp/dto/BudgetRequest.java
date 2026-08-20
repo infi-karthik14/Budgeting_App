@@ -2,30 +2,41 @@ package com.budgetingapp.dto;
 
 public class BudgetRequest {
 
-    private Double monthlyIncome;
-    private Double monthlyBudget;
-    private String category;
+    // ==========================================================
+    // FIELDS
+    // ==========================================================
+
     private Long userId;
-    private String StartDate; // Changed from LocalDate to String
-    private String EndDate; // Changed from LocalDate to String
-    private String BudgetAmount; // Changed from Double to String
-    private String BudgetName; // Changed from Double to String
 
+    private Double monthlyIncome;
 
-    // Default Constructor
+    private Double monthlyBudget;
+
+    private String category;
+
+    private String startDate;
+
+    private String endDate;
+
+    private String budgetAmount;
+
+    private String budgetName;
+
+    // ==========================================================
+    // DEFAULT CONSTRUCTOR
+    // ==========================================================
+
     public BudgetRequest() {
     }
 
-    // Parameterized Constructor
-    public BudgetRequest(Double monthlyIncome, Double monthlyBudget,
-                         String category, Long userId) {
-        this.monthlyIncome = monthlyIncome;
-        this.monthlyBudget = monthlyBudget;
-        this.category = category;
-        this.userId = userId;
+    // ==========================================================
+    // GETTERS
+    // ==========================================================
+
+    public Long getUserId() {
+        return userId;
     }
 
-    // Getters
     public Double getMonthlyIncome() {
         return monthlyIncome;
     }
@@ -38,29 +49,30 @@ public class BudgetRequest {
         return category;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
     public String getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
     public String getEndDate() {
-        return EndDate;
+        return endDate;
     }
 
     public String getBudgetAmount() {
-        return BudgetAmount;
+        return budgetAmount;
     }
 
     public String getBudgetName() {
-        return BudgetName;
+        return budgetName;
     }
 
+    // ==========================================================
+    // SETTERS
+    // ==========================================================
 
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-    // Setters
     public void setMonthlyIncome(Double monthlyIncome) {
         this.monthlyIncome = monthlyIncome;
     }
@@ -73,37 +85,38 @@ public class BudgetRequest {
         this.category = category;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     public void setStartDate(String startDate) {
-        this.StartDate = startDate;
+        this.startDate = startDate;
     }
 
     public void setEndDate(String endDate) {
-        this.EndDate = endDate;
+        this.endDate = endDate;
     }
 
     public void setBudgetAmount(String budgetAmount) {
-        this.BudgetAmount = budgetAmount    ;
+        this.budgetAmount = budgetAmount;
     }
 
     public void setBudgetName(String budgetName) {
-        this.BudgetName = budgetName;
+        this.budgetName = budgetName;
     }
+
+    // ==========================================================
+    // TO STRING
+    // ==========================================================
 
     @Override
     public String toString() {
+
         return "BudgetRequest{" +
-                "monthlyIncome=" + monthlyIncome +
+                "userId=" + userId +
+                ", monthlyIncome=" + monthlyIncome +
                 ", monthlyBudget=" + monthlyBudget +
                 ", category='" + category + '\'' +
-                ", userId=" + userId +
-                ", startDate='" + StartDate + '\'' +
-                ", endDate='" + EndDate + '\'' +
-                ", budgetamount=" + BudgetAmount +
-                ", budgetName='" + BudgetName + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", budgetAmount='" + budgetAmount + '\'' +
+                ", budgetName='" + budgetName + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
 /* =========================================================
    BACHAT BUDDY - ADD / EDIT TRANSACTION
-   Backend Connected Version
+   Spring Boot Backend Connected
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -9,62 +9,34 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
   const form = document.getElementById("transactionForm");
-
   const type = document.getElementById("transactionType");
-
   const category = document.getElementById("category");
-
   const amount = document.getElementById("amount");
-
   const date = document.getElementById("transactionDate");
-
   const paymentMethod = document.getElementById("paymentMethod");
-
   const description = document.getElementById("description");
-
   const message = document.getElementById("transactionMessage");
 
+  const pageTitle = document.getElementById("transactionPageTitle");
+  const submitButton = form
+    ? form.querySelector('button[type="submit"]')
+    : null;
+
   /* =====================================================
-       CHECK ELEMENTS
+       ELEMENT CHECK
     ===================================================== */
 
-  if (!form) {
-    console.error("ERROR: transactionForm not found.");
-    return;
-  }
-
-  if (!type) {
-    console.error("ERROR: transactionType not found.");
-    return;
-  }
-
-  if (!category) {
-    console.error("ERROR: category not found.");
-    return;
-  }
-
-  if (!amount) {
-    console.error("ERROR: amount not found.");
-    return;
-  }
-
-  if (!date) {
-    console.error("ERROR: transactionDate not found.");
-    return;
-  }
-
-  if (!paymentMethod) {
-    console.error("ERROR: paymentMethod not found.");
-    return;
-  }
-
-  if (!description) {
-    console.error("ERROR: description not found.");
-    return;
-  }
-
-  if (!message) {
-    console.error("ERROR: transactionMessage not found.");
+  if (
+    !form ||
+    !type ||
+    !category ||
+    !amount ||
+    !date ||
+    !paymentMethod ||
+    !description ||
+    !message
+  ) {
+    console.error("Required transaction form elements are missing.");
     return;
   }
 
@@ -73,19 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
   const loggedIn = sessionStorage.getItem("loggedIn");
-
   const userId = sessionStorage.getItem("userId");
 
-  const userEmail = sessionStorage.getItem("userEmail");
+  console.log("========== SESSION ==========");
+  console.log("Logged In:", loggedIn);
+  console.log("User ID:", userId);
+  console.log("=============================");
 
-  console.log("========== SESSION CHECK ==========");
-  console.log("loggedIn:", loggedIn);
-  console.log("userId:", userId);
-  console.log("userEmail:", userEmail);
-  console.log("===================================");
-
-  if (loggedIn !== "true") {
-    showError("Session expired. Please login again.");
+  if (loggedIn !== "true" || !userId) {
+    showMessage("Session expired. Please login again.", "error");
 
     setTimeout(function () {
       window.location.href = "login.html";
@@ -94,123 +62,166 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  if (!userId) {
-    showError("User ID not found. Please login again.");
+  /* =====================================================
+       VALIDATE USER ID
+    ===================================================== */
 
-    console.error("ERROR: sessionStorage userId is missing.");
+  const numericUserId = Number(userId);
+
+  if (!Number.isInteger(numericUserId) || numericUserId <= 0) {
+    showMessage("Invalid user ID. Please login again.", "error");
 
     return;
   }
 
   /* =====================================================
-       BACKEND API
+       API
     ===================================================== */
 
   const API_URL = "http://localhost:8080/api/transactions";
 
   /* =====================================================
-       TODAY'S DATE
+       TODAY
     ===================================================== */
 
-  const today = new Date();
+  function getToday() {
+    const today = new Date();
 
-  const formattedDate =
-    today.getFullYear() +
-    "-" +
-    String(today.getMonth() + 1).padStart(2, "0") +
-    "-" +
-    String(today.getDate()).padStart(2, "0");
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  }
 
-  date.value = formattedDate;
+  const today = getToday();
+
+  date.value = today;
 
   /* =====================================================
        CHECK EDIT MODE
     ===================================================== */
 
-  const urlParams = new URLSearchParams(window.location.search);
-
-  const editId = urlParams.get("edit");
-
-  /*
-   * IMPORTANT:
-   * transactions.js stores editTransaction
-   * in sessionStorage.
-   */
+  const storedTransaction = sessionStorage.getItem("editTransaction");
 
   let editTransaction = null;
 
-  const storedEditTransaction = sessionStorage.getItem("editTransaction");
-
-  if (storedEditTransaction) {
+  if (storedTransaction) {
     try {
-      editTransaction = JSON.parse(storedEditTransaction);
+      editTransaction = JSON.parse(storedTransaction);
 
-      console.log("Edit transaction loaded:", editTransaction);
+      console.log("Edit transaction:", editTransaction);
     } catch (error) {
-      console.error("Unable to parse edit transaction:", error);
+      console.error("Invalid edit transaction:", error);
 
       sessionStorage.removeItem("editTransaction");
     }
   }
 
   /* =====================================================
-       LOAD EDIT TRANSACTION
+       GET EDIT ID
+    ===================================================== */
+
+  let editId = null;
+
+  if (editTransaction && editTransaction.id) {
+    editId = editTransaction.id;
+  }
+
+  /* =====================================================
+       ALSO SUPPORT ?edit=ID
+    ===================================================== */
+
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const urlEditId = urlParams.get("edit");
+
+  if (urlEditId) {
+    editId = urlEditId;
+  }
+
+  /* =====================================================
+       EDIT MODE
     ===================================================== */
 
   if (editTransaction && editId) {
-    console.log("EDIT MODE");
-    console.log("Edit ID:", editId);
+    console.log("========== EDIT MODE ==========");
+    console.log("Transaction ID:", editId);
+    console.log("===============================");
 
-    /* ==============================================
-           TYPE
-        ============================================== */
+    /* TYPE */
 
     type.value = String(editTransaction.type || "").toLowerCase();
 
-    /* ==============================================
-           CATEGORY
-        ============================================== */
+    /* CATEGORY */
 
     category.value = editTransaction.category || "";
 
-    /* ==============================================
-           AMOUNT
-        ============================================== */
+    /* AMOUNT */
 
     amount.value = editTransaction.amount || "";
 
-    /* ==============================================
-           DATE
-        ============================================== */
-
-    /*
-     * Backend field is transactionDate.
-     *
-     * Your old code was using:
-     * editTransaction.date
-     *
-     * which is incorrect.
-     */
+    /* DATE */
 
     date.value =
-      editTransaction.transactionDate || editTransaction.date || formattedDate;
+      normalizeDate(editTransaction.transactionDate || editTransaction.date) ||
+      today;
 
-    /* ==============================================
-           PAYMENT METHOD
-        ============================================== */
+    /* PAYMENT METHOD */
 
     paymentMethod.value = editTransaction.paymentMethod || "";
 
-    /* ==============================================
-           DESCRIPTION
-        ============================================== */
+    /* DESCRIPTION */
 
     description.value = editTransaction.description || "";
 
-    /* ==============================================
-           TYPE COLOR
-        ============================================== */
+    /* TITLE */
 
+    if (pageTitle) {
+      pageTitle.textContent = "Edit Transaction";
+    }
+
+    /* BUTTON */
+
+    if (submitButton) {
+      submitButton.innerHTML =
+        '<i class="fa-solid fa-pen-to-square"></i> ' +
+        "<span>Update Transaction</span>";
+    }
+
+    updateTypeStyle();
+  } else {
+    console.log("========== ADD MODE ==========");
+
+    if (pageTitle) {
+      pageTitle.textContent = "Add Transaction";
+    }
+
+    if (submitButton) {
+      submitButton.innerHTML =
+        '<i class="fa-solid fa-check"></i> ' + "<span>Save Transaction</span>";
+    }
+  }
+
+  /* =====================================================
+       NORMALIZE DATE
+    ===================================================== */
+
+  function normalizeDate(value) {
+    if (!value) {
+      return "";
+    }
+
+    return String(value).split("T")[0];
+  }
+
+  /* =====================================================
+       TYPE COLOR
+    ===================================================== */
+
+  function updateTypeStyle() {
     type.classList.remove("income-selected", "expense-selected");
 
     if (type.value === "income") {
@@ -220,104 +231,69 @@ document.addEventListener("DOMContentLoaded", function () {
     if (type.value === "expense") {
       type.classList.add("expense-selected");
     }
-
-    /* ==============================================
-           CHANGE PAGE TITLE
-        ============================================== */
-
-    const title = document.getElementById("transactionPageTitle");
-
-    if (title) {
-      title.textContent = "Edit Transaction";
-    }
-
-    /* ==============================================
-           CHANGE BUTTON TEXT
-        ============================================== */
-
-    const button = form.querySelector(".save-transaction-btn span");
-
-    if (button) {
-      button.textContent = "Update Transaction";
-    }
-
-    /*
-     * If your button doesn't contain a span,
-     * update the button text directly.
-     */
-
-    const saveButton = form.querySelector(".save-transaction-btn");
-
-    if (saveButton && !saveButton.querySelector("span")) {
-      saveButton.textContent = "✓ Update Transaction";
-    }
   }
 
   /* =====================================================
        TYPE CHANGE
     ===================================================== */
 
-  type.addEventListener("change", function () {
-    type.classList.remove("income-selected", "expense-selected");
-
-    if (this.value === "income") {
-      type.classList.add("income-selected");
-    }
-
-    if (this.value === "expense") {
-      type.classList.add("expense-selected");
-    }
-  });
+  type.addEventListener("change", updateTypeStyle);
 
   /* =====================================================
        FORM SUBMIT
     ===================================================== */
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-    /* ==========================================
-               CLEAR OLD MESSAGE
-            ========================================== */
+    /* ---------------------------------------------
+               CLEAR MESSAGE
+            --------------------------------------------- */
 
     message.textContent = "";
 
     message.className = "transaction-message";
 
-    /* ==========================================
+    /* ---------------------------------------------
                GET VALUES
-            ========================================== */
+            --------------------------------------------- */
 
-    const transactionType = type.value;
+    const transactionType = type.value.trim().toLowerCase();
 
-    const transactionCategory = category.value;
+    const transactionCategory = category.value.trim();
 
     const transactionAmount = Number(amount.value);
 
     const transactionDate = date.value;
 
-    const transactionPaymentMethod = paymentMethod.value;
+    const transactionPaymentMethod = paymentMethod.value.trim();
 
     const transactionDescription = description.value.trim();
 
-    /* ==========================================
+    /* ---------------------------------------------
                VALIDATION
-            ========================================== */
+            --------------------------------------------- */
 
     if (!transactionType) {
-      showError("Please select transaction type.");
+      showMessage("Please select transaction type.", "error");
+
+      return;
+    }
+
+    if (transactionType !== "income" && transactionType !== "expense") {
+      showMessage("Invalid transaction type.", "error");
 
       return;
     }
 
     if (!transactionCategory) {
-      showError("Please select a category.");
+      showMessage("Please select a category.", "error");
 
       return;
     }
 
-    if (!transactionAmount || transactionAmount <= 0) {
-      showError("Please enter a valid amount.");
+    if (!Number.isFinite(transactionAmount) || transactionAmount <= 0) {
+      showMessage("Please enter a valid amount.", "error");
 
       amount.focus();
 
@@ -325,55 +301,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (!transactionDate) {
-      showError("Please select a date.");
+      showMessage("Please select a date.", "error");
 
       return;
     }
 
     if (!transactionPaymentMethod) {
-      showError("Please select a payment method.");
+      showMessage("Please select a payment method.", "error");
 
       return;
     }
 
-    /* ==========================================
-               GET USER ID
-            ========================================== */
-
-    /*
-     * VERY IMPORTANT:
-     *
-     * Use sessionStorage because your login
-     * system stores the logged-in user there.
-     */
-
-    const currentUserId = sessionStorage.getItem("userId");
-
-    if (!currentUserId) {
-      showError("User ID not found. Please login again.");
-
-      console.error("sessionStorage userId:", currentUserId);
-
-      return;
-    }
-
-    /* ==========================================
-               VERIFY USER ID
-            ========================================== */
-
-    const numericUserId = Number(currentUserId);
-
-    if (!Number.isInteger(numericUserId) || numericUserId <= 0) {
-      showError("Invalid User ID. Please login again.");
-
-      console.error("Invalid userId:", currentUserId);
-
-      return;
-    }
-
-    /* ==========================================
+    /* ---------------------------------------------
                REQUEST BODY
-            ========================================== */
+            --------------------------------------------- */
 
     const transactionData = {
       userId: numericUserId,
@@ -388,58 +329,60 @@ document.addEventListener("DOMContentLoaded", function () {
 
       paymentMethod: transactionPaymentMethod,
 
-      description: transactionDescription,
+      description: transactionDescription || transactionCategory,
+
+      /*
+       * These values match the fields
+       * supported by TransactionRequest.
+       */
+
+      status: "Completed",
+
+      merchant: "",
     };
 
-    console.log("========== TRANSACTION REQUEST ==========");
+    console.log("========== REQUEST ==========");
 
-    console.log("User ID:", numericUserId);
+    console.log(JSON.stringify(transactionData, null, 2));
 
-    console.log("Transaction data:", transactionData);
+    console.log("=============================");
 
-    console.log("==========================================");
-
-    /* ==========================================
-               API URL
-            ========================================== */
+    /* ---------------------------------------------
+               DETERMINE ADD / UPDATE
+            --------------------------------------------- */
 
     let url = API_URL;
 
     let method = "POST";
 
-    /* ==========================================
-               EDIT MODE
-            ========================================== */
+    const isEdit = editTransaction && editId;
 
-    if (editTransaction && editId) {
+    if (isEdit) {
       url = API_URL + "/" + encodeURIComponent(editId);
 
       method = "PUT";
     }
 
-    console.log("Request URL:", url);
+    console.log("URL:", url);
+    console.log("METHOD:", method);
 
-    console.log("Request method:", method);
-
-    /* ==========================================
+    /* ---------------------------------------------
                DISABLE BUTTON
-            ========================================== */
+            --------------------------------------------- */
 
-    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonHTML = submitButton ? submitButton.innerHTML : "";
 
     if (submitButton) {
       submitButton.disabled = true;
 
-      submitButton.dataset.originalText = submitButton.innerHTML;
-
       submitButton.innerHTML =
         '<span class="spinner-border spinner-border-sm me-2"></span>' +
-        (editTransaction && editId ? "Updating..." : "Saving...");
+        (isEdit ? "Updating..." : "Saving...");
     }
 
-    /* ==========================================
+    /* ---------------------------------------------
                SEND REQUEST
-            ========================================== */
+            --------------------------------------------- */
 
     try {
       const response = await fetch(url, {
@@ -452,29 +395,29 @@ document.addEventListener("DOMContentLoaded", function () {
         body: JSON.stringify(transactionData),
       });
 
-      /* ======================================
-                   READ BACKEND RESPONSE
-                ====================================== */
+      console.log("HTTP Status:", response.status);
+
+      /* -----------------------------------------
+                   READ RESPONSE
+                ----------------------------------------- */
 
       const responseText = await response.text();
 
-      console.log("HTTP Status:", response.status);
-
       console.log("Backend response:", responseText);
 
-      /* ======================================
-                   CHECK RESPONSE
-                ====================================== */
+      /* -----------------------------------------
+                   ERROR
+                ----------------------------------------- */
 
       if (!response.ok) {
-        let errorMessage = "Failed to save transaction.";
+        let errorMessage = "Unable to save transaction.";
 
-        try {
-          const errorData = JSON.parse(responseText);
+        if (responseText) {
+          try {
+            const errorData = JSON.parse(responseText);
 
-          errorMessage = errorData.message || errorData.error || errorMessage;
-        } catch (e) {
-          if (responseText) {
+            errorMessage = errorData.message || errorData.error || errorMessage;
+          } catch (error) {
             errorMessage = responseText;
           }
         }
@@ -482,42 +425,28 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error(errorMessage);
       }
 
-      /* ======================================
+      /* -----------------------------------------
                    SUCCESS
-                ====================================== */
+                ----------------------------------------- */
 
-      let savedTransaction = null;
+      console.log(isEdit ? "Transaction updated." : "Transaction created.");
 
-      if (responseText) {
-        try {
-          savedTransaction = JSON.parse(responseText);
-        } catch (e) {
-          console.log("Backend returned non-JSON response.");
-        }
-      }
-
-      console.log("Saved transaction:", savedTransaction);
-
-      /* ======================================
-                   SUCCESS MESSAGE
-                ====================================== */
-
-      message.textContent =
-        editTransaction && editId
+      showMessage(
+        isEdit
           ? "Transaction updated successfully!"
-          : "Transaction added successfully!";
+          : "Transaction added successfully!",
+        "success",
+      );
 
-      message.classList.add("success");
-
-      /* ======================================
-                   REMOVE EDIT SESSION
-                ====================================== */
+      /* -----------------------------------------
+                   REMOVE EDIT DATA
+                ----------------------------------------- */
 
       sessionStorage.removeItem("editTransaction");
 
-      /* ======================================
+      /* -----------------------------------------
                    REDIRECT
-                ====================================== */
+                ----------------------------------------- */
 
       setTimeout(function () {
         window.location.href = "transactions.html";
@@ -525,49 +454,50 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (error) {
       console.error("TRANSACTION ERROR:", error);
 
-      showError(
-        error.message ||
-          "Unable to save transaction. Please check whether the backend is running.",
-      );
+      showMessage(error.message || "Unable to connect to backend.", "error");
 
-      /* ======================================
-                   ENABLE BUTTON AGAIN
-                ====================================== */
+      /* -----------------------------------------
+                   ENABLE BUTTON
+                ----------------------------------------- */
 
       if (submitButton) {
         submitButton.disabled = false;
 
-        submitButton.innerHTML =
-          submitButton.dataset.originalText ||
-          (editTransaction && editId
-            ? "✓ Update Transaction"
-            : "✓ Save Transaction");
+        submitButton.innerHTML = originalButtonHTML;
       }
     }
   });
 
   /* =====================================================
-       ERROR FUNCTION
+       MESSAGE
     ===================================================== */
 
-  function showError(text) {
+  function showMessage(text, type) {
     message.textContent = text;
 
-    message.className = "transaction-message error";
+    message.className = "transaction-message " + type;
   }
 
   /* =====================================================
        LOAD USER NAME
     ===================================================== */
 
-  const userName =
+  const storedName =
     sessionStorage.getItem("fullName") || sessionStorage.getItem("userName");
 
-  if (userName) {
-    const name = document.getElementById("userName");
+  if (storedName) {
+    const nameElement = document.getElementById("userName");
 
-    if (name) {
-      name.textContent = userName;
+    if (nameElement) {
+      nameElement.textContent = storedName;
     }
   }
+
+  /* =====================================================
+       DEBUG
+    ===================================================== */
+
+  console.log("Transaction form initialized.");
+
+  console.log("Mode:", editTransaction ? "EDIT" : "ADD");
 });

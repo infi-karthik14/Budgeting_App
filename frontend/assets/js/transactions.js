@@ -12,19 +12,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const searchInput = document.getElementById("searchTransaction");
 
+  const headerSearchInput = document.getElementById("headerTransactionSearch");
+
   const typeFilter = document.getElementById("typeFilter");
 
   const categoryFilter = document.getElementById("categoryFilter");
 
   const monthFilter = document.getElementById("monthFilter");
 
+  const activityList = document.getElementById("activityList");
+
   /* =====================================================
        CHECK TABLE
     ===================================================== */
 
   if (!tableBody) {
-    console.error("ERROR: #transactionTableBody was not found.");
-
+    console.error("ERROR: transactionTableBody not found.");
     return;
   }
 
@@ -36,9 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const userId = sessionStorage.getItem("userId");
 
-  console.log("Logged In:", loggedIn);
-  console.log("User ID:", userId);
-
   if (loggedIn !== "true" || !userId) {
     console.error("User is not logged in or userId is missing.");
 
@@ -47,17 +47,125 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  console.log("Logged in user ID:", userId);
+
   /* =====================================================
-       BACKEND URL
+       API
     ===================================================== */
 
   const API_URL = "http://localhost:8080/api/transactions";
 
   /* =====================================================
-       TRANSACTIONS ARRAY
+       GLOBAL DATA
     ===================================================== */
 
   let transactions = [];
+
+  let transactionChart = null;
+
+  /* =====================================================
+       HTML ESCAPE
+    ===================================================== */
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  /* =====================================================
+       FORMAT CURRENCY
+    ===================================================== */
+
+  function formatCurrency(amount) {
+    return (
+      "₹" +
+      Number(amount || 0).toLocaleString("en-IN", {
+        maximumFractionDigits: 2,
+      })
+    );
+  }
+
+  /* =====================================================
+       NORMALIZE TYPE
+    ===================================================== */
+
+  function normalizeType(type) {
+    return String(type || "")
+      .trim()
+      .toLowerCase();
+  }
+
+  /* =====================================================
+       GET TRANSACTION TYPE
+       
+       Salary is automatically considered income.
+    ===================================================== */
+
+  function getTransactionType(transaction) {
+    if (!transaction) {
+      return "";
+    }
+
+    const rawType = normalizeType(transaction.type);
+
+    const category = String(transaction.category || "")
+      .trim()
+      .toLowerCase();
+
+    /* Salary = Income */
+
+    if (category === "salary" || category === "salary income") {
+      return "income";
+    }
+
+    /* Normal backend type */
+
+    if (rawType === "income" || rawType === "expense") {
+      return rawType;
+    }
+
+    return "expense";
+  }
+
+  /* =====================================================
+       NORMALIZE DATE
+    ===================================================== */
+
+  function normalizeDate(value) {
+    if (!value) {
+      return "";
+    }
+
+    return String(value).split("T")[0];
+  }
+
+  /* =====================================================
+       FORMAT DATE
+    ===================================================== */
+
+  function formatDate(dateValue) {
+    const normalized = normalizeDate(dateValue);
+
+    if (!normalized) {
+      return "-";
+    }
+
+    const date = new Date(normalized + "T00:00:00");
+
+    if (isNaN(date.getTime())) {
+      return normalized;
+    }
+
+    return date.toLocaleDateString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  }
 
   /* =====================================================
        LOAD TRANSACTIONS
@@ -65,80 +173,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
   async function loadTransactions() {
     try {
-      console.log("Loading transactions for user:", userId);
-
-      /* ---------------------------------------------
-               LOADING
-            --------------------------------------------- */
-
       tableBody.innerHTML = `
                 <tr>
                     <td colspan="6"
-                        style="text-align:center; padding:30px;">
-
+                        style="text-align:center;padding:30px;">
                         Loading transactions...
-
                     </td>
                 </tr>
             `;
 
-      /* ---------------------------------------------
-               URL
-            --------------------------------------------- */
+      const response = await fetch(`${API_URL}/user/${userId}`);
 
-      const url = `${API_URL}/user/${userId}`;
-
-      console.log("Fetching:", url);
-
-      /* ---------------------------------------------
-               FETCH
-            --------------------------------------------- */
-
-      const response = await fetch(url);
-
-      console.log("GET status:", response.status);
-
-      /* ---------------------------------------------
-               ERROR
-            --------------------------------------------- */
+      console.log("Transaction API status:", response.status);
 
       if (!response.ok) {
         const errorText = await response.text();
 
-        console.error("Backend error:", errorText);
-
-        throw new Error(`Server returned ${response.status}`);
+        throw new Error(errorText || `Server returned ${response.status}`);
       }
-
-      /* ---------------------------------------------
-               JSON
-            --------------------------------------------- */
 
       const data = await response.json();
 
-      console.log("Transactions received:", data);
-
-      /* ---------------------------------------------
-               ARRAY CHECK
-            --------------------------------------------- */
-
       if (!Array.isArray(data)) {
-        console.error("Backend response is not an array:", data);
-
-        throw new Error("Invalid transaction data.");
+        throw new Error("Invalid transaction data received.");
       }
-
-      /* ---------------------------------------------
-               SAVE DATA
-            --------------------------------------------- */
 
       transactions = data;
 
-      console.log("Number of transactions:", transactions.length);
+      console.log("Transactions loaded:", transactions);
 
-      /* ---------------------------------------------
-               DISPLAY
-            --------------------------------------------- */
+      /* Display */
 
       displayTransactions(transactions);
     } catch (error) {
@@ -153,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             color:red;
                         ">
 
-                        Failed to load transactions.
+                        Unable to load transactions.
 
                         <br><br>
 
@@ -162,17 +226,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     </td>
                 </tr>
             `;
+
+      updateSummary([]);
+
+      updateRecentActivity([]);
+
+      updateTransactionChart([]);
     }
-  }
-
-  /* =====================================================
-       NORMALIZE TYPE
-    ===================================================== */
-
-  function normalizeType(type) {
-    return String(type || "")
-      .trim()
-      .toLowerCase();
   }
 
   /* =====================================================
@@ -180,17 +240,11 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
   function displayTransactions(data) {
-    console.log("Displaying transactions:", data);
-
-    /* ---------------------------------------------
-           CLEAR TABLE
-        --------------------------------------------- */
-
     tableBody.innerHTML = "";
 
-    /* ---------------------------------------------
-           NO DATA
-        --------------------------------------------- */
+    /* =================================================
+           NO TRANSACTIONS
+        ================================================= */
 
     if (!data || data.length === 0) {
       tableBody.innerHTML = `
@@ -215,6 +269,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
       updateSummary([]);
 
+      updateRecentActivity([]);
+
+      updateTransactionChart([]);
+
       return;
     }
 
@@ -222,71 +280,45 @@ document.addEventListener("DOMContentLoaded", function () {
            CREATE ROWS
         ================================================= */
 
-    data.forEach(function (transaction, index) {
-      console.log(`Rendering transaction ${index + 1}:`, transaction);
-
+    data.forEach(function (transaction) {
       const row = document.createElement("tr");
 
-      /* ---------------------------------------------
-               ID
-            --------------------------------------------- */
+      /* ID */
 
       const id = transaction.id;
 
-      /* ---------------------------------------------
-               TYPE
-            --------------------------------------------- */
+      /* TYPE */
 
-      const transactionType = normalizeType(transaction.type);
+      const transactionType = getTransactionType(transaction);
 
       const typeText = transactionType === "income" ? "Income" : "Expense";
 
       const typeClass =
         transactionType === "income" ? "income-tag" : "expense-tag";
 
-      /* ---------------------------------------------
-               CATEGORY
-            --------------------------------------------- */
+      /* CATEGORY */
 
       const category = transaction.category || "-";
 
-      /* ---------------------------------------------
-               DATE
-            --------------------------------------------- */
+      /* DATE */
 
       const transactionDate =
         transaction.transactionDate || transaction.date || "";
 
-      const formattedDate = formatDate(transactionDate);
-
-      /* ---------------------------------------------
-               AMOUNT
-            --------------------------------------------- */
+      /* AMOUNT */
 
       const amount = Number(transaction.amount) || 0;
 
-      const formattedAmount = amount.toLocaleString("en-IN");
-
-      /* ---------------------------------------------
-               STATUS
-            --------------------------------------------- */
+      /* STATUS */
 
       const status = transaction.status || "Completed";
 
-      /* ---------------------------------------------
-               DESCRIPTION
-            --------------------------------------------- */
-
-      const description = transaction.description || "";
-
-      /* =================================================
-               ROW
-            ================================================= */
+      /* ROW */
 
       row.innerHTML = `
 
                 <td>
-                    ${escapeHTML(formattedDate)}
+                    ${escapeHTML(formatDate(transactionDate))}
                 </td>
 
 
@@ -304,9 +336,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 </td>
 
 
-                <td>
+                <td class="${
+                  transactionType === "income" ? "text-success" : "text-danger"
+                } fw-bold">
 
-                    ₹${formattedAmount}
+                    ${transactionType === "income" ? "+ " : "- "}
+
+                    ${formatCurrency(amount)}
 
                 </td>
 
@@ -314,7 +350,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>
 
                     <span class="badge bg-success">
+
                         ${escapeHTML(status)}
+
                     </span>
 
                 </td>
@@ -325,7 +363,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <button
                         type="button"
                         class="btn btn-warning btn-sm edit-btn"
-                        data-id="${id}"
+                        data-id="${escapeHTML(id)}"
                         title="Edit Transaction">
 
                         <i class="bi bi-pencil-fill"></i>
@@ -336,7 +374,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     <button
                         type="button"
                         class="btn btn-danger btn-sm ms-1 delete-btn"
-                        data-id="${id}"
+                        data-id="${escapeHTML(id)}"
                         title="Delete Transaction">
 
                         <i class="bi bi-trash-fill"></i>
@@ -344,62 +382,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     </button>
 
                 </td>
-
             `;
-
-      /* ---------------------------------------------
-               ADD ROW
-            --------------------------------------------- */
 
       tableBody.appendChild(row);
     });
 
     /* =================================================
-           CHECK RENDERING
-        ================================================= */
-
-    console.log(
-      "Rows currently in table:",
-      tableBody.querySelectorAll("tr").length,
-    );
-
-    /* =================================================
-           SUMMARY
+           UPDATE COMPONENTS
         ================================================= */
 
     updateSummary(data);
+
+    updateRecentActivity(data);
+
+    updateTransactionChart(data);
 
     /* =================================================
            BUTTONS
         ================================================= */
 
     attachActionButtons();
-  }
-
-  /* =====================================================
-       FORMAT DATE
-    ===================================================== */
-
-  function formatDate(dateString) {
-    if (!dateString) {
-      return "-";
-    }
-
-    try {
-      const date = new Date(dateString + "T00:00:00");
-
-      if (isNaN(date.getTime())) {
-        return dateString;
-      }
-
-      return date.toLocaleDateString("en-IN", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      });
-    } catch (error) {
-      return dateString;
-    }
   }
 
   /* =====================================================
@@ -414,7 +416,7 @@ document.addEventListener("DOMContentLoaded", function () {
     data.forEach(function (transaction) {
       const amount = Number(transaction.amount) || 0;
 
-      const type = normalizeType(transaction.type);
+      const type = getTransactionType(transaction);
 
       if (type === "income") {
         income += amount;
@@ -429,48 +431,292 @@ document.addEventListener("DOMContentLoaded", function () {
       income,
       expense,
       balance,
-      transactions: data.length,
+      count: data.length,
     });
-
-    /* =================================================
-           DASHBOARD CARDS
-        ================================================= */
 
     const cards = document.querySelectorAll(".dashboard-card");
 
-    if (cards.length >= 4) {
-      /* INCOME */
-
-      const incomeHeading = cards[0].querySelector("h2");
-
-      if (incomeHeading) {
-        incomeHeading.textContent = "₹" + income.toLocaleString("en-IN");
-      }
-
-      /* EXPENSE */
-
-      const expenseHeading = cards[1].querySelector("h2");
-
-      if (expenseHeading) {
-        expenseHeading.textContent = "₹" + expense.toLocaleString("en-IN");
-      }
-
-      /* BALANCE */
-
-      const balanceHeading = cards[2].querySelector("h2");
-
-      if (balanceHeading) {
-        balanceHeading.textContent = "₹" + balance.toLocaleString("en-IN");
-      }
-
-      /* TOTAL */
-
-      const transactionHeading = cards[3].querySelector("h2");
-
-      if (transactionHeading) {
-        transactionHeading.textContent = data.length;
-      }
+    if (cards.length < 4) {
+      return;
     }
+
+    /* Total Income */
+
+    const incomeHeading = cards[0].querySelector("h2");
+
+    if (incomeHeading) {
+      incomeHeading.textContent = formatCurrency(income);
+    }
+
+    /* Total Expense */
+
+    const expenseHeading = cards[1].querySelector("h2");
+
+    if (expenseHeading) {
+      expenseHeading.textContent = formatCurrency(expense);
+    }
+
+    /* Balance */
+
+    const balanceHeading = cards[2].querySelector("h2");
+
+    if (balanceHeading) {
+      balanceHeading.textContent = formatCurrency(balance);
+    }
+
+    /* Transaction Count */
+
+    const transactionHeading = cards[3].querySelector("h2");
+
+    if (transactionHeading) {
+      transactionHeading.textContent = data.length;
+    }
+  }
+
+  /* =====================================================
+       RECENT ACTIVITY
+    ===================================================== */
+
+  function updateRecentActivity(data) {
+    if (!activityList) {
+      return;
+    }
+
+    activityList.innerHTML = "";
+
+    if (!data || data.length === 0) {
+      activityList.innerHTML = `
+                <li>
+
+                    <span>
+                        <i class="bi bi-info-circle"></i>
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            No recent activity
+                        </strong>
+
+                        <small>
+                            No transactions available
+                        </small>
+
+                    </div>
+
+                </li>
+            `;
+
+      return;
+    }
+
+    /* Sort newest first */
+
+    const recent = [...data]
+      .sort(function (a, b) {
+        const dateA = new Date(
+          normalizeDate(a.transactionDate || a.date) + "T00:00:00",
+        );
+
+        const dateB = new Date(
+          normalizeDate(b.transactionDate || b.date) + "T00:00:00",
+        );
+
+        return dateB - dateA;
+      })
+      .slice(0, 5);
+
+    recent.forEach(function (transaction) {
+      const type = getTransactionType(transaction);
+
+      const amount = Number(transaction.amount) || 0;
+
+      const category = transaction.category || "Transaction";
+
+      const description = transaction.description || category;
+
+      const icon =
+        type === "income"
+          ? "bi bi-arrow-down-circle-fill"
+          : "bi bi-arrow-up-circle-fill";
+
+      const text =
+        type === "income"
+          ? `${description} credited`
+          : `${description} expense`;
+
+      const li = document.createElement("li");
+
+      li.innerHTML = `
+
+                <span>
+
+                    <i class="${icon}"></i>
+
+                </span>
+
+
+                <div>
+
+                    <strong>
+                        ${escapeHTML(text)}
+                    </strong>
+
+                    <small>
+                        ${formatCurrency(amount)}
+                    </small>
+
+                </div>
+
+            `;
+
+      activityList.appendChild(li);
+    });
+  }
+
+  /* =====================================================
+       CHART
+    ===================================================== */
+
+  function updateTransactionChart(data) {
+    const canvas = document.getElementById("transactionChart");
+
+    if (!canvas) {
+      return;
+    }
+
+    if (typeof Chart === "undefined") {
+      console.error("Chart.js is not loaded.");
+
+      return;
+    }
+
+    const monthlyIncome = new Array(12).fill(0);
+
+    const monthlyExpense = new Array(12).fill(0);
+
+    data.forEach(function (transaction) {
+      const dateValue = transaction.transactionDate || transaction.date;
+
+      if (!dateValue) {
+        return;
+      }
+
+      const date = new Date(normalizeDate(dateValue) + "T00:00:00");
+
+      if (isNaN(date.getTime())) {
+        return;
+      }
+
+      const month = date.getMonth();
+
+      const amount = Number(transaction.amount) || 0;
+
+      const type = getTransactionType(transaction);
+
+      if (type === "income") {
+        monthlyIncome[month] += amount;
+      } else {
+        monthlyExpense[month] += amount;
+      }
+    });
+
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    /* Destroy previous chart */
+
+    if (transactionChart) {
+      transactionChart.destroy();
+
+      transactionChart = null;
+    }
+
+    /* Create chart */
+
+    transactionChart = new Chart(canvas, {
+      type: "bar",
+
+      data: {
+        labels: months,
+
+        datasets: [
+          {
+            label: "Income",
+
+            data: monthlyIncome,
+
+            backgroundColor: "#22c55e",
+
+            borderRadius: 6,
+          },
+
+          {
+            label: "Expense",
+
+            data: monthlyExpense,
+
+            backgroundColor: "#ef4444",
+
+            borderRadius: 6,
+          },
+        ],
+      },
+
+      options: {
+        responsive: true,
+
+        maintainAspectRatio: false,
+
+        interaction: {
+          mode: "index",
+
+          intersect: false,
+        },
+
+        plugins: {
+          legend: {
+            display: true,
+
+            position: "top",
+          },
+
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return (
+                  context.dataset.label + ": " + formatCurrency(context.raw)
+                );
+              },
+            },
+          },
+        },
+
+        scales: {
+          y: {
+            beginAtZero: true,
+
+            ticks: {
+              callback: function (value) {
+                return formatCurrency(value);
+              },
+            },
+          },
+        },
+      },
+    });
   }
 
   /* =====================================================
@@ -491,17 +737,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const filtered = transactions.filter(function (transaction) {
       /* SEARCH */
 
-      const searchableText = (
-        (transaction.category || "") +
-        " " +
-        (transaction.type || "") +
-        " " +
-        (transaction.description || "") +
-        " " +
-        (transaction.paymentMethod || "") +
-        " " +
-        (transaction.amount || "")
-      ).toLowerCase();
+      const searchableText = [
+        transaction.category,
+
+        transaction.type,
+
+        transaction.description,
+
+        transaction.paymentMethod,
+
+        transaction.merchant,
+
+        transaction.status,
+
+        transaction.amount,
+
+        transaction.transactionDate,
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
 
       if (search && !searchableText.includes(search)) {
         return false;
@@ -509,7 +764,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       /* TYPE */
 
-      const transactionType = normalizeType(transaction.type);
+      const transactionType = getTransactionType(transaction);
 
       if (selectedType !== "all" && transactionType !== selectedType) {
         return false;
@@ -519,7 +774,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (
         selectedCategory !== "all" &&
-        transaction.category !== selectedCategory
+        String(transaction.category || "").toLowerCase() !==
+          String(selectedCategory).toLowerCase()
       ) {
         return false;
       }
@@ -533,13 +789,13 @@ document.addEventListener("DOMContentLoaded", function () {
           return false;
         }
 
-        const transactionDate = new Date(dateValue + "T00:00:00");
+        const date = new Date(normalizeDate(dateValue) + "T00:00:00");
 
-        if (isNaN(transactionDate.getTime())) {
+        if (isNaN(date.getTime())) {
           return false;
         }
 
-        const month = transactionDate.toLocaleString("en-US", {
+        const month = date.toLocaleString("en-US", {
           month: "long",
         });
 
@@ -555,7 +811,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* =====================================================
-       EDIT + DELETE BUTTONS
+       EDIT + DELETE
     ===================================================== */
 
   function attachActionButtons() {
@@ -591,7 +847,9 @@ document.addEventListener("DOMContentLoaded", function () {
           });
 
           if (!response.ok) {
-            throw new Error("Failed to delete transaction.");
+            const errorText = await response.text();
+
+            throw new Error(errorText || "Failed to delete transaction.");
           }
 
           alert("Transaction deleted successfully!");
@@ -600,7 +858,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
           console.error("DELETE ERROR:", error);
 
-          alert("Unable to delete transaction:\n\n" + error.message);
+          alert("Unable to delete transaction.\n\n" + error.message);
 
           this.disabled = false;
         }
@@ -627,7 +885,17 @@ document.addEventListener("DOMContentLoaded", function () {
           return;
         }
 
+        console.log("Editing transaction:", transaction);
+
+        /* Store transaction */
+
         sessionStorage.setItem("editTransaction", JSON.stringify(transaction));
+
+        /*
+         * IMPORTANT:
+         * add-transaction.js checks
+         * the ?edit=ID parameter.
+         */
 
         window.location.href =
           "add-transaction.html?edit=" + encodeURIComponent(id);
@@ -643,53 +911,62 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.addEventListener("input", filterTransactions);
   }
 
+  /* =====================================================
+       HEADER SEARCH
+    ===================================================== */
+
+  if (headerSearchInput) {
+    headerSearchInput.addEventListener("input", function () {
+      /*
+       * Keep the main search box
+       * synchronized.
+       */
+
+      if (searchInput) {
+        searchInput.value = this.value;
+      }
+
+      filterTransactions();
+    });
+  }
+
+  /* =====================================================
+       TYPE FILTER
+    ===================================================== */
+
   if (typeFilter) {
     typeFilter.addEventListener("change", filterTransactions);
   }
 
+  /* =====================================================
+       CATEGORY FILTER
+    ===================================================== */
+
   if (categoryFilter) {
     categoryFilter.addEventListener("change", filterTransactions);
   }
+
+  /* =====================================================
+       MONTH FILTER
+    ===================================================== */
 
   if (monthFilter) {
     monthFilter.addEventListener("change", filterTransactions);
   }
 
   /* =====================================================
-       PROFILE
+       LOAD USER NAME
     ===================================================== */
-
-  const profileImage = sessionStorage.getItem("profileImage");
 
   const userName =
     sessionStorage.getItem("fullName") || sessionStorage.getItem("userName");
 
-  if (profileImage) {
-    const image = document.getElementById("profileImage");
-
-    if (image) {
-      image.src = profileImage;
-    }
-  }
-
   if (userName) {
-    const name = document.getElementById("userName");
+    const userNameElement = document.getElementById("userName");
 
-    if (name) {
-      name.textContent = userName;
+    if (userNameElement) {
+      userNameElement.textContent = userName;
     }
-  }
-
-  /* =====================================================
-       HTML ESCAPE
-    ===================================================== */
-
-  function escapeHTML(value) {
-    const div = document.createElement("div");
-
-    div.textContent = value == null ? "" : String(value);
-
-    return div.innerHTML;
   }
 
   /* =====================================================

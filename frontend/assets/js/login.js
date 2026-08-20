@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
                        STEP 4 - SAVE USER ID
                     ================================================= */
 
-          sessionStorage.setItem("userId", String(userId));
+          sessionStorage.setItem("userId", userId);
 
           console.log("USER ID SAVED:", sessionStorage.getItem("userId"));
 

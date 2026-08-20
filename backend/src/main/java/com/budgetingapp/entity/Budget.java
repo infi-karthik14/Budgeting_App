@@ -6,24 +6,47 @@ import jakarta.persistence.*;
 @Table(name = "budgets")
 public class Budget {
 
+    // ==========================================================
+    // PRIMARY KEY
+    // ==========================================================
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Double monthlyIncome;
-    private Double monthlyBudget;
-    private String category;
-    private Long userId;
-    private String StartDate; // Changed from LocalDate to String
-    private String EndDate; // Changed from LocalDate to String
-    private String BudgetAmount; // Changed from Double to String
-    private String BudgetName; // Changed from Double to String
+    // ==========================================================
+    // BUDGET INFORMATION
+    // ==========================================================
 
-    // Default Constructor
+    private Double monthlyIncome;
+
+    private Double monthlyBudget;
+
+    @Column(nullable = false)
+    private String category;
+
+    @Column(nullable = false)
+    private Long userId;
+
+    private String startDate;
+
+    private String endDate;
+
+    private String budgetAmount;
+
+    private String budgetName;
+
+    // ==========================================================
+    // DEFAULT CONSTRUCTOR
+    // ==========================================================
+
     public Budget() {
     }
 
-    // Getters
+    // ==========================================================
+    // GETTERS
+    // ==========================================================
+
     public Long getId() {
         return id;
     }
@@ -45,23 +68,25 @@ public class Budget {
     }
 
     public String getStartDate() {
-        return StartDate;
+        return startDate;
     }
 
     public String getEndDate() {
-        return EndDate;
+        return endDate;
     }
 
     public String getBudgetAmount() {
-        return BudgetAmount;
+        return budgetAmount;
     }
 
     public String getBudgetName() {
-        return BudgetName;
+        return budgetName;
     }
 
+    // ==========================================================
+    // SETTERS
+    // ==========================================================
 
-    // Setters
     public void setId(Long id) {
         this.id = id;
     }
@@ -83,34 +108,38 @@ public class Budget {
     }
 
     public void setStartDate(String startDate) {
-        this.StartDate = startDate;
-    }   
+        this.startDate = startDate;
+    }
 
     public void setEndDate(String endDate) {
-        this.EndDate = endDate;
+        this.endDate = endDate;
     }
 
     public void setBudgetAmount(String budgetAmount) {
-        this.BudgetAmount = budgetAmount;
+        this.budgetAmount = budgetAmount;
     }
 
     public void setBudgetName(String budgetName) {
-        this.BudgetName = budgetName;
+        this.budgetName = budgetName;
     }
 
+    // ==========================================================
+    // TO STRING
+    // ==========================================================
 
     @Override
     public String toString() {
+
         return "Budget{" +
                 "id=" + id +
                 ", monthlyIncome=" + monthlyIncome +
                 ", monthlyBudget=" + monthlyBudget +
                 ", category='" + category + '\'' +
                 ", userId=" + userId +
-                ", startDate='" + StartDate + '\'' +
-                ", endDate='" + EndDate + '\'' +
-                ", budgetamount=" + BudgetAmount +
-                ", budgetName='" + BudgetName + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", budgetAmount='" + budgetAmount + '\'' +
+                ", budgetName='" + budgetName + '\'' +
                 '}';
     }
 }

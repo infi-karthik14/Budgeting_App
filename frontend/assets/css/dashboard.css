@@ -530,3 +530,180 @@ body.dark-mode .welcome-icon {
     }
 
 }
+
+/* =========================================================
+   DASHBOARD LAYOUT FIX
+   ========================================================= */
+
+/* Main dashboard content */
+.dashboard-content,
+.dashboard-main,
+main {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   SUMMARY / TOP CARDS
+   ========================================================= */
+
+.dashboard-cards,
+.dashboard-card-container,
+.cards-container {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* Individual cards */
+.dashboard-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+/* =========================================================
+   TODAY'S SUMMARY
+   ========================================================= */
+
+.summary-container,
+.today-summary,
+.summary-boxes {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+.summary-box {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+/* =========================================================
+   CHART SECTION
+   ========================================================= */
+
+.charts-container,
+.chart-container,
+.charts-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+.chart-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 650px;
+}
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.dashboard-actions,
+.action-buttons,
+.quick-actions {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 15px !important;
+    width: 100% !important;
+}
+
+.dashboard-actions button,
+.action-buttons button,
+.quick-actions button {
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+/* =========================================================
+   SAVINGS GOAL
+   ========================================================= */
+
+.savings-goal,
+.savings-goal-card {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   RESPONSIVE TABLET
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+    .dashboard-cards,
+    .dashboard-card-container,
+    .cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .summary-container,
+    .today-summary,
+    .summary-boxes {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .charts-container,
+    .chart-container,
+    .charts-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dashboard-actions,
+    .action-buttons,
+    .quick-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+/* =========================================================
+   RESPONSIVE MOBILE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+    .dashboard-cards,
+    .dashboard-card-container,
+    .cards-container {
+        grid-template-columns: 1fr !important;
+    }
+
+    .summary-container,
+    .today-summary,
+    .summary-boxes {
+        grid-template-columns: 1fr !important;
+    }
+
+    .dashboard-actions,
+    .action-buttons,
+    .quick-actions {
+        grid-template-columns: 1fr !important;
+    }
+}

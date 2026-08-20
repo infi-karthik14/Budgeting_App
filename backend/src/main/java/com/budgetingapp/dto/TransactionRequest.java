@@ -3,24 +3,18 @@ package com.budgetingapp.dto;
 public class TransactionRequest {
 
     private Long userId;
-
     private String type;
-
     private String category;
-
-    private double amount;
-
+    private Double amount;
     private String transactionDate;
-
-    private String paymentMethod;
-
     private String description;
+    private String paymentMethod;
+    private String status;
+    private String merchant;
 
-    // Default Constructor
-    public TransactionRequest() {
-    }
-
-    // Getters
+    // =========================
+    // GETTERS
+    // =========================
 
     public Long getUserId() {
         return userId;
@@ -34,7 +28,7 @@ public class TransactionRequest {
         return category;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
@@ -42,15 +36,25 @@ public class TransactionRequest {
         return transactionDate;
     }
 
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    // Setters
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getMerchant() {
+        return merchant;
+    }
+
+    // =========================
+    // SETTERS
+    // =========================
 
     public void setUserId(Long userId) {
         this.userId = userId;
@@ -64,7 +68,7 @@ public class TransactionRequest {
         this.category = category;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -72,11 +76,19 @@ public class TransactionRequest {
         this.transactionDate = transactionDate;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setMerchant(String merchant) {
+        this.merchant = merchant;
     }
 }
