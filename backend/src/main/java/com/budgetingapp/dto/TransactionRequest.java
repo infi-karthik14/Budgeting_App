@@ -3,18 +3,33 @@ package com.budgetingapp.dto;
 public class TransactionRequest {
 
     private Long userId;
+
     private String type;
+
     private String category;
+
     private Double amount;
+
     private String transactionDate;
-    private String description;
+
     private String paymentMethod;
+
+    private String description;
+
     private String status;
+
     private String merchant;
 
-    // =========================
+    // ==================================================
+    // CONSTRUCTOR
+    // ==================================================
+
+    public TransactionRequest() {
+    }
+
+    // ==================================================
     // GETTERS
-    // =========================
+    // ==================================================
 
     public Long getUserId() {
         return userId;
@@ -36,12 +51,12 @@ public class TransactionRequest {
         return transactionDate;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public String getPaymentMethod() {
         return paymentMethod;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getStatus() {
@@ -52,9 +67,9 @@ public class TransactionRequest {
         return merchant;
     }
 
-    // =========================
+    // ==================================================
     // SETTERS
-    // =========================
+    // ==================================================
 
     public void setUserId(Long userId) {
         this.userId = userId;
@@ -76,12 +91,12 @@ public class TransactionRequest {
         this.transactionDate = transactionDate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setStatus(String status) {

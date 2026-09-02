@@ -3,112 +3,148 @@ package com.budgetingapp.controller;
 import com.budgetingapp.dto.TransactionRequest;
 import com.budgetingapp.entity.Transaction;
 import com.budgetingapp.service.TransactionService;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+                "http://localhost:5500",
+                "http://127.0.0.1:5500"
+})
 public class TransactionController {
 
-    private final TransactionService transactionService;
+        private final TransactionService transactionService;
 
-    public TransactionController(TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
+        // ==================================================
+        // CONSTRUCTOR
+        // ==================================================
 
-    // ==================================================
-    // GET ALL TRANSACTIONS
-    // ==================================================
+        public TransactionController(
+                        TransactionService transactionService) {
 
-    @GetMapping
-    public List<Transaction> getAllTransactions() {
+                this.transactionService = transactionService;
+        }
 
-        return transactionService.getAllTransactions();
-    }
+        // ==================================================
+        // GET ALL TRANSACTIONS
+        // GET /api/transactions
+        // ==================================================
 
-    // ==================================================
-    // GET TRANSACTION BY ID
-    // ==================================================
+        @GetMapping
+        public List<Transaction> getAllTransactions() {
 
-    @GetMapping("/{id}")
-    public Transaction getTransaction(@PathVariable Long id) {
+                return transactionService.getAllTransactions();
+        }
 
-        return transactionService.getTransaction(id);
-    }
+        // ==================================================
+        // GET TRANSACTION BY ID
+        // GET /api/transactions/{id}?userId=1
+        // ==================================================
 
-    // ==================================================
-    // GET TRANSACTIONS BY USER
-    // ==================================================
+        @GetMapping("/{id}")
+        public ResponseEntity<Transaction> getTransaction(
+                        @PathVariable Long id,
+                        @RequestParam Long userId) {
 
-    @GetMapping("/user/{userId}")
-    public List<Transaction> getTransactionsByUser(
-            @PathVariable Long userId) {
+                return ResponseEntity.ok(
+                                transactionService.getTransaction(
+                                                id,
+                                                userId));
+        }
 
-        return transactionService.getTransactionsByUser(userId);
-    }
+        // ==================================================
+        // GET USER TRANSACTIONS
+        // GET /api/transactions/user/{userId}
+        // ==================================================
 
-    // ==================================================
-    // GET TRANSACTIONS BY USER AND TYPE
-    // ==================================================
+        @GetMapping("/user/{userId}")
+        public List<Transaction> getTransactionsByUser(
+                        @PathVariable Long userId) {
 
-    @GetMapping("/user/{userId}/type/{type}")
-    public List<Transaction> getTransactionsByType(
-            @PathVariable Long userId,
-            @PathVariable String type) {
+                return transactionService.getTransactionsByUser(
+                                userId);
+        }
 
-        return transactionService.getTransactionsByType(
-                userId,
-                type);
-    }
+        // ==================================================
+        // GET USER TRANSACTIONS BY TYPE
+        // GET /api/transactions/user/{userId}/type/{type}
+        // ==================================================
 
-    // ==================================================
-    // GET TRANSACTIONS BY USER AND CATEGORY
-    // ==================================================
+        @GetMapping("/user/{userId}/type/{type}")
+        public List<Transaction> getTransactionsByType(
+                        @PathVariable Long userId,
+                        @PathVariable String type) {
 
-    @GetMapping("/user/{userId}/category/{category}")
-    public List<Transaction> getTransactionsByCategory(
-            @PathVariable Long userId,
-            @PathVariable String category) {
+                return transactionService.getTransactionsByType(
+                                userId,
+                                type);
+        }
 
-        return transactionService.getTransactionsByCategory(
-                userId,
-                category);
-    }
+        // ==================================================
+        // GET USER TRANSACTIONS BY CATEGORY
+        // GET /api/transactions/user/{userId}/category/{category}
+        // ==================================================
 
-    // ==================================================
-    // ADD TRANSACTION
-    // ==================================================
+        @GetMapping("/user/{userId}/category/{category}")
+        public List<Transaction> getTransactionsByCategory(
+                        @PathVariable Long userId,
+                        @PathVariable String category) {
 
-    @PostMapping
-    public Transaction addTransaction(
-            @RequestBody TransactionRequest request) {
+                return transactionService.getTransactionsByCategory(
+                                userId,
+                                category);
+        }
 
-        return transactionService.addTransaction(request);
-    }
+        // ==================================================
+        // ADD TRANSACTION
+        // POST /api/transactions
+        // ==================================================
 
-    // ==================================================
-    // UPDATE TRANSACTION
-    // ==================================================
+        @PostMapping
+        public ResponseEntity<Transaction> addTransaction(
+                        @RequestBody TransactionRequest request) {
 
-    @PutMapping("/{id}")
-    public Transaction updateTransaction(
-            @PathVariable Long id,
-            @RequestBody TransactionRequest request) {
+                return ResponseEntity.ok(
+                                transactionService.addTransaction(
+                                                request));
+        }
 
-        return transactionService.updateTransaction(
-                id,
-                request);
-    }
+        // ==================================================
+        // UPDATE TRANSACTION
+        // PUT /api/transactions/{id}
+        // ==================================================
 
-    // ==================================================
-    // DELETE TRANSACTION
-    // ==================================================
+        @PutMapping("/{id}")
+        public ResponseEntity<Transaction> updateTransaction(
+                        @PathVariable Long id,
+                        @RequestBody TransactionRequest request) {
 
-    @DeleteMapping("/{id}")
-    public void deleteTransaction(@PathVariable Long id) {
+                return ResponseEntity.ok(
+                                transactionService.updateTransaction(
+                                                id,
+                                                request));
+        }
 
-        transactionService.deleteTransaction(id);
-    }
+        // ==================================================
+        // DELETE TRANSACTION
+        // DELETE /api/transactions/{id}?userId=1
+        // ==================================================
+
+        @DeleteMapping("/{id}")
+        public ResponseEntity<Void> deleteTransaction(
+                        @PathVariable Long id,
+                        @RequestParam Long userId) {
+
+                transactionService.deleteTransaction(
+                                id,
+                                userId);
+
+                return ResponseEntity
+                                .noContent()
+                                .build();
+        }
 }

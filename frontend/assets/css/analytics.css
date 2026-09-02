@@ -1,385 +1,868 @@
-/* ==========================================
-   ANALYTICS PAGE
-========================================== */
+/* =========================================================
+   BACHAT BUDDY - ANALYTICS PAGE
+   FINAL CSS
+   Matches Dashboard / Budget / Transactions design
+========================================================= */
 
-/* ==========================================
-   PAGE HEADER
-========================================== */
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   WELCOME HEADER
+========================================================= */
+
+.welcome-card {
+    position: relative;
+    overflow: hidden;
+
+    width: 100%;
+    min-height: 125px;
+
+    margin-bottom: 25px;
+    padding: 25px 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    box-sizing: border-box;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #07152d,
+        #12285c
+    );
+
+    color: #ffffff;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.welcome-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -40px;
+    bottom: -60px;
+
+    background: rgba(255,255,255,0.06);
+
+    border-radius: 50%;
+}
+
+.welcome-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -80px;
+    top: -80px;
+
+    background: rgba(255,255,255,0.08);
+
+    border-radius: 50%;
+}
+
+.welcome-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.welcome-content {
+    flex: 1;
+}
+
+.welcome-content h2 {
+    margin: 0 0 8px;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.welcome-message {
+    margin: 0;
+
+    font-size: 13px;
+
+    color: #bfdbfe;
+}
+
+
+/* =========================================================
+   WELCOME ACTIONS
+========================================================= */
+
+.welcome-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    margin-left: auto;
+
+    flex-shrink: 0;
+}
+
+.welcome-search {
+    width: 230px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 13px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.13);
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.welcome-search i {
+    color: #dbeafe;
+
+    font-size: 15px;
+
+    flex-shrink: 0;
+}
+
+.welcome-search input {
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-size: 13px;
+}
+
+.welcome-search input::placeholder {
+    color: #cbd5e1;
+}
+
+
+/* =========================================================
+   NOTIFICATION
+========================================================= */
+
+.notification-btn {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.13);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.notification-btn:hover {
+    background: rgba(255,255,255,0.25);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   SUMMARY SECTION
+========================================================= */
 
 .analytics-summary {
     display: grid;
+
     grid-template-columns: repeat(4, 1fr);
+
     gap: 20px;
+
     margin-bottom: 25px;
 }
 
 
-/* ==========================================
+/* =========================================================
    SUMMARY CARDS
-========================================== */
+========================================================= */
 
 .summary-card {
     position: relative;
+
     overflow: hidden;
 
-    min-height: 165px;
+    min-height: 185px;
 
-    padding: 24px;
+    padding: 30px;
 
-    background: #ffffff;
+    box-sizing: border-box;
 
-    border: 1px solid #edf0f5;
-    border-left: 6px solid transparent;
+    border: none;
 
-    border-radius: 20px;
+    border-radius: 24px;
 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+    color: #ffffff;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    box-shadow:
+        0 18px 40px rgba(0,0,0,0.18);
 
-    transition: .3s ease;
-}
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
 
-.summary-card:hover {
-    transform: translateY(-6px);
-
-    box-shadow: 0 18px 35px rgba(0, 0, 0, .12);
+    cursor: pointer;
 }
 
 
 /* Decorative circle */
+
+.summary-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -70px;
+    top: -70px;
+
+    background: rgba(255,255,255,0.12);
+
+    border-radius: 50%;
+}
 
 .summary-card::after {
     content: "";
 
     position: absolute;
 
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
 
-    right: -45px;
-    top: -45px;
+    left: -45px;
+    bottom: -45px;
+
+    background: rgba(255,255,255,0.06);
 
     border-radius: 50%;
+}
 
-    background: rgba(255, 255, 255, .5);
+.summary-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,0.25);
 }
 
 
-/* ==========================================
-   CARD COLORS
-========================================== */
+/* =========================================================
+   SUMMARY CARD CONTENT
+========================================================= */
 
-.income-card {
-    border-left-color: #20bd6b;
-}
-
-.expense-card {
-    border-left-color: #f04444;
-}
-
-.savings-card {
-    border-left-color: #2867e8;
-}
-
-.prediction-card {
-    border-left-color: #7c3aed;
-}
-
-
-/* ==========================================
-   CARD ICONS
-========================================== */
-
-.summary-card>i {
+.summary-card i {
     position: relative;
+
     z-index: 2;
 
-    font-size: 28px;
+    display: block;
 
-    margin-bottom: 8px;
+    font-size: 30px;
+
+    margin-bottom: 12px;
+
+    color: #ffffff;
+
+    opacity: 0.95;
 }
-
-.income-card>i {
-    color: #20bd6b;
-}
-
-.expense-card>i {
-    color: #f04444;
-}
-
-.savings-card>i {
-    color: #2867e8;
-}
-
-.prediction-card>i {
-    color: #7c3aed;
-}
-
-
-/* ==========================================
-   CARD TITLE
-========================================== */
 
 .summary-card h3 {
     position: relative;
-    z-index: 2;
 
-    margin: 0 0 8px;
-
-    font-size: 16px;
-
-    font-weight: 600;
-
-    color: #555;
-}
-
-
-/* ==========================================
-   CARD AMOUNT
-========================================== */
-
-.summary-card .amount {
-    position: relative;
     z-index: 2;
 
     margin: 0;
 
-    font-size: 27px;
+    font-size: 15px;
 
-    font-weight: 700;
+    font-weight: 600;
+
+    color: #ffffff;
 }
 
-.income-card .amount {
-    color: #20bd6b;
-}
-
-.expense-card .amount {
-    color: #f04444;
-}
-
-.savings-card .amount {
-    color: #2867e8;
-}
-
-.prediction-card .amount {
-    color: #7c3aed;
-}
-
-
-/* Prediction subtitle */
-
-.prediction-card small {
+.summary-card .amount {
     position: relative;
+
     z-index: 2;
 
-    margin-top: 4px;
+    margin: 10px 0 0;
 
-    color: #6b7280;
+    font-size: 34px;
 
-    font-size: 12px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    color: #ffffff;
+
+    word-break: break-word;
+}
+
+.summary-card small {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: rgba(255,255,255,0.85);
 }
 
 
-/* ==========================================
-   CHART SECTION
-========================================== */
+/* =========================================================
+   SUMMARY CARD COLORS
+========================================================= */
+
+/* Income - GREEN */
+
+.summary-card.income-card {
+    background:
+        linear-gradient(
+            135deg,
+            #00d26a,
+            #00b84f
+        ) !important;
+}
+
+
+/* Expense - RED */
+
+.summary-card.expense-card {
+    background:
+        linear-gradient(
+            135deg,
+            #ff4b5c,
+            #ff1744
+        ) !important;
+}
+
+
+/* Savings - BLUE */
+
+.summary-card.savings-card {
+    background:
+        linear-gradient(
+            135deg,
+            #2196f3,
+            #1565c0
+        ) !important;
+}
+
+
+/* AI Prediction - PURPLE */
+
+.summary-card.prediction-card {
+    background:
+        linear-gradient(
+            135deg,
+            #a35fdb,
+            #b904dd
+        ) !important;
+}
+
+
+/* =========================================================
+   COMMON CHART / REPORT CARDS
+========================================================= */
+
+.chart-card,
+.report-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: none;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    margin-bottom: 24px;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.chart-card:hover,
+.report-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 18px 38px rgba(15,23,42,0.13);
+}
+
+
+/* =========================================================
+   CHART GRID
+========================================================= */
 
 .charts {
     display: grid;
 
-    grid-template-columns: 1.1fr .9fr;
+    grid-template-columns: 1.5fr 1fr;
 
-    gap: 20px;
+    gap: 24px;
 
-    margin-bottom: 20px;
+    margin-bottom: 0;
+}
+
+.charts .chart-card {
+    margin-bottom: 0;
 }
 
 
-/* ==========================================
-   CHART CARD
-========================================== */
-
-.chart-card {
-    background: #ffffff;
-
-    border: 1px solid #edf0f5;
-    border-radius: 20px;
-
-    padding: 20px;
-
-    min-height: 330px;
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
-
-    transition: .3s ease;
-}
-
-.chart-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow: 0 16px 30px rgba(0, 0, 0, .1);
-}
-
-
-/* Colored borders */
-
-.income-expense-chart {
-    border-left: 5px solid #2867e8;
-}
-
-.category-chart {
-    border-left: 5px solid #7c3aed;
-}
-
-
-/* ==========================================
-   CHART HEADING
-========================================== */
+/* =========================================================
+   CHART HEADINGS
+========================================================= */
 
 .chart-card h2 {
-    margin: 0 0 18px;
+    margin: -25px -25px 0;
 
-    font-size: 19px;
+    padding: 16px 22px;
 
-    font-weight: 600;
+    min-height: 58px;
 
-    color: #1d2b44;
+    display: flex;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2196f3,
+            #1565c0
+        );
 }
 
 
-/* ==========================================
+/* Expense chart heading */
+
+.category-chart h2 {
+    background:
+        linear-gradient(
+            135deg,
+            #00d26a,
+            #00b84f
+        );
+}
+
+
+/* Monthly savings heading */
+
+.main-content > .chart-card h2 {
+    background:
+        linear-gradient(
+            135deg,
+            #a35fdb,
+            #b904dd
+        );
+}
+
+
+/* =========================================================
    CHART CONTAINER
-========================================== */
+========================================================= */
 
 .chart-container {
     position: relative;
 
     width: 100%;
 
-    height: 250px;
+    height: 320px;
+
+    margin-top: 25px;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+
+    height: 100% !important;
 }
 
 
-/* ==========================================
-   REPORT CARDS
-========================================== */
+/* =========================================================
+   BUDGET UTILIZATION
+========================================================= */
 
-.report-card {
-    background: #ffffff;
+.main-content > .report-card:nth-of-type(2) h2 {
+    margin: -25px -25px 25px;
 
-    border: 1px solid #edf0f5;
-    border-left: 5px solid #f59e0b;
+    padding: 16px 22px;
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f59e0b,
+            #f97316
+        );
+
+    color: #ffffff;
+
+    font-size: 18px;
+}
+
+
+/* Progress */
+
+.report-card .progress {
+    height: 25px;
 
     border-radius: 20px;
 
-    padding: 22px;
+    overflow: hidden;
 
-    margin-bottom: 20px;
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
-
-    transition: .3s ease;
+    background: #e8eef7;
 }
 
-.report-card:hover {
-    transform: translateY(-4px);
+.report-card .progress-bar {
+    display: flex;
 
-    box-shadow: 0 16px 30px rgba(0, 0, 0, .1);
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #60a5fa
+        );
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    font-weight: 700;
 }
 
 
-/* ==========================================
-   REPORT HEADINGS
-========================================== */
+/* =========================================================
+   AI INSIGHTS
+========================================================= */
 
-.report-card h2 {
-    margin: 0 0 15px;
+.ai-insights {
+    background:
+        linear-gradient(
+            135deg,
+            #f5f3ff,
+            #ffffff
+        );
 
-    font-size: 20px;
-
-    font-weight: 600;
-
-    color: #1d2b44;
+    border-left: 5px solid #a35fdb;
 }
 
+.report-heading {
+    display: flex;
 
-/* ==========================================
-   REPORT LIST
-========================================== */
+    align-items: center;
 
-.report-card ul {
+    gap: 15px;
+
+    margin-bottom: 18px;
+}
+
+.report-heading h2 {
+    margin: 0 0 4px;
+
+    color: #17233c;
+}
+
+.report-heading p {
     margin: 0;
 
-    padding-left: 22px;
+    color: #64748b;
+
+    font-size: 13px;
 }
 
-.report-card li {
-    margin-bottom: 10px;
+.report-icon {
+    width: 50px;
+    height: 50px;
 
-    color: #4b5563;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a35fdb,
+            #b904dd
+        );
+
+    color: #ffffff;
+
+    font-size: 22px;
+
+    flex-shrink: 0;
+}
+
+.ai-insights ul {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+.ai-insights li {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid #edf0f5;
+
+    color: #475569;
+
+    font-size: 14px;
+}
+
+.ai-insights li:last-child {
+    border-bottom: none;
+}
+
+.ai-insights li i {
+    color: #a35fdb;
+
+    font-size: 17px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FINANCIAL HEALTH
+========================================================= */
+
+.health-card {
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ecfdf5,
+            #ffffff
+        );
+
+    border-left: 5px solid #00c853;
+}
+
+.health-card h2 {
+    text-align: left;
+
+    color: #17233c;
+}
+
+.health-card h2 i {
+    color: #00c853;
+}
+
+.health-score {
+    font-size: 55px;
+
+    font-weight: 800;
+
+    color: #00a846;
+
+    margin: 10px 0;
+}
+
+.health-score span {
+    font-size: 20px;
+
+    color: #64748b;
+
+    font-weight: 500;
+}
+
+.health-progress {
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    height: 18px !important;
+}
+
+.health-progress .progress-bar {
+    background:
+        linear-gradient(
+            90deg,
+            #00c853,
+            #43e97b
+        );
+}
+
+.health-status {
+    margin: 15px 0 0;
+
+    color: #15803d;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BUDGET TIPS
+========================================================= */
+
+.report-card ul {
+    padding-left: 20px;
+
+    margin-bottom: 0;
+}
+
+.report-card ul li {
+    margin-bottom: 12px;
+
+    color: #475569;
 
     font-size: 14px;
 
     line-height: 1.5;
 }
 
-.report-card li:last-child {
+.report-card ul li:last-child {
     margin-bottom: 0;
 }
 
 
-/* ==========================================
-   BUDGET UTILIZATION
-========================================== */
+/* =========================================================
+   MONTHLY REPORT
+========================================================= */
 
-.report-card .progress {
-    height: 16px;
-
-    margin-top: 10px;
-
-    border-radius: 20px;
-
-    background: #e5e7eb;
+.report-section {
+    margin-bottom: 25px;
 }
 
-.report-card .progress-bar {
-    background: linear-gradient(90deg,
-            #2563eb,
-            #3b82f6);
+.report-section .report-card {
+    padding: 0;
 
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    font-weight: 600;
+    overflow: hidden;
 }
 
+.report-section .report-card > h2 {
+    margin: 0;
 
-/* ==========================================
-   FINANCIAL HEALTH
-========================================== */
+    padding: 16px 22px;
 
-.report-card h1 {
-    margin: 5px 0;
+    min-height: 58px;
 
-    font-size: 38px;
+    display: flex;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2196f3,
+            #1565c0
+        );
+
+    color: #ffffff;
+
+    font-size: 18px;
 
     font-weight: 700;
-
-    color: #20bd6b;
 }
-
-.report-card p {
-    color: #6b7280;
-}
-
-
-/* ==========================================
-   MONTHLY REPORT TABLE
-========================================== */
 
 .report-table-wrapper {
     width: 100%;
@@ -390,49 +873,170 @@
 .report-table {
     width: 100%;
 
+    min-width: 600px;
+
     border-collapse: collapse;
+
+    background: #ffffff;
+}
+
+
+/* TABLE HEADER - WHITE */
+
+.report-table th {
+    padding: 15px;
+
+    background: #ffffff !important;
+
+    color: #334155 !important;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+
+/* TABLE BODY */
+
+.report-table td {
+    padding: 15px;
+
+    text-align: center;
+
+    color: #334155;
+
+    border-bottom: 1px solid #edf0f5;
 
     font-size: 14px;
 }
 
-.report-table thead {
-    background: #2563eb;
-
-    color: #ffffff;
-}
-
-.report-table th {
-    padding: 14px 16px;
-
-    text-align: left;
-
-    font-weight: 600;
-}
-
-.report-table td {
-    padding: 13px 16px;
-
-    color: #26354b;
-
-    border-bottom: 1px solid #edf0f5;
-}
-
 .report-table tbody tr {
-    transition: .2s ease;
+    transition: 0.2s ease;
 }
 
 .report-table tbody tr:hover {
     background: #f8faff;
 }
 
-.report-table tbody tr:last-child td {
-    border-bottom: none;
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark-mode .chart-card,
+body.dark-mode .report-card {
+    background: #0f2747 !important;
+
+    border: 1px solid #1e4670;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.20);
+}
+
+body.dark-mode .chart-card h2,
+body.dark-mode .report-card h2 {
+    color: #ffffff;
+}
+
+body.dark-mode .report-heading p {
+    color: #94a3b8;
 }
 
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
+/* AI */
+
+body.dark-mode .ai-insights {
+    background:
+        linear-gradient(
+            135deg,
+            #211d38,
+            #182235
+        );
+
+    border-left-color: #b904dd;
+}
+
+body.dark-mode .ai-insights li {
+    color: #cbd5e1;
+
+    border-color: #2c3b55;
+}
+
+
+/* Health */
+
+body.dark-mode .health-card {
+    background:
+        linear-gradient(
+            135deg,
+            #10291f,
+            #182235
+        );
+}
+
+body.dark-mode .health-score {
+    color: #43e97b;
+}
+
+body.dark-mode .health-score span {
+    color: #94a3b8;
+}
+
+body.dark-mode .health-status {
+    color: #86efac;
+}
+
+
+/* Tips */
+
+body.dark-mode .report-card ul li {
+    color: #cbd5e1;
+}
+
+
+/* Progress */
+
+body.dark-mode .report-card .progress {
+    background: #243247;
+}
+
+
+/* Monthly table */
+
+body.dark-mode .report-section .report-card {
+    background: #0f2747 !important;
+}
+
+body.dark-mode .report-table {
+    background: #0f2747;
+}
+
+body.dark-mode .report-table th {
+    background: #ffffff !important;
+
+    color: #334155 !important;
+}
+
+body.dark-mode .report-table td {
+    background: #0f2747 !important;
+
+    color: #e2e8f0 !important;
+
+    border-color: #2c3b55;
+}
+
+body.dark-mode .report-table tbody tr:hover td {
+    background: #173b63 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
 
 @media (max-width: 1100px) {
 
@@ -447,360 +1051,56 @@
 }
 
 
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
 @media (max-width: 768px) {
+
+    .main-content {
+        margin-left: 0 !important;
+
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        padding: 0 12px !important;
+    }
 
     .analytics-summary {
         grid-template-columns: 1fr;
     }
 
     .summary-card {
-        min-height: 145px;
+        min-height: 170px;
+
+        padding: 25px;
     }
 
-    .chart-card {
-        min-height: 300px;
-
-        padding: 18px;
-    }
-
-    .chart-container {
-        height: 230px;
-    }
-
+    .chart-card,
     .report-card {
-        padding: 18px;
-    }
+        padding: 20px;
 
-}
-
-
-@media (max-width: 500px) {
-
-    .summary-card .amount {
-        font-size: 24px;
+        border-radius: 18px;
     }
 
     .chart-card h2 {
+        margin: -20px -20px 0;
+
+        padding: 15px 18px;
+
         font-size: 17px;
     }
 
-    .report-card h2 {
-        font-size: 18px;
-    }
-
     .chart-container {
-        height: 210px;
+        height: 280px;
     }
 
-}
-
-
-/* ==========================================
-   DARK MODE
-========================================== */
-
-body.dark-mode .summary-card,
-body.dark-mode .chart-card,
-body.dark-mode .report-card {
-    background: #182235;
-
-    border-color: #2c3b55;
-
-    color: #ffffff;
-
-    box-shadow: 0 10px 25px rgba(0, 0, 0, .25);
-}
-
-
-/* Titles */
-
-body.dark-mode .summary-card h3,
-body.dark-mode .chart-card h2,
-body.dark-mode .report-card h2 {
-    color: #ffffff;
-}
-
-
-/* Prediction subtitle */
-
-body.dark-mode .prediction-card small {
-    color: #cbd5e1;
-}
-
-
-/* Report text */
-
-body.dark-mode .report-card li,
-body.dark-mode .report-card p {
-    color: #cbd5e1;
-}
-
-
-/* Table */
-
-body.dark-mode .report-table td {
-    color: #e2e8f0;
-
-    border-color: #2c3b55;
-}
-
-body.dark-mode .report-table tbody tr:hover {
-    background: #22304a;
-}
-
-
-/* Progress */
-
-body.dark-mode .report-card .progress {
-    background: #2c3b55;
-}
-
-/* ==========================================
-   ANALYTICS NAVBAR
-========================================== */
-
-.dashboard-navbar {
-    min-height: 78px;
-}
-
-.dashboard-navbar h3 {
-    color: #192944;
-}
-
-.dashboard-navbar small {
-    color: #7a8798;
-}
-
-body.dark-mode .dashboard-navbar h3 {
-    color: #ffffff;
-}
-
-body.dark-mode .dashboard-navbar small {
-    color: #cbd5e1 !important;
-}
-
-/* ==========================================
-   COMMON WELCOME BANNER
-   Same as Dashboard
-========================================== */
-
-.welcome-card {
-
-    width: 100%;
-
-    min-height: 125px;
-
-    padding: 25px 30px;
-
-    margin-bottom: 25px;
-
-    box-sizing: border-box;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 25px;
-
-    border-radius: 20px;
-
-    background: linear-gradient(135deg,
-            #07152d,
-            #12285c);
-
-    color: #ffffff;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, .15);
-}
-
-
-/* ==========================================
-   LEFT CONTENT
-========================================== */
-
-.welcome-content {
-
-    flex: 1;
-}
-
-
-.welcome-content h2 {
-
-    margin: 0 0 8px;
-
-    font-size: 28px;
-
-    font-weight: 700;
-
-    color: #ffffff;
-}
-
-
-.welcome-date {
-
-    margin: 0 0 4px;
-
-    font-size: 13px;
-
-    color: #dbeafe;
-}
-
-
-.welcome-message {
-
-    margin: 0;
-
-    font-size: 13px;
-
-    color: #bfdbfe;
-}
-
-
-/* ==========================================
-   RIGHT SIDE
-========================================== */
-
-.welcome-actions {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: flex-end;
-
-    gap: 12px;
-
-    margin-left: auto;
-
-    flex-shrink: 0;
-}
-
-
-/* ==========================================
-   SEARCH BAR
-========================================== */
-
-.welcome-search {
-
-    width: 230px;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-
-    padding: 0 13px;
-
-    box-sizing: border-box;
-
-    border-radius: 12px;
-
-    background: rgba(255, 255, 255, .13);
-
-    border: 1px solid rgba(255, 255, 255, .25);
-
-    backdrop-filter: blur(10px);
-
-    -webkit-backdrop-filter: blur(10px);
-}
-
-
-.welcome-search i {
-
-    color: #dbeafe;
-
-    font-size: 15px;
-
-    flex-shrink: 0;
-}
-
-
-.welcome-search input {
-
-    width: 100%;
-
-    height: 100%;
-
-    padding: 0;
-
-    border: none;
-
-    outline: none;
-
-    background: transparent;
-
-    color: #ffffff;
-
-    font-size: 13px;
-}
-
-
-.welcome-search input::placeholder {
-
-    color: #cbd5e1;
-}
-
-
-/* ==========================================
-   NOTIFICATION BUTTON
-========================================== */
-
-.notification-btn {
-
-    width: 42px;
-
-    height: 42px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 0;
-
-    border: 1px solid rgba(255, 255, 255, .25);
-
-    border-radius: 12px;
-
-    background: rgba(255, 255, 255, .13);
-
-    color: #ffffff;
-
-    cursor: pointer;
-
-    transition: .2s ease;
-}
-
-
-.notification-btn:hover {
-
-    background: rgba(255, 255, 255, .25);
-
-    transform: translateY(-2px);
-}
-
-
-.notification-btn i {
-
-    font-size: 16px;
-}
-
-
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width: 768px) {
+    .ai-insights li {
+        align-items: flex-start;
+    }
 
     .welcome-card {
-
         flex-direction: column;
 
         align-items: stretch;
@@ -810,23 +1110,17 @@ body.dark-mode .dashboard-navbar small {
         padding: 22px;
     }
 
-
     .welcome-content h2 {
-
         font-size: 24px;
     }
 
-
     .welcome-actions {
-
         width: 100%;
 
         margin-left: 0;
     }
 
-
     .welcome-search {
-
         flex: 1;
 
         width: auto;
@@ -835,39 +1129,99 @@ body.dark-mode .dashboard-navbar small {
 }
 
 
-@media (max-width: 480px) {
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .main-content {
+        padding: 0 10px !important;
+    }
 
     .welcome-card {
-
         padding: 18px;
 
         border-radius: 16px;
     }
 
-
     .welcome-content h2 {
-
         font-size: 21px;
     }
 
-
     .welcome-actions {
-
         gap: 8px;
     }
 
-
     .welcome-search {
-
         height: 40px;
     }
 
-
     .notification-btn {
-
         width: 40px;
-
         height: 40px;
+    }
+
+    .summary-card {
+        min-height: 170px;
+
+        padding: 22px;
+
+        border-radius: 20px;
+    }
+
+    .summary-card .amount {
+        font-size: 29px;
+    }
+
+    .summary-card i {
+        font-size: 27px;
+    }
+
+    .chart-container {
+        height: 240px;
+    }
+
+    .report-heading {
+        align-items: flex-start;
+    }
+
+    .report-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .health-score {
+        font-size: 45px;
+    }
+
+    .health-score span {
+        font-size: 17px;
+    }
+
+    .report-table {
+        min-width: 550px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .summary-card {
+        padding: 20px;
+    }
+
+    .summary-card .amount {
+        font-size: 27px;
+    }
+
+    .welcome-content h2 {
+        font-size: 20px;
     }
 
 }

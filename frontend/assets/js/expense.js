@@ -1,13 +1,22 @@
+/* =========================================================
+   BACHAT BUDDY - EXPENSE
+   Backend Connected + Dynamic Currency + Dynamic Username
+========================================================= */
+
+"use strict";
+
 document.addEventListener("DOMContentLoaded", function () {
   /* =====================================================
        LOGIN CHECK
     ===================================================== */
 
   const loggedIn = sessionStorage.getItem("loggedIn");
+
   const userId = sessionStorage.getItem("userId");
 
   if (loggedIn !== "true" || !userId) {
     window.location.href = "login.html";
+
     return;
   }
 
@@ -26,11 +35,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("expenseForm");
 
   const amountInput = document.getElementById("expenseAmount");
+
   const categoryInput = document.getElementById("expenseCategory");
+
   const dateInput = document.getElementById("expenseDate");
+
   const merchantInput = document.getElementById("merchant");
+
   const paymentInput = document.getElementById("paymentMethod");
+
   const descriptionInput = document.getElementById("expenseDescription");
+
   const notesInput = document.getElementById("expenseNotes");
 
   const message = document.getElementById("expenseMessage");
@@ -44,12 +59,80 @@ document.addEventListener("DOMContentLoaded", function () {
   const expenseCountElement = document.getElementById("expenseCount");
 
   /* =====================================================
+       CHECK ELEMENTS
+    ===================================================== */
+
+  if (!form) {
+    console.error("expenseForm not found.");
+
+    return;
+  }
+
+  if (!tableBody) {
+    console.error("expenseTableBody not found.");
+
+    return;
+  }
+
+  /* =====================================================
+       DYNAMIC USERNAME
+    ===================================================== */
+
+  function loadUserName() {
+    const userName =
+      sessionStorage.getItem("fullName") ||
+      sessionStorage.getItem("userName") ||
+      localStorage.getItem("userName") ||
+      "User";
+
+    const userNameElement = document.getElementById("userName");
+
+    const navbarUserNameElement = document.getElementById("navbarUserName");
+
+    if (userNameElement) {
+      userNameElement.textContent = userName;
+    }
+
+    if (navbarUserNameElement) {
+      navbarUserNameElement.textContent = userName;
+    }
+  }
+
+  loadUserName();
+
+  /* =====================================================
+       PROFILE IMAGE
+    ===================================================== */
+
+  const profileImage = localStorage.getItem("profileImage");
+
+  const profileImageElement = document.getElementById("profileImage");
+
+  if (profileImage && profileImageElement) {
+    profileImageElement.src = profileImage;
+  }
+
+  /* =====================================================
        TODAY'S DATE
     ===================================================== */
 
-  const today = new Date().toISOString().split("T")[0];
+  function getToday() {
+    const today = new Date();
 
-  dateInput.value = today;
+    return (
+      today.getFullYear() +
+      "-" +
+      String(today.getMonth() + 1).padStart(2, "0") +
+      "-" +
+      String(today.getDate()).padStart(2, "0")
+    );
+  }
+
+  const today = getToday();
+
+  if (dateInput) {
+    dateInput.value = today;
+  }
 
   /* =====================================================
        EXPENSE DATA
@@ -58,24 +141,45 @@ document.addEventListener("DOMContentLoaded", function () {
   let expenses = [];
 
   /* =====================================================
+       DYNAMIC CURRENCY
+    ===================================================== */
+
+  function getSelectedCurrency() {
+    return localStorage.getItem("currency") || "INR";
+  }
+
+  /* =====================================================
        FORMAT CURRENCY
     ===================================================== */
 
   function formatCurrency(amount) {
+    const currency = getSelectedCurrency();
+
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
-      currency: "INR",
+
+      currency: currency,
+
       maximumFractionDigits: 2,
     }).format(Number(amount) || 0);
   }
 
   /* =====================================================
-       LOAD EXPENSES FROM BACKEND
+       LOAD EXPENSES
     ===================================================== */
 
   async function loadExpenses() {
     try {
       console.log("Loading expenses from backend...");
+
+      tableBody.innerHTML = `
+                <tr>
+                    <td colspan="5"
+                        class="text-center py-4">
+                        Loading expenses...
+                    </td>
+                </tr>
+            `;
 
       const response = await fetch(
         `${TRANSACTION_API}/user/${userId}/type/expense`,
@@ -84,7 +188,9 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Expense API status:", response.status);
 
       if (!response.ok) {
-        throw new Error(`Server returned ${response.status}`);
+        const errorText = await response.text();
+
+        throw new Error(errorText || `Server returned ${response.status}`);
       }
 
       const data = await response.json();
@@ -105,10 +211,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 <tr>
                     <td colspan="5"
                         class="text-center text-danger py-4">
+
                         Unable to load expenses.
+
+                        <br><br>
+
+                        ${escapeHTML(error.message)}
+
                     </td>
                 </tr>
             `;
+
+      updateSummary();
     }
   }
 
@@ -133,38 +247,47 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       const recentExpenses = [...expenses]
         .sort(function (a, b) {
-          return new Date(b.transactionDate) - new Date(a.transactionDate);
+          return (
+            new Date(normalizeDate(b.transactionDate || b.date)) -
+            new Date(normalizeDate(a.transactionDate || a.date))
+          );
         })
         .slice(0, 10);
 
       recentExpenses.forEach(function (expense) {
         const row = document.createElement("tr");
 
+        const transactionDate = expense.transactionDate || expense.date;
+
         row.innerHTML = `
 
-                    <td>
-                        ${escapeHTML(formatDate(expense.transactionDate))}
-                    </td>
+                        <td>
+                            ${escapeHTML(formatDate(transactionDate))}
+                        </td>
 
-                    <td>
-                        ${escapeHTML(expense.category || "-")}
-                    </td>
 
-                    <td>
-                        ${escapeHTML(expense.merchant || "-")}
-                    </td>
+                        <td>
+                            ${escapeHTML(expense.category || "-")}
+                        </td>
 
-                    <td>
-                        ${escapeHTML(expense.paymentMethod || "-")}
-                    </td>
 
-                    <td class="expense-amount">
+                        <td>
+                            ${escapeHTML(expense.merchant || "-")}
+                        </td>
 
-                        - ${formatCurrency(expense.amount)}
 
-                    </td>
+                        <td>
+                            ${escapeHTML(expense.paymentMethod || "-")}
+                        </td>
 
-                `;
+
+                        <td class="expense-amount">
+
+                            - ${formatCurrency(expense.amount)}
+
+                        </td>
+
+                    `;
 
         tableBody.appendChild(row);
       });
@@ -189,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
     const monthExpenses = expenses.filter(function (expense) {
-      const date = parseDate(expense.transactionDate);
+      const date = parseDate(expense.transactionDate || expense.date);
 
       if (!date) {
         return false;
@@ -214,7 +337,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const todayTotal = expenses
       .filter(function (expense) {
-        return normalizeDate(expense.transactionDate) === today;
+        return normalizeDate(expense.transactionDate || expense.date) === today;
       })
       .reduce(function (sum, expense) {
         return sum + Number(expense.amount || 0);
@@ -224,11 +347,17 @@ document.addEventListener("DOMContentLoaded", function () {
            DISPLAY
         ================================================= */
 
-    totalExpenseElement.textContent = formatCurrency(total);
+    if (totalExpenseElement) {
+      totalExpenseElement.textContent = formatCurrency(total);
+    }
 
-    todayExpenseElement.textContent = formatCurrency(todayTotal);
+    if (todayExpenseElement) {
+      todayExpenseElement.textContent = formatCurrency(todayTotal);
+    }
 
-    expenseCountElement.textContent = monthExpenses.length;
+    if (expenseCountElement) {
+      expenseCountElement.textContent = monthExpenses.length;
+    }
   }
 
   /* =====================================================
@@ -242,9 +371,11 @@ document.addEventListener("DOMContentLoaded", function () {
                CLEAR MESSAGE
             ============================================ */
 
-    message.textContent = "";
+    if (message) {
+      message.textContent = "";
 
-    message.className = "expense-message";
+      message.className = "expense-message";
+    }
 
     /* ============================================
                GET FORM VALUES
@@ -293,11 +424,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* ============================================
-               CREATE TRANSACTION REQUEST
+               USER ID
+            ============================================ */
+
+    const currentUserId = Number(sessionStorage.getItem("userId"));
+
+    if (!Number.isInteger(currentUserId) || currentUserId <= 0) {
+      showError("Invalid user session. Please login again.");
+
+      return;
+    }
+
+    /* ============================================
+               DESCRIPTION
+            ============================================ */
+
+    const finalDescription = description || merchant || notes || "Expense";
+
+    /* ============================================
+               CREATE REQUEST
             ============================================ */
 
     const transactionData = {
-      userId: Number(userId),
+      userId: currentUserId,
 
       type: "expense",
 
@@ -307,7 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       transactionDate: date,
 
-      description: description || merchant || notes,
+      description: finalDescription,
 
       paymentMethod: paymentMethod,
 
@@ -315,6 +464,20 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     console.log("Sending expense:", transactionData);
+
+    /* ============================================
+               DISABLE BUTTON
+            ============================================ */
+
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    if (submitButton) {
+      submitButton.disabled = true;
+
+      submitButton.dataset.originalText = submitButton.innerHTML;
+
+      submitButton.innerHTML = "Saving...";
+    }
 
     /* ============================================
                SEND TO SPRING BOOT
@@ -333,31 +496,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
       console.log("Add expense status:", response.status);
 
+      const responseText = await response.text();
+
       /* ========================================
                    HANDLE ERROR
                 ======================================== */
 
       if (!response.ok) {
-        const errorText = await response.text();
+        let errorMessage = "Unable to save expense.";
 
-        throw new Error(errorText || `Server returned ${response.status}`);
+        try {
+          const errorData = JSON.parse(responseText);
+
+          errorMessage = errorData.message || errorData.error || errorMessage;
+        } catch (error) {
+          if (responseText) {
+            errorMessage = responseText;
+          }
+        }
+
+        throw new Error(errorMessage);
       }
 
       /* ========================================
-                   GET SAVED TRANSACTION
+                   SUCCESS
                 ======================================== */
 
-      const savedExpense = await response.json();
+      console.log("Expense saved:", responseText);
 
-      console.log("Expense saved:", savedExpense);
+      if (message) {
+        message.textContent = "Expense added successfully!";
 
-      /* ========================================
-                   SUCCESS MESSAGE
-                ======================================== */
-
-      message.textContent = "Expense added successfully!";
-
-      message.style.color = "#198754";
+        message.style.color = "#198754";
+      }
 
       /* ========================================
                    RESET FORM
@@ -365,10 +536,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
       form.reset();
 
-      dateInput.value = today;
+      if (dateInput) {
+        dateInput.value = today;
+      }
 
       /* ========================================
-                   RELOAD FROM DATABASE
+                   RELOAD DATABASE
                 ======================================== */
 
       await loadExpenses();
@@ -376,8 +549,16 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("ADD EXPENSE ERROR:", error);
 
       showError(
-        "Unable to add expense. " + "Please make sure the backend is running.",
+        error.message ||
+          "Unable to add expense. Please make sure the backend is running.",
       );
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+
+        submitButton.innerHTML =
+          submitButton.dataset.originalText || "Add Expense";
+      }
     }
   });
 
@@ -386,6 +567,10 @@ document.addEventListener("DOMContentLoaded", function () {
     ===================================================== */
 
   function showError(text) {
+    if (!message) {
+      return;
+    }
+
     message.textContent = text;
 
     message.style.color = "#dc3545";
@@ -463,6 +648,16 @@ document.addEventListener("DOMContentLoaded", function () {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
   }
+
+  /* =====================================================
+       CURRENCY CHANGE
+    ===================================================== */
+
+  window.addEventListener("currencyChanged", function () {
+    console.log("Expense currency changed:", getSelectedCurrency());
+
+    renderExpenses();
+  });
 
   /* =====================================================
        INITIAL LOAD

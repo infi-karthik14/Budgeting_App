@@ -12,13 +12,19 @@ import java.util.List;
 public class TransactionService {
 
         private final TransactionRepository transactionRepository;
+
         private final UserRepository userRepository;
+
+        // ==================================================
+        // CONSTRUCTOR
+        // ==================================================
 
         public TransactionService(
                         TransactionRepository transactionRepository,
                         UserRepository userRepository) {
 
                 this.transactionRepository = transactionRepository;
+
                 this.userRepository = userRepository;
         }
 
@@ -32,21 +38,44 @@ public class TransactionService {
         }
 
         // ==================================================
-        // GET TRANSACTION BY ID
+        // GET TRANSACTION BY ID FOR USER
         // ==================================================
 
-        public Transaction getTransaction(Long id) {
+        public Transaction getTransaction(
+                        Long id,
+                        Long userId) {
 
-                return transactionRepository.findById(id)
-                                .orElseThrow(() -> new RuntimeException(
-                                                "Transaction not found with ID: " + id));
+                if (userId == null) {
+
+                        throw new RuntimeException(
+                                        "User ID is required.");
+                }
+
+                return transactionRepository
+                                .findByIdAndUserId(id, userId)
+                                .orElseThrow(
+                                                () -> new RuntimeException(
+                                                                "Transaction not found or access denied."));
         }
 
         // ==================================================
         // GET TRANSACTIONS BY USER
         // ==================================================
 
-        public List<Transaction> getTransactionsByUser(Long userId) {
+        public List<Transaction> getTransactionsByUser(
+                        Long userId) {
+
+                if (userId == null) {
+
+                        throw new RuntimeException(
+                                        "User ID is required.");
+                }
+
+                // Make sure user exists
+                userRepository.findById(userId)
+                                .orElseThrow(
+                                                () -> new RuntimeException(
+                                                                "User not found with ID: " + userId));
 
                 return transactionRepository.findByUserId(userId);
         }
@@ -59,9 +88,28 @@ public class TransactionService {
                         Long userId,
                         String type) {
 
-                return transactionRepository.findByUserIdAndType(
-                                userId,
-                                type);
+                if (userId == null) {
+
+                        throw new RuntimeException(
+                                        "User ID is required.");
+                }
+
+                userRepository.findById(userId)
+                                .orElseThrow(
+                                                () -> new RuntimeException(
+                                                                "User not found with ID: " + userId));
+
+                if (type == null ||
+                                type.trim().isEmpty()) {
+
+                        throw new RuntimeException(
+                                        "Transaction type is required.");
+                }
+
+                return transactionRepository
+                                .findByUserIdAndType(
+                                                userId,
+                                                type);
         }
 
         // ==================================================
@@ -72,9 +120,28 @@ public class TransactionService {
                         Long userId,
                         String category) {
 
-                return transactionRepository.findByUserIdAndCategory(
-                                userId,
-                                category);
+                if (userId == null) {
+
+                        throw new RuntimeException(
+                                        "User ID is required.");
+                }
+
+                userRepository.findById(userId)
+                                .orElseThrow(
+                                                () -> new RuntimeException(
+                                                                "User not found with ID: " + userId));
+
+                if (category == null ||
+                                category.trim().isEmpty()) {
+
+                        throw new RuntimeException(
+                                        "Category is required.");
+                }
+
+                return transactionRepository
+                                .findByUserIdAndCategory(
+                                                userId,
+                                                category);
         }
 
         // ==================================================
@@ -84,9 +151,19 @@ public class TransactionService {
         public Transaction addTransaction(
                         TransactionRequest request) {
 
-                // -----------------------------------------------
-                // VALIDATE USER ID
-                // -----------------------------------------------
+                // ==================================================
+                // VALIDATE REQUEST
+                // ==================================================
+
+                if (request == null) {
+
+                        throw new RuntimeException(
+                                        "Transaction data is required.");
+                }
+
+                // ==================================================
+                // VALIDATE USER
+                // ==================================================
 
                 if (request.getUserId() == null) {
 
@@ -94,29 +171,91 @@ public class TransactionService {
                                         "User ID is required.");
                 }
 
-                // -----------------------------------------------
-                // CHECK USER EXISTS
-                // -----------------------------------------------
+                Long userId = request.getUserId();
 
-                userRepository.findById(request.getUserId())
-                                .orElseThrow(() -> new RuntimeException(
-                                                "User not found with ID: "
-                                                                + request.getUserId()));
+                userRepository.findById(userId)
+                                .orElseThrow(
+                                                () -> new RuntimeException(
+                                                                "User not found with ID: " + userId));
 
-                // -----------------------------------------------
-                // CREATE NEW TRANSACTION
-                // -----------------------------------------------
+                // ==================================================
+                // VALIDATE TYPE
+                // ==================================================
+
+                if (request.getType() == null ||
+                                request.getType().trim().isEmpty()) {
+
+                        throw new RuntimeException(
+                                        "Transaction type is required.");
+                }
+
+                String type = request.getType()
+                                .trim()
+                                .toLowerCase();
+
+                if (!type.equals("income") &&
+                                !type.equals("expense")) {
+
+                        throw new RuntimeException(
+                                        "Transaction type must be income or expense.");
+                }
+
+                // ==================================================
+                // VALIDATE CATEGORY
+                // ==================================================
+
+                if (request.getCategory() == null ||
+                                request.getCategory().trim().isEmpty()) {
+
+                        throw new RuntimeException(
+                                        "Category is required.");
+                }
+
+                // ==================================================
+                // VALIDATE AMOUNT
+                // ==================================================
+
+                if (request.getAmount() == null ||
+                                request.getAmount() <= 0) {
+
+                        throw new RuntimeException(
+                                        "Amount must be greater than 0.");
+                }
+
+                // ==================================================
+                // VALIDATE DATE
+                // ==================================================
+
+                if (request.getTransactionDate() == null ||
+                                request.getTransactionDate().trim().isEmpty()) {
+
+                        throw new RuntimeException(
+                                        "Transaction date is required.");
+                }
+
+                // ==================================================
+                // VALIDATE PAYMENT METHOD
+                // ==================================================
+
+                if (request.getPaymentMethod() == null ||
+                                request.getPaymentMethod().trim().isEmpty()) {
+
+                        throw new RuntimeException(
+                                        "Payment method is required.");
+                }
+
+                // ==================================================
+                // CREATE TRANSACTION
+                // ==================================================
 
                 Transaction transaction = new Transaction();
 
-                transaction.setUserId(
-                                request.getUserId());
+                transaction.setUserId(userId);
 
-                transaction.setType(
-                                request.getType());
+                transaction.setType(type);
 
                 transaction.setCategory(
-                                request.getCategory());
+                                request.getCategory().trim());
 
                 transaction.setAmount(
                                 request.getAmount());
@@ -130,18 +269,34 @@ public class TransactionService {
                 transaction.setPaymentMethod(
                                 request.getPaymentMethod());
 
-                transaction.setStatus(
-                                request.getStatus());
+                // ==================================================
+                // STATUS
+                // ==================================================
 
-                // NEW: MERCHANT
+                if (request.getStatus() != null &&
+                                !request.getStatus().trim().isEmpty()) {
+
+                        transaction.setStatus(
+                                        request.getStatus().trim());
+
+                } else {
+
+                        transaction.setStatus("Completed");
+                }
+
+                // ==================================================
+                // MERCHANT
+                // ==================================================
+
                 transaction.setMerchant(
                                 request.getMerchant());
 
-                // -----------------------------------------------
-                // SAVE TRANSACTION
-                // -----------------------------------------------
+                // ==================================================
+                // SAVE
+                // ==================================================
 
-                return transactionRepository.save(transaction);
+                return transactionRepository.save(
+                                transaction);
         }
 
         // ==================================================
@@ -152,18 +307,19 @@ public class TransactionService {
                         Long id,
                         TransactionRequest request) {
 
-                // -----------------------------------------------
-                // FIND EXISTING TRANSACTION
-                // -----------------------------------------------
+                // ==================================================
+                // VALIDATE REQUEST
+                // ==================================================
 
-                Transaction transaction = transactionRepository.findById(id)
-                                .orElseThrow(() -> new RuntimeException(
-                                                "Transaction not found with ID: "
-                                                                + id));
+                if (request == null) {
 
-                // -----------------------------------------------
+                        throw new RuntimeException(
+                                        "Transaction data is required.");
+                }
+
+                // ==================================================
                 // VALIDATE USER ID
-                // -----------------------------------------------
+                // ==================================================
 
                 if (request.getUserId() == null) {
 
@@ -171,68 +327,158 @@ public class TransactionService {
                                         "User ID is required.");
                 }
 
-                // -----------------------------------------------
-                // CHECK USER EXISTS
-                // -----------------------------------------------
+                Long userId = request.getUserId();
 
-                userRepository.findById(request.getUserId())
-                                .orElseThrow(() -> new RuntimeException(
-                                                "User not found with ID: "
-                                                                + request.getUserId()));
+                // ==================================================
+                // FIND ONLY USER'S TRANSACTION
+                // ==================================================
 
-                // -----------------------------------------------
-                // UPDATE EXISTING TRANSACTION
-                // -----------------------------------------------
+                Transaction transaction = transactionRepository
+                                .findByIdAndUserId(id, userId)
+                                .orElseThrow(
+                                                () -> new RuntimeException(
+                                                                "Transaction not found or access denied."));
 
-                // Do NOT create a new Transaction().
-                // Do NOT change the existing transaction ID.
+                // ==================================================
+                // TYPE
+                // ==================================================
 
-                transaction.setUserId(
-                                request.getUserId());
+                if (request.getType() != null &&
+                                !request.getType().trim().isEmpty()) {
 
-                transaction.setType(
-                                request.getType());
+                        String type = request.getType()
+                                        .trim()
+                                        .toLowerCase();
 
-                transaction.setCategory(
-                                request.getCategory());
+                        if (!type.equals("income") &&
+                                        !type.equals("expense")) {
 
-                transaction.setAmount(
-                                request.getAmount());
+                                throw new RuntimeException(
+                                                "Transaction type must be income or expense.");
+                        }
 
-                transaction.setTransactionDate(
-                                request.getTransactionDate());
+                        transaction.setType(type);
+                }
+
+                // ==================================================
+                // CATEGORY
+                // ==================================================
+
+                if (request.getCategory() != null &&
+                                !request.getCategory().trim().isEmpty()) {
+
+                        transaction.setCategory(
+                                        request.getCategory().trim());
+                }
+
+                // ==================================================
+                // AMOUNT
+                // ==================================================
+
+                if (request.getAmount() != null) {
+
+                        if (request.getAmount() <= 0) {
+
+                                throw new RuntimeException(
+                                                "Amount must be greater than 0.");
+                        }
+
+                        transaction.setAmount(
+                                        request.getAmount());
+                }
+
+                // ==================================================
+                // DATE
+                // ==================================================
+
+                if (request.getTransactionDate() != null &&
+                                !request.getTransactionDate().trim().isEmpty()) {
+
+                        transaction.setTransactionDate(
+                                        request.getTransactionDate());
+                }
+
+                // ==================================================
+                // DESCRIPTION
+                // ==================================================
 
                 transaction.setDescription(
                                 request.getDescription());
 
-                transaction.setPaymentMethod(
-                                request.getPaymentMethod());
+                // ==================================================
+                // PAYMENT METHOD
+                // ==================================================
 
-                transaction.setStatus(
-                                request.getStatus());
+                if (request.getPaymentMethod() != null &&
+                                !request.getPaymentMethod().trim().isEmpty()) {
 
-                // NEW: MERCHANT
+                        transaction.setPaymentMethod(
+                                        request.getPaymentMethod());
+                }
+
+                // ==================================================
+                // STATUS
+                // ==================================================
+
+                if (request.getStatus() != null &&
+                                !request.getStatus().trim().isEmpty()) {
+
+                        transaction.setStatus(
+                                        request.getStatus().trim());
+                }
+
+                // ==================================================
+                // MERCHANT
+                // ==================================================
+
                 transaction.setMerchant(
                                 request.getMerchant());
 
-                // -----------------------------------------------
-                // SAVE UPDATED TRANSACTION
-                // -----------------------------------------------
+                // ==================================================
+                // IMPORTANT
+                // ==================================================
+                // We DO NOT change userId here.
+                //
+                // The transaction remains owned by
+                // the original user.
+                // ==================================================
 
-                return transactionRepository.save(transaction);
+                return transactionRepository.save(
+                                transaction);
         }
 
         // ==================================================
         // DELETE TRANSACTION
         // ==================================================
 
-        public void deleteTransaction(Long id) {
+        public void deleteTransaction(
+                        Long id,
+                        Long userId) {
 
-                if (!transactionRepository.existsById(id)) {
+                // ==================================================
+                // VALIDATE USER
+                // ==================================================
+
+                if (userId == null) {
 
                         throw new RuntimeException(
-                                        "Transaction not found with ID: " + id);
+                                        "User ID is required.");
                 }
+
+                // ==================================================
+                // CHECK OWNERSHIP
+                // ==================================================
+
+                if (!transactionRepository
+                                .existsByIdAndUserId(id, userId)) {
+
+                        throw new RuntimeException(
+                                        "Transaction not found or access denied.");
+                }
+
+                // ==================================================
+                // DELETE
+                // ==================================================
 
                 transactionRepository.deleteById(id);
         }

@@ -1,503 +1,696 @@
-/* =========================================================
-   BACHAT BUDDY - ADD / EDIT TRANSACTION
-   Spring Boot Backend Connected
-========================================================= */
+// ==========================================================
+// BACHAT BUDDY - ADD / EDIT TRANSACTION
+// Backend Connected + Dynamic Currency
+// Secure User Ownership
+// ==========================================================
+
+"use strict";
+
+const TRANSACTION_API_URL = "http://localhost:8080/api/transactions";
+
+// ==========================================================
+// PAGE LOAD
+// ==========================================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* =====================================================
-       ELEMENTS
-    ===================================================== */
+  initializeTransactionPage();
+});
 
-  const form = document.getElementById("transactionForm");
-  const type = document.getElementById("transactionType");
-  const category = document.getElementById("category");
-  const amount = document.getElementById("amount");
-  const date = document.getElementById("transactionDate");
-  const paymentMethod = document.getElementById("paymentMethod");
-  const description = document.getElementById("description");
-  const message = document.getElementById("transactionMessage");
+// ==========================================================
+// INITIALIZE
+// ==========================================================
 
-  const pageTitle = document.getElementById("transactionPageTitle");
-  const submitButton = form
-    ? form.querySelector('button[type="submit"]')
-    : null;
-
-  /* =====================================================
-       ELEMENT CHECK
-    ===================================================== */
-
-  if (
-    !form ||
-    !type ||
-    !category ||
-    !amount ||
-    !date ||
-    !paymentMethod ||
-    !description ||
-    !message
-  ) {
-    console.error("Required transaction form elements are missing.");
-    return;
-  }
-
-  /* =====================================================
-       LOGIN CHECK
-    ===================================================== */
-
+function initializeTransactionPage() {
   const loggedIn = sessionStorage.getItem("loggedIn");
+
   const userId = sessionStorage.getItem("userId");
 
-  console.log("========== SESSION ==========");
-  console.log("Logged In:", loggedIn);
-  console.log("User ID:", userId);
-  console.log("=============================");
-
   if (loggedIn !== "true" || !userId) {
-    showMessage("Session expired. Please login again.", "error");
-
-    setTimeout(function () {
-      window.location.href = "login.html";
-    }, 1500);
+    window.location.href = "login.html";
 
     return;
   }
 
-  /* =====================================================
-       VALIDATE USER ID
-    ===================================================== */
+  loadUserData();
 
-  const numericUserId = Number(userId);
+  setDefaultDate();
 
-  if (!Number.isInteger(numericUserId) || numericUserId <= 0) {
-    showMessage("Invalid user ID. Please login again.", "error");
+  updateCurrencySymbol();
+
+  checkEditMode();
+
+  setupTransactionForm();
+
+  setupCurrencyEvents();
+}
+
+// ==========================================================
+// USER
+// ==========================================================
+
+function loadUserData() {
+  const name =
+    sessionStorage.getItem("fullName") ||
+    sessionStorage.getItem("userName") ||
+    "User";
+
+  const element = document.getElementById("userName");
+
+  if (element) {
+    element.textContent = name;
+  }
+}
+
+// ==========================================================
+// DATE
+// ==========================================================
+
+function setDefaultDate() {
+  const input = document.getElementById("transactionDate");
+
+  if (!input || input.value) {
+    return;
+  }
+
+  const today = new Date();
+
+  const year = today.getFullYear();
+
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+
+  const day = String(today.getDate()).padStart(2, "0");
+
+  input.value = `${year}-${month}-${day}`;
+}
+
+// ==========================================================
+// CURRENCY
+// ==========================================================
+
+function getSelectedCurrency() {
+  return localStorage.getItem("currency") || "INR";
+}
+
+function getCurrencySymbol() {
+  const symbols = {
+    INR: "₹",
+
+    USD: "$",
+
+    EUR: "€",
+
+    GBP: "£",
+
+    JPY: "¥",
+
+    CNY: "¥",
+
+    AUD: "A$",
+
+    CAD: "C$",
+  };
+
+  return symbols[getSelectedCurrency()] || getSelectedCurrency();
+}
+
+function updateCurrencySymbol() {
+  const element = document.querySelector(".amount-input span");
+
+  if (element) {
+    element.textContent = getCurrencySymbol();
+  }
+}
+
+// ==========================================================
+// EDIT MODE
+// ==========================================================
+
+function checkEditMode() {
+  const params = new URLSearchParams(window.location.search);
+
+  const editId = params.get("edit");
+
+  const stored = sessionStorage.getItem("editTransaction");
+
+  // ======================================================
+  // ADD MODE
+  // ======================================================
+
+  if (!editId && !stored) {
+    setPageToAddMode();
 
     return;
   }
 
-  /* =====================================================
-       API
-    ===================================================== */
+  // ======================================================
+  // EDIT MODE
+  // ======================================================
 
-  const API_URL = "http://localhost:8080/api/transactions";
+  setPageToEditMode();
 
-  /* =====================================================
-       TODAY
-    ===================================================== */
+  // ======================================================
+  // STORED TRANSACTION
+  // ======================================================
 
-  function getToday() {
-    const today = new Date();
-
-    return (
-      today.getFullYear() +
-      "-" +
-      String(today.getMonth() + 1).padStart(2, "0") +
-      "-" +
-      String(today.getDate()).padStart(2, "0")
-    );
-  }
-
-  const today = getToday();
-
-  date.value = today;
-
-  /* =====================================================
-       CHECK EDIT MODE
-    ===================================================== */
-
-  const storedTransaction = sessionStorage.getItem("editTransaction");
-
-  let editTransaction = null;
-
-  if (storedTransaction) {
+  if (stored) {
     try {
-      editTransaction = JSON.parse(storedTransaction);
+      const transaction = JSON.parse(stored);
 
-      console.log("Edit transaction:", editTransaction);
+      populateTransactionForm(transaction);
+
+      return;
     } catch (error) {
-      console.error("Invalid edit transaction:", error);
+      console.error("Invalid stored transaction:", error);
 
       sessionStorage.removeItem("editTransaction");
     }
   }
 
-  /* =====================================================
-       GET EDIT ID
-    ===================================================== */
+  // ======================================================
+  // LOAD FROM BACKEND
+  // ======================================================
 
-  let editId = null;
+  if (editId) {
+    loadTransactionById(editId);
+  }
+}
 
-  if (editTransaction && editTransaction.id) {
-    editId = editTransaction.id;
+// ==========================================================
+// ADD MODE
+// ==========================================================
+
+function setPageToAddMode() {
+  const title = document.getElementById("transactionPageTitle");
+
+  const button = document.querySelector(".save-transaction-btn span");
+
+  sessionStorage.removeItem("editTransaction");
+
+  sessionStorage.removeItem("editingTransactionId");
+
+  if (title) {
+    title.textContent = "Add Transaction";
   }
 
-  /* =====================================================
-       ALSO SUPPORT ?edit=ID
-    ===================================================== */
+  if (button) {
+    button.textContent = "Save Transaction";
+  }
+}
 
-  const urlParams = new URLSearchParams(window.location.search);
+// ==========================================================
+// EDIT MODE
+// ==========================================================
 
-  const urlEditId = urlParams.get("edit");
+function setPageToEditMode() {
+  const title = document.getElementById("transactionPageTitle");
 
-  if (urlEditId) {
-    editId = urlEditId;
+  const button = document.querySelector(".save-transaction-btn span");
+
+  if (title) {
+    title.textContent = "Edit Transaction";
   }
 
-  /* =====================================================
-       EDIT MODE
-    ===================================================== */
+  if (button) {
+    button.textContent = "Update Transaction";
+  }
+}
 
-  if (editTransaction && editId) {
-    console.log("========== EDIT MODE ==========");
-    console.log("Transaction ID:", editId);
-    console.log("===============================");
+// ==========================================================
+// LOAD TRANSACTION BY ID
+// ==========================================================
 
-    /* TYPE */
+async function loadTransactionById(id) {
+  const userId = sessionStorage.getItem("userId");
 
-    type.value = String(editTransaction.type || "").toLowerCase();
+  if (!userId) {
+    window.location.href = "login.html";
 
-    /* CATEGORY */
-
-    category.value = editTransaction.category || "";
-
-    /* AMOUNT */
-
-    amount.value = editTransaction.amount || "";
-
-    /* DATE */
-
-    date.value =
-      normalizeDate(editTransaction.transactionDate || editTransaction.date) ||
-      today;
-
-    /* PAYMENT METHOD */
-
-    paymentMethod.value = editTransaction.paymentMethod || "";
-
-    /* DESCRIPTION */
-
-    description.value = editTransaction.description || "";
-
-    /* TITLE */
-
-    if (pageTitle) {
-      pageTitle.textContent = "Edit Transaction";
-    }
-
-    /* BUTTON */
-
-    if (submitButton) {
-      submitButton.innerHTML =
-        '<i class="fa-solid fa-pen-to-square"></i> ' +
-        "<span>Update Transaction</span>";
-    }
-
-    updateTypeStyle();
-  } else {
-    console.log("========== ADD MODE ==========");
-
-    if (pageTitle) {
-      pageTitle.textContent = "Add Transaction";
-    }
-
-    if (submitButton) {
-      submitButton.innerHTML =
-        '<i class="fa-solid fa-check"></i> ' + "<span>Save Transaction</span>";
-    }
+    return;
   }
 
-  /* =====================================================
-       NORMALIZE DATE
-    ===================================================== */
+  try {
+    showMessage("Loading transaction...", "info");
 
-  function normalizeDate(value) {
-    if (!value) {
-      return "";
+    // ==================================================
+    // IMPORTANT FIX
+    // Backend requires userId
+    // ==================================================
+
+    const response = await fetch(
+      `${TRANSACTION_API_URL}/${encodeURIComponent(id)}?userId=${encodeURIComponent(userId)}`,
+    );
+
+    console.log("Load transaction status:", response.status);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+
+      throw new Error(errorText || `Server returned ${response.status}`);
     }
 
-    return String(value).split("T")[0];
+    const transaction = await response.json();
+
+    // ==================================================
+    // EXTRA OWNERSHIP CHECK
+    // ==================================================
+
+    if (
+      transaction.userId != null &&
+      String(transaction.userId) !== String(userId)
+    ) {
+      throw new Error("You are not allowed to edit this transaction.");
+    }
+
+    populateTransactionForm(transaction);
+
+    clearMessage();
+  } catch (error) {
+    console.error("LOAD TRANSACTION ERROR:", error);
+
+    showMessage("Unable to load transaction.\n\n" + error.message, "error");
+  }
+}
+
+// ==========================================================
+// POPULATE FORM
+// ==========================================================
+
+function populateTransactionForm(transaction) {
+  if (!transaction) {
+    return;
   }
 
-  /* =====================================================
-       TYPE COLOR
-    ===================================================== */
+  const type = document.getElementById("transactionType");
 
-  function updateTypeStyle() {
-    type.classList.remove("income-selected", "expense-selected");
+  const category = document.getElementById("category");
 
-    if (type.value === "income") {
-      type.classList.add("income-selected");
-    }
+  const amount = document.getElementById("amount");
 
-    if (type.value === "expense") {
-      type.classList.add("expense-selected");
-    }
+  const date = document.getElementById("transactionDate");
+
+  const payment = document.getElementById("paymentMethod");
+
+  const description = document.getElementById("description");
+
+  // ======================================================
+  // TYPE
+  // ======================================================
+
+  if (type) {
+    type.value = String(transaction.type || "")
+      .trim()
+      .toLowerCase();
   }
 
-  /* =====================================================
-       TYPE CHANGE
-    ===================================================== */
+  // ======================================================
+  // CATEGORY
+  // ======================================================
 
-  type.addEventListener("change", updateTypeStyle);
+  if (category) {
+    category.value = transaction.category || "";
+  }
 
-  /* =====================================================
-       FORM SUBMIT
-    ===================================================== */
+  // ======================================================
+  // AMOUNT
+  // ======================================================
+
+  if (amount) {
+    amount.value = transaction.amount ?? "";
+  }
+
+  // ======================================================
+  // DATE
+  // ======================================================
+
+  if (date) {
+    date.value = normalizeDate(
+      transaction.transactionDate || transaction.date || transaction.createdAt,
+    );
+  }
+
+  // ======================================================
+  // PAYMENT METHOD
+  // ======================================================
+
+  if (payment) {
+    payment.value = transaction.paymentMethod || "";
+  }
+
+  // ======================================================
+  // DESCRIPTION
+  // ======================================================
+
+  if (description) {
+    description.value = transaction.description || "";
+  }
+
+  // ======================================================
+  // STORE EDITING ID
+  // ======================================================
+
+  if (transaction.id != null) {
+    sessionStorage.setItem("editingTransactionId", String(transaction.id));
+  }
+
+  sessionStorage.removeItem("editTransaction");
+}
+
+// ==========================================================
+// NORMALIZE DATE
+// ==========================================================
+
+function normalizeDate(value) {
+  if (!value) {
+    return "";
+  }
+
+  return String(value).split("T")[0].substring(0, 10);
+}
+
+// ==========================================================
+// FORM SETUP
+// ==========================================================
+
+function setupTransactionForm() {
+  const form = document.getElementById("transactionForm");
+
+  if (!form) {
+    console.error("transactionForm not found.");
+
+    return;
+  }
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    /* ---------------------------------------------
-               CLEAR MESSAGE
-            --------------------------------------------- */
+    await saveTransaction();
+  });
+}
 
-    message.textContent = "";
+// ==========================================================
+// SAVE / UPDATE TRANSACTION
+// ==========================================================
 
-    message.className = "transaction-message";
+async function saveTransaction() {
+  const userId = sessionStorage.getItem("userId");
 
-    /* ---------------------------------------------
-               GET VALUES
-            --------------------------------------------- */
+  if (!userId) {
+    showMessage("Session expired. Please login again.", "error");
 
-    const transactionType = type.value.trim().toLowerCase();
+    return;
+  }
 
-    const transactionCategory = category.value.trim();
+  // ======================================================
+  // ELEMENTS
+  // ======================================================
 
-    const transactionAmount = Number(amount.value);
+  const typeElement = document.getElementById("transactionType");
 
-    const transactionDate = date.value;
+  const categoryElement = document.getElementById("category");
 
-    const transactionPaymentMethod = paymentMethod.value.trim();
+  const amountElement = document.getElementById("amount");
 
-    const transactionDescription = description.value.trim();
+  const dateElement = document.getElementById("transactionDate");
 
-    /* ---------------------------------------------
-               VALIDATION
-            --------------------------------------------- */
+  const paymentElement = document.getElementById("paymentMethod");
 
-    if (!transactionType) {
-      showMessage("Please select transaction type.", "error");
+  const descriptionElement = document.getElementById("description");
 
-      return;
+  // ======================================================
+  // SAFETY CHECK
+  // ======================================================
+
+  if (
+    !typeElement ||
+    !categoryElement ||
+    !amountElement ||
+    !dateElement ||
+    !paymentElement ||
+    !descriptionElement
+  ) {
+    showMessage("Transaction form is incomplete.", "error");
+
+    return;
+  }
+
+  // ======================================================
+  // VALUES
+  // ======================================================
+
+  const type = typeElement.value.trim().toLowerCase();
+
+  const category = categoryElement.value.trim();
+
+  const amount = Number(amountElement.value);
+
+  const transactionDate = dateElement.value;
+
+  const paymentMethod = paymentElement.value.trim();
+
+  const description = descriptionElement.value.trim();
+
+  // ======================================================
+  // VALIDATION
+  // ======================================================
+
+  if (!type) {
+    showMessage("Please select transaction type.", "error");
+
+    typeElement.focus();
+
+    return;
+  }
+
+  if (type !== "income" && type !== "expense") {
+    showMessage("Invalid transaction type.", "error");
+
+    return;
+  }
+
+  if (!category) {
+    showMessage("Please select a category.", "error");
+
+    categoryElement.focus();
+
+    return;
+  }
+
+  if (!Number.isFinite(amount) || amount <= 0) {
+    showMessage("Please enter a valid amount greater than 0.", "error");
+
+    amountElement.focus();
+
+    return;
+  }
+
+  if (!transactionDate) {
+    showMessage("Please select a transaction date.", "error");
+
+    dateElement.focus();
+
+    return;
+  }
+
+  if (!paymentMethod) {
+    showMessage("Please select a payment method.", "error");
+
+    paymentElement.focus();
+
+    return;
+  }
+
+  // ======================================================
+  // REQUEST BODY
+  // ======================================================
+
+  const requestBody = {
+    userId: Number(userId),
+
+    type: type,
+
+    category: category,
+
+    amount: amount,
+
+    transactionDate: transactionDate,
+
+    description: description || null,
+
+    paymentMethod: paymentMethod,
+
+    status: "Completed",
+
+    merchant: description || null,
+  };
+
+  console.log("Transaction request:", requestBody);
+
+  // ======================================================
+  // DETERMINE ADD / EDIT
+  // ======================================================
+
+  const params = new URLSearchParams(window.location.search);
+
+  const editId =
+    params.get("edit") || sessionStorage.getItem("editingTransactionId");
+
+  const isEditMode = Boolean(editId);
+
+  const url = isEditMode
+    ? `${TRANSACTION_API_URL}/${encodeURIComponent(editId)}`
+    : TRANSACTION_API_URL;
+
+  const method = isEditMode ? "PUT" : "POST";
+
+  // ======================================================
+  // BUTTON
+  // ======================================================
+
+  const saveButton = document.querySelector(".save-transaction-btn");
+
+  const buttonText = saveButton ? saveButton.querySelector("span") : null;
+
+  if (saveButton) {
+    saveButton.disabled = true;
+  }
+
+  if (buttonText) {
+    buttonText.textContent = isEditMode ? "Updating..." : "Saving...";
+  }
+
+  // ======================================================
+  // API REQUEST
+  // ======================================================
+
+  try {
+    showMessage(
+      isEditMode ? "Updating transaction..." : "Saving transaction...",
+      "info",
+    );
+
+    const response = await fetch(url, {
+      method: method,
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(requestBody),
+    });
+
+    const responseText = await response.text();
+
+    if (!response.ok) {
+      throw new Error(responseText || `Server returned ${response.status}`);
     }
 
-    if (transactionType !== "income" && transactionType !== "expense") {
-      showMessage("Invalid transaction type.", "error");
+    console.log(
+      isEditMode
+        ? "Transaction updated successfully."
+        : "Transaction created successfully.",
+    );
 
-      return;
+    // ==================================================
+    // CLEAN SESSION
+    // ==================================================
+
+    sessionStorage.removeItem("editTransaction");
+
+    sessionStorage.removeItem("editingTransactionId");
+
+    // ==================================================
+    // SUCCESS
+    // ==================================================
+
+    showMessage(
+      isEditMode
+        ? "Transaction updated successfully!"
+        : "Transaction added successfully!",
+      "success",
+    );
+
+    // ==================================================
+    // REDIRECT
+    // ==================================================
+
+    setTimeout(function () {
+      window.location.href = "transactions.html";
+    }, 1000);
+  } catch (error) {
+    console.error("TRANSACTION SAVE ERROR:", error);
+
+    showMessage("Unable to save transaction.\n\n" + error.message, "error");
+
+    if (saveButton) {
+      saveButton.disabled = false;
     }
 
-    if (!transactionCategory) {
-      showMessage("Please select a category.", "error");
-
-      return;
+    if (buttonText) {
+      buttonText.textContent = isEditMode
+        ? "Update Transaction"
+        : "Save Transaction";
     }
+  }
+}
 
-    if (!Number.isFinite(transactionAmount) || transactionAmount <= 0) {
-      showMessage("Please enter a valid amount.", "error");
+// ==========================================================
+// MESSAGE
+// ==========================================================
 
-      amount.focus();
+function showMessage(message, type) {
+  const element = document.getElementById("transactionMessage");
 
-      return;
-    }
+  if (!element) {
+    alert(message);
 
-    if (!transactionDate) {
-      showMessage("Please select a date.", "error");
+    return;
+  }
 
-      return;
-    }
+  element.textContent = message;
 
-    if (!transactionPaymentMethod) {
-      showMessage("Please select a payment method.", "error");
+  element.className = "transaction-message";
 
-      return;
-    }
+  if (type === "success") {
+    element.classList.add("success");
+  } else if (type === "error") {
+    element.classList.add("error");
+  } else {
+    element.classList.add("info");
+  }
 
-    /* ---------------------------------------------
-               REQUEST BODY
-            --------------------------------------------- */
+  element.style.display = "block";
+}
 
-    const transactionData = {
-      userId: numericUserId,
+// ==========================================================
+// CLEAR MESSAGE
+// ==========================================================
 
-      type: transactionType,
+function clearMessage() {
+  const element = document.getElementById("transactionMessage");
 
-      category: transactionCategory,
+  if (!element) {
+    return;
+  }
 
-      amount: transactionAmount,
+  element.textContent = "";
 
-      transactionDate: transactionDate,
+  element.className = "transaction-message";
 
-      paymentMethod: transactionPaymentMethod,
+  element.style.display = "none";
+}
 
-      description: transactionDescription || transactionCategory,
+// ==========================================================
+// CURRENCY EVENTS
+// ==========================================================
 
-      /*
-       * These values match the fields
-       * supported by TransactionRequest.
-       */
-
-      status: "Completed",
-
-      merchant: "",
-    };
-
-    console.log("========== REQUEST ==========");
-
-    console.log(JSON.stringify(transactionData, null, 2));
-
-    console.log("=============================");
-
-    /* ---------------------------------------------
-               DETERMINE ADD / UPDATE
-            --------------------------------------------- */
-
-    let url = API_URL;
-
-    let method = "POST";
-
-    const isEdit = editTransaction && editId;
-
-    if (isEdit) {
-      url = API_URL + "/" + encodeURIComponent(editId);
-
-      method = "PUT";
-    }
-
-    console.log("URL:", url);
-    console.log("METHOD:", method);
-
-    /* ---------------------------------------------
-               DISABLE BUTTON
-            --------------------------------------------- */
-
-    const originalButtonHTML = submitButton ? submitButton.innerHTML : "";
-
-    if (submitButton) {
-      submitButton.disabled = true;
-
-      submitButton.innerHTML =
-        '<span class="spinner-border spinner-border-sm me-2"></span>' +
-        (isEdit ? "Updating..." : "Saving...");
-    }
-
-    /* ---------------------------------------------
-               SEND REQUEST
-            --------------------------------------------- */
-
-    try {
-      const response = await fetch(url, {
-        method: method,
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(transactionData),
-      });
-
-      console.log("HTTP Status:", response.status);
-
-      /* -----------------------------------------
-                   READ RESPONSE
-                ----------------------------------------- */
-
-      const responseText = await response.text();
-
-      console.log("Backend response:", responseText);
-
-      /* -----------------------------------------
-                   ERROR
-                ----------------------------------------- */
-
-      if (!response.ok) {
-        let errorMessage = "Unable to save transaction.";
-
-        if (responseText) {
-          try {
-            const errorData = JSON.parse(responseText);
-
-            errorMessage = errorData.message || errorData.error || errorMessage;
-          } catch (error) {
-            errorMessage = responseText;
-          }
-        }
-
-        throw new Error(errorMessage);
-      }
-
-      /* -----------------------------------------
-                   SUCCESS
-                ----------------------------------------- */
-
-      console.log(isEdit ? "Transaction updated." : "Transaction created.");
-
-      showMessage(
-        isEdit
-          ? "Transaction updated successfully!"
-          : "Transaction added successfully!",
-        "success",
-      );
-
-      /* -----------------------------------------
-                   REMOVE EDIT DATA
-                ----------------------------------------- */
-
-      sessionStorage.removeItem("editTransaction");
-
-      /* -----------------------------------------
-                   REDIRECT
-                ----------------------------------------- */
-
-      setTimeout(function () {
-        window.location.href = "transactions.html";
-      }, 1000);
-    } catch (error) {
-      console.error("TRANSACTION ERROR:", error);
-
-      showMessage(error.message || "Unable to connect to backend.", "error");
-
-      /* -----------------------------------------
-                   ENABLE BUTTON
-                ----------------------------------------- */
-
-      if (submitButton) {
-        submitButton.disabled = false;
-
-        submitButton.innerHTML = originalButtonHTML;
-      }
-    }
+function setupCurrencyEvents() {
+  window.addEventListener("currencyChanged", function () {
+    updateCurrencySymbol();
   });
 
-  /* =====================================================
-       MESSAGE
-    ===================================================== */
-
-  function showMessage(text, type) {
-    message.textContent = text;
-
-    message.className = "transaction-message " + type;
-  }
-
-  /* =====================================================
-       LOAD USER NAME
-    ===================================================== */
-
-  const storedName =
-    sessionStorage.getItem("fullName") || sessionStorage.getItem("userName");
-
-  if (storedName) {
-    const nameElement = document.getElementById("userName");
-
-    if (nameElement) {
-      nameElement.textContent = storedName;
+  window.addEventListener("storage", function (event) {
+    if (event.key === "currency") {
+      updateCurrencySymbol();
     }
-  }
-
-  /* =====================================================
-       DEBUG
-    ===================================================== */
-
-  console.log("Transaction form initialized.");
-
-  console.log("Mode:", editTransaction ? "EDIT" : "ADD");
-});
+  });
+}

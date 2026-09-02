@@ -1,8 +1,13 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+
 from predict import predict_expense
 from utils.validators import validate_input
 
 app = Flask(__name__)
+
+# Allow frontend to call Flask API
+CORS(app)
 
 
 @app.route("/predict-expense", methods=["POST"])
@@ -31,6 +36,8 @@ def predict():
 
     except Exception as e:
 
+        print("Prediction error:", e)
+
         return jsonify({
             "error": str(e)
         }), 500
@@ -46,6 +53,7 @@ def health():
 
 
 if __name__ == "__main__":
+
     app.run(
         host="0.0.0.0",
         port=5000,

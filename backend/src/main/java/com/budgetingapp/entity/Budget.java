@@ -6,42 +6,45 @@ import jakarta.persistence.*;
 @Table(name = "budgets")
 public class Budget {
 
-    // ==========================================================
-    // PRIMARY KEY
-    // ==========================================================
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // ==========================================================
-    // BUDGET INFORMATION
-    // ==========================================================
-
-    private Double monthlyIncome;
-
-    private Double monthlyBudget;
-
-    @Column(nullable = false)
-    private String category;
-
+    // User who owns the budget
     @Column(nullable = false)
     private Long userId;
 
-    private String startDate;
+    // Budget category
+    @Column(nullable = false)
+    private String category;
 
-    private String endDate;
-
-    private String budgetAmount;
-
+    // Budget name
+    @Column(nullable = false)
     private String budgetName;
 
+    // Amount allocated to this category
+    @Column(nullable = false)
+    private Double budgetAmount;
+
+    // Optional monthly income
+    private Double monthlyIncome;
+
+    // Budget start date
+    @Column(nullable = false)
+    private String startDate;
+
+    // Budget end date
+    @Column(nullable = false)
+    private String endDate;
+
+
     // ==========================================================
-    // DEFAULT CONSTRUCTOR
+    // CONSTRUCTOR
     // ==========================================================
 
     public Budget() {
     }
+
 
     // ==========================================================
     // GETTERS
@@ -51,20 +54,24 @@ public class Budget {
         return id;
     }
 
-    public Double getMonthlyIncome() {
-        return monthlyIncome;
-    }
-
-    public Double getMonthlyBudget() {
-        return monthlyBudget;
+    public Long getUserId() {
+        return userId;
     }
 
     public String getCategory() {
         return category;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getBudgetName() {
+        return budgetName;
+    }
+
+    public Double getBudgetAmount() {
+        return budgetAmount;
+    }
+
+    public Double getMonthlyIncome() {
+        return monthlyIncome;
     }
 
     public String getStartDate() {
@@ -75,13 +82,6 @@ public class Budget {
         return endDate;
     }
 
-    public String getBudgetAmount() {
-        return budgetAmount;
-    }
-
-    public String getBudgetName() {
-        return budgetName;
-    }
 
     // ==========================================================
     // SETTERS
@@ -91,20 +91,24 @@ public class Budget {
         this.id = id;
     }
 
-    public void setMonthlyIncome(Double monthlyIncome) {
-        this.monthlyIncome = monthlyIncome;
-    }
-
-    public void setMonthlyBudget(Double monthlyBudget) {
-        this.monthlyBudget = monthlyBudget;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public void setCategory(String category) {
         this.category = category;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setBudgetName(String budgetName) {
+        this.budgetName = budgetName;
+    }
+
+    public void setBudgetAmount(Double budgetAmount) {
+        this.budgetAmount = budgetAmount;
+    }
+
+    public void setMonthlyIncome(Double monthlyIncome) {
+        this.monthlyIncome = monthlyIncome;
     }
 
     public void setStartDate(String startDate) {
@@ -115,13 +119,6 @@ public class Budget {
         this.endDate = endDate;
     }
 
-    public void setBudgetAmount(String budgetAmount) {
-        this.budgetAmount = budgetAmount;
-    }
-
-    public void setBudgetName(String budgetName) {
-        this.budgetName = budgetName;
-    }
 
     // ==========================================================
     // TO STRING
@@ -132,14 +129,13 @@ public class Budget {
 
         return "Budget{" +
                 "id=" + id +
-                ", monthlyIncome=" + monthlyIncome +
-                ", monthlyBudget=" + monthlyBudget +
-                ", category='" + category + '\'' +
                 ", userId=" + userId +
+                ", category='" + category + '\'' +
+                ", budgetName='" + budgetName + '\'' +
+                ", budgetAmount=" + budgetAmount +
+                ", monthlyIncome=" + monthlyIncome +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
-                ", budgetAmount='" + budgetAmount + '\'' +
-                ", budgetName='" + budgetName + '\'' +
                 '}';
     }
 }

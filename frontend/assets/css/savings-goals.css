@@ -1,0 +1,609 @@
+/* ==========================================================
+   BACHAT BUDDY - SAVINGS GOALS
+   Same Style as Income / Expense Pages
+========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f5f7fb;
+    color: #1f2937;
+    font-family: Arial, sans-serif;
+}
+
+
+/* ==========================================================
+   NAVBAR
+========================================================== */
+
+.navbar {
+    background: #ffffff !important;
+    min-height: 70px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-brand {
+    color: #2563eb !important;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.navbar-brand i {
+    font-size: 22px;
+}
+
+#userName {
+    color: #374151;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   MAIN AREA
+========================================================== */
+
+main.container {
+    max-width: 1200px;
+    padding-top: 35px;
+    padding-bottom: 50px;
+}
+
+
+/* ==========================================================
+   PAGE HEADER
+========================================================== */
+
+main > .d-flex:first-child {
+    margin-bottom: 30px !important;
+}
+
+main h2 {
+    margin: 0;
+    color: #111827;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+main h2 i {
+    color: #2563eb;
+}
+
+main h2 + p {
+    margin-top: 6px;
+    color: #6b7280 !important;
+}
+
+
+/* ==========================================================
+   ALL CARDS
+========================================================== */
+
+.card {
+    background: #ffffff;
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+
+/* ==========================================================
+   CREATE GOAL CARD
+========================================================== */
+
+.card h5 {
+    color: #111827;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.card h5 i {
+    color: #2563eb;
+}
+
+
+/* ==========================================================
+   FORM
+========================================================== */
+
+.form-label {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    height: 45px;
+    border: 1px solid #dfe3e8;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    padding: 10px 13px;
+}
+
+.form-control:hover {
+    border-color: #cbd5e1;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.btn {
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 16px;
+}
+
+.btn-primary {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.btn-outline-primary {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-outline-primary:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-outline-secondary {
+    color: #4b5563;
+    border-color: #d1d5db;
+}
+
+.btn-outline-danger {
+    color: #dc2626;
+    border-color: #dc2626;
+}
+
+
+/* ==========================================================
+   BUTTON AREA
+========================================================== */
+
+#saveGoalBtn {
+    min-width: 125px;
+}
+
+#resetGoalBtn {
+    min-width: 90px;
+}
+
+
+/* ==========================================================
+   CURRENT GOAL
+========================================================== */
+
+#goalCard {
+    margin-top: 25px;
+}
+
+#displayGoalName {
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #111827;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   PERCENTAGE BADGE
+========================================================== */
+
+#displayPercentage {
+    background: #2563eb !important;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-size: 13px !important;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   SAVED / TARGET
+========================================================== */
+
+#displaySaved,
+#displayTarget {
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+#displaySaved {
+    color: #16a34a !important;
+}
+
+#displayTarget {
+    color: #111827;
+}
+
+
+/* ==========================================================
+   PROGRESS BAR
+========================================================== */
+
+.progress {
+    height: 14px !important;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#goalProgress {
+    min-width: 0;
+    border-radius: 20px;
+    background: #2563eb !important;
+    font-size: 11px;
+    font-weight: 600;
+    transition: width 0.5s ease;
+}
+
+
+/* ==========================================================
+   DEADLINE
+========================================================== */
+
+#displayDeadline {
+    margin-left: 5px;
+    color: #374151;
+    font-weight: 600;
+}
+
+
+/* ==========================================================
+   REMAINING
+========================================================== */
+
+#displayRemaining {
+    margin-left: 5px;
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   DELETE BUTTON
+========================================================== */
+
+#deleteGoalBtn {
+    padding: 8px 15px;
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+footer {
+    margin-top: 30px;
+    padding: 22px !important;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+}
+
+footer p {
+    margin: 0;
+    color: #6b7280 !important;
+    font-size: 13px;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    main.container {
+        padding-top: 25px;
+    }
+
+    main h2 {
+        font-size: 23px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    #displayGoalName {
+        font-size: 21px;
+    }
+
+    #displaySaved,
+    #displayTarget {
+        font-size: 18px;
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 576px) {
+
+    main > .d-flex:first-child {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 12px;
+    }
+
+    main > .d-flex:first-child .btn {
+        align-self: flex-start;
+    }
+
+    .card-body {
+        padding: 18px;
+    }
+
+    .navbar {
+        min-height: 60px;
+    }
+
+    #userName {
+        display: none;
+    }
+
+}
+
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+body.dark-mode {
+    background: #0f172a;
+    color: #e5e7eb;
+}
+
+body.dark-mode .navbar {
+    background: #111827 !important;
+    border-color: #1f2937;
+}
+
+body.dark-mode .navbar-brand {
+    color: #60a5fa !important;
+}
+
+body.dark-mode #userName {
+    color: #e5e7eb;
+}
+
+body.dark-mode .card {
+    background: #1e293b;
+    color: #e5e7eb;
+}
+
+body.dark-mode main h2,
+body.dark-mode #displayGoalName,
+body.dark-mode #displayTarget,
+body.dark-mode .card h5 {
+    color: #f8fafc;
+}
+
+body.dark-mode .form-label {
+    color: #d1d5db;
+}
+
+body.dark-mode .form-control {
+    background: #0f172a;
+    border-color: #374151;
+    color: #f8fafc;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #9ca3af;
+}
+
+body.dark-mode #displayDeadline {
+    color: #d1d5db;
+}
+
+body.dark-mode .progress {
+    background: #374151;
+}
+
+body.dark-mode footer {
+    background: #111827;
+    border-color: #1f2937;
+}
+
+/* ==========================================================
+   SAVINGS GOALS - DARK MODE FIX
+========================================================== */
+
+body.dark-mode {
+    background: #0f172a !important;
+    color: #e5e7eb !important;
+}
+
+/* Navbar */
+
+body.dark-mode .navbar {
+    background: #111827 !important;
+    border-bottom-color: #334155 !important;
+}
+
+body.dark-mode .navbar-brand {
+    color: #60a5fa !important;
+}
+
+body.dark-mode #userName {
+    color: #e5e7eb !important;
+}
+
+
+/* Main headings */
+
+body.dark-mode main h2 {
+    color: #f8fafc !important;
+}
+
+body.dark-mode main p.text-muted {
+    color: #94a3b8 !important;
+}
+
+
+/* Cards */
+
+body.dark-mode .card {
+    background: #1e293b !important;
+    color: #e5e7eb !important;
+    border-color: #334155 !important;
+}
+
+body.dark-mode .card h5 {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .card h5 i {
+    color: #60a5fa !important;
+}
+
+
+/* Form labels */
+
+body.dark-mode .form-label {
+    color: #cbd5e1 !important;
+}
+
+
+/* Inputs */
+
+body.dark-mode .form-control {
+    background-color: #0f172a !important;
+    color: #f8fafc !important;
+    border-color: #475569 !important;
+}
+
+body.dark-mode .form-control:focus {
+    background-color: #0f172a !important;
+    color: #ffffff !important;
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15) !important;
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #64748b !important;
+}
+
+
+/* Goal name */
+
+body.dark-mode #displayGoalName {
+    color: #f8fafc !important;
+}
+
+
+/* Target */
+
+body.dark-mode #displayTarget {
+    color: #f8fafc !important;
+}
+
+
+/* Saved */
+
+body.dark-mode #displaySaved {
+    color: #4ade80 !important;
+}
+
+
+/* Text-muted */
+
+body.dark-mode .text-muted {
+    color: #94a3b8 !important;
+}
+
+
+/* Progress */
+
+body.dark-mode .progress {
+    background-color: #334155 !important;
+}
+
+
+/* Deadline */
+
+body.dark-mode #displayDeadline {
+    color: #cbd5e1 !important;
+}
+
+
+/* Remaining */
+
+body.dark-mode #displayRemaining {
+    color: #60a5fa !important;
+}
+
+
+/* Footer */
+
+body.dark-mode footer {
+    background: #111827 !important;
+    border-top-color: #334155 !important;
+}
+
+body.dark-mode footer p {
+    color: #94a3b8 !important;
+}
+
+
+/* Outline buttons */
+
+body.dark-mode .btn-outline-secondary {
+    color: #cbd5e1 !important;
+    border-color: #64748b !important;
+}
+
+body.dark-mode .btn-outline-secondary:hover {
+    background: #334155 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .btn-outline-primary {
+    color: #60a5fa !important;
+    border-color: #60a5fa !important;
+}
+
+body.dark-mode .btn-outline-primary:hover {
+    background: #2563eb !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .btn-outline-danger {
+    color: #f87171 !important;
+    border-color: #f87171 !important;
+}
+
+body.dark-mode .btn-outline-danger:hover {
+    background: #dc2626 !important;
+    color: #ffffff !important;
+}

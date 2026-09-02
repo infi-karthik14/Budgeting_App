@@ -1,289 +1,415 @@
-/* =========================================================
-   BACHAT BUDDY - SETTINGS
-========================================================= */
+// ==========================================================
+// BACHAT BUDDY - SETTINGS.JS
+// Backend Connected Settings
+// ==========================================================
+
+"use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* =====================================================
-       ELEMENTS
-    ===================================================== */
+  console.log("Bachat Buddy Settings JS loaded.");
 
-  const darkModeToggle = document.getElementById("darkModeToggle");
-
-  const emailToggle = document.getElementById("emailToggle");
-
-  const budgetAlertToggle = document.getElementById("budgetAlertToggle");
-
-  const autoSaveToggle = document.getElementById("autoSaveToggle");
-
-  const currency = document.getElementById("currency");
-
-  const language = document.getElementById("language");
-
-  const saveBtn = document.getElementById("saveBtn");
-
-  const resetBtn = document.getElementById("resetBtn");
-
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  const profileImage = document.getElementById("profileImage");
-
-  const userName = document.getElementById("userName");
-
-  /* =====================================================
-       AUTHENTICATION CHECK
-    ===================================================== */
+  // ======================================================
+  // LOGIN CHECK
+  // ======================================================
 
   const loggedIn = sessionStorage.getItem("loggedIn");
+  const userId = sessionStorage.getItem("userId");
 
-  const userEmail = sessionStorage.getItem("userEmail");
+  if (loggedIn !== "true" || !userId) {
+    console.warn("User is not logged in.");
 
-  /*
-   * If the user is not logged in,
-   * send them back to login.
-   */
-
-  if (loggedIn !== "true") {
     window.location.href = "login.html";
 
     return;
   }
 
-  /* =====================================================
-       LOAD USER NAME
-    ===================================================== */
+  console.log("Logged-in User ID:", userId);
 
-  const savedUserName = sessionStorage.getItem("userName");
+  // ======================================================
+  // API
+  // ======================================================
 
-  if (userName) {
-    if (savedUserName) {
-      userName.textContent = savedUserName;
-    } else if (userEmail) {
-      userName.textContent = userEmail;
+  const API_URL = `http://localhost:8080/api/users/${userId}/settings`;
+
+  // ======================================================
+  // ELEMENTS
+  // ======================================================
+
+  const darkModeToggle = document.getElementById("darkModeToggle");
+
+  const currencySelect = document.getElementById("currencySelect");
+
+  const languageSelect = document.getElementById("languageSelect");
+
+  const notificationToggle = document.getElementById("notificationToggle");
+
+  const budgetAlertToggle = document.getElementById("budgetAlertToggle");
+
+  const resetSettingsBtn = document.getElementById("resetSettingsBtn");
+
+  const logoutBtn = document.getElementById("logoutBtn");
+
+  const userNameElement = document.getElementById("userName");
+
+  // ======================================================
+  // LOAD USER NAME
+  // ======================================================
+
+  function loadUserName() {
+    const name =
+      sessionStorage.getItem("fullName") ||
+      sessionStorage.getItem("userName") ||
+      "User";
+
+    if (userNameElement) {
+      userNameElement.textContent = name;
     }
   }
 
-  /* =====================================================
-       LOAD PROFILE IMAGE
-    ===================================================== */
+  // ======================================================
+  // LOAD SETTINGS FROM MYSQL
+  // ======================================================
 
-  const savedProfileImage = localStorage.getItem("profileImage");
+  async function loadSettings() {
+    try {
+      console.log("Loading settings from backend...");
 
-  if (savedProfileImage && profileImage) {
-    profileImage.src = savedProfileImage;
-  }
+      const response = await fetch(API_URL);
 
-  /* =====================================================
-       LOAD SETTINGS
-    ===================================================== */
+      if (!response.ok) {
+        throw new Error(`Unable to load settings. Status: ${response.status}`);
+      }
 
-  let savedSettings = {};
+      const settings = await response.json();
 
-  try {
-    savedSettings = JSON.parse(localStorage.getItem("budgetSettings")) || {};
-  } catch (error) {
-    console.error("Unable to load settings:", error);
-  }
+      console.log("Settings received:", settings);
 
-  /* =====================================================
-       EMAIL NOTIFICATIONS
-    ===================================================== */
+      // ==================================================
+      // APPLY SETTINGS TO PAGE
+      // ==================================================
 
-  if (savedSettings.emailNotifications !== undefined) {
-    emailToggle.checked = savedSettings.emailNotifications;
-  }
+      if (darkModeToggle) {
+        darkModeToggle.checked = settings.darkMode;
+      }
 
-  /* =====================================================
-       BUDGET ALERTS
-    ===================================================== */
+      if (currencySelect) {
+        currencySelect.value = settings.currency || "INR";
+      }
 
-  if (savedSettings.budgetAlerts !== undefined) {
-    budgetAlertToggle.checked = savedSettings.budgetAlerts;
-  }
+      if (languageSelect) {
+        languageSelect.value = settings.language || "en";
+      }
 
-  /* =====================================================
-       AUTO SAVE
-    ===================================================== */
+      if (notificationToggle) {
+        notificationToggle.checked = settings.notifications;
+      }
 
-  if (savedSettings.autoSave !== undefined) {
-    autoSaveToggle.checked = savedSettings.autoSave;
-  }
+      if (budgetAlertToggle) {
+        budgetAlertToggle.checked = settings.budgetAlerts;
+      }
 
-  /* =====================================================
-       CURRENCY
-    ===================================================== */
+      // Apply theme immediately
 
-  if (savedSettings.currency) {
-    currency.value = savedSettings.currency;
-  }
+      applyTheme(settings.darkMode);
 
-  /* =====================================================
-       LANGUAGE
-    ===================================================== */
+      // Apply language
 
-  if (savedSettings.language) {
-    language.value = savedSettings.language;
-  }
+      applyLanguage(settings.language || "en");
 
-  /* =====================================================
-       DARK MODE
-    ===================================================== */
+      localStorage.setItem("currency", settings.currency);
+      localStorage.setItem("language", settings.language);
 
-  const darkMode = localStorage.getItem("darkMode");
+      localStorage.setItem(
+        "darkMode",
+        settings.darkMode ? "enabled" : "disabled",
+      );
 
-  if (darkMode === "enabled") {
-    darkModeToggle.checked = true;
+      notifyCurrencyChanged(settings.currency);
+      notifyThemeChanged(settings.darkMode);
 
-    document.body.classList.add("dark-mode");
-  } else {
-    darkModeToggle.checked = false;
+      console.log("Settings loaded successfully.");
+    } catch (error) {
+      console.error("SETTINGS LOAD ERROR:", error);
 
-    document.body.classList.remove("dark-mode");
-  }
-
-  /* =====================================================
-       DARK MODE TOGGLE
-    ===================================================== */
-
-  darkModeToggle.addEventListener("change", function () {
-    if (this.checked) {
-      document.body.classList.add("dark-mode");
-
-      localStorage.setItem("darkMode", "enabled");
-    } else {
-      document.body.classList.remove("dark-mode");
-
-      localStorage.setItem("darkMode", "disabled");
+      showMessage("Unable to load settings.", "danger");
     }
-  });
+  }
 
-  /* =====================================================
-       SAVE SETTINGS
-    ===================================================== */
+  // ======================================================
+  // SAVE SETTINGS TO MYSQL
+  // ======================================================
 
-  saveBtn.addEventListener("click", function () {
+  async function saveSettings() {
     const settings = {
-      emailNotifications: emailToggle.checked,
+      darkMode: darkModeToggle ? darkModeToggle.checked : false,
 
-      budgetAlerts: budgetAlertToggle.checked,
+      currency: currencySelect ? currencySelect.value : "INR",
 
-      autoSave: autoSaveToggle.checked,
+      language: languageSelect ? languageSelect.value : "en",
 
-      currency: currency.value,
+      notifications: notificationToggle ? notificationToggle.checked : true,
 
-      language: language.value,
+      budgetAlerts: budgetAlertToggle ? budgetAlertToggle.checked : true,
     };
 
-    localStorage.setItem("budgetSettings", JSON.stringify(settings));
+    console.log("Saving settings:", settings);
 
-    showMessage("Settings saved successfully!");
-  });
+    try {
+      const response = await fetch(API_URL, {
+        method: "PUT",
 
-  /* =====================================================
-       RESET SETTINGS
-    ===================================================== */
+        headers: {
+          "Content-Type": "application/json",
+        },
 
-  resetBtn.addEventListener("click", function () {
-    const confirmReset = confirm(
-      "Are you sure you want to reset all settings?",
-    );
+        body: JSON.stringify(settings),
+      });
 
-    if (!confirmReset) {
-      return;
+      if (!response.ok) {
+        const errorText = await response.text();
+
+        throw new Error(
+          errorText || `Failed to save settings. Status: ${response.status}`,
+        );
+      }
+
+      const updatedSettings = await response.json();
+
+      console.log("Settings saved:", updatedSettings);
+
+      // Keep localStorage only as a small cache
+
+      localStorage.setItem(
+        "darkMode",
+        updatedSettings.darkMode ? "enabled" : "disabled",
+      );
+
+      localStorage.setItem("currency", updatedSettings.currency);
+
+      localStorage.setItem("language", updatedSettings.language);
+
+      localStorage.setItem(
+        "notifications",
+        updatedSettings.notifications ? "enabled" : "disabled",
+      );
+
+      localStorage.setItem(
+        "budgetAlerts",
+        updatedSettings.budgetAlerts ? "enabled" : "disabled",
+      );
+
+      notifyCurrencyChanged(updatedSettings.currency);
+
+      notifyThemeChanged(updatedSettings.darkMode);
+
+      showMessage("Settings saved successfully.", "success");
+    } catch (error) {
+      console.error("SETTINGS SAVE ERROR:", error);
+
+      showMessage("Unable to save settings.", "danger");
     }
+  }
 
-    /* Default settings */
+  // ======================================================
+  // DARK MODE
+  // ======================================================
 
-    darkModeToggle.checked = false;
+  function applyTheme(enabled) {
+    document.body.classList.toggle("dark-mode", enabled);
 
-    emailToggle.checked = true;
+    document.documentElement.setAttribute(
+      "data-theme",
+      enabled ? "dark" : "light",
+    );
+  }
 
-    budgetAlertToggle.checked = true;
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("change", async function () {
+      applyTheme(this.checked);
 
-    autoSaveToggle.checked = true;
+      await saveSettings();
+    });
+  }
 
-    currency.value = "INR";
+  // ======================================================
+  // CURRENCY
+  // ======================================================
 
-    language.value = "English";
+  if (currencySelect) {
+    currencySelect.addEventListener("change", async function () {
+      await saveSettings();
+    });
+  }
 
-    /* Disable dark mode */
+  // ======================================================
+  // LANGUAGE
+  // ======================================================
 
-    document.body.classList.remove("dark-mode");
+  if (languageSelect) {
+    languageSelect.addEventListener("change", async function () {
+      applyLanguage(this.value);
 
-    localStorage.setItem("darkMode", "disabled");
+      await saveSettings();
+    });
+  }
 
-    /* Remove saved settings */
+  function applyLanguage(language) {
+    document.documentElement.setAttribute("lang", language);
+  }
 
-    localStorage.removeItem("budgetSettings");
+  // ======================================================
+  // NOTIFICATIONS
+  // ======================================================
 
-    showMessage("Settings have been reset.");
-  });
+  if (notificationToggle) {
+    notificationToggle.addEventListener("change", async function () {
+      await saveSettings();
+    });
+  }
 
-  /* =====================================================
-       LOGOUT
-    ===================================================== */
+  // ======================================================
+  // BUDGET ALERTS
+  // ======================================================
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", function () {
-      const confirmLogout = confirm("Are you sure you want to logout?");
+  if (budgetAlertToggle) {
+    budgetAlertToggle.addEventListener("change", async function () {
+      await saveSettings();
+    });
+  }
 
-      if (!confirmLogout) {
+  // ======================================================
+  // RESET SETTINGS
+  // ======================================================
+
+  if (resetSettingsBtn) {
+    resetSettingsBtn.addEventListener("click", async function () {
+      const confirmed = confirm("Are you sure you want to reset all settings?");
+
+      if (!confirmed) {
         return;
       }
 
-      /*
-       * Remove the SAME session information
-       * that login.js created.
-       */
+      try {
+        const response = await fetch(`${API_URL}/reset`, {
+          method: "POST",
+        });
+
+        if (!response.ok) {
+          throw new Error("Unable to reset settings.");
+        }
+
+        const settings = await response.json();
+
+        // Update UI
+
+        if (darkModeToggle) {
+          darkModeToggle.checked = settings.darkMode;
+        }
+
+        if (currencySelect) {
+          currencySelect.value = settings.currency;
+        }
+
+        if (languageSelect) {
+          languageSelect.value = settings.language;
+        }
+
+        if (notificationToggle) {
+          notificationToggle.checked = settings.notifications;
+        }
+
+        if (budgetAlertToggle) {
+          budgetAlertToggle.checked = settings.budgetAlerts;
+        }
+
+        applyTheme(settings.darkMode);
+
+        applyLanguage(settings.language);
+
+        showMessage("Settings reset successfully.", "success");
+      } catch (error) {
+        console.error("RESET ERROR:", error);
+
+        showMessage("Unable to reset settings.", "danger");
+      }
+    });
+  }
+
+  // ======================================================
+  // LOGOUT
+  // ======================================================
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function () {
+      const confirmed = confirm("Are you sure you want to logout?");
+
+      if (!confirmed) {
+        return;
+      }
 
       sessionStorage.removeItem("loggedIn");
 
-      sessionStorage.removeItem("userEmail");
+      sessionStorage.removeItem("userId");
+
+      sessionStorage.removeItem("fullName");
 
       sessionStorage.removeItem("userName");
-
-      /*
-       * Do NOT remove:
-       *
-       * darkMode
-       * budgetSettings
-       * profileImage
-       *
-       * because these are application
-       * preferences.
-       */
 
       window.location.href = "login.html";
     });
   }
 
-  /* =====================================================
-       SUCCESS MESSAGE
-    ===================================================== */
+  // ======================================================
+  // THEME EVENT
+  // ======================================================
 
-  function showMessage(message) {
-    const oldMessage = document.querySelector(".settings-message");
+  function notifyThemeChanged(enabled) {
+    window.dispatchEvent(
+      new CustomEvent("themeChanged", {
+        detail: {
+          darkMode: enabled,
+        },
+      }),
+    );
+  }
 
-    if (oldMessage) {
-      oldMessage.remove();
+  // ======================================================
+  // MESSAGE
+  // ======================================================
+
+  function showMessage(message, type) {
+    const existing = document.getElementById("settingsMessage");
+
+    if (existing) {
+      existing.remove();
     }
 
-    const messageBox = document.createElement("div");
+    const element = document.createElement("div");
 
-    messageBox.className = "settings-message";
+    element.id = "settingsMessage";
 
-    messageBox.innerHTML = `
-            <i class="fa-solid fa-circle-check"></i>
-            <span>${message}</span>
-        `;
+    element.className = `alert alert-${type} position-fixed`;
 
-    document.body.appendChild(messageBox);
+    element.style.top = "20px";
+
+    element.style.right = "20px";
+
+    element.style.zIndex = "9999";
+
+    element.textContent = message;
+
+    document.body.appendChild(element);
 
     setTimeout(function () {
-      messageBox.classList.add("hide");
-
-      setTimeout(function () {
-        messageBox.remove();
-      }, 300);
+      element.remove();
     }, 2500);
   }
+
+  // ======================================================
+  // INITIAL LOAD
+  // ======================================================
+
+  loadUserName();
+
+  loadSettings();
 });

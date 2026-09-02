@@ -1,12 +1,25 @@
-/* =========================================================
-   BACHAT BUDDY - TRANSACTIONS
-   Backend Connected Version
-========================================================= */
+// ==========================================================
+// BACHAT BUDDY - TRANSACTIONS.JS
+// Backend Connected + Dynamic User + Currency + Filters
+// Add / Edit / Delete + Secure User Ownership
+// ==========================================================
+
+"use strict";
+
+// ==========================================================
+// API
+// ==========================================================
+
+const API_URL = "http://localhost:8080/api/transactions";
+
+// ==========================================================
+// PAGE LOAD
+// ==========================================================
 
 document.addEventListener("DOMContentLoaded", function () {
-  /* =====================================================
-       ELEMENTS
-    ===================================================== */
+  // ======================================================
+  // ELEMENTS
+  // ======================================================
 
   const tableBody = document.getElementById("transactionTableBody");
 
@@ -22,18 +35,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const activityList = document.getElementById("activityList");
 
-  /* =====================================================
-       CHECK TABLE
-    ===================================================== */
+  // ======================================================
+  // TABLE CHECK
+  // ======================================================
 
   if (!tableBody) {
     console.error("ERROR: transactionTableBody not found.");
+
     return;
   }
 
-  /* =====================================================
-       LOGIN CHECK
-    ===================================================== */
+  // ======================================================
+  // LOGIN CHECK
+  // ======================================================
 
   const loggedIn = sessionStorage.getItem("loggedIn");
 
@@ -47,25 +61,19 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  console.log("Logged in user ID:", userId);
+  console.log("Logged-in User ID:", userId);
 
-  /* =====================================================
-       API
-    ===================================================== */
-
-  const API_URL = "http://localhost:8080/api/transactions";
-
-  /* =====================================================
-       GLOBAL DATA
-    ===================================================== */
+  // ======================================================
+  // GLOBAL DATA
+  // ======================================================
 
   let transactions = [];
 
   let transactionChart = null;
 
-  /* =====================================================
-       HTML ESCAPE
-    ===================================================== */
+  // ======================================================
+  // HTML ESCAPE
+  // ======================================================
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -76,22 +84,9 @@ document.addEventListener("DOMContentLoaded", function () {
       .replace(/'/g, "&#039;");
   }
 
-  /* =====================================================
-       FORMAT CURRENCY
-    ===================================================== */
-
-  function formatCurrency(amount) {
-    return (
-      "₹" +
-      Number(amount || 0).toLocaleString("en-IN", {
-        maximumFractionDigits: 2,
-      })
-    );
-  }
-
-  /* =====================================================
-       NORMALIZE TYPE
-    ===================================================== */
+  // ======================================================
+  // NORMALIZE TYPE
+  // ======================================================
 
   function normalizeType(type) {
     return String(type || "")
@@ -99,11 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
       .toLowerCase();
   }
 
-  /* =====================================================
-       GET TRANSACTION TYPE
-       
-       Salary is automatically considered income.
-    ===================================================== */
+  // ======================================================
+  // GET TRANSACTION TYPE
+  // ======================================================
 
   function getTransactionType(transaction) {
     if (!transaction) {
@@ -116,13 +109,11 @@ document.addEventListener("DOMContentLoaded", function () {
       .trim()
       .toLowerCase();
 
-    /* Salary = Income */
+    // Salary is always income
 
     if (category === "salary" || category === "salary income") {
       return "income";
     }
-
-    /* Normal backend type */
 
     if (rawType === "income" || rawType === "expense") {
       return rawType;
@@ -131,9 +122,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return "expense";
   }
 
-  /* =====================================================
-       NORMALIZE DATE
-    ===================================================== */
+  // ======================================================
+  // NORMALIZE DATE
+  // ======================================================
 
   function normalizeDate(value) {
     if (!value) {
@@ -143,9 +134,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return String(value).split("T")[0];
   }
 
-  /* =====================================================
-       FORMAT DATE
-    ===================================================== */
+  // ======================================================
+  // FORMAT DATE
+  // ======================================================
 
   function formatDate(dateValue) {
     const normalized = normalizeDate(dateValue);
@@ -167,22 +158,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* =====================================================
-       LOAD TRANSACTIONS
-    ===================================================== */
+  // ======================================================
+  // GET TRANSACTION DATE
+  // ======================================================
+
+  function getTransactionDate(transaction) {
+    return (
+      transaction.transactionDate ||
+      transaction.date ||
+      transaction.createdAt ||
+      ""
+    );
+  }
+
+  // ======================================================
+  // LOAD TRANSACTIONS
+  // ======================================================
 
   async function loadTransactions() {
     try {
       tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6"
-                        style="text-align:center;padding:30px;">
+                    <td
+                        colspan="7"
+                        class="text-center"
+                        style="padding:30px;"
+                    >
                         Loading transactions...
                     </td>
                 </tr>
             `;
 
-      const response = await fetch(`${API_URL}/user/${userId}`);
+      const response = await fetch(
+        `${API_URL}/user/${encodeURIComponent(userId)}`,
+      );
 
       console.log("Transaction API status:", response.status);
 
@@ -198,11 +207,18 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Invalid transaction data received.");
       }
 
-      transactions = data;
+      // ==================================================
+      // FRONTEND OWNERSHIP CHECK
+      // ==================================================
+
+      transactions = data.filter(function (transaction) {
+        return (
+          transaction.userId != null &&
+          String(transaction.userId) === String(userId)
+        );
+      });
 
       console.log("Transactions loaded:", transactions);
-
-      /* Display */
 
       displayTransactions(transactions);
     } catch (error) {
@@ -210,12 +226,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
       tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6"
+                    <td
+                        colspan="7"
+                        class="text-center"
                         style="
-                            text-align:center;
                             padding:30px;
-                            color:red;
-                        ">
+                            color:#dc2626;
+                        "
+                    >
 
                         Unable to load transactions.
 
@@ -235,25 +253,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  /* =====================================================
-       DISPLAY TRANSACTIONS
-    ===================================================== */
+  // ======================================================
+  // DISPLAY TRANSACTIONS
+  // ======================================================
 
   function displayTransactions(data) {
     tableBody.innerHTML = "";
 
-    /* =================================================
-           NO TRANSACTIONS
-        ================================================= */
-
     if (!data || data.length === 0) {
       tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6"
-                        style="
-                            text-align:center;
-                            padding:30px;
-                        ">
+
+                    <td
+                        colspan="7"
+                        class="text-center"
+                        style="padding:30px;"
+                    >
 
                         No transactions found.
 
@@ -264,6 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         </a>
 
                     </td>
+
                 </tr>
             `;
 
@@ -276,18 +292,10 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    /* =================================================
-           CREATE ROWS
-        ================================================= */
-
     data.forEach(function (transaction) {
       const row = document.createElement("tr");
 
-      /* ID */
-
       const id = transaction.id;
-
-      /* TYPE */
 
       const transactionType = getTransactionType(transaction);
 
@@ -296,36 +304,34 @@ document.addEventListener("DOMContentLoaded", function () {
       const typeClass =
         transactionType === "income" ? "income-tag" : "expense-tag";
 
-      /* CATEGORY */
+      const merchant = transaction.merchant || transaction.description || "-";
 
       const category = transaction.category || "-";
 
-      /* DATE */
-
-      const transactionDate =
-        transaction.transactionDate || transaction.date || "";
-
-      /* AMOUNT */
+      const transactionDate = getTransactionDate(transaction);
 
       const amount = Number(transaction.amount) || 0;
 
-      /* STATUS */
-
       const status = transaction.status || "Completed";
 
-      /* ROW */
+      const amountClass =
+        transactionType === "income" ? "text-success" : "text-danger";
+
+      const amountPrefix = transactionType === "income" ? "+ " : "- ";
 
       row.innerHTML = `
 
-                <td>
+                <td class="date">
                     ${escapeHTML(formatDate(transactionDate))}
                 </td>
 
-
-                <td>
-                    ${escapeHTML(category)}
+                <td class="merchant">
+                    ${escapeHTML(merchant)}
                 </td>
 
+                <td class="category">
+                    ${escapeHTML(category)}
+                </td>
 
                 <td>
 
@@ -335,28 +341,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 </td>
 
+                <td class="${amountClass} fw-bold">
 
-                <td class="${
-                  transactionType === "income" ? "text-success" : "text-danger"
-                } fw-bold">
-
-                    ${transactionType === "income" ? "+ " : "- "}
+                    ${amountPrefix}
 
                     ${formatCurrency(amount)}
 
                 </td>
 
-
                 <td>
 
                     <span class="badge bg-success">
-
                         ${escapeHTML(status)}
-
                     </span>
 
                 </td>
-
 
                 <td>
 
@@ -364,7 +363,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         type="button"
                         class="btn btn-warning btn-sm edit-btn"
                         data-id="${escapeHTML(id)}"
-                        title="Edit Transaction">
+                        title="Edit Transaction"
+                    >
 
                         <i class="bi bi-pencil-fill"></i>
 
@@ -375,7 +375,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         type="button"
                         class="btn btn-danger btn-sm ms-1 delete-btn"
                         data-id="${escapeHTML(id)}"
-                        title="Delete Transaction">
+                        title="Delete Transaction"
+                    >
 
                         <i class="bi bi-trash-fill"></i>
 
@@ -387,26 +388,18 @@ document.addEventListener("DOMContentLoaded", function () {
       tableBody.appendChild(row);
     });
 
-    /* =================================================
-           UPDATE COMPONENTS
-        ================================================= */
-
     updateSummary(data);
 
     updateRecentActivity(data);
 
     updateTransactionChart(data);
 
-    /* =================================================
-           BUTTONS
-        ================================================= */
-
     attachActionButtons();
   }
 
-  /* =====================================================
-       SUMMARY
-    ===================================================== */
+  // ======================================================
+  // SUMMARY
+  // ======================================================
 
   function updateSummary(data) {
     let income = 0;
@@ -420,62 +413,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (type === "income") {
         income += amount;
-      } else {
+      } else if (type === "expense") {
         expense += amount;
       }
     });
 
     const balance = income - expense;
 
-    console.log("Summary:", {
-      income,
-      expense,
-      balance,
-      count: data.length,
-    });
+    const incomeElement = document.getElementById("transactionTotalIncome");
 
-    const cards = document.querySelectorAll(".dashboard-card");
+    const expenseElement = document.getElementById("transactionTotalExpense");
 
-    if (cards.length < 4) {
-      return;
+    const balanceElement = document.getElementById(
+      "transactionTotalCurrentBalance",
+    );
+
+    const countElement = document.getElementById("transactionTotalCount");
+
+    if (incomeElement) {
+      incomeElement.textContent = formatCurrency(income);
     }
 
-    /* Total Income */
-
-    const incomeHeading = cards[0].querySelector("h2");
-
-    if (incomeHeading) {
-      incomeHeading.textContent = formatCurrency(income);
+    if (expenseElement) {
+      expenseElement.textContent = formatCurrency(expense);
     }
 
-    /* Total Expense */
-
-    const expenseHeading = cards[1].querySelector("h2");
-
-    if (expenseHeading) {
-      expenseHeading.textContent = formatCurrency(expense);
+    if (balanceElement) {
+      balanceElement.textContent = formatCurrency(balance);
     }
 
-    /* Balance */
-
-    const balanceHeading = cards[2].querySelector("h2");
-
-    if (balanceHeading) {
-      balanceHeading.textContent = formatCurrency(balance);
-    }
-
-    /* Transaction Count */
-
-    const transactionHeading = cards[3].querySelector("h2");
-
-    if (transactionHeading) {
-      transactionHeading.textContent = data.length;
+    if (countElement) {
+      countElement.textContent = data.length;
     }
   }
 
-  /* =====================================================
-       RECENT ACTIVITY
-    ===================================================== */
+  // ======================================================
+  // RECENT ACTIVITY
+  // ======================================================
 
   function updateRecentActivity(data) {
     if (!activityList) {
@@ -486,6 +460,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!data || data.length === 0) {
       activityList.innerHTML = `
+
                 <li>
 
                     <span>
@@ -510,16 +485,14 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    /* Sort newest first */
-
     const recent = [...data]
       .sort(function (a, b) {
         const dateA = new Date(
-          normalizeDate(a.transactionDate || a.date) + "T00:00:00",
+          normalizeDate(getTransactionDate(a)) + "T00:00:00",
         );
 
         const dateB = new Date(
-          normalizeDate(b.transactionDate || b.date) + "T00:00:00",
+          normalizeDate(getTransactionDate(b)) + "T00:00:00",
         );
 
         return dateB - dateA;
@@ -555,28 +528,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 </span>
 
-
                 <div>
 
-                    <strong>
+                    <strong class="${
+                      type === "income" ? "activity-income" : "activity-expense"
+                    }">
+
                         ${escapeHTML(text)}
+
                     </strong>
 
-                    <small>
+
+                    <small class="${
+                      type === "income"
+                        ? "activity-income-amount"
+                        : "activity-expense-amount"
+                    }">
+
                         ${formatCurrency(amount)}
+
                     </small>
 
                 </div>
-
             `;
 
       activityList.appendChild(li);
     });
   }
 
-  /* =====================================================
-       CHART
-    ===================================================== */
+  // ======================================================
+  // TRANSACTION CHART
+  // ======================================================
 
   function updateTransactionChart(data) {
     const canvas = document.getElementById("transactionChart");
@@ -596,7 +578,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const monthlyExpense = new Array(12).fill(0);
 
     data.forEach(function (transaction) {
-      const dateValue = transaction.transactionDate || transaction.date;
+      const dateValue = getTransactionDate(transaction);
 
       if (!dateValue) {
         return;
@@ -636,15 +618,11 @@ document.addEventListener("DOMContentLoaded", function () {
       "Dec",
     ];
 
-    /* Destroy previous chart */
-
     if (transactionChart) {
       transactionChart.destroy();
 
       transactionChart = null;
     }
-
-    /* Create chart */
 
     transactionChart = new Chart(canvas, {
       type: "bar",
@@ -682,14 +660,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         interaction: {
           mode: "index",
-
           intersect: false,
         },
 
         plugins: {
           legend: {
             display: true,
-
             position: "top",
           },
 
@@ -719,9 +695,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* =====================================================
-       FILTER
-    ===================================================== */
+  // ======================================================
+  // FILTER TRANSACTIONS
+  // ======================================================
 
   function filterTransactions() {
     const search = searchInput ? searchInput.value.trim().toLowerCase() : "";
@@ -735,8 +711,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const selectedMonth = monthFilter ? monthFilter.value : "all";
 
     const filtered = transactions.filter(function (transaction) {
-      /* SEARCH */
-
       const searchableText = [
         transaction.category,
 
@@ -753,6 +727,8 @@ document.addEventListener("DOMContentLoaded", function () {
         transaction.amount,
 
         transaction.transactionDate,
+
+        transaction.date,
       ]
         .filter(Boolean)
         .join(" ")
@@ -762,15 +738,11 @@ document.addEventListener("DOMContentLoaded", function () {
         return false;
       }
 
-      /* TYPE */
-
       const transactionType = getTransactionType(transaction);
 
       if (selectedType !== "all" && transactionType !== selectedType) {
         return false;
       }
-
-      /* CATEGORY */
 
       if (
         selectedCategory !== "all" &&
@@ -780,10 +752,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return false;
       }
 
-      /* MONTH */
-
       if (selectedMonth !== "all") {
-        const dateValue = transaction.transactionDate || transaction.date;
+        const dateValue = getTransactionDate(transaction);
 
         if (!dateValue) {
           return false;
@@ -810,14 +780,14 @@ document.addEventListener("DOMContentLoaded", function () {
     displayTransactions(filtered);
   }
 
-  /* =====================================================
-       EDIT + DELETE
-    ===================================================== */
+  // ======================================================
+  // EDIT + DELETE
+  // ======================================================
 
   function attachActionButtons() {
-    /* =================================================
-           DELETE
-        ================================================= */
+    // ==================================================
+    // DELETE
+    // ==================================================
 
     const deleteButtons = document.querySelectorAll(".delete-btn");
 
@@ -827,6 +797,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!id) {
           alert("Transaction ID not found.");
+
+          return;
+        }
+
+        const currentUserId = sessionStorage.getItem("userId");
+
+        if (!currentUserId) {
+          alert("Session expired. Please login again.");
+
+          window.location.href = "login.html";
 
           return;
         }
@@ -842,14 +822,24 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
           this.disabled = true;
 
-          const response = await fetch(`${API_URL}/${id}`, {
-            method: "DELETE",
-          });
+          // ==================================================
+          // FIXED DELETE URL
+          // ==================================================
+
+          const response = await fetch(
+            `${API_URL}/${encodeURIComponent(id)}?userId=${encodeURIComponent(currentUserId)}`,
+            {
+              method: "DELETE",
+            },
+          );
 
           if (!response.ok) {
             const errorText = await response.text();
 
-            throw new Error(errorText || "Failed to delete transaction.");
+            throw new Error(
+              errorText ||
+                `Failed to delete transaction. Status: ${response.status}`,
+            );
           }
 
           alert("Transaction deleted successfully!");
@@ -865,9 +855,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    /* =================================================
-           EDIT
-        ================================================= */
+    // ==================================================
+    // EDIT
+    // ==================================================
 
     const editButtons = document.querySelectorAll(".edit-btn");
 
@@ -875,53 +865,47 @@ document.addEventListener("DOMContentLoaded", function () {
       button.addEventListener("click", function () {
         const id = this.dataset.id;
 
-        const transaction = transactions.find(function (item) {
-          return String(item.id) === String(id);
-        });
-
-        if (!transaction) {
-          alert("Transaction not found.");
+        if (!id) {
+          alert("Transaction ID not found.");
 
           return;
         }
 
-        console.log("Editing transaction:", transaction);
+        const currentUserId = sessionStorage.getItem("userId");
 
-        /* Store transaction */
+        if (!currentUserId) {
+          alert("Session expired. Please login again.");
 
-        sessionStorage.setItem("editTransaction", JSON.stringify(transaction));
+          window.location.href = "login.html";
 
-        /*
-         * IMPORTANT:
-         * add-transaction.js checks
-         * the ?edit=ID parameter.
-         */
+          return;
+        }
 
-        window.location.href =
-          "add-transaction.html?edit=" + encodeURIComponent(id);
+        // ==================================================
+        // OPEN EDIT PAGE
+        // ==================================================
+
+        window.location.href = `add-transaction.html?edit=${encodeURIComponent(id)}`;
       });
     });
   }
 
-  /* =====================================================
-       SEARCH EVENTS
-    ===================================================== */
+  // ======================================================
+  // SEARCH EVENTS
+  // ======================================================
 
   if (searchInput) {
-    searchInput.addEventListener("input", filterTransactions);
+    searchInput.addEventListener("input", function () {
+      filterTransactions();
+    });
   }
 
-  /* =====================================================
-       HEADER SEARCH
-    ===================================================== */
+  // ======================================================
+  // HEADER SEARCH
+  // ======================================================
 
   if (headerSearchInput) {
     headerSearchInput.addEventListener("input", function () {
-      /*
-       * Keep the main search box
-       * synchronized.
-       */
-
       if (searchInput) {
         searchInput.value = this.value;
       }
@@ -930,48 +914,57 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  /* =====================================================
-       TYPE FILTER
-    ===================================================== */
+  // ======================================================
+  // TYPE FILTER
+  // ======================================================
 
   if (typeFilter) {
-    typeFilter.addEventListener("change", filterTransactions);
+    typeFilter.addEventListener("change", function () {
+      filterTransactions();
+    });
   }
 
-  /* =====================================================
-       CATEGORY FILTER
-    ===================================================== */
+  // ======================================================
+  // CATEGORY FILTER
+  // ======================================================
 
   if (categoryFilter) {
-    categoryFilter.addEventListener("change", filterTransactions);
+    categoryFilter.addEventListener("change", function () {
+      filterTransactions();
+    });
   }
 
-  /* =====================================================
-       MONTH FILTER
-    ===================================================== */
+  // ======================================================
+  // MONTH FILTER
+  // ======================================================
 
   if (monthFilter) {
-    monthFilter.addEventListener("change", filterTransactions);
+    monthFilter.addEventListener("change", function () {
+      filterTransactions();
+    });
   }
 
-  /* =====================================================
-       LOAD USER NAME
-    ===================================================== */
+  // ======================================================
+  // CURRENCY CHANGE
+  // ======================================================
 
-  const userName =
-    sessionStorage.getItem("fullName") || sessionStorage.getItem("userName");
+  window.addEventListener("currencyChanged", function () {
+    displayTransactions(transactions);
+  });
 
-  if (userName) {
-    const userNameElement = document.getElementById("userName");
+  // ======================================================
+  // STORAGE CURRENCY CHANGE
+  // ======================================================
 
-    if (userNameElement) {
-      userNameElement.textContent = userName;
+  window.addEventListener("storage", function (event) {
+    if (event.key === "currency") {
+      displayTransactions(transactions);
     }
-  }
+  });
 
-  /* =====================================================
-       INITIAL LOAD
-    ===================================================== */
+  // ======================================================
+  // INITIAL LOAD
+  // ======================================================
 
   loadTransactions();
 });

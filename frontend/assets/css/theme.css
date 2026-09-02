@@ -1,36 +1,729 @@
-/* ==========================================
-   GLOBAL THEME TRANSITION
-========================================== */
+/* ==========================================================
+   BACHAT BUDDY
+   DYNAMIC THEME SYSTEM
+   ========================================================== */
 
-* {
+
+/* ==========================================================
+   LIGHT THEME
+   ========================================================== */
+
+:root {
+
+    --bg-main: #f5f7fb;
+    --bg-secondary: #eef2f7;
+
+    --bg-card: #ffffff;
+    --bg-card-secondary: #f8fafc;
+
+    --text-main: #1c2b45;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+
+    --border: #e5e7eb;
+
+    --input-bg: #ffffff;
+    --input-border: #d8dde6;
+
+    --table-header: #eaf2ff;
+    --table-row: #ffffff;
+    --table-hover: #f8fafc;
+
+    --sidebar-bg: #071a3d;
+    --footer-bg: #ffffff;
+
+    --progress-bg: #e5e7eb;
+
+    --chart-text: #1c2b45;
+    --chart-grid: #e2e8f0;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+
+    --shadow-hover:
+        0 15px 35px rgba(0, 0, 0, 0.12);
+
+    --link: #2563eb;
+
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --primary: #2563eb;
+
+}
+
+
+/* ==========================================================
+   DARK THEME
+   ========================================================== */
+
+html[data-theme="dark"] {
+
+    --bg-main: #0b1220;
+    --bg-secondary: #111a2b;
+
+    --bg-card: #151f32;
+    --bg-card-secondary: #182235;
+
+    --text-main: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+
+    --border: #293852;
+
+    --input-bg: #101827;
+    --input-border: #334155;
+
+    --table-header: #1d3150;
+    --table-row: #151f32;
+    --table-hover: #1b2940;
+
+    --sidebar-bg: #06152f;
+    --footer-bg: #0d1728;
+
+    --progress-bg: #293852;
+
+    --chart-text: #cbd5e1;
+    --chart-grid: #334155;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, 0.30);
+
+    --shadow-hover:
+        0 15px 35px rgba(0, 0, 0, 0.40);
+
+    --link: #60a5fa;
+
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --primary: #3b82f6;
+
+}
+
+
+/* ==========================================================
+   GLOBAL
+   ========================================================== */
+
+html,
+body {
+
+    min-height: 100%;
+
+    margin: 0;
+
+}
+
+html {
+
+    background: var(--bg-main);
+
+}
+
+body {
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
     transition:
-        background-color .3s ease,
-        color .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+        background-color 0.3s ease,
+        color 0.3s ease;
+
 }
 
 
-/* ==========================================
-   LANDING PAGE DARK MODE
-========================================== */
+/* ==========================================================
+   MAIN APPLICATION
+   ========================================================== */
 
-/* These rules are mainly for the landing/home page */
+.app-layout {
 
-body.dark-mode .hero {
-    background: #181818 !important;
+    min-height: 100vh;
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
+}
+
+.main-content {
+
+    background: var(--bg-main);
+
+    color: var(--text-main);
+
+}
+
+
+/* ==========================================================
+   GLOBAL TRANSITIONS
+   ========================================================== */
+
+body *,
+body *::before,
+body *::after {
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+/* ==========================================================
+   HEADINGS
+   ========================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+    color: var(--text-main);
+
+}
+
+
+/* ==========================================================
+   TEXT
+   ========================================================== */
+
+p {
+
+    color: var(--text-secondary);
+
+}
+
+.text-muted,
+.text-secondary {
+
+    color: var(--text-muted) !important;
+
+}
+
+.text-dark {
+
+    color: var(--text-main) !important;
+
+}
+
+.text-black {
+
+    color: var(--text-main) !important;
+
+}
+
+.text-body {
+
+    color: var(--text-main) !important;
+
+}
+
+
+/* ==========================================================
+   LINKS
+   ========================================================== */
+
+a {
+
+    color: var(--link);
+
+}
+
+
+/* ==========================================================
+   CARDS
+   ========================================================== */
+
+.card,
+.summary-card,
+.stat-card,
+.chart-card,
+.analytics-card,
+.budget-card,
+.transaction-card,
+.profile-card,
+.settings-card,
+.section-card,
+.form-card,
+.activity-card,
+.report-card {
+
+    background: var(--bg-card);
+
+    color: var(--text-main);
+
+    border-color: var(--border);
+
+    box-shadow: var(--shadow);
+
+}
+
+
+/* ==========================================================
+   CARD HEADER
+   ========================================================== */
+
+.card-header {
+
+    border-color: var(--border);
+
+}
+
+
+/* ==========================================================
+   FORMS
+   ========================================================== */
+
+input,
+textarea,
+select {
+
+    background: var(--input-bg);
+
+    color: var(--text-main);
+
+    border: 1px solid var(--input-border);
+
+}
+
+
+input::placeholder,
+textarea::placeholder {
+
+    color: var(--text-muted);
+
+}
+
+
+input:focus,
+textarea:focus,
+select:focus {
+
+    background: var(--input-bg);
+
+    color: var(--text-main);
+
+    border-color: var(--primary);
+
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.15);
+
+}
+
+
+label {
+
+    color: var(--text-secondary);
+
+}
+
+
+/* ==========================================================
+   TABLES
+   ========================================================== */
+
+table {
+
+    background: var(--table-row);
+
+    color: var(--text-main);
+
+}
+
+
+table thead,
+table thead tr,
+table thead th {
+
+    background: var(--table-header);
+
+    color: var(--text-main);
+
+    border-color: var(--border);
+
+}
+
+
+table tbody {
+
+    background: var(--table-row);
+
+}
+
+
+table tbody tr {
+
+    background: var(--table-row);
+
+    color: var(--text-secondary);
+
+    border-color: var(--border);
+
+}
+
+
+table tbody tr:nth-child(even) {
+
+    background: var(--bg-card-secondary);
+
+}
+
+
+table tbody tr:hover {
+
+    background: var(--table-hover);
+
+}
+
+
+table td {
+
+    color: var(--text-secondary);
+
+    border-color: var(--border);
+
+}
+
+
+/* ==========================================================
+   BOOTSTRAP TABLE
+   ========================================================== */
+
+.table {
+
+    --bs-table-bg: var(--table-row);
+
+    --bs-table-color: var(--text-secondary);
+
+    --bs-table-border-color: var(--border);
+
+    --bs-table-hover-bg: var(--table-hover);
+
+    --bs-table-hover-color: var(--text-main);
+
+}
+
+
+/* ==========================================================
+   BOOTSTRAP BACKGROUNDS
+   ========================================================== */
+
+.bg-white {
+
+    background-color: var(--bg-card) !important;
+
+}
+
+.bg-light {
+
+    background-color: var(--bg-secondary) !important;
+
+}
+
+
+/* ==========================================================
+   DASHBOARD COLORED CARDS
+   ========================================================== */
+
+/*
+   Keep the four dashboard cards colorful.
+   Dark mode will use slightly deeper gradients.
+*/
+
+.dashboard-card.income {
+
+    background:
+        linear-gradient(135deg,
+            #00c853,
+            #43e97b);
+
     color: #ffffff;
+
 }
 
-body.dark-mode .bg-light {
-    background: #101827 !important;
-}
 
-body.dark-mode .bg-white {
-    background: #101827 !important;
-}
+.dashboard-card.expense {
 
-body.dark-mode .testimonials h2,
-body.dark-mode #features h2 {
+    background:
+        linear-gradient(135deg,
+            #ff416c,
+            #ff4b2b);
+
     color: #ffffff;
+
+}
+
+
+.dashboard-card.balance {
+
+    background:
+        linear-gradient(135deg,
+            #2193b0,
+            #6dd5ed);
+
+    color: #ffffff;
+
+}
+
+
+.dashboard-card.ai-card {
+
+    background:
+        linear-gradient(135deg,
+            #7b2ff7,
+            #9d50ff);
+
+    color: #ffffff;
+
+}
+
+
+/* ==========================================================
+   DARK DASHBOARD CARDS
+   ========================================================== */
+
+html[data-theme="dark"] .dashboard-card.income {
+
+    background:
+        linear-gradient(135deg,
+            #047857,
+            #16a34a);
+
+}
+
+
+html[data-theme="dark"] .dashboard-card.expense {
+
+    background:
+        linear-gradient(135deg,
+            #be123c,
+            #dc2626);
+
+}
+
+
+html[data-theme="dark"] .dashboard-card.balance {
+
+    background:
+        linear-gradient(135deg,
+            #155e75,
+            #0284c7);
+
+}
+
+
+html[data-theme="dark"] .dashboard-card.ai-card {
+
+    background:
+        linear-gradient(135deg,
+            #5b21b6,
+            #7c3aed);
+
+}
+
+
+/* ==========================================================
+   DASHBOARD CARD TEXT
+   ========================================================== */
+
+.dashboard-card h2,
+.dashboard-card h6,
+.dashboard-card small,
+.dashboard-card span {
+
+    color: #ffffff;
+
+}
+
+
+/* ==========================================================
+   SUMMARY BOX
+   ========================================================== */
+
+.summary-box {
+
+    background: var(--bg-card);
+
+    color: var(--text-main);
+
+    border-color: var(--border);
+
+    box-shadow: var(--shadow);
+
+}
+
+
+/* ==========================================================
+   PROGRESS
+   ========================================================== */
+
+.progress {
+
+    background: var(--progress-bg);
+
+}
+
+
+/* ==========================================================
+   SIDEBAR
+   ========================================================== */
+
+.sidebar {
+
+    background: var(--sidebar-bg);
+
+}
+
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+
+footer,
+.footer {
+
+    background: var(--footer-bg);
+
+    color: var(--text-secondary);
+
+    border-color: var(--border);
+
+}
+
+
+footer p,
+footer span {
+
+    color: var(--text-muted);
+
+}
+
+
+footer a {
+
+    color: var(--text-secondary);
+
+}
+
+
+/* ==========================================================
+   MODALS
+   ========================================================== */
+
+.modal-content {
+
+    background: var(--bg-card);
+
+    color: var(--text-main);
+
+    border-color: var(--border);
+
+}
+
+
+.modal-header,
+.modal-footer {
+
+    border-color: var(--border);
+
+}
+
+
+/* ==========================================================
+   DROPDOWNS
+   ========================================================== */
+
+.dropdown-menu {
+
+    background: var(--bg-card);
+
+    border-color: var(--border);
+
+}
+
+
+.dropdown-item {
+
+    color: var(--text-secondary);
+
+}
+
+
+.dropdown-item:hover {
+
+    background: var(--table-hover);
+
+    color: var(--text-main);
+
+}
+
+
+/* ==========================================================
+   HR
+   ========================================================== */
+
+hr {
+
+    border-color: var(--border);
+
+    opacity: 1;
+
+}
+
+
+/* ==========================================================
+   DARK MODE SCROLLBAR
+   ========================================================== */
+
+html[data-theme="dark"]::-webkit-scrollbar {
+
+    width: 10px;
+
+}
+
+
+html[data-theme="dark"]::-webkit-scrollbar-track {
+
+    background: var(--bg-main);
+
+}
+
+
+html[data-theme="dark"]::-webkit-scrollbar-thumb {
+
+    background: #334155;
+
+    border-radius: 10px;
+
+}
+
+
+html[data-theme="dark"]::-webkit-scrollbar-thumb:hover {
+
+    background: #475569;
+
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 768px) {
+
+    .main-content {
+
+        background: var(--bg-main);
+
+    }
+
 }

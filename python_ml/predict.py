@@ -1,14 +1,114 @@
+# =========================================================
+# BACHAT BUDDY - EXPENSE PREDICTION
+# Random Forest ML Prediction
+# =========================================================
+
+import os
 import pandas as pd
 import joblib
 
 
 # =========================================================
-# LOAD MODEL AND ENCODERS
+# MODEL PATHS
 # =========================================================
 
-model = joblib.load("models/expense_model.pkl")
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
 
-encoders = joblib.load("models/encoders.pkl")
+MODEL_PATH = os.path.join(
+    BASE_DIR,
+    "models",
+    "expense_model.pkl"
+)
+
+ENCODER_PATH = os.path.join(
+    BASE_DIR,
+    "models",
+    "encoders.pkl"
+)
+
+
+# =========================================================
+# LOAD MODEL
+# =========================================================
+
+try:
+
+    model = joblib.load(MODEL_PATH)
+
+    print("✅ Expense model loaded successfully.")
+
+except Exception as e:
+
+    print("❌ Unable to load expense model.")
+
+    raise RuntimeError(
+        f"Model loading failed: {e}"
+    )
+
+
+# =========================================================
+# LOAD ENCODERS
+# =========================================================
+
+try:
+
+    encoders = joblib.load(ENCODER_PATH)
+
+    print("✅ Encoders loaded successfully.")
+
+except Exception as e:
+
+    print("❌ Unable to load encoders.")
+
+    raise RuntimeError(
+        f"Encoder loading failed: {e}"
+    )
+
+
+# =========================================================
+# MODEL FEATURES
+# =========================================================
+
+FEATURES = [
+
+    "monthly_income",
+
+    "monthly_budget",
+
+    "category",
+
+    "payment_method",
+
+    "city",
+
+    "day_of_week"
+
+]
+
+
+# =========================================================
+# ENCODE VALUE SAFELY
+# =========================================================
+
+def encode_value(encoder, value, field_name):
+
+    value = str(value).strip()
+
+    # -----------------------------------------------------
+    # Check whether value exists in trained encoder
+    # -----------------------------------------------------
+
+    if value not in encoder.classes_:
+
+        raise ValueError(
+            f"Unknown {field_name}: '{value}'. "
+            f"Supported values are: "
+            f"{', '.join(map(str, encoder.classes_))}"
+        )
+
+    return encoder.transform([value])[0]
 
 
 # =========================================================
@@ -17,70 +117,171 @@ encoders = joblib.load("models/encoders.pkl")
 
 def predict_expense(data):
 
-    print("Received data for prediction:", data)
+    print(
+        "Received data for prediction:",
+        data
+    )
 
-    # -----------------------------------------------------
-    # Encode category
-    # -----------------------------------------------------
 
-    category = encoders["category"].transform(
-        [data["category"]]
-    )[0]
+    # =====================================================
+    # CONVERT NUMERIC VALUES
+    # =====================================================
 
-    # -----------------------------------------------------
-    # Encode payment method
-    # -----------------------------------------------------
+    try:
 
-    payment_method = encoders["payment_method"].transform(
-        [data["payment_method"]]
-    )[0]
+        monthly_income = float(
+            data["monthly_income"]
+        )
 
-    # -----------------------------------------------------
-    # Encode city
-    # -----------------------------------------------------
+        monthly_budget = float(
+            data["monthly_budget"]
+        )
 
-    city = encoders["city"].transform(
-        [data["city"]]
-    )[0]
+    except (ValueError, TypeError) as e:
 
-    # -----------------------------------------------------
-    # Encode day of week
-    # -----------------------------------------------------
+        raise ValueError(
+            "monthly_income and monthly_budget "
+            "must be valid numbers."
+        ) from e
 
-    day = encoders["day_of_week"].transform(
-        [data["day_of_week"]]
-    )[0]
 
-    # -----------------------------------------------------
+    # =====================================================
+    # ENCODE CATEGORY
+    # =====================================================
+
+    category = encode_value(
+
+        encoders["category"],
+
+        data["category"],
+
+        "category"
+
+    )
+
+
+    # =====================================================
+    # ENCODE PAYMENT METHOD
+    # =====================================================
+
+    payment_method = encode_value(
+
+        encoders["payment_method"],
+
+        data["payment_method"],
+
+        "payment method"
+
+    )
+
+
+    # =====================================================
+    # ENCODE CITY
+    # =====================================================
+
+    city = encode_value(
+
+        encoders["city"],
+
+        data["city"],
+
+        "city"
+
+    )
+
+
+    # =====================================================
+    # ENCODE DAY
+    # =====================================================
+
+    day = encode_value(
+
+        encoders["day_of_week"],
+
+        data["day_of_week"],
+
+        "day of week"
+
+    )
+
+
+    # =====================================================
     # CREATE MODEL INPUT
-    # -----------------------------------------------------
+    # =====================================================
 
     input_data = pd.DataFrame([{
 
-        "monthly_income": float(
-            data["monthly_income"]
-        ),
+        "monthly_income":
+            monthly_income,
 
-        "monthly_budget": float(
-            data["monthly_budget"]
-        ),
+        "monthly_budget":
+            monthly_budget,
 
-        "category": category,
+        "category":
+            category,
 
-        "payment_method": payment_method,
+        "payment_method":
+            payment_method,
 
-        "city": city,
+        "city":
+            city,
 
-        "day_of_week": day
+        "day_of_week":
+            day
+
     }])
 
-    print("Model input:")
+
+    # =====================================================
+    # ENSURE FEATURE ORDER
+    # =====================================================
+
+    input_data = input_data[FEATURES]
+
+
+    # =====================================================
+    # DEBUG
+    # =====================================================
+
+    print(
+        "Model input:"
+    )
+
     print(input_data)
 
-    # -----------------------------------------------------
-    # PREDICTION
-    # -----------------------------------------------------
 
-    prediction = model.predict(input_data)
+    # =====================================================
+    # MAKE PREDICTION
+    # =====================================================
 
-    return float(prediction[0])
+    prediction = model.predict(
+        input_data
+    )
+
+
+    predicted_expense = float(
+        prediction[0]
+    )
+
+
+    # =====================================================
+    # PREVENT NEGATIVE PREDICTION
+    # =====================================================
+
+    predicted_expense = max(
+        0,
+        predicted_expense
+    )
+
+
+    # =====================================================
+    # RETURN RESULT
+    # =====================================================
+
+    print(
+        "Predicted expense:",
+        predicted_expense
+    )
+
+
+    return predicted_expense

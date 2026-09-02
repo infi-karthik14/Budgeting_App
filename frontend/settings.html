@@ -7,67 +7,63 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Settings</title>
+    <title>Settings - Bachat Buddy</title>
 
 
-    <!-- ==========================================
-         BOOTSTRAP CSS
-    =========================================== -->
+    <!-- ==================================================
+         BOOTSTRAP
+    ================================================== -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <!-- ==========================================
+    <!-- ==================================================
          BOOTSTRAP ICONS
-    =========================================== -->
+    ================================================== -->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
-    <!-- ==========================================
+    <!-- ==================================================
          COMMON CSS
-    =========================================== -->
+    ================================================== -->
 
     <link rel="stylesheet" href="assets/css/common.css">
 
+
+    <!-- ==================================================
+         SIDEBAR CSS
+    ================================================== -->
+
     <link rel="stylesheet" href="assets/css/sidebar.css">
+
+
+    <!-- ==================================================
+         THEME CSS
+    ================================================== -->
 
     <link rel="stylesheet" href="assets/css/theme.css">
 
 
-    <!-- ==========================================
+    <!-- ==================================================
          SETTINGS CSS
-    =========================================== -->
+    ================================================== -->
 
     <link rel="stylesheet" href="assets/css/settings.css">
-
-
-    <!-- ==========================================
-         FONT AWESOME
-    =========================================== -->
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 
 <body>
 
-
-    <!-- ==========================================
-         APP LAYOUT
-    =========================================== -->
-
     <div class="app-layout">
 
 
-        <!-- ==========================================
-             SIDEBAR
-        =========================================== -->
+        <!-- ==================================================
+         SIDEBAR
+    ================================================== -->
 
         <aside class="sidebar">
-
-            <!-- User Profile -->
 
             <div class="user-profile">
 
@@ -77,7 +73,11 @@
 
                 </div>
 
-                <h3>Welcome!</h3>
+
+                <h3>
+                    Welcome!
+                </h3>
+
 
                 <p id="userName">
                     User
@@ -85,8 +85,6 @@
 
             </div>
 
-
-            <!-- Navigation -->
 
             <ul class="menu">
 
@@ -185,20 +183,18 @@
 
 
 
-        <!-- ==========================================
-             MAIN CONTENT
-        =========================================== -->
+        <!-- ==================================================
+         MAIN CONTENT
+    ================================================== -->
 
         <main class="main-content">
 
 
-            <!-- ==========================================
-     COMMON WELCOME BANNER
-=========================================== -->
+            <!-- ==================================================
+             WELCOME BANNER
+        ================================================== -->
 
-            <div class="welcome-card settings-welcome-card">
-
-                <!-- LEFT -->
+            <div class="welcome-card">
 
                 <div class="welcome-content">
 
@@ -206,524 +202,452 @@
                         ⚙️ Settings
                     </h2>
 
-                    <p>
-                        Manage your application preferences
+
+                    <p class="welcome-date">
+                        Manage your Bachat Buddy preferences
+                    </p>
+
+
+                    <p class="welcome-message">
+                        Customize your application according to your needs.
                     </p>
 
                 </div>
 
-
-                <!-- RIGHT -->
-
-                <div class="welcome-actions">
-
-                    <!-- SEARCH -->
-
-                    <div class="welcome-search">
-
-                        <i class="bi bi-search"></i>
-
-                        <input type="search" id="settingsSearch" placeholder="Search...">
-
-                    </div>
-
-
-                    <!-- NOTIFICATION -->
-
-                    <button type="button" class="notification-btn" title="Notifications">
-
-                        <i class="bi bi-bell-fill"></i>
-
-                    </button>
-
-                </div>
-
             </div>
 
 
 
-            <!-- ==========================================
-                 APPEARANCE
-            =========================================== -->
+            <!-- ==================================================
+             SETTINGS CONTENT
+        ================================================== -->
 
-            <section class="settings-card appearance-card">
+            <div class="settings-page">
 
 
-                <div class="card-header">
+                <!-- ==================================================
+                 GENERAL SETTINGS
+            ================================================== -->
 
-                    <div class="header-icon appearance-icon">
+                <div class="card settings-card mb-4">
 
-                        <i class="fa-solid fa-moon"></i>
+                    <div class="card-header bg-primary text-white">
+
+                        <h5 class="mb-0 fw-semibold">
+
+                            <i class="bi bi-sliders me-2"></i>
+
+                            General Settings
+
+                        </h5>
 
                     </div>
 
 
-                    <div>
+                    <div class="card-body">
 
-                        <h2>
-                            Appearance
-                        </h2>
 
-                        <p>
-                            Customize how your budget app looks
-                        </p>
+                        <!-- APPEARANCE -->
+
+                        <div class="settings-row">
+
+                            <div class="settings-info">
+
+                                <div class="settings-icon appearance-icon">
+
+                                    <i class="bi bi-moon-stars"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h6>
+                                        Appearance
+                                    </h6>
+
+                                    <p>
+                                        Switch between light and dark mode.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-control">
+
+                                <div class="form-check form-switch">
+
+                                    <input class="form-check-input" type="checkbox" role="switch" id="darkModeToggle">
+
+                                    <label class="form-check-label" for="darkModeToggle">
+
+                                        Dark Mode
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <!-- CURRENCY -->
+
+                        <div class="settings-row">
+
+                            <div class="settings-info">
+
+                                <div class="settings-icon currency-icon">
+
+                                    <i class="bi bi-currency-rupee"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h6>
+                                        Currency
+                                    </h6>
+
+                                    <p>
+                                        Select the currency used throughout
+                                        the application.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-control">
+
+                                <select id="currencySelect" class="form-select">
+                                    <option value="INR">₹ Indian Rupee (INR)</option>
+                                    <option value="USD">$ US Dollar (USD)</option>
+                                    <option value="EUR">€ Euro (EUR)</option>
+                                    <option value="GBP">£ British Pound (GBP)</option>
+                                    <option value="JPY">¥ Japanese Yen (JPY)</option>
+                                    <option value="CNY">¥ Chinese Yuan (CNY)</option>
+                                    <option value="AUD">A$ Australian Dollar (AUD)</option>
+                                    <option value="CAD">C$ Canadian Dollar (CAD)</option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <!-- LANGUAGE -->
+
+                        <div class="settings-row">
+
+                            <div class="settings-info">
+
+                                <div class="settings-icon language-icon">
+
+                                    <i class="bi bi-translate"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h6>
+                                        Language
+                                    </h6>
+
+                                    <p>
+                                        Choose your preferred application language.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-control">
+
+                                <select id="languageSelect" class="form-select">
+
+                                    <option value="en">
+                                        🇬🇧 English
+                                    </option>
+
+                                    <option value="hi">
+                                        🇮🇳 हिंदी
+                                    </option>
+
+                                    <option value="es">
+                                        🇪🇸 Español
+                                    </option>
+
+                                    <option value="fr">
+                                        🇫🇷 Français
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <div class="setting-row">
 
-                    <div class="setting-info">
-
-                        <h3>
-                            Dark Mode
-                        </h3>
-
-                        <p>
-                            Switch between light and dark appearance
-                        </p>
-
-                    </div>
-
-
-                    <label class="switch">
-
-                        <input type="checkbox" id="darkModeToggle">
-
-                        <span class="slider"></span>
-
-                    </label>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- ==========================================
+                <!-- ==================================================
                  NOTIFICATIONS
-            =========================================== -->
+            ================================================== -->
 
-            <section class="settings-card notification-card">
+                <div class="card settings-card mb-4">
 
+                    <div class="card-header bg-warning">
 
-                <div class="card-header">
+                        <h5 class="mb-0 fw-semibold">
 
-                    <div class="header-icon notification-icon">
+                            <i class="bi bi-bell me-2"></i>
 
-                        <i class="fa-solid fa-bell"></i>
-
-                    </div>
-
-
-                    <div>
-
-                        <h2>
                             Notifications
-                        </h2>
 
-                        <p>
-                            Manage your notification preferences
-                        </p>
+                        </h5>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+
+                        <!-- NOTIFICATIONS -->
+
+                        <div class="settings-row">
+
+                            <div class="settings-info">
+
+                                <div class="settings-icon notification-icon">
+
+                                    <i class="bi bi-bell"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h6>
+                                        Notifications
+                                    </h6>
+
+                                    <p>
+                                        Receive important application
+                                        notifications.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-control">
+
+                                <div class="form-check form-switch">
+
+                                    <input class="form-check-input" type="checkbox" role="switch"
+                                        id="notificationToggle" checked>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <hr>
+
+
+                        <!-- BUDGET ALERTS -->
+
+                        <div class="settings-row">
+
+                            <div class="settings-info">
+
+                                <div class="settings-icon budget-icon">
+
+                                    <i class="bi bi-exclamation-triangle"></i>
+
+                                </div>
+
+
+                                <div>
+
+                                    <h6>
+                                        Budget Alerts
+                                    </h6>
+
+                                    <p>
+                                        Get notified when your spending
+                                        approaches your budget.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-control">
+
+                                <div class="form-check form-switch">
+
+                                    <input class="form-check-input" type="checkbox" role="switch" id="budgetAlertToggle"
+                                        checked>
+
+                                </div>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <!-- Email Notifications -->
 
-                <div class="setting-row">
+                <!-- ==================================================
+                 DATA & ACCOUNT
+            ================================================== -->
 
-                    <div class="setting-info">
+                <div class="card settings-card mb-4">
 
-                        <h3>
-                            Email Notifications
-                        </h3>
+                    <div class="card-header bg-dark text-white">
 
-                        <p>
-                            Receive important updates and reminders by email
-                        </p>
+                        <h5 class="mb-0 fw-semibold">
 
-                    </div>
+                            <i class="bi bi-person-gear me-2"></i>
 
+                            Data & Account
 
-                    <label class="switch">
-
-                        <input type="checkbox" id="emailToggle" checked>
-
-                        <span class="slider"></span>
-
-                    </label>
-
-                </div>
-
-
-                <!-- Budget Alerts -->
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-
-                        <h3>
-                            Budget Alerts
-                        </h3>
-
-                        <p>
-                            Get notified when you are close to your budget limit
-                        </p>
+                        </h5>
 
                     </div>
 
 
-                    <label class="switch">
-
-                        <input type="checkbox" id="budgetAlertToggle" checked>
-
-                        <span class="slider"></span>
-
-                    </label>
-
-                </div>
-
-            </section>
+                    <div class="card-body">
 
 
+                        <!-- RESET SETTINGS -->
 
-            <!-- ==========================================
-                 CURRENCY
-            =========================================== -->
+                        <div class="settings-row">
 
-            <section class="settings-card currency-card">
+                            <div class="settings-info">
 
+                                <div class="settings-icon reset-icon">
 
-                <div class="card-header">
+                                    <i class="bi bi-arrow-counterclockwise"></i>
 
-                    <div class="header-icon currency-icon">
-
-                        <i class="fa-solid fa-dollar-sign"></i>
-
-                    </div>
+                                </div>
 
 
-                    <div>
+                                <div>
 
-                        <h2>
-                            Currency
-                        </h2>
+                                    <h6>
+                                        Reset Settings
+                                    </h6>
 
-                        <p>
-                            Select your preferred currency
-                        </p>
+                                    <p>
+                                        Restore your application settings
+                                        to their default values.
+                                    </p>
 
-                    </div>
+                                </div>
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="currency">
-                        Currency
-                    </label>
+                            </div>
 
 
-                    <select id="currency">
+                            <div class="settings-control">
 
-                        <option value="INR">
-                            INR (₹)
-                        </option>
+                                <button type="button" id="resetSettingsBtn" class="btn btn-outline-secondary">
 
-                        <option value="USD">
-                            USD ($)
-                        </option>
+                                    <i class="bi bi-arrow-counterclockwise me-1"></i>
 
-                        <option value="EUR">
-                            EUR (€)
-                        </option>
+                                    Reset
 
-                        <option value="GBP">
-                            GBP (£)
-                        </option>
+                                </button>
 
-                        <option value="JPY">
-                            JPY (¥)
-                        </option>
+                            </div>
 
-                    </select>
-
-                </div>
-
-            </section>
+                        </div>
 
 
-
-            <!-- ==========================================
-                 LANGUAGE
-            =========================================== -->
-
-            <section class="settings-card language-card">
+                        <hr>
 
 
-                <div class="card-header">
+                        <!-- LOGOUT -->
 
-                    <div class="header-icon language-icon">
+                        <div class="settings-row">
 
-                        <i class="fa-solid fa-language"></i>
+                            <div class="settings-info">
 
-                    </div>
+                                <div class="settings-icon logout-icon">
+
+                                    <i class="bi bi-box-arrow-right"></i>
+
+                                </div>
 
 
-                    <div>
+                                <div>
 
-                        <h2>
-                            Language
-                        </h2>
+                                    <h6>
+                                        Logout
+                                    </h6>
 
-                        <p>
-                            Select your preferred language
-                        </p>
+                                    <p>
+                                        Sign out of your Bachat Buddy account.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="settings-control">
+
+                                <button type="button" id="logoutBtn" class="btn btn-outline-danger">
+
+                                    <i class="bi bi-box-arrow-right me-1"></i>
+
+                                    Logout
+
+                                </button>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="language">
-                        Language
-                    </label>
-
-
-                    <select id="language">
-
-                        <option value="English">
-                            English
-                        </option>
-
-                        <option value="Hindi">
-                            Hindi
-                        </option>
-
-                        <option value="French">
-                            French
-                        </option>
-
-                        <option value="Spanish">
-                            Spanish
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- ==========================================
-                 GENERAL
-            =========================================== -->
-
-            <section class="settings-card general-card">
-
-
-                <div class="card-header">
-
-                    <div class="header-icon general-icon">
-
-                        <i class="fa-solid fa-sliders"></i>
-
-                    </div>
-
-
-                    <div>
-
-                        <h2>
-                            General
-                        </h2>
-
-                        <p>
-                            Manage general application preferences
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="setting-row">
-
-                    <div class="setting-info">
-
-                        <h3>
-                            Auto Save
-                        </h3>
-
-                        <p>
-                            Automatically save your changes
-                        </p>
-
-                    </div>
-
-
-                    <label class="switch">
-
-                        <input type="checkbox" id="autoSaveToggle" checked>
-
-                        <span class="slider"></span>
-
-                    </label>
-
-                </div>
-
-            </section>
-
-
-
-
-
-            <!-- ==========================================
-     CONTACT US
-=========================================== -->
-
-            <section class="settings-card contact-settings-card">
-
-                <div class="card-header">
-
-                    <div class="header-icon contact-icon">
-
-                        <i class="fa-solid fa-headset"></i>
-
-                    </div>
-
-                    <div>
-
-                        <h2>
-                            Need Help?
-                        </h2>
-
-                        <p>
-                            Have questions or need assistance?
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="contact-settings-content">
-
-                    <div>
-
-                        <h3>
-                            Contact our support team
-                        </h3>
-
-                        <p>
-                            We're here to help you with your account,
-                            budgeting features and other questions.
-                        </p>
-
-                    </div>
-
-
-                    <a href="contactus.html" class="contact-settings-btn">
-
-                        <i class="fa-solid fa-headset"></i>
-
-                        Contact Us
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </a>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- ==========================================
-                 ACTION BUTTONS
-            =========================================== -->
-
-            <div class="settings-actions">
-
-
-                <button type="button" class="reset-btn" id="resetBtn">
-
-                    <i class="fa-solid fa-rotate-left"></i>
-
-                    Reset
-
-                </button>
-
-
-                <button type="button" class="save-btn" id="saveBtn">
-
-                    <i class="fa-solid fa-check"></i>
-
-                    Save Settings
-
-                </button>
 
             </div>
-
-
-            <!-- ==========================================
-     ACCOUNT
-=========================================== -->
-
-            <section class="settings-card logout-card">
-
-                <div class="card-header">
-
-                    <div class="header-icon logout-icon">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </div>
-
-                    <div>
-                        <h2>Account</h2>
-                        <p>Manage your account session</p>
-                    </div>
-
-                </div>
-
-                <div class="setting-row logout-row">
-
-                    <div class="setting-info">
-
-                        <h3>Logout</h3>
-
-                        <p>
-                            Sign out of your Budgeting App account
-                        </p>
-
-                    </div>
-
-                    <button type="button" class="logout-btn" id="logoutBtn">
-
-                        <i class="fa-solid fa-right-from-bracket"></i>
-
-                        Logout
-
-                    </button>
-
-                </div>
-
-            </section>
 
         </main>
 
 
 
-        <!-- ==========================================
-                 FOOTER
-            =========================================== -->
+        <!-- ==================================================
+         FOOTER
+    ================================================== -->
 
         <footer class="footer">
 
@@ -735,7 +659,7 @@
                     <i class="bi bi-wallet2"></i>
 
                     <span>
-                        Budgeting App
+                        Bachat Buddy
                     </span>
 
                 </div>
@@ -743,8 +667,7 @@
 
                 <p class="footer-tagline">
 
-                    Manage your money.
-                    Track your goals.
+                    Manage your money. Track your goals.
                     Build your future.
 
                 </p>
@@ -776,6 +699,10 @@
                         Settings
                     </a>
 
+                    <a href="mailto:support@budgetingapp.com">
+                        Contact Us
+                    </a>
+
                 </div>
 
 
@@ -783,9 +710,11 @@
 
                     <i class="bi bi-envelope"></i>
 
-                    <span>
+                    <a href="mailto:support@budgetingapp.com">
+
                         support@budgetingapp.com
-                    </span>
+
+                    </a>
 
                 </div>
 
@@ -795,7 +724,7 @@
 
                 <p class="copyright">
 
-                    © 2026 Budgeting App.
+                    © 2026 Bachat Buddy.
                     All Rights Reserved.
 
                 </p>
@@ -805,16 +734,23 @@
         </footer>
 
 
-
     </div>
 
 
 
-    <!-- ==========================================
-         JAVASCRIPT
-    =========================================== -->
+    <!-- ==================================================
+     JAVASCRIPT
+================================================== -->
 
     <script src="assets/js/theme.js"></script>
+
+    <script src="assets/js/user-settings.js"></script>
+
+    <script src="assets/js/currency.js"></script>
+
+    <script src="assets/js/profile-image.js"></script>
+
+    <script src="assets/js/common.js"></script>
 
     <script src="assets/js/settings.js"></script>
 

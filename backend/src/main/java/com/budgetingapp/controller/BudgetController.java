@@ -21,36 +21,35 @@ public class BudgetController {
     // ==========================================================
 
     public BudgetController(BudgetService budgetService) {
+
         this.budgetService = budgetService;
     }
 
     // ==========================================================
-    // GET ALL BUDGETS
+    // GET ALL
     // ==========================================================
 
     @GetMapping
     public ResponseEntity<List<Budget>> getAllBudgets() {
 
-        List<Budget> budgets = budgetService.getAllBudgets();
-
-        return ResponseEntity.ok(budgets);
+        return ResponseEntity.ok(
+                budgetService.getAllBudgets());
     }
 
     // ==========================================================
-    // GET BUDGETS BY USER
+    // GET USER BUDGETS
     // ==========================================================
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Budget>> getBudgetsByUser(
             @PathVariable Long userId) {
 
-        List<Budget> budgets = budgetService.getBudgetsByUser(userId);
-
-        return ResponseEntity.ok(budgets);
+        return ResponseEntity.ok(
+                budgetService.getBudgetsByUser(userId));
     }
 
     // ==========================================================
-    // ADD BUDGET
+    // CREATE
     // ==========================================================
 
     @PostMapping
@@ -65,7 +64,7 @@ public class BudgetController {
     }
 
     // ==========================================================
-    // UPDATE BUDGET
+    // UPDATE
     // ==========================================================
 
     @PutMapping("/{id}")
@@ -81,7 +80,7 @@ public class BudgetController {
     }
 
     // ==========================================================
-    // DELETE BUDGET
+    // DELETE
     // ==========================================================
 
     @DeleteMapping("/{id}")
@@ -90,6 +89,8 @@ public class BudgetController {
 
         budgetService.deleteBudget(id);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .noContent()
+                .build();
     }
 }

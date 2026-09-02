@@ -1,58 +1,138 @@
-// ==========================================
-// GLOBAL THEME MANAGEMENT
-// ==========================================
+"use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
-  const savedTheme = localStorage.getItem("darkMode");
+/*
+==========================================================
+BACHAT BUDDY
+DYNAMIC THEME CONTROLLER
+==========================================================
+*/
 
-  // Apply saved theme when page loads
-  if (savedTheme === "enabled") {
-    document.body.classList.add("dark-mode");
-  } else {
-    document.body.classList.remove("dark-mode");
+(function () {
+  const STORAGE_KEY = "darkMode";
+
+  // ======================================================
+  // GET CURRENT THEME
+  // ======================================================
+
+  function getTheme() {
+    return localStorage.getItem(STORAGE_KEY) === "enabled" ? "dark" : "light";
   }
 
-  // ==========================================
-  // THEME TOGGLE BUTTON
-  // ==========================================
+  // ======================================================
+  // APPLY THEME
+  // ======================================================
 
-  const themeToggle = document.getElementById("themeToggle");
+  function applyTheme(theme) {
+    const isDark = theme === "dark";
 
-  if (themeToggle) {
-    updateThemeIcon();
+    document.documentElement.setAttribute("data-theme", theme);
 
-    themeToggle.addEventListener("click", function () {
-      document.body.classList.toggle("dark-mode");
+    /*
+        Keep dark-mode class too.
+        This makes it compatible with your
+        existing project CSS.
+        */
 
-      const darkMode = document.body.classList.contains("dark-mode");
+    document.body.classList.toggle("dark-mode", isDark);
 
-      if (darkMode) {
-        localStorage.setItem("darkMode", "enabled");
-      } else {
-        localStorage.setItem("darkMode", "disabled");
+    localStorage.setItem(STORAGE_KEY, isDark ? "enabled" : "disabled");
+
+    updateThemeControls(isDark);
+
+    /*
+        Tell dashboard.js and other pages
+        that the theme changed.
+        */
+
+    window.dispatchEvent(
+      new CustomEvent("themeChanged", {
+        detail: {
+          theme: theme,
+          darkMode: isDark,
+        },
+      }),
+    );
+  }
+
+  // ======================================================
+  // UPDATE TOGGLE / BUTTON
+  // ======================================================
+
+  function updateThemeControls(isDark) {
+    const toggle = document.getElementById("darkModeToggle");
+
+    if (toggle) {
+      toggle.checked = isDark;
+    }
+
+    const themeButton = document.getElementById("themeToggle");
+
+    if (themeButton) {
+      const icon = themeButton.querySelector("i");
+
+      if (icon) {
+        icon.classList.remove("bi-moon-fill", "bi-sun-fill");
+
+        icon.classList.add(isDark ? "bi-sun-fill" : "bi-moon-fill");
       }
-
-      updateThemeIcon();
-    });
-  }
-
-  // ==========================================
-  // UPDATE ICON
-  // ==========================================
-
-  function updateThemeIcon() {
-    const icon = document.querySelector("#themeToggle i");
-
-    if (!icon) {
-      return;
-    }
-
-    if (document.body.classList.contains("dark-mode")) {
-      icon.classList.remove("bi-moon-fill");
-      icon.classList.add("bi-sun-fill");
-    } else {
-      icon.classList.remove("bi-sun-fill");
-      icon.classList.add("bi-moon-fill");
     }
   }
-});
+
+  // ======================================================
+  // INITIALIZE
+  // ======================================================
+
+  function initializeTheme() {
+    const theme = getTheme();
+
+    applyTheme(theme);
+  }
+
+  // ======================================================
+  // DOM READY
+  // ======================================================
+
+  document.addEventListener("DOMContentLoaded", function () {
+    initializeTheme();
+
+    // ==============================================
+    // SETTINGS TOGGLE
+    // ==============================================
+
+    const toggle = document.getElementById("darkModeToggle");
+
+    if (toggle) {
+      toggle.addEventListener("change", function () {
+        applyTheme(this.checked ? "dark" : "light");
+      });
+    }
+
+    // ==============================================
+    // HEADER BUTTON
+    // ==============================================
+
+    const themeButton = document.getElementById("themeToggle");
+
+    if (themeButton) {
+      themeButton.addEventListener("click", function () {
+        const currentTheme = getTheme();
+
+        applyTheme(currentTheme === "dark" ? "light" : "dark");
+      });
+    }
+  });
+
+  // ======================================================
+  // EXPOSE FUNCTIONS
+  // ======================================================
+
+  window.BachatTheme = {
+    getTheme: getTheme,
+
+    applyTheme: applyTheme,
+
+    isDark: function () {
+      return getTheme() === "dark";
+    },
+  };
+})();

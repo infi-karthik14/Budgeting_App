@@ -5,22 +5,27 @@ import java.time.LocalDate;
 public class UserResponse {
 
     private Long id;
+
     private String name;
+
     private String fullName;
+
     private String email;
+
     private String phoneNumber;
 
     private LocalDate dateOfBirth;
+
     private String address;
+
     private String bio;
 
+    private LocalDate joinedDate;
 
-    // Default Constructor
-    public UserResponse() {
-    }
+    // ==========================================
+    // CONSTRUCTOR
+    // ==========================================
 
-
-    // Parameterized Constructor
     public UserResponse(
             Long id,
             String name,
@@ -29,7 +34,8 @@ public class UserResponse {
             String phoneNumber,
             LocalDate dateOfBirth,
             String address,
-            String bio) {
+            String bio,
+            LocalDate joinedDate) {
 
         this.id = id;
         this.name = name;
@@ -39,10 +45,12 @@ public class UserResponse {
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.bio = bio;
+        this.joinedDate = joinedDate;
     }
 
-
-    // Getters
+    // ==========================================
+    // GETTERS
+    // ==========================================
 
     public Long getId() {
         return id;
@@ -76,38 +84,7 @@ public class UserResponse {
         return bio;
     }
 
-
-    // Setters
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
+    public LocalDate getJoinedDate() {
+        return joinedDate;
     }
 }

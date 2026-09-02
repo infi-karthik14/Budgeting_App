@@ -1,377 +1,199 @@
-/* Welcome Card */
+/* =========================================================
+   BACHAT BUDDY - DASHBOARD.CSS
+   CLEAN COMPLETE VERSION
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.main-content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 20px;
+    flex: 1;
+    min-width: 0;
+}
+
+.main-content .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.main-content .row>[class*="col-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/* =========================================================
+   WELCOME CARD
+========================================================= */
+
 .welcome-card {
     position: relative;
     overflow: hidden;
-    height: 180px;
-    border-radius: 20px;
-    padding: 25px;
-}
-
-.welcome-card::after {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    background: rgba(255, 255, 255, .08);
-    right: -80px;
-    top: -80px;
-    border-radius: 50%;
-}
-
-.welcome-card>* {
-    position: relative;
-    z-index: 2;
-}
-
-.welcome-card::before {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    left: -40px;
-    bottom: -60px;
-    background: rgba(255, 255, 255, .06);
-    border-radius: 50%;
-}
-
-.welcome-card h2 {
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.welcome-card p {
-    margin: 5px 0;
-    color: rgba(255, 255, 255, .9);
-}
-
-.welcome-icon {
-    font-size: 85px;
-    opacity: .9;
-}
-
-.btn:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, .18);
-    transform: translateY(-3px);
-}
-
-/* Summary card */
-.dashboard-card {
-    position: relative;
-    overflow: hidden;
-    border: none;
-    border-radius: 24px;
-    color: white;
-    min-height: 185px;
-    padding: 30px;
-    transition: all .35s ease;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, .18);
-    cursor: pointer;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, .25);
-}
-
-.dashboard-card::before {
-    content: "";
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(255, 255, 255, .12);
-    border-radius: 50%;
-    right: -70px;
-    top: -70px;
-}
-
-.dashboard-card h6 {
-    font-size: 14px;
-    opacity: .95;
-}
-
-.dashboard-card h2 {
-    font-size: 38px;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.card-icon {
-    position: absolute;
-    right: 25px;
-    bottom: 20px;
-    font-size: 60px;
-    opacity: .18;
-}
-
-/* Card Colors */
-.income {
-    background: linear-gradient(135deg, #00c853, #43e97b);
-}
-
-.expense {
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-}
-
-.balance {
-    background: linear-gradient(135deg, #2193b0, #6dd5ed);
-}
-
-.ai-card {
-    background: linear-gradient(135deg, #7b2ff7, #9d50ff);
-}
-
-
-
-/* Card Footer */
-
-.card-footer-info {
-
-    margin-top: 18px;
-
-    display: flex;
-
-    flex-direction: column;
-
-}
-
-.card-footer-info small {
-
-    color: rgba(255, 255, 255, .85);
-
-    margin-top: 4px;
-
-}
-
-.trend {
-
-    display: inline-flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    width: max-content;
-
-    padding: 6px 12px;
-
-    border-radius: 30px;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    background: rgba(255, 255, 255, .20);
-}
-
-/* Today's Summary */
-
-.summary-box {
-    background: #fff;
-    border-radius: 18px;
-    padding: 22px;
-    text-align: center;
-    transition: .3s;
-    border: 1px solid #edf2ff;
-    overflow: hidden;
-}
-
-.summary-box:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 25px rgba(37, 99, 235, .15);
-}
-
-.summary-box i {
-    font-size: 32px;
-    color: #2563eb;
-    margin-bottom: 10px;
-}
-
-.summary-box h6 {
-    margin-top: 12px;
-    color: #64748b;
-}
-
-.summary-box h3 {
-    font-weight: 700;
-    margin-top: 8px;
-}
-
-#lineChart {
-    height: 320px !important;
-}
-
-#pieChart {
-    height: 320px !important;
-}
-
-#barChart {
-    height: 220px !important;
-}
-
-/* Light Mode */
-.welcome-card h2 {
-    color: #17233c;
-}
-
-.welcome-card p {
-    color: #6b7280;
-}
-
-.welcome-icon {
-    color: #2563eb;
-}
-
-/* Dark Mode */
-body.dark-mode .welcome-card {
-    background: #182235;
-}
-
-body.dark-mode .welcome-card h2 {
-    color: #ffffff;
-}
-
-body.dark-mode .welcome-card p {
-    color: #cbd5e1;
-}
-
-body.dark-mode .welcome-icon {
-    color: #60a5fa;
-}
-
-/* ==========================================
-   COMMON WELCOME BANNER
-   Same as Dashboard
-========================================== */
-
-.welcome-card {
 
     width: 100%;
-
     min-height: 125px;
 
+    margin-bottom: 25px;
     padding: 25px 30px;
 
-    margin-bottom: 25px;
-
-    box-sizing: border-box;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 25px;
 
     border-radius: 20px;
+    border: none;
 
-    background: linear-gradient(135deg,
+    background:
+        linear-gradient(135deg,
             #07152d,
             #12285c);
 
     color: #ffffff;
 
     box-shadow:
-        0 12px 30px rgba(0, 0, 0, .15);
+        0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 
-/* ==========================================
-   LEFT CONTENT
-========================================== */
+/* Decorative circles */
+
+.welcome-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -40px;
+    bottom: -60px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border-radius: 50%;
+}
+
+
+.welcome-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -80px;
+    top: -80px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+}
+
+
+.welcome-card>* {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   WELCOME CONTENT
+========================================================= */
 
 .welcome-content {
-
     flex: 1;
+    min-width: 0;
 }
 
 
 .welcome-content h2 {
-
-    margin: 0 0 8px;
+    margin: 0 0 7px !important;
 
     font-size: 28px;
-
     font-weight: 700;
 
-    color: #ffffff;
+    line-height: 1.25;
+
+    color: #ffffff !important;
 }
 
 
 .welcome-date {
-
-    margin: 0 0 4px;
+    margin: 0 0 5px !important;
 
     font-size: 13px;
 
-    color: #dbeafe;
+    color: #dbeafe !important;
 }
 
 
 .welcome-message {
-
-    margin: 0;
+    margin: 0 !important;
 
     font-size: 13px;
 
-    color: #bfdbfe;
+    color: #bfdbfe !important;
 }
 
 
-/* ==========================================
-   RIGHT SIDE
-========================================== */
+/* =========================================================
+   WELCOME ACTIONS
+========================================================= */
 
 .welcome-actions {
-
     display: flex;
 
     align-items: center;
-
     justify-content: flex-end;
 
     gap: 12px;
 
-    margin-left: auto;
+    margin-left: 25px;
 
     flex-shrink: 0;
 }
 
 
-/* ==========================================
-   SEARCH BAR
-========================================== */
+/* =========================================================
+   SEARCH
+========================================================= */
 
 .welcome-search {
-
     width: 230px;
-
     height: 42px;
 
     display: flex;
-
     align-items: center;
 
     gap: 9px;
 
     padding: 0 13px;
 
-    box-sizing: border-box;
-
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .13);
+    background: rgba(255, 255, 255, 0.13);
 
-    border: 1px solid rgba(255, 255, 255, .25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
     backdrop-filter: blur(10px);
-
     -webkit-backdrop-filter: blur(10px);
 }
 
 
 .welcome-search i {
-
     color: #dbeafe;
 
     font-size: 15px;
@@ -381,15 +203,12 @@ body.dark-mode .welcome-icon {
 
 
 .welcome-search input {
-
     width: 100%;
-
     height: 100%;
 
     padding: 0;
 
     border: none;
-
     outline: none;
 
     background: transparent;
@@ -401,60 +220,1792 @@ body.dark-mode .welcome-icon {
 
 
 .welcome-search input::placeholder {
-
     color: #cbd5e1;
 }
 
 
-/* ==========================================
-   NOTIFICATION BUTTON
-========================================== */
+/* =========================================================
+   NOTIFICATION
+========================================================= */
 
 .notification-btn {
-
     width: 42px;
-
     height: 42px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 0;
 
-    border: 1px solid rgba(255, 255, 255, .25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .13);
+    background: rgba(255, 255, 255, 0.13);
 
     color: #ffffff;
 
     cursor: pointer;
 
-    transition: .2s ease;
+    transition: 0.25s ease;
 }
 
 
 .notification-btn:hover {
-
-    background: rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, 0.25);
 
     transform: translateY(-2px);
 }
 
 
-.notification-btn i {
+/* =========================================================
+   DASHBOARD CARDS
+   ALL FOUR EXACTLY SAME SIZE
+========================================================= */
 
-    font-size: 16px;
+.dashboard-card,
+.dashboard-card.ai-card {
+    position: relative;
+
+    width: 100% !important;
+
+    height: 320px !important;
+
+    min-height: 320px !important;
+
+    max-height: 320px !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 26px !important;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border: none !important;
+
+    border-radius: 24px !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    cursor: pointer;
 }
 
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
+/* =========================================================
+   CARD DECORATIVE CIRCLE
+========================================================= */
+
+.dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -65px;
+    top: -65px;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.dashboard-card>* {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.dashboard-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 25px 45px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   CARD TITLES
+========================================================= */
+
+.dashboard-card h6 {
+    margin: 0 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1.3 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   CARD AMOUNT
+========================================================= */
+
+.dashboard-card h2 {
+    margin: 10px 0 0 !important;
+
+    font-size: 38px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.2 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   CARD SMALL TEXT
+========================================================= */
+
+.dashboard-card small {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 12px;
+
+    line-height: 1.3;
+
+    color:
+        rgba(255, 255, 255, 0.88) !important;
+}
+
+
+/* =========================================================
+   SAME COLORS AS BUDGET PAGE
+========================================================= */
+
+
+/* GREEN - INCOME / BUDGET */
+
+.dashboard-card.income {
+    background:
+        linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+}
+
+
+/* RED - EXPENSE / SPENT */
+
+.dashboard-card.expense {
+    background:
+        linear-gradient(135deg,
+            #ff4b5c,
+            #ff1744) !important;
+}
+
+
+/* CYAN - BALANCE / REMAINING */
+
+.dashboard-card.balance {
+    background:
+        linear-gradient(135deg,
+            #00c6ff,
+            #00acc1) !important;
+}
+
+
+/* PURPLE - AI / CATEGORY */
+
+.dashboard-card.ai-card {
+    background:
+        linear-gradient(135deg,
+            #7c4dff,
+            #512da8) !important;
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.dashboard-card .card-icon {
+    position: absolute !important;
+
+    right: 22px;
+    bottom: 18px;
+
+    font-size: 58px;
+
+    color: #ffffff !important;
+
+    opacity: 0.15;
+
+    z-index: 1 !important;
+}
+
+
+/* =========================================================
+   TREND
+========================================================= */
+
+.dashboard-card .trend {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    width: max-content;
+
+    padding: 6px 11px;
+
+    margin-top: 8px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255, 255, 255, 0.20);
+
+    color: #ffffff !important;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.card-footer-info {
+    margin-top: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.card-footer-info small {
+    margin: 0;
+
+    font-size: 11px;
+
+    line-height: 1.3;
+
+    color:
+        rgba(255, 255, 255, 0.88) !important;
+}
+
+
+/* =========================================================
+   AI PREDICTION CARD
+========================================================= */
+
+.dashboard-card.ai-card {
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    justify-content: flex-start !important;
+
+    align-items: flex-start !important;
+
+    padding: 26px !important;
+}
+
+
+/* AI title */
+
+.dashboard-card.ai-card h6 {
+    margin: 0 !important;
+
+    font-size: 15px !important;
+
+    line-height: 1.3 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* AI amount */
+
+.dashboard-card.ai-card h2 {
+    margin: 8px 0 6px !important;
+
+    font-size: 34px !important;
+
+    line-height: 1.2 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* AI prediction text */
+
+.dashboard-card.ai-card p {
+    margin: 5px 0 !important;
+
+    font-size: 13px !important;
+
+    line-height: 1.45 !important;
+
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+
+/* AI footer */
+
+.dashboard-card.ai-card .card-footer-info {
+    margin-top: 8px !important;
+
+    gap: 4px !important;
+}
+
+
+.dashboard-card.ai-card .card-footer-info small {
+    margin: 0 !important;
+
+    font-size: 11px !important;
+
+    line-height: 1.4 !important;
+
+    color: rgba(255, 255, 255, 0.90) !important;
+}
+
+
+/* AI icon */
+
+.dashboard-card.ai-card .card-icon {
+    right: 20px !important;
+
+    bottom: 18px !important;
+
+    font-size: 58px !important;
+}
+
+/* =========================================================
+   GENERIC CARDS
+========================================================= */
+
+.main-content .card {
+    border: none;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   MONTHLY BUDGET USAGE
+========================================================= */
+
+.budget-usage-card {
+    width: 100% !important;
+
+    margin-top: 20px;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden;
+
+    background: #151f32 !important;
+
+    color: #f8fafc;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+.budget-usage-card .card-body {
+    padding: 25px;
+
+    background: #151f32 !important;
+}
+
+
+/* Budget heading */
+
+.budget-usage-card h5,
+.budget-usage-card h4,
+.budget-usage-card .card-title {
+    margin: 0;
+
+    color: #f8fafc !important;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BUDGET PROGRESS ROW
+========================================================= */
+
+.budget-progress-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.budget-usage-card .progress {
+    position: relative;
+
+    width: 100%;
+
+    height: 15px !important;
+
+    margin: 0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: #4f83bd !important;
+
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   BUDGET PROGRESS
+   NO TEXT INSIDE
+========================================================= */
+
+#dashboardBudgetProgress {
+    display: block !important;
+
+    height: 100% !important;
+
+    min-width: 0;
+
+    padding: 0 !important;
+
+    border-radius: 20px !important;
+
+    background:
+        linear-gradient(90deg,
+            #00e676,
+            #00ff66) !important;
+
+    color: transparent !important;
+
+    font-size: 0 !important;
+
+    line-height: 0 !important;
+
+    transition:
+        width 0.5s ease;
+}
+
+
+/* =========================================================
+   BUDGET PERCENTAGE
+   OUTSIDE BAR
+========================================================= */
+
+#dashboardBudgetPercentage {
+    display: inline-block !important;
+
+    color: #38bdf8 !important;
+
+    font-size: 18px !important;
+
+    font-weight: 800 !important;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   BUDGET INFORMATION BOXES
+========================================================= */
+
+.budget-usage-card .bg-light.rounded {
+    background: #18263d !important;
+
+    border: 1px solid #315477 !important;
+
+    border-radius: 14px !important;
+
+    padding: 16px !important;
+
+    transition: 0.25s ease;
+}
+
+
+.budget-usage-card .bg-light.rounded:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(37, 99, 235, 0.10);
+}
+
+
+/* Monthly budget */
+
+#dashboardMonthlyBudget {
+    color: #2196f3 !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* Spent */
+
+#dashboardMonthlySpent {
+    color: #ff304f !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* Remaining */
+
+#dashboardMonthlyRemaining {
+    color: #00e676 !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* =========================================================
+   TODAY'S SUMMARY
+========================================================= */
+
+.today-summary-card {
+    width: 100% !important;
+
+    margin-top: 20px;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden;
+
+    background: #151f32 !important;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Header */
+
+.today-summary-card .card-header {
+    padding: 15px 22px;
+
+    border: none !important;
+
+    background:
+        linear-gradient(135deg,
+            #f59e0b,
+            #f97316) !important;
+
+    color: #ffffff !important;
+}
+
+
+.today-summary-card .card-header h5 {
+    margin: 0;
+    color: #ffffff !important;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.today-summary-card .card-header h5::before {
+    content: "\f3fd";
+    font-family: "bootstrap-icons";
+    font-size: 20px;
+}
+
+
+/* Body */
+
+.today-summary-card .card-body {
+    padding: 18px 20px;
+
+    background: #151f32 !important;
+}
+
+
+/* =========================================================
+   TODAY SUMMARY BOXES
+========================================================= */
+
+.today-summary-card .summary-box {
+    min-height: 115px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background: #18263d !important;
+
+    border: 1px solid #293852;
+
+    transition: 0.25s ease;
+}
+
+
+.today-summary-card .summary-box:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+.today-summary-card .summary-box i {
+    font-size: 22px;
+
+    margin-bottom: 7px;
+}
+
+
+.today-summary-card .summary-box h6 {
+    margin: 0;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    color: #94a3b8 !important;
+}
+
+
+.today-summary-card .summary-box h3 {
+    margin: 6px 0 0;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #f8fafc;
+}
+
+/* =========================================================
+   TODAY SUMMARY - EXACT COLORS
+========================================================= */
+
+/* TODAY'S INCOME - GREEN */
+#todayIncome {
+    color: #00e676 !important;
+}
+
+
+/* TODAY'S EXPENSE - RED */
+#todayExpense {
+    color: #ff304f !important;
+}
+
+
+/* TRANSACTIONS - WHITE */
+#todayTransactions {
+    color: #f8fafc !important;
+}
+
+
+/* SAVINGS - BLUE */
+#todaySavings {
+    color: #2196f3 !important;
+}
+
+
+/* =========================================================
+   TODAY SUMMARY ICON COLORS
+========================================================= */
+
+/* Income icon - GREEN */
+.today-summary-card .summary-box:has(#todayIncome) i {
+    color: #00e676 !important;
+}
+
+
+/* Expense icon - RED */
+.today-summary-card .summary-box:has(#todayExpense) i {
+    color: #ff304f !important;
+}
+
+
+/* Transactions icon - WHITE */
+.today-summary-card .summary-box:has(#todayTransactions) i {
+    color: #F8FAFC !important;
+}
+
+
+/* Savings icon - BLUE */
+.today-summary-card .summary-box:has(#todaySavings) i {
+    color: #2196f3 !important;
+}
+
+
+/* =========================================================
+   CHART CARDS
+========================================================= */
+
+.chart-card {
+    width: 100% !important;
+
+    height: 100%;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden;
+
+    background: #151f32 !important;
+
+    color: #f8fafc;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+.chart-card .card-header {
+    padding: 14px 20px;
+
+    border: none !important;
+
+    color: #ffffff !important;
+
+    font-weight: 700;
+}
+
+
+.chart-card .card-body {
+    background: #151f32 !important;
+
+    color: #f8fafc;
+
+    padding: 18px;
+}
+
+
+/* Blue chart header */
+
+.chart-card .bg-primary {
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #06b6d4) !important;
+}
+
+
+/* Green chart header */
+
+.chart-card .bg-success {
+    background:
+        linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+}
+
+/* =========================================================
+   CHART HEIGHT
+========================================================= */
+
+#lineChart,
+#pieChart,
+#barChart,
+#budgetChart {
+    width: 100% !important;
+
+    max-width: 100% !important;
+}
+
+
+/* =========================================================
+   RECENT TRANSACTIONS CARD
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) {
+    width: 100% !important;
+
+    margin-top: 24px !important;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden !important;
+
+    background: #151f32 !important;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   RECENT TRANSACTIONS HEADER
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody)>.card-header {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 16px 22px;
+
+    border: none !important;
+
+    border-radius: 20px 20px 0 0 !important;
+
+    background:
+        linear-gradient(135deg,
+            #a35fdb,
+            #b904dd) !important;
+
+    color: #ffffff !important;
+}
+
+
+.main-content .card:has(#recentTransactionsBody)>.card-header h5 {
+
+    margin: 0 !important;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   RECENT TRANSACTIONS BODY
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody)>.card-body {
+
+    padding: 20px !important;
+
+    background: #151f32 !important;
+}
+
+
+/* =========================================================
+   TABLE RESPONSIVE WRAPPER
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table-responsive {
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    overflow-x: auto !important;
+
+    overflow-y: hidden !important;
+
+    border-radius: 14px !important;
+
+    scrollbar-width: thin;
+}
+
+
+/* =========================================================
+   TRANSACTION TABLE
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) table {
+
+    width: 100% !important;
+
+    min-width: 760px !important;
+
+    margin: 0 !important;
+
+    table-layout: fixed !important;
+
+    border-collapse: separate !important;
+
+    border-spacing: 0 !important;
+
+    background: #151f32 !important;
+}
+
+
+/* =========================================================
+   COLUMN WIDTHS
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) th:nth-child(1),
+.main-content .card:has(#recentTransactionsBody) td:nth-child(1) {
+
+    width: 18% !important;
+}
+
+
+.main-content .card:has(#recentTransactionsBody) th:nth-child(2),
+.main-content .card:has(#recentTransactionsBody) td:nth-child(2) {
+
+    width: 18% !important;
+}
+
+
+.main-content .card:has(#recentTransactionsBody) th:nth-child(3),
+.main-content .card:has(#recentTransactionsBody) td:nth-child(3) {
+
+    width: 17% !important;
+}
+
+
+.main-content .card:has(#recentTransactionsBody) th:nth-child(4),
+.main-content .card:has(#recentTransactionsBody) td:nth-child(4) {
+
+    width: 23% !important;
+}
+
+
+.main-content .card:has(#recentTransactionsBody) th:nth-child(5),
+.main-content .card:has(#recentTransactionsBody) td:nth-child(5) {
+
+    width: 24% !important;
+}
+
+
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table thead th {
+
+    height: 48px;
+
+    padding: 13px 14px !important;
+
+    vertical-align: middle !important;
+
+    background: #f8fafc !important;
+
+    color: #334155 !important;
+
+    border: none !important;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+
+    white-space: nowrap;
+
+    text-align: left;
+}
+
+
+/* Header rounded corners */
+
+.main-content .card:has(#recentTransactionsBody) .table thead th:first-child {
+
+    border-radius: 12px 0 0 12px !important;
+}
+
+
+.main-content .card:has(#recentTransactionsBody) .table thead th:last-child {
+
+    border-radius: 0 12px 12px 0 !important;
+}
+
+
+/* =========================================================
+   TABLE BODY ROW
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody tr {
+
+    height: 48px;
+
+    transition:
+        background 0.2s ease;
+
+    transform: none !important;
+}
+
+
+.main-content .card:has(#recentTransactionsBody) .table tbody tr:hover {
+
+    background:
+        rgba(37, 99, 235, 0.12) !important;
+
+    transform: none !important;
+}
+
+
+/* =========================================================
+   TABLE CELLS
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td {
+
+    height: 48px;
+
+    padding: 12px 14px !important;
+
+    vertical-align: middle !important;
+
+    background: transparent !important;
+
+    color: #e2e8f0 !important;
+
+    border-bottom:
+        1px solid #293852 !important;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    text-align: left;
+}
+
+
+/* Last row */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody tr:last-child td {
+
+    border-bottom: none !important;
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td:nth-child(1) {
+
+    color: #60a5fa !important;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td:nth-child(2) {
+
+    color: #f8fafc !important;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TYPE
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td:nth-child(3) {
+
+    font-weight: 700;
+}
+
+
+/* Income type */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td.text-success {
+
+    color: #00e676 !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* Expense type */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td.text-danger {
+
+    color: #ff304f !important;
+
+    font-weight: 700 !important;
+}
+
+/* =========================================================
+   TRANSACTION TYPE ICON
+========================================================= */
+
+.transaction-type-icon {
+    margin-right: 6px;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+
+/* Income icon */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td.text-success .transaction-type-icon {
+    color: #00e676 !important;
+}
+
+
+/* Expense icon */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td.text-danger .transaction-type-icon {
+    color: #ff304f !important;
+}
+
+
+/* =========================================================
+   TRANSACTION AMOUNT COLORS
+========================================================= */
+
+/* Income amount */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td.amount-income {
+    color: #00e676 !important;
+    font-weight: 800 !important;
+}
+
+
+/* Expense amount */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td.amount-expense {
+    color: #ff304f !important;
+    font-weight: 800 !important;
+}
+
+/* =========================================================
+   AMOUNT
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td:nth-child(4) {
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.main-content .card:has(#recentTransactionsBody) .table tbody td:nth-child(5) {
+
+    text-align: center;
+}
+
+
+.main-content .card:has(#recentTransactionsBody) .table tbody .badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 75px;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    background: #00e676 !important;
+
+    color: #062b16 !important;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   GENERAL TABLE PROTECTION
+========================================================= */
+
+.table-hover tbody tr {
+
+    transform: none !important;
+}
+
+
+.table-hover tbody tr:hover {
+
+    transform: none !important;
+}
+
+
+/* =========================================================
+   SAVINGS GOAL
+========================================================= */
+
+.savings-goal,
+.savings-goal-card {
+
+    width: 100% !important;
+
+    box-sizing: border-box;
+}
+
+
+.savings-goal-card {
+
+    margin-top: 24px;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden;
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+.savings-goal-card .card-body {
+
+    padding: 28px;
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+}
+
+
+/* =========================================================
+   SAVINGS GOAL TITLE
+========================================================= */
+
+.savings-goal-card .card-title {
+
+    margin: 0;
+
+    color: #f8fafc !important;
+
+    font-weight: 700;
+}
+
+
+.savings-goal-card .card-title i {
+
+    color: #f59e0b !important;
+}
+
+
+/* =========================================================
+   SAVINGS GOAL NAME
+========================================================= */
+
+#savingsGoalName {
+
+    color: #f8fafc !important;
+
+    font-size: 24px !important;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   SAVED
+========================================================= */
+
+#savingsGoalSaved {
+
+    color: #00e676 !important;
+
+    font-size: 20px !important;
+
+    font-weight: 800 !important;
+}
+
+
+/* =========================================================
+   TARGET
+========================================================= */
+
+#savingsGoalTarget {
+
+    color: #f8fafc !important;
+
+    font-size: 20px !important;
+
+    font-weight: 700 !important;
+}
+
+
+/* =========================================================
+   SAVINGS GOAL PROGRESS TRACK
+========================================================= */
+
+.savings-goal-card .progress {
+
+    position: relative;
+
+    width: 100% !important;
+
+    height: 14px !important;
+
+    min-height: 14px !important;
+
+    margin-top: 8px;
+
+    border-radius: 20px !important;
+
+    overflow: hidden !important;
+
+    background: #365779 !important;
+
+    border: none !important;
+
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   SAVINGS PROGRESS
+========================================================= */
+
+#savingsGoalProgress {
+
+    display: block !important;
+
+    height: 100% !important;
+
+    min-width: 0 !important;
+
+    padding: 0 !important;
+
+    border-radius: 20px !important;
+
+    background:
+        linear-gradient(90deg,
+            #f59e0b,
+            #f97316) !important;
+
+    font-size: 0 !important;
+
+    color: transparent !important;
+
+    line-height: 0 !important;
+
+    transition:
+        width 0.6s ease;
+}
+
+
+/* =========================================================
+   SAVINGS PERCENTAGE
+========================================================= */
+
+#savingsGoalPercentage {
+
+    display: inline-block;
+
+    margin-top: 6px;
+
+    color: #f59e0b !important;
+
+    font-size: 15px !important;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SAVINGS TEXT
+========================================================= */
+
+.savings-goal-card .text-muted {
+
+    color: #94a3b8 !important;
+}
+
+
+/* =========================================================
+   SAVINGS BUTTONS
+========================================================= */
+
+.savings-goal-card .btn {
+
+    border-radius: 10px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+.btn {
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark-mode {
+
+    background: #07152d;
+}
+
+
+body.dark-mode .main-content {
+
+    color: #f8fafc;
+}
+
+
+/* Generic cards */
+
+body.dark-mode .main-content .card {
+
+    background: #151f32;
+
+    color: #f8fafc;
+
+    border-color: #293852;
+}
+
+
+/* Headings */
+
+body.dark-mode .main-content h1,
+body.dark-mode .main-content h2,
+body.dark-mode .main-content h3,
+body.dark-mode .main-content h4,
+body.dark-mode .main-content h5,
+body.dark-mode .main-content h6 {
+
+    color: #f8fafc;
+}
+
+
+/* Muted text */
+
+body.dark-mode .main-content .text-muted {
+
+    color: #94a3b8 !important;
+}
+
+
+/* =========================================================
+   DARK MODE - BUDGET
+========================================================= */
+
+body.dark-mode .budget-usage-card {
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+}
+
+
+body.dark-mode .budget-usage-card .card-body {
+
+    background: #151f32 !important;
+}
+
+
+body.dark-mode .budget-usage-card .bg-light.rounded {
+
+    background: #18263d !important;
+
+    border-color: #315477 !important;
+}
+
+
+body.dark-mode .budget-usage-card .progress {
+
+    background: #365779 !important;
+}
+
+
+/* =========================================================
+   DARK MODE - TODAY SUMMARY
+========================================================= */
+
+body.dark-mode .today-summary-card {
+
+    background: #151f32 !important;
+}
+
+
+body.dark-mode .today-summary-card .card-body {
+
+    background: #151f32 !important;
+}
+
+
+body.dark-mode .today-summary-card .summary-box {
+
+    background: #18263d !important;
+
+    border-color: #293852 !important;
+}
+
+
+body.dark-mode .today-summary-card .summary-box h6 {
+
+    color: #94a3b8 !important;
+}
+
+
+/* =========================================================
+   DARK MODE - CHARTS
+========================================================= */
+
+body.dark-mode .chart-card {
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+}
+
+
+body.dark-mode .chart-card .card-body {
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+}
+
+
+/* =========================================================
+   DARK MODE - RECENT TRANSACTIONS
+========================================================= */
+
+body.dark-mode .main-content .card:has(#recentTransactionsBody) {
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+}
+
+
+body.dark-mode .main-content .card:has(#recentTransactionsBody)>.card-body {
+
+    background: #151f32 !important;
+}
+
+
+body.dark-mode .main-content .card:has(#recentTransactionsBody) .table {
+
+    background: #151f32 !important;
+
+    --bs-table-bg: #151f32;
+
+    --bs-table-color: #f8fafc;
+
+    --bs-table-border-color: #293852;
+
+    --bs-table-hover-bg: #1d3150;
+}
+
+
+body.dark-mode .main-content .card:has(#recentTransactionsBody) .table tbody td {
+
+    background: transparent !important;
+
+    color: #e2e8f0 !important;
+
+    border-color: #293852 !important;
+}
+
+
+body.dark-mode .main-content .card:has(#recentTransactionsBody) .table thead th {
+
+    background: #f8fafc !important;
+
+    color: #334155 !important;
+}
+
+
+/* =========================================================
+   DARK MODE - SAVINGS
+========================================================= */
+
+body.dark-mode .savings-goal-card {
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+}
+
+
+body.dark-mode .savings-goal-card .card-body {
+
+    background: #151f32 !important;
+
+    color: #f8fafc !important;
+}
+
+
+body.dark-mode #savingsGoalName,
+body.dark-mode #savingsGoalTarget {
+
+    color: #f8fafc !important;
+}
+
+
+body.dark-mode .savings-goal-card .progress {
+
+    background: #365779 !important;
+}
+
+
+/* =========================================================
+   DARK MODE - TABLE
+========================================================= */
+
+body.dark-mode .table {
+
+    --bs-table-bg: #151f32;
+
+    --bs-table-color: #f8fafc;
+
+    --bs-table-border-color: #293852;
+
+    --bs-table-hover-bg: #1d3150;
+
+    --bs-table-hover-color: #ffffff;
+}
+
+
+body.dark-mode .table tbody td {
+
+    color: #e2e8f0;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+
+    .dashboard-card,
+    .dashboard-card.ai-card {
+
+        height: 300px !important;
+
+        min-height: 300px !important;
+
+        max-height: 300px !important;
+    }
+
+
+    .charts-container,
+    .chart-container,
+    .charts-grid {
+
+        grid-template-columns: 1fr !important;
+    }
+
+
+    .dashboard-actions,
+    .action-buttons,
+    .quick-actions {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 768px
+========================================================= */
 
 @media (max-width: 768px) {
 
@@ -466,7 +2017,7 @@ body.dark-mode .welcome-icon {
 
         gap: 18px;
 
-        padding: 22px;
+        padding: 22px !important;
     }
 
 
@@ -491,16 +2042,83 @@ body.dark-mode .welcome-icon {
         width: auto;
     }
 
+
+    .dashboard-card,
+    .dashboard-card.ai-card {
+
+        height: 320px !important;
+
+        min-height: 320px !important;
+
+        max-height: 320px !important;
+    }
+
+
+    .today-summary-card .summary-box {
+
+        min-height: 110px;
+    }
+
+
+    .main-content .card:has(#recentTransactionsBody)>.card-body {
+
+        padding: 16px !important;
+    }
 }
 
 
-@media (max-width: 480px) {
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .main-content {
+
+        padding: 0 10px;
+    }
+
+
+    .dashboard-card,
+    .dashboard-card.ai-card {
+
+        height: 320px !important;
+
+        min-height: 320px !important;
+
+        max-height: 320px !important;
+        padding: 23px !important;
+
+        border-radius: 20px !important;
+    }
+
+
+    .dashboard-card h2 {
+
+        font-size: 34px !important;
+    }
+
+
+    .dashboard-card.ai-card h2 {
+
+        font-size: 30px !important;
+    }
+
+    .card-icon {
+
+        right: 18px !important;
+
+        bottom: 15px !important;
+
+        font-size: 50px !important;
+    }
+
 
     .welcome-card {
 
-        padding: 18px;
-
         border-radius: 16px;
+
+        padding: 18px !important;
     }
 
 
@@ -510,9 +2128,10 @@ body.dark-mode .welcome-icon {
     }
 
 
-    .welcome-actions {
+    .welcome-date,
+    .welcome-message {
 
-        gap: 8px;
+        font-size: 12px;
     }
 
 
@@ -529,181 +2148,156 @@ body.dark-mode .welcome-icon {
         height: 40px;
     }
 
+
+    .budget-usage-card,
+    .today-summary-card,
+    .savings-goal-card,
+    .main-content .card:has(#recentTransactionsBody) {
+
+        border-radius: 16px !important;
+    }
+
+
+    .today-summary-card .summary-box {
+
+        min-height: 105px;
+
+        padding: 15px;
+    }
+
+
+    .today-summary-card .summary-box h3 {
+
+        font-size: 21px;
+    }
+
+
+    .savings-goal-card .card-body {
+
+        padding: 20px;
+    }
+
+
+    #savingsGoalName {
+
+        font-size: 20px !important;
+    }
+
+
+    #savingsGoalSaved,
+    #savingsGoalTarget {
+
+        font-size: 17px !important;
+    }
+
+
+    /* Keep table aligned */
+
+    .main-content .card:has(#recentTransactionsBody) table {
+
+        min-width: 760px !important;
+    }
+
+
+    .main-content .card:has(#recentTransactionsBody) .table thead th,
+    .main-content .card:has(#recentTransactionsBody) .table tbody td {
+
+        padding: 11px 10px !important;
+
+        font-size: 12px;
+    }
+
+
+    .dashboard-actions,
+    .action-buttons,
+    .quick-actions {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 10px !important;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .dashboard-card,
+    .dashboard-card.ai-card {
+
+        height: 340px !important;
+
+        min-height: 340px !important;
+
+        max-height: 340px !important;
+
+        padding: 20px !important;
+    }
+
+
+    .dashboard-card h2 {
+
+        font-size: 30px !important;
+    }
+
+
+    .dashboard-card.ai-card h2 {
+
+        font-size: 28px !important;
+    }
 }
 
 /* =========================================================
-   DASHBOARD LAYOUT FIX
-   ========================================================= */
+   SIDEBAR + MAIN CONTENT FIX
+========================================================= */
 
-/* Main dashboard content */
-.dashboard-content,
-.dashboard-main,
-main {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    box-sizing: border-box;
+/* Sidebar */
+.sidebar {
+    width: 250px !important;
+    flex-shrink: 0 !important;
 }
 
-/* =========================================================
-   SUMMARY / TOP CARDS
-   ========================================================= */
-
-.dashboard-cards,
-.dashboard-card-container,
-.cards-container {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 20px !important;
-    width: 100% !important;
-    box-sizing: border-box;
-}
-
-/* Individual cards */
-.dashboard-card {
-    width: 100% !important;
-    min-width: 0 !important;
+/* Main content */
+.main-content {
+    width: calc(100% - 250px) !important;
     max-width: none !important;
-    box-sizing: border-box;
-    margin: 0 !important;
-}
-
-/* =========================================================
-   TODAY'S SUMMARY
-   ========================================================= */
-
-.summary-container,
-.today-summary,
-.summary-boxes {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 20px !important;
-    width: 100% !important;
-    box-sizing: border-box;
-}
-
-.summary-box {
-    width: 100% !important;
+    margin-left: 250px !important;
+    padding: 0 20px !important;
+    flex: 1 !important;
     min-width: 0 !important;
-    box-sizing: border-box;
-    margin: 0 !important;
+}
+
+/* If sidebar is fixed */
+body {
+    overflow-x: hidden;
 }
 
 /* =========================================================
-   CHART SECTION
-   ========================================================= */
+   SIDEBAR + MAIN CONTENT - MOBILE FIX
+========================================================= */
 
-.charts-container,
-.chart-container,
-.charts-grid {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 20px !important;
-    width: 100% !important;
-}
+@media (max-width: 768px) {
 
-.chart-card {
-    width: 100% !important;
-    min-width: 0 !important;
-    box-sizing: border-box;
-}
-
-/* =========================================================
-   TABLE
-   ========================================================= */
-
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    min-width: 650px;
-}
-
-/* =========================================================
-   ACTION BUTTONS
-   ========================================================= */
-
-.dashboard-actions,
-.action-buttons,
-.quick-actions {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 15px !important;
-    width: 100% !important;
-}
-
-.dashboard-actions button,
-.action-buttons button,
-.quick-actions button {
-    width: 100% !important;
-    margin: 0 !important;
-}
-
-/* =========================================================
-   SAVINGS GOAL
-   ========================================================= */
-
-.savings-goal,
-.savings-goal-card {
-    width: 100% !important;
-    box-sizing: border-box;
-}
-
-/* =========================================================
-   RESPONSIVE TABLET
-   ========================================================= */
-
-@media (max-width: 992px) {
-
-    .dashboard-cards,
-    .dashboard-card-container,
-    .cards-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    /* Main content should use the full mobile screen */
+    .main-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        padding: 0 10px !important;
     }
 
-    .summary-container,
-    .today-summary,
-    .summary-boxes {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    /* Do NOT force sidebar width on mobile */
+    .sidebar {
+        width: auto !important;
+        margin-left: 0 !important;
     }
 
-    .charts-container,
-    .chart-container,
-    .charts-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .dashboard-actions,
-    .action-buttons,
-    .quick-actions {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    }
-}
-
-/* =========================================================
-   RESPONSIVE MOBILE
-   ========================================================= */
-
-@media (max-width: 576px) {
-
-    .dashboard-cards,
-    .dashboard-card-container,
-    .cards-container {
-        grid-template-columns: 1fr !important;
-    }
-
-    .summary-container,
-    .today-summary,
-    .summary-boxes {
-        grid-template-columns: 1fr !important;
-    }
-
-    .dashboard-actions,
-    .action-buttons,
-    .quick-actions {
-        grid-template-columns: 1fr !important;
+    /* Prevent horizontal overflow */
+    body {
+        overflow-x: hidden !important;
     }
 }

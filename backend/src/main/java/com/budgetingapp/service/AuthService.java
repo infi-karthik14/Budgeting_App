@@ -6,12 +6,23 @@ import com.budgetingapp.dto.UpdateProfileRequest;
 import com.budgetingapp.dto.UserResponse;
 import com.budgetingapp.entity.User;
 import com.budgetingapp.repository.UserRepository;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 
 @Service
 public class AuthService {
 
     private final UserRepository userRepository;
+
+    // BCrypt password encoder
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+    // ==================================================
+    // CONSTRUCTOR
+    // ==================================================
 
     public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -25,17 +36,36 @@ public class AuthService {
 
         // Check whether email already exists
         if (userRepository.existsByEmail(request.getEmail())) {
+
             return "Email already exists!";
         }
 
         // Create new user
         User user = new User();
 
+        // Name
         user.setName(request.getFullName());
+
         user.setFullName(request.getFullName());
+
+        // Email
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        user.setPhoneNumber(request.getPhoneNumber());
+
+        // ==================================================
+        // HASH PASSWORD
+        // ==================================================
+
+        user.setPassword(
+                passwordEncoder.encode(
+                        request.getPassword()));
+
+        // Phone
+        user.setPhoneNumber(
+                request.getPhoneNumber());
+
+        // Account creation date
+        user.setJoinedDate(
+                LocalDate.now());
 
         // Save user
         userRepository.save(user);
@@ -55,11 +85,18 @@ public class AuthService {
 
         // User not found
         if (user == null) {
+
             return "User not found!";
         }
 
-        // Password check
-        if (!user.getPassword().equals(request.getPassword())) {
+        // ==================================================
+        // CHECK HASHED PASSWORD
+        // ==================================================
+
+        if (!passwordEncoder.matches(
+                request.getPassword(),
+                user.getPassword())) {
+
             return "Invalid Password!";
         }
 
@@ -75,7 +112,8 @@ public class AuthService {
         User user = userRepository
                 .findByEmail(email)
                 .orElseThrow(
-                        () -> new RuntimeException("User not found!"));
+                        () -> new RuntimeException(
+                                "User not found!"));
 
         return new UserResponse(
                 user.getId(),
@@ -85,7 +123,8 @@ public class AuthService {
                 user.getPhoneNumber(),
                 user.getDateOfBirth(),
                 user.getAddress(),
-                user.getBio());
+                user.getBio(),
+                user.getJoinedDate());
     }
 
     // ==================================================
@@ -99,70 +138,85 @@ public class AuthService {
         User user = userRepository
                 .findByEmail(email)
                 .orElseThrow(
-                        () -> new RuntimeException("User not found!"));
+                        () -> new RuntimeException(
+                                "User not found!"));
 
         // ==================================================
-        // UPDATE NAME
+        // NAME
         // ==================================================
 
         if (request.getName() != null &&
                 !request.getName().trim().isEmpty()) {
 
-            user.setName(request.getName());
+            user.setName(
+                    request.getName());
         }
 
         // ==================================================
-        // UPDATE FULL NAME
+        // FULL NAME
         // ==================================================
 
         if (request.getFullName() != null &&
                 !request.getFullName().trim().isEmpty()) {
 
-            user.setFullName(request.getFullName());
+            user.setFullName(
+                    request.getFullName());
+
+            // Keep both synchronized
+            user.setName(
+                    request.getFullName());
         }
 
         // ==================================================
-        // UPDATE EMAIL
+        // EMAIL
         // ==================================================
 
         if (request.getEmail() != null &&
                 !request.getEmail().trim().isEmpty()) {
 
-            user.setEmail(request.getEmail());
+            user.setEmail(
+                    request.getEmail());
         }
 
         // ==================================================
-        // UPDATE PHONE
+        // PHONE
         // ==================================================
 
-        user.setPhoneNumber(request.getPhoneNumber());
+        if (request.getPhoneNumber() != null) {
+
+            user.setPhoneNumber(
+                    request.getPhoneNumber());
+        }
 
         // ==================================================
-        // UPDATE DATE OF BIRTH
+        // DATE OF BIRTH
         // ==================================================
 
-        user.setDateOfBirth(request.getDateOfBirth());
+        user.setDateOfBirth(
+                request.getDateOfBirth());
 
         // ==================================================
-        // UPDATE ADDRESS
+        // ADDRESS
         // ==================================================
 
-        user.setAddress(request.getAddress());
+        user.setAddress(
+                request.getAddress());
 
         // ==================================================
-        // UPDATE BIO
+        // BIO
         // ==================================================
 
-        user.setBio(request.getBio());
+        user.setBio(
+                request.getBio());
 
         // ==================================================
-        // SAVE TO MYSQL
+        // SAVE
         // ==================================================
 
         User updatedUser = userRepository.save(user);
 
         // ==================================================
-        // RETURN UPDATED USER
+        // RESPONSE
         // ==================================================
 
         return new UserResponse(
@@ -173,6 +227,7 @@ public class AuthService {
                 updatedUser.getPhoneNumber(),
                 updatedUser.getDateOfBirth(),
                 updatedUser.getAddress(),
-                updatedUser.getBio());
+                updatedUser.getBio(),
+                updatedUser.getJoinedDate());
     }
 }

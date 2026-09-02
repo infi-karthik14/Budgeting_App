@@ -1,553 +1,73 @@
-/* ==========================================
-   TRANSACTIONS PAGE
-========================================== */
+/* =========================================================
+   BACHAT BUDDY - TRANSACTIONS PAGE
+   FINAL CSS
+   Dashboard / Budget matching design
+========================================================= */
 
-/* ==========================================
-   SUMMARY CARD COLORS
-========================================== */
 
-.income {
-    background: linear-gradient(135deg, #00c853, #43e97b);
-    color: #fff;
-}
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 
-.expense {
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    color: #fff;
-}
+.main-content {
+    width: calc(100% - 250px);
+    margin-left: 250px;
 
-.balance {
-    background: linear-gradient(135deg, #2193b0, #6dd5ed);
-    color: #fff;
-}
+    padding: 0 20px;
 
-.transaction {
-    background: linear-gradient(135deg, #7b2ff7, #9d50ff);
-    color: #fff;
+    box-sizing: border-box;
 }
 
 
-/* ==========================================
-   TRANSACTION CARD ICON
-========================================== */
+/* Prevent horizontal overflow */
 
-.dashboard-card {
-    position: relative;
-    overflow: hidden;
-}
-
-.card-icon {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-
-    font-size: 60px;
-    opacity: .18;
-}
-
-
-/* ==========================================
-   TRANSACTION TYPE TAGS
-========================================== */
-
-.income-tag,
-.expense-tag {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 6px 12px;
-
-    border-radius: 30px;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.income-tag {
-    background: #dcfce7;
-    color: #15803d;
-}
-
-.expense-tag {
-    background: #fee2e2;
-    color: #dc2626;
-}
-
-
-/* ==========================================
-   BADGES
-========================================== */
-
-.badge {
-    padding: 8px 14px;
-
-    border-radius: 30px;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-
-/* ==========================================
-   ACTION BUTTONS
-========================================== */
-
-.btn-sm {
-    width: 38px;
-    height: 38px;
-
-    padding: 0;
-
-    border-radius: 10px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* ==========================================
-   SEARCH BOX
-========================================== */
-
-.search-box {
-    position: relative;
+html,
+body {
     width: 100%;
-}
-
-.search-box i {
-    position: absolute;
-
-    left: 15px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    color: #64748b;
-
-    z-index: 2;
-}
-
-.search-box input {
-    width: 100%;
-
-    height: 48px;
-
-    padding-left: 45px;
-
-    border: 1px solid #dbe3f0;
-
-    border-radius: 12px;
-
-    outline: none;
-}
-
-.search-box input:focus {
-    border-color: #2563eb;
-
-    box-shadow:
-        0 0 0 .2rem rgba(37, 99, 235, .12);
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 
-/* ==========================================
-   TRANSACTION TABLE
-========================================== */
+/* =========================================================
+   COMMON CARDS
+========================================================= */
 
-.transaction-table-card {
-    overflow: hidden;
-}
-
-.transaction-table-card .card-header {
-    padding: 18px 22px;
-
-    background: #ffffff;
-
-    border-bottom: 1px solid #edf0f5;
-}
-
-.transaction-table-card .card-body {
-    padding: 0;
-}
-
-.transaction-table-card .table-responsive {
-    overflow-x: auto;
-}
-
-.transaction-table-card table {
-    min-width: 800px;
-
-    margin: 0;
-}
-
-.transaction-table-card th {
-    padding: 15px;
-
-    background: #2563eb;
-
-    color: #ffffff;
-
-    border: none;
-
-    font-size: 13px;
-
-    font-weight: 600;
-
-    text-align: center;
-}
-
-.transaction-table-card td {
-    padding: 15px;
-
-    text-align: center;
-
-    vertical-align: middle;
-
-    color: #334155;
-
-    border-color: #edf0f5;
-}
-
-.transaction-table-card tbody tr {
-    transition: .25s ease;
-}
-
-.transaction-table-card tbody tr:hover {
-    background: #f8faff;
-}
-
-
-/* ==========================================
-   CHART
-========================================== */
-
-.chart-card {
-    min-height: 350px;
-}
-
-.chart-card .card-header {
-    padding: 18px 22px;
-
-    background: #ffffff;
-
-    border-bottom: 1px solid #edf0f5;
-}
-
-.chart-card .card-body {
-    height: 300px;
-}
-
-#transactionChart {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-
-/* ==========================================
-   ACTIVITY & TIPS
-========================================== */
-
-.info-section {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 24px;
-
-    margin-bottom: 30px;
-}
-
+.main-content>section.card,
+.transaction-table-card,
+.chart-card,
 .info-section .card {
-    height: 100%;
-}
 
-.activity-list,
-.tips-list {
-    list-style: none;
+    border: none !important;
 
-    padding: 0;
-    margin: 0;
-}
-
-
-/* Recent Activity */
-
-.activity-list li {
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    padding: 14px 0;
-
-    border-bottom: 1px solid #edf0f5;
-}
-
-.activity-list li:last-child {
-    border-bottom: none;
-}
-
-.activity-list li>span {
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #eef4ff;
-
-    border-radius: 12px;
-
-    font-size: 18px;
-}
-
-.activity-list li div {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 2px;
-}
-
-.activity-list strong {
-    color: #1f2937;
-
-    font-size: 14px;
-}
-
-.activity-list small {
-    color: #6b7280;
-
-    font-size: 13px;
-}
-
-
-/* Transaction Tips */
-
-.tips-list li {
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 12px;
-
-    padding: 13px 0;
-
-    color: #4b5563;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-.tips-list li i {
-    color: #2563eb;
-
-    margin-top: 3px;
-}
-
-
-/* ==========================================
-   MODAL
-========================================== */
-
-.modal-content {
-    border: none;
-
-    border-radius: 20px;
+    border-radius: 20px !important;
 
     overflow: hidden;
 
+    background: #ffffff;
+
     box-shadow:
-        0 25px 60px rgba(0, 0, 0, .2);
-}
-
-.modal-header {
-    padding: 20px 24px;
-
-    border-bottom: 1px solid #edf0f5;
-}
-
-.modal-body {
-    padding: 24px;
-}
-
-.modal-footer {
-    padding: 18px 24px;
-
-    border-top: 1px solid #edf0f5;
-}
-
-.modal-title {
-    font-weight: 700;
-    color: #17233c;
-}
-
-.modal .form-label {
-    font-size: 13px;
-
-    font-weight: 600;
-
-    color: #334155;
-}
-
-.modal .form-control,
-.modal .form-select {
-    min-height: 46px;
-
-    border-radius: 11px;
-}
-
-/* ==========================================
-   DARK MODE
-========================================== */
-
-body.dark-mode .income-tag {
-    background: #14532d;
-    color: #bbf7d0;
-}
-
-body.dark-mode .expense-tag {
-    background: #7f1d1d;
-    color: #fecaca;
-}
-
-body.dark-mode .transaction-table-card .card-header,
-body.dark-mode .chart-card .card-header {
-    background: #182235;
-
-    border-color: #2c3b55;
-}
-
-body.dark-mode .transaction-table-card td {
-    color: #e2e8f0;
-
-    border-color: #2c3b55;
-}
-
-body.dark-mode .transaction-table-card tbody tr:hover {
-    background: #22304a;
-}
-
-body.dark-mode .activity-list li {
-    border-color: #2c3b55;
-}
-
-body.dark-mode .activity-list li>span {
-    background: #22304a;
-}
-
-body.dark-mode .activity-list strong {
-    color: #ffffff;
-}
-
-body.dark-mode .activity-list small {
-    color: #cbd5e1;
-}
-
-body.dark-mode .tips-list li {
-    color: #cbd5e1;
-}
-
-body.dark-mode .search-box input {
-    background: #243247;
-
-    color: #ffffff;
-
-    border-color: #2c3b55;
-}
-
-body.dark-mode .search-box i {
-    color: #94a3b8;
-}
-
-body.dark-mode .modal-content {
-    background: #182235;
-
-    color: #ffffff;
-}
-
-body.dark-mode .modal-header,
-body.dark-mode .modal-footer {
-    border-color: #2c3b55;
-}
-
-body.dark-mode .modal-title,
-body.dark-mode .modal .form-label {
-    color: #ffffff;
-}
-
-body.dark-mode .modal .form-control,
-body.dark-mode .modal .form-select {
-    background: #243247;
-
-    color: #ffffff;
-
-    border-color: #2c3b55;
+        0 10px 30px rgba(15, 23, 42, 0.08);
 }
 
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
-
-@media (max-width: 900px) {
-
-    .info-section {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-@media (max-width: 768px) {
-
-    .dashboard-card {
-        margin-bottom: 15px;
-    }
-
-    .chart-card .card-body {
-        height: 260px;
-    }
-
-    .info-section {
-        gap: 18px;
-    }
-
-}
-
-@media (max-width: 576px) {
-
-    .transaction-table-card table {
-        min-width: 700px;
-    }
-
-    .modal-body {
-        padding: 18px;
-    }
-
-    .modal-footer {
-        padding: 15px;
-    }
-
-}
-
-/* ==========================================
-   COMMON WELCOME BANNER
-   Same as Dashboard
-========================================== */
+/* =========================================================
+   WELCOME HEADER
+========================================================= */
 
 .welcome-card {
+
+    position: relative;
+
+    overflow: hidden;
 
     width: 100%;
 
     min-height: 125px;
 
-    padding: 25px 30px;
-
     margin-bottom: 25px;
+
+    padding: 25px 30px;
 
     box-sizing: border-box;
 
@@ -561,20 +81,71 @@ body.dark-mode .modal .form-select {
 
     border-radius: 20px;
 
-    background: linear-gradient(135deg,
+    background:
+        linear-gradient(135deg,
             #07152d,
             #12285c);
 
     color: #ffffff;
 
     box-shadow:
-        0 12px 30px rgba(0, 0, 0, .15);
+        0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 
-/* ==========================================
-   LEFT CONTENT
-========================================== */
+/* Decorative circles */
+
+.welcome-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -40px;
+    bottom: -60px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border-radius: 50%;
+}
+
+
+.welcome-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -80px;
+    top: -80px;
+
+    background:
+        rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+}
+
+
+/* Keep content above circles */
+
+.welcome-card>* {
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* =========================================================
+   WELCOME CONTENT
+========================================================= */
 
 .welcome-content {
 
@@ -594,16 +165,6 @@ body.dark-mode .modal .form-select {
 }
 
 
-.welcome-date {
-
-    margin: 0 0 4px;
-
-    font-size: 13px;
-
-    color: #dbeafe;
-}
-
-
 .welcome-message {
 
     margin: 0;
@@ -614,9 +175,9 @@ body.dark-mode .modal .form-select {
 }
 
 
-/* ==========================================
-   RIGHT SIDE
-========================================== */
+/* =========================================================
+   WELCOME ACTIONS
+========================================================= */
 
 .welcome-actions {
 
@@ -634,9 +195,9 @@ body.dark-mode .modal .form-select {
 }
 
 
-/* ==========================================
-   SEARCH BAR
-========================================== */
+/* =========================================================
+   HEADER SEARCH
+========================================================= */
 
 .welcome-search {
 
@@ -656,9 +217,11 @@ body.dark-mode .modal .form-select {
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .13);
+    background:
+        rgba(255, 255, 255, 0.13);
 
-    border: 1px solid rgba(255, 255, 255, .25);
+    border:
+        1px solid rgba(255, 255, 255, 0.25);
 
     backdrop-filter: blur(10px);
 
@@ -702,9 +265,9 @@ body.dark-mode .modal .form-select {
 }
 
 
-/* ==========================================
-   NOTIFICATION BUTTON
-========================================== */
+/* =========================================================
+   NOTIFICATION
+========================================================= */
 
 .notification-btn {
 
@@ -720,23 +283,26 @@ body.dark-mode .modal .form-select {
 
     padding: 0;
 
-    border: 1px solid rgba(255, 255, 255, .25);
+    border:
+        1px solid rgba(255, 255, 255, 0.25);
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .13);
+    background:
+        rgba(255, 255, 255, 0.13);
 
     color: #ffffff;
 
     cursor: pointer;
 
-    transition: .2s ease;
+    transition: 0.2s ease;
 }
 
 
 .notification-btn:hover {
 
-    background: rgba(255, 255, 255, .25);
+    background:
+        rgba(255, 255, 255, 0.25);
 
     transform: translateY(-2px);
 }
@@ -748,11 +314,1406 @@ body.dark-mode .modal .form-select {
 }
 
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
+/* =========================================================
+   ADD TRANSACTION BUTTON
+========================================================= */
+
+.main-content>.d-flex .btn-primary {
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    padding: 11px 22px !important;
+
+    font-weight: 600;
+
+    background:
+        linear-gradient(135deg,
+            #2196f3,
+            #1565c0) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.20);
+
+    transition: 0.2s ease;
+}
+
+
+.main-content>.d-flex .btn-primary:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.30);
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.dashboard-card {
+
+    position: relative !important;
+
+    overflow: hidden !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    max-width: none !important;
+
+    min-height: 185px !important;
+
+    margin: 0 !important;
+
+    padding: 30px !important;
+
+    box-sizing: border-box;
+
+    border: none !important;
+
+    border-radius: 24px !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.18) !important;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease !important;
+
+    cursor: pointer;
+}
+
+
+/* Decorative circle */
+
+.dashboard-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -70px;
+    top: -70px;
+
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* Hover */
+
+.dashboard-card:hover {
+
+    transform: translateY(-8px) !important;
+
+    box-shadow:
+        0 25px 45px rgba(0, 0, 0, 0.25) !important;
+}
+
+
+/* =========================================================
+   SUMMARY CARD BODY
+========================================================= */
+
+.dashboard-card .card-body {
+
+    position: relative;
+
+    z-index: 2;
+
+    padding: 0 !important;
+}
+
+
+.dashboard-card h6 {
+
+    margin: 0 !important;
+
+    font-size: 14px !important;
+
+    font-weight: 600 !important;
+
+    color: #ffffff !important;
+
+    opacity: 0.95;
+}
+
+
+.dashboard-card h2 {
+
+    margin: 10px 0 0 !important;
+
+    font-size: 38px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.2;
+
+    color: #ffffff !important;
+}
+
+
+.dashboard-card small {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color:
+        rgba(255, 255, 255, 0.85) !important;
+}
+
+
+/* =========================================================
+   SUMMARY CARD COLORS
+========================================================= */
+
+
+/* Total Income */
+
+.card.dashboard-card.income {
+
+    background:
+        linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+}
+
+
+/* Total Expense */
+
+.card.dashboard-card.expense {
+
+    background:
+        linear-gradient(135deg,
+            #ff4b5c,
+            #ff1744) !important;
+}
+
+
+/* Current Balance */
+
+.card.dashboard-card.balance {
+
+    background:
+        linear-gradient(135deg,
+            #00c6ff,
+            #00acc1) !important;
+}
+
+
+/* Total Transactions */
+
+.card.dashboard-card.transaction {
+
+    background:
+        linear-gradient(135deg,
+            #7c4dff,
+            #512da8) !important;
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.dashboard-card .card-icon {
+
+    position: absolute !important;
+
+    right: 20px;
+
+    bottom: 18px;
+
+    font-size: 55px !important;
+
+    color: #ffffff !important;
+
+    opacity: 0.15 !important;
+
+    z-index: 1 !important;
+}
+
+
+/* =========================================================
+   SEARCH / EXPORT CARD
+========================================================= */
+
+.transaction-search-card {
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* Search box */
+
+.search-box {
+
+    position: relative;
+
+    width: 100%;
+}
+
+
+.search-box i {
+
+    position: absolute;
+
+    left: 15px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #64748b;
+
+    z-index: 2;
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    height: 48px;
+
+    padding-left: 45px;
+
+    border:
+        1px solid #dbe3ef !important;
+
+    border-radius: 12px !important;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #17233c;
+}
+
+
+.search-box input:focus {
+
+    border-color: #2563eb !important;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+}
+
+
+/* Export */
+
+.main-content .btn-success {
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    padding: 11px 20px !important;
+
+    font-weight: 600;
+
+    background:
+        linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   FILTER CARD
+========================================================= */
+
+.main-content>section.card {
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden;
+}
+
+
+/* Filter header */
+
+.main-content>section.card:nth-of-type(2) .card-header {
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 15px 22px !important;
+
+    border: none !important;
+
+    background:
+        linear-gradient(135deg,
+            #f59e0b,
+            #ff9800) !important;
+
+    color: #ffffff !important;
+}
+
+
+.main-content>section.card:nth-of-type(2) .card-header h5 {
+
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.main-content>section.card:nth-of-type(2) .card-header h5 i {
+
+    color: #ffffff !important;
+}
+
+
+/* Filter body */
+
+.main-content>section.card:nth-of-type(2) .card-body {
+
+    padding: 25px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   FORM CONTROLS
+========================================================= */
+
+.form-label {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #475569;
+}
+
+
+.form-control,
+.form-select {
+
+    min-height: 42px;
+
+    border:
+        1px solid #dbe3ef;
+
+    border-radius: 10px !important;
+
+    box-shadow: none;
+
+    transition: 0.2s ease;
+}
+
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #2563eb !important;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12) !important;
+}
+
+
+/* =========================================================
+   TRANSACTIONS TABLE CARD
+========================================================= */
+
+.transaction-table-card {
+
+    overflow: hidden;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* Pink heading */
+
+.transaction-table-card>.card-header {
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 15px 22px !important;
+
+    border: none !important;
+
+    background:
+        linear-gradient(135deg,
+            #f59e0b,
+            #f97316) !important;
+
+    color: #ffffff !important;
+}
+
+
+.transaction-table-card>.card-header h5 {
+
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.transaction-table-card>.card-header h5 i {
+
+    color: #ffffff !important;
+}
+
+
+/* Table body */
+
+.transaction-table-card .card-body {
+
+    padding: 0;
+}
+
+
+.transaction-table-card .table-responsive {
+
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+/* =========================================================
+   TRANSACTIONS TABLE
+========================================================= */
+
+.transactions-table {
+
+    width: 100% !important;
+
+    min-width: 800px;
+
+    margin: 0;
+
+    border-collapse: collapse;
+
+    background: #ffffff;
+}
+
+
+/* Header */
+
+.transactions-table thead {
+
+    display: table-header-group !important;
+}
+
+
+.transactions-table thead tr {
+
+    display: table-row !important;
+}
+
+
+.transactions-table th {
+
+    padding: 15px !important;
+
+    background:
+        #e7e9ee !important;
+
+    color: #e9e3e3 !important;
+
+    border: none !important;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* Body */
+
+.transactions-table tbody {
+
+    display: table-row-group !important;
+}
+
+
+.transactions-table tbody tr {
+
+    display: table-row !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    background: #ffffff !important;
+
+    transition: 0.2s ease;
+}
+
+
+.transactions-table tbody tr:hover {
+
+    background: #f8faff !important;
+}
+
+
+.transactions-table td {
+
+    display: table-cell !important;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    padding: 15px !important;
+
+    text-align: center;
+
+    vertical-align: middle;
+
+    color: #dee0e2 !important;
+
+    background: #ffffff !important;
+
+    border-bottom:
+        1px solid #edf0f5 !important;
+}
+
+
+.transactions-table tbody tr:hover td {
+
+    background: #f8faff !important;
+}
+
+
+/* =========================================================
+   INCOME / EXPENSE TAGS
+========================================================= */
+
+.income-tag,
+.expense-tag {
+
+    display: inline-flex !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+.income-tag {
+
+    background: #dcfce7 !important;
+
+    color: #15803d !important;
+}
+
+
+.expense-tag {
+
+    background: #fee2e2 !important;
+
+    color: #dc2626 !important;
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.badge {
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.btn-sm {
+
+    width: 38px;
+
+    height: 38px;
+
+    padding: 0;
+
+    border-radius: 10px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.transactions-table .edit-btn,
+.transactions-table .delete-btn {
+
+    display: inline-flex !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    width: 38px;
+
+    height: 38px;
+}
+
+
+/* =========================================================
+   MONTHLY TRANSACTIONS CHART
+========================================================= */
+
+.chart-card {
+
+    min-height: 350px;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* Blue heading */
+
+.chart-card>.card-header {
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 15px 22px !important;
+
+    border: none !important;
+
+    background:
+        linear-gradient(135deg,
+            #2196f3,
+            #1565c0) !important;
+
+    color: #ffffff !important;
+}
+
+
+.chart-card>.card-header h5 {
+
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.chart-card>.card-header h5 i {
+
+    color: #ffffff !important;
+}
+
+
+/* Chart body */
+
+.chart-card .card-body {
+
+    position: relative;
+
+    height: 300px;
+
+    padding: 25px;
+
+    background: #ffffff;
+}
+
+
+#transactionChart {
+
+    width: 100% !important;
+
+    height: 100% !important;
+}
+
+
+/* =========================================================
+   INFO SECTION
+========================================================= */
+
+.info-section {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 24px;
+
+    margin-bottom: 30px;
+}
+
+
+.info-section .card {
+
+    height: 100%;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================================
+   RECENT ACTIVITY - PURPLE
+========================================================= */
+
+.info-section .card:first-child>.card-header {
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 15px 22px !important;
+
+    border: none !important;
+
+    background:
+        linear-gradient(135deg,
+            #a35fdb,
+            #b904dd) !important;
+
+    color: #ffffff !important;
+}
+
+
+.info-section .card:first-child>.card-header h5 {
+
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.info-section .card:first-child>.card-header h5 i {
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TRANSACTION TIPS - GREEN
+========================================================= */
+
+.info-section .card:last-child>.card-header {
+
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 15px 22px !important;
+
+    border: none !important;
+
+    background:
+        linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+
+    color: #ffffff !important;
+}
+
+
+.info-section .card:last-child>.card-header h5 {
+
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.info-section .card:last-child>.card-header h5 i {
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   INFO CARD BODY
+========================================================= */
+
+.info-section .card-body {
+
+    padding: 25px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   RECENT ACTIVITY
+========================================================= */
+
+.activity-list,
+.tips-list {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+
+.activity-list li {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px 0;
+
+    border-bottom:
+        1px solid #edf0f5;
+}
+
+
+.activity-list li:last-child {
+
+    border-bottom: none;
+}
+
+
+.activity-list li>span {
+
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eef4ff;
+
+    border-radius: 12px;
+
+    font-size: 18px;
+}
+
+
+.activity-list li div {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.activity-list strong {
+
+    color: #1f2937;
+
+    font-size: 14px;
+}
+
+
+.activity-list small {
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TRANSACTION TIPS
+========================================================= */
+
+.tips-list li {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 13px 0;
+
+    color: #4b5563;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+.tips-list li i {
+
+    color: #00b84f;
+
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-content {
+
+    border: none;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+
+.modal-header {
+
+    padding: 20px 24px;
+
+    border-bottom:
+        1px solid #edf0f5;
+}
+
+
+.modal-body {
+
+    padding: 24px;
+}
+
+
+.modal-footer {
+
+    padding: 18px 24px;
+
+    border-top:
+        1px solid #edf0f5;
+}
+
+
+.modal-title {
+
+    font-weight: 700;
+
+    color: #17233c;
+}
+
+
+.modal .form-label {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #334155;
+}
+
+
+.modal .form-control,
+.modal .form-select {
+
+    min-height: 46px;
+
+    border-radius: 11px;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+
+/* Main cards */
+
+body.dark-mode .main-content>section.card,
+body.dark-mode .transaction-table-card,
+body.dark-mode .chart-card,
+body.dark-mode .info-section .card {
+
+    background: #0f2747 !important;
+
+    color: #ffffff !important;
+
+    border:
+        1px solid #1e4670 !important;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   DARK MODE - SEARCH
+========================================================= */
+
+body.dark-mode .search-box input {
+
+    background: #132f52 !important;
+
+    color: #ffffff !important;
+
+    border-color: #315b82 !important;
+}
+
+
+body.dark-mode .search-box input::placeholder {
+
+    color: #9fb3ca !important;
+}
+
+
+body.dark-mode .search-box i {
+
+    color: #9fb3ca !important;
+}
+
+
+/* =========================================================
+   DARK MODE - FILTER
+========================================================= */
+
+body.dark-mode .main-content>section.card:nth-of-type(2) .card-body {
+
+    background: #0f2747 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   DARK MODE - FORM
+========================================================= */
+
+body.dark-mode .form-label {
+
+    color: #e5efff !important;
+}
+
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+
+    background: #132f52 !important;
+
+    color: #ffffff !important;
+
+    border-color: #315b82 !important;
+}
+
+
+body.dark-mode .form-control::placeholder {
+
+    color: #9fb3ca !important;
+}
+
+
+body.dark-mode .form-select option {
+
+    background: #132f52;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   DARK MODE - TABLE
+========================================================= */
+
+body.dark-mode .transactions-table {
+
+    background: #0f2747 !important;
+
+    --bs-table-bg: #0f2747;
+
+    --bs-table-color: #ffffff;
+}
+
+
+body.dark-mode .transactions-table tbody tr {
+
+    background: #0f2747 !important;
+}
+
+
+body.dark-mode .transactions-table td {
+
+    background: #0f2747 !important;
+
+    color: #e5efff !important;
+
+    border-color: #24476b !important;
+}
+
+
+body.dark-mode .transactions-table tbody tr:hover td {
+
+    background: #173b63 !important;
+}
+
+
+/* Table header stays blue */
+
+body.dark-mode .transactions-table th {
+
+    background: #2563eb !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   DARK MODE - CHART
+========================================================= */
+
+body.dark-mode .chart-card .card-body {
+
+    background: #0f2747 !important;
+}
+
+
+/* =========================================================
+   DARK MODE - INFO
+========================================================= */
+
+body.dark-mode .info-section .card-body {
+
+    background: #0f2747 !important;
+
+    color: #ffffff !important;
+}
+
+
+body.dark-mode .activity-list li {
+
+    border-color: #24476b !important;
+}
+
+
+body.dark-mode .activity-list li>span {
+
+    background: #132f52 !important;
+}
+
+
+body.dark-mode .activity-list strong {
+
+    color: #ffffff !important;
+}
+
+
+body.dark-mode .activity-list small {
+
+    color: #9fb3ca !important;
+}
+
+
+body.dark-mode .tips-list li {
+
+    color: #e5efff !important;
+}
+
+
+body.dark-mode .tips-list li i {
+
+    color: #00d26a !important;
+}
+
+
+/* =========================================================
+   DARK MODE - MODAL
+========================================================= */
+
+body.dark-mode .modal-content {
+
+    background: #182235 !important;
+
+    color: #ffffff;
+}
+
+
+body.dark-mode .modal-header,
+body.dark-mode .modal-footer {
+
+    border-color: #2c3b55;
+}
+
+
+body.dark-mode .modal-title,
+body.dark-mode .modal .form-label {
+
+    color: #ffffff !important;
+}
+
+
+body.dark-mode .modal .form-control,
+body.dark-mode .modal .form-select {
+
+    background: #243247 !important;
+
+    color: #ffffff !important;
+
+    border-color: #2c3b55 !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .main-content {
+
+        margin-left: 220px;
+
+        width: calc(100% - 220px);
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - INFO
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .info-section {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
 
 @media (max-width: 768px) {
+
+    .main-content {
+
+        margin-left: 0 !important;
+
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        padding:
+            0 12px !important;
+    }
+
 
     .welcome-card {
 
@@ -787,10 +1748,47 @@ body.dark-mode .modal .form-select {
         width: auto;
     }
 
+
+    .dashboard-card {
+
+        min-height: 170px !important;
+
+        padding: 25px !important;
+    }
+
+
+    .dashboard-card h2 {
+
+        font-size: 32px !important;
+    }
+
+
+    .chart-card .card-body {
+
+        height: 260px;
+    }
+
+
+    .info-section {
+
+        gap: 18px;
+    }
+
 }
 
 
-@media (max-width: 480px) {
+/* =========================================================
+   RESPONSIVE - SMALL MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .main-content {
+
+        padding:
+            0 10px !important;
+    }
+
 
     .welcome-card {
 
@@ -825,151 +1823,372 @@ body.dark-mode .modal .form-select {
         height: 40px;
     }
 
+
+    .dashboard-card {
+
+        min-height: 175px !important;
+
+        padding: 22px !important;
+
+        border-radius: 20px !important;
+    }
+
+
+    .dashboard-card h2 {
+
+        font-size: 29px !important;
+    }
+
+
+    .dashboard-card .card-icon {
+
+        right: 18px;
+
+        bottom: 18px;
+
+        font-size: 48px !important;
+    }
+
+
+    .transaction-table-card table {
+
+        min-width: 800px;
+    }
+
+
+    .modal-body {
+
+        padding: 18px;
+    }
+
+
+    .modal-footer {
+
+        padding: 15px;
+    }
+
 }
 
-/* =====================================================
-   TRANSACTIONS TABLE - FINAL
-===================================================== */
 
-.transaction-table-card {
-    overflow: hidden;
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .dashboard-card {
+
+        padding: 20px !important;
+    }
+
+
+    .dashboard-card h2 {
+
+        font-size: 27px !important;
+    }
+
+
+    .welcome-content h2 {
+
+        font-size: 20px;
+    }
+
 }
 
-.transaction-table-card .card-body {
-    padding: 0;
+/* ==========================================
+   RECENT ACTIVITY - INCOME / EXPENSE COLORS
+========================================== */
+
+/* Income text */
+.activity-income {
+    color: #22c55e !important;
+    font-weight: 700;
 }
 
-.transaction-table-card .table-responsive {
-    width: 100%;
-    overflow-x: auto;
+.activity-income-amount {
+    color: #22c55e !important;
+    font-weight: 600;
 }
 
-.transactions-table {
-    width: 100% !important;
-    min-width: 800px;
-    margin: 0;
-    border-collapse: collapse;
-    background: #ffffff;
+
+/* Expense text */
+.activity-expense {
+    color: #ff304f !important;
+    font-weight: 700;
 }
 
-/* Header */
+.activity-expense-amount {
+    color: #ff304f !important;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+body.dark-mode .activity-income {
+    color: #22e55a !important;
+}
+
+body.dark-mode .activity-income-amount {
+    color: #22e55a !important;
+}
+
+body.dark-mode .activity-expense {
+    color: #ff3b55 !important;
+}
+
+body.dark-mode .activity-expense-amount {
+    color: #ff3b55 !important;
+}
+
+/* =========================================================
+   RECENT ACTIVITY - INCOME / EXPENSE COLORS
+   FINAL OVERRIDE
+========================================================= */
+
+/* EXPENSE */
+.activity-list li:has(.bi-arrow-up-circle-fill) strong {
+    color: #ff304f !important;
+    font-weight: 700 !important;
+}
+
+.activity-list li:has(.bi-arrow-up-circle-fill) small {
+    color: #ff304f !important;
+    font-weight: 600 !important;
+}
+
+.activity-list li:has(.bi-arrow-up-circle-fill)>span {
+    background: rgba(255, 48, 79, 0.12) !important;
+}
+
+.activity-list li:has(.bi-arrow-up-circle-fill)>span i {
+    color: #ff304f !important;
+}
+
+
+/* INCOME */
+.activity-list li:has(.bi-arrow-down-circle-fill) strong {
+    color: #22c55e !important;
+    font-weight: 700 !important;
+}
+
+.activity-list li:has(.bi-arrow-down-circle-fill) small {
+    color: #22c55e !important;
+    font-weight: 600 !important;
+}
+
+.activity-list li:has(.bi-arrow-down-circle-fill)>span {
+    background: rgba(34, 197, 94, 0.12) !important;
+}
+
+.activity-list li:has(.bi-arrow-down-circle-fill)>span i {
+    color: #22c55e !important;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark-mode .activity-list li:has(.bi-arrow-up-circle-fill) strong,
+body.dark-mode .activity-list li:has(.bi-arrow-up-circle-fill) small {
+    color: #ff304f !important;
+}
+
+body.dark-mode .activity-list li:has(.bi-arrow-down-circle-fill) strong,
+body.dark-mode .activity-list li:has(.bi-arrow-down-circle-fill) small {
+    color: #22e55a !important;
+}
+
+/* =========================================================
+   TRANSACTIONS TABLE HEADER - WHITE STYLE
+   FINAL OVERRIDE
+========================================================= */
 
 .transactions-table thead {
-    display: table-header-group !important;
+    background: transparent !important;
 }
 
 .transactions-table thead tr {
-    display: table-row !important;
+    background: transparent !important;
 }
 
 .transactions-table th {
-    padding: 15px;
-    background: #2563eb !important;
-    color: #ffffff !important;
-    border: none;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-}
-
-/* Body */
-
-.transactions-table tbody {
-    display: table-row-group !important;
-}
-
-.transactions-table tbody tr {
-    display: table-row !important;
-    visibility: visible !important;
-    opacity: 1 !important;
     background: #ffffff !important;
-}
+    color: #64748b !important;
 
-.transactions-table tbody tr:hover {
-    background: #f8faff !important;
-}
+    padding: 16px 15px !important;
 
-.transactions-table td {
-    display: table-cell !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    border: none !important;
 
-    padding: 15px;
-    text-align: center;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+
+    text-align: center !important;
+
+    white-space: nowrap;
+
     vertical-align: middle;
+}
 
-    color: #334155 !important;
+/* First header cell */
+.transactions-table th:first-child {
+    border-radius: 14px 0 0 14px !important;
+}
+
+/* Last header cell */
+.transactions-table th:last-child {
+    border-radius: 0 14px 14px 0 !important;
+}
+
+/* Header icons */
+.transactions-table th i {
+    color: #64748b !important;
+    font-size: 14px;
+}
+
+/* =========================================================
+   FINAL TABLE HEADER OVERRIDE
+========================================================= */
+
+.transactions-table thead th {
     background: #ffffff !important;
+    background-color: #ffffff !important;
 
-    border-bottom: 1px solid #edf0f5;
-}
+    color: #64748b !important;
 
-/* Income */
+    border: none !important;
 
-.transactions-table .income-tag {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
+    padding: 16px 15px !important;
 
-    padding: 6px 12px;
-    border-radius: 30px;
+    font-size: 13px !important;
+    font-weight: 600 !important;
 
-    background: #dcfce7 !important;
-    color: #15803d !important;
+    text-align: center !important;
 
-    font-size: 12px;
-    font-weight: 600;
-}
-
-/* Expense */
-
-.transactions-table .expense-tag {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-
-    padding: 6px 12px;
-    border-radius: 30px;
-
-    background: #fee2e2 !important;
-    color: #dc2626 !important;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-/* Action buttons */
-
-.transactions-table .edit-btn,
-.transactions-table .delete-btn {
-    display: inline-flex !important;
-
-    align-items: center;
-    justify-content: center;
-
-    visibility: visible !important;
     opacity: 1 !important;
-
-    width: 38px;
-    height: 38px;
 }
 
-/* Dark mode */
-
-body.dark-mode .transactions-table {
-    background: #182235;
+.transactions-table thead th i {
+    color: #64748b !important;
 }
 
-body.dark-mode .transactions-table tbody tr {
-    background: #182235 !important;
+/* Dark mode - keep header WHITE */
+body.dark-mode .transactions-table thead th {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #64748b !important;
 }
 
-body.dark-mode .transactions-table td {
-    background: #182235 !important;
-    color: #e2e8f0 !important;
-    border-color: #2c3b55;
+body.dark-mode .transactions-table thead th i {
+    color: #64748b !important;
 }
 
-body.dark-mode .transactions-table tbody tr:hover {
-    background: #22304a !important;
+/* =========================================================
+   TRANSACTION AMOUNT - INCOME / EXPENSE
+========================================================= */
+
+/* + Income amount */
+.transactions-table td.text-success {
+    color: #22c55e !important;
+    font-weight: 700 !important;
+}
+
+/* - Expense amount */
+.transactions-table td.text-danger {
+    color: #ff304f !important;
+    font-weight: 700 !important;
+}
+
+/* =========================================================
+   FINAL AMOUNT COLOR OVERRIDE
+========================================================= */
+
+/* INCOME → GREEN */
+body .transactions-table tbody td.text-success,
+body.dark-mode .transactions-table tbody td.text-success {
+    color: #00ff55 !important;
+    -webkit-text-fill-color: #00ff55 !important;
+    font-weight: 700 !important;
+}
+
+/* EXPENSE → RED */
+body .transactions-table tbody td.text-danger,
+body.dark-mode .transactions-table tbody td.text-danger {
+    color: #ff1744 !important;
+    -webkit-text-fill-color: #ff1744 !important;
+    font-weight: 700 !important;
+}
+
+/* Income + sign */
+body .transactions-table tbody td.text-success {
+    color: #00ff55 !important;
+}
+
+/* Expense - sign */
+body .transactions-table tbody td.text-danger {
+    color: #ff1744 !important;
+}
+
+/* ==========================================================
+   TRANSACTIONS - LIGHT MODE READABILITY FIX
+========================================================== */
+
+body:not(.dark-mode) .transactions-table,
+body:not(.dark-mode) .transactions-table table {
+    color: #1f2937;
+}
+
+body:not(.dark-mode) .transactions-table th {
+    color: #475569 !important;
+    font-weight: 700;
+}
+
+body:not(.dark-mode) .transactions-table td {
+    color: #334155 !important;
+    font-weight: 500;
+}
+
+body:not(.dark-mode) .transactions-table td strong {
+    color: #1e293b !important;
+}
+
+body:not(.dark-mode) .transactions-table td small {
+    color: #64748b !important;
+}
+
+body:not(.dark-mode) .transactions-table tr {
+    background: #ffffff;
+}
+
+body:not(.dark-mode) .transactions-table tr:hover {
+    background: #f8fafc;
+}
+
+/* Amounts */
+body:not(.dark-mode) .transactions-table .income,
+body:not(.dark-mode) .transactions-table .text-success {
+    color: #15803d !important;
+}
+
+body:not(.dark-mode) .transactions-table .expense,
+body:not(.dark-mode) .transactions-table .text-danger {
+    color: #dc2626 !important;
+}
+
+/* Date */
+body:not(.dark-mode) .transactions-table .date {
+    color: #475569 !important;
+}
+
+/* Merchant */
+body:not(.dark-mode) .transactions-table .merchant {
+    color: #1e293b !important;
+}
+
+/* Category */
+body:not(.dark-mode) .transactions-table .category {
+    color: #475569 !important;
 }

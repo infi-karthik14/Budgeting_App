@@ -1,227 +1,54 @@
-/* ===========================
+/* =========================================================
+   BACHAT BUDDY - BUDGET PAGE
+   CLEAN FINAL CSS
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
    WELCOME CARD
-=========================== */
+========================================================= */
 
 .welcome-card {
     position: relative;
     overflow: hidden;
-    min-height: 180px;
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 25px;
-
-    background: linear-gradient(135deg, #2563eb, #3b82f6, #60a5fa);
-    color: #fff;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    box-shadow: 0 20px 40px rgba(37, 99, 235, .25);
-}
-
-.welcome-card::before {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    left: -40px;
-    bottom: -60px;
-    background: rgba(255, 255, 255, .06);
-    border-radius: 50%;
-}
-
-.welcome-card::after {
-    content: "";
-    position: absolute;
-    width: 280px;
-    height: 280px;
-    right: -80px;
-    top: -80px;
-    background: rgba(255, 255, 255, .08);
-    border-radius: 50%;
-}
-
-.welcome-card>* {
-    position: relative;
-    z-index: 2;
-}
-
-.welcome-card h2 {
-    font-size: 32px;
-    font-weight: 700;
-    color: #fff;
-}
-
-.welcome-card p {
-    margin: 5px 0;
-    color: rgba(255, 255, 255, .92);
-}
-
-.welcome-icon {
-    font-size: 75px;
-    color: #fff;
-    opacity: .9;
-}
-
-/* ===========================
-   SUMMARY CARDS
-=========================== */
-
-.dashboard-card {
-    position: relative;
-    overflow: hidden;
-
-    border: none;
-    border-radius: 24px;
-
-    color: #fff;
-    min-height: 185px;
-    padding: 30px;
-
-    transition: all .35s ease;
-
-    box-shadow: 0 18px 40px rgba(0, 0, 0, .18);
-
-    cursor: pointer;
-}
-
-.dashboard-card::before {
-    content: "";
-    position: absolute;
-
-    width: 200px;
-    height: 200px;
-
-    right: -70px;
-    top: -70px;
-
-    background: rgba(255, 255, 255, .12);
-    border-radius: 50%;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 45px rgba(0, 0, 0, .25);
-}
-
-.dashboard-card h6 {
-    font-size: 14px;
-    opacity: .95;
-}
-
-.dashboard-card h2 {
-    font-size: 38px;
-    font-weight: 700;
-    margin-top: 10px;
-}
-
-.dashboard-card small {
-    color: rgba(255, 255, 255, .85);
-}
-
-/* ===========================
-   CARD COLORS
-=========================== */
-
-.card.budget {
-    background: linear-gradient(135deg, #00d26a, #00b84f);
-}
-
-.card.spent {
-    background: linear-gradient(135deg, #ff4b5c, #ff1744);
-}
-
-.card.remaining {
-    background: linear-gradient(135deg, #00c6ff, #00acc1);
-}
-
-.card.category {
-    background: linear-gradient(135deg, #7c4dff, #512da8);
-}
-
-/* ===========================
-   CARD ICON
-=========================== */
-
-.card-icon {
-    position: absolute;
-    right: 20px;
-    bottom: 18px;
-    font-size: 55px;
-    opacity: .15;
-}
-
-
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-
-@media(max-width:992px) {
-
-    .dashboard-card {
-        margin-bottom: 20px;
-    }
-
-    .welcome-card {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-
-}
-
-.add-budget-card {
-    background: #fff;
-    border-radius: 22px;
-    padding: 28px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
-}
-
-
-.budget-card {
-    border-radius: 20px;
-    overflow: hidden;
-}
-
-.budget-chart {
-    padding: 25px;
-}
-
-.progress-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-/* ==========================================
-   COMMON WELCOME BANNER
-   Same as Dashboard
-========================================== */
-
-.welcome-card {
 
     width: 100%;
-
     min-height: 125px;
 
+    margin-bottom: 25px;
     padding: 25px 30px;
 
-    margin-bottom: 25px;
-
-    box-sizing: border-box;
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 25px;
+
+    box-sizing: border-box;
 
     border-radius: 20px;
 
@@ -232,44 +59,72 @@
     color: #ffffff;
 
     box-shadow:
-        0 12px 30px rgba(0, 0, 0, .15);
+        0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 
-/* ==========================================
-   LEFT CONTENT
-========================================== */
+/* Decorative circles */
+
+.welcome-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -40px;
+    bottom: -60px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border-radius: 50%;
+}
+
+
+.welcome-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -80px;
+    top: -80px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 50%;
+}
+
+
+.welcome-card>* {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   WELCOME CONTENT
+========================================================= */
 
 .welcome-content {
-
     flex: 1;
 }
 
 
 .welcome-content h2 {
-
     margin: 0 0 8px;
 
     font-size: 28px;
-
     font-weight: 700;
 
     color: #ffffff;
 }
 
 
-.welcome-date {
-
-    margin: 0 0 4px;
-
-    font-size: 13px;
-
-    color: #dbeafe;
-}
-
-
 .welcome-message {
-
     margin: 0;
 
     font-size: 13px;
@@ -278,16 +133,14 @@
 }
 
 
-/* ==========================================
-   RIGHT SIDE
-========================================== */
+/* =========================================================
+   WELCOME ACTIONS
+========================================================= */
 
 .welcome-actions {
-
     display: flex;
 
     align-items: center;
-
     justify-content: flex-end;
 
     gap: 12px;
@@ -298,18 +151,15 @@
 }
 
 
-/* ==========================================
-   SEARCH BAR
-========================================== */
+/* =========================================================
+   SEARCH
+========================================================= */
 
 .welcome-search {
-
     width: 230px;
-
     height: 42px;
 
     display: flex;
-
     align-items: center;
 
     gap: 9px;
@@ -320,18 +170,16 @@
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .13);
+    background: rgba(255, 255, 255, 0.13);
 
-    border: 1px solid rgba(255, 255, 255, .25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
     backdrop-filter: blur(10px);
-
     -webkit-backdrop-filter: blur(10px);
 }
 
 
 .welcome-search i {
-
     color: #dbeafe;
 
     font-size: 15px;
@@ -341,15 +189,12 @@
 
 
 .welcome-search input {
-
     width: 100%;
-
     height: 100%;
 
     padding: 0;
 
     border: none;
-
     outline: none;
 
     background: transparent;
@@ -361,65 +206,2357 @@
 
 
 .welcome-search input::placeholder {
-
     color: #cbd5e1;
 }
 
 
-/* ==========================================
-   NOTIFICATION BUTTON
-========================================== */
+/* =========================================================
+   NOTIFICATION
+========================================================= */
 
 .notification-btn {
-
     width: 42px;
-
     height: 42px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     padding: 0;
 
-    border: 1px solid rgba(255, 255, 255, .25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
     border-radius: 12px;
 
-    background: rgba(255, 255, 255, .13);
+    background: rgba(255, 255, 255, 0.13);
 
     color: #ffffff;
 
     cursor: pointer;
 
-    transition: .2s ease;
+    transition: 0.2s ease;
 }
 
 
 .notification-btn:hover {
-
-    background: rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, 0.25);
 
     transform: translateY(-2px);
 }
 
 
 .notification-btn i {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+.dashboard-card {
+    position: relative;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+    max-width: none !important;
+
+    min-height: 185px;
+
+    margin: 0 !important;
+
+    padding: 30px !important;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border: none !important;
+
+    border-radius: 24px !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.18);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+
+    cursor: pointer;
+}
+
+
+/* Decorative circle */
+
+.dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    right: -70px;
+    top: -70px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border-radius: 50%;
+}
+
+
+.dashboard-card>* {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* Hover */
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 25px 45px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Card text */
+
+.dashboard-card h6 {
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #ffffff !important;
+
+    opacity: 0.95;
+}
+
+
+.dashboard-card h2 {
+    margin: 10px 0 0;
+
+    font-size: 38px;
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    color: #ffffff !important;
+}
+
+
+.dashboard-card small {
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+
+/* =========================================================
+   SUMMARY CARD COLORS
+========================================================= */
+
+
+/* Total Budget */
+
+.card.dashboard-card.budget {
+    background:
+        linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+}
+
+
+/* Total Spent */
+
+.card.dashboard-card.spent {
+    background:
+        linear-gradient(135deg,
+            #ff4b5c,
+            #ff1744) !important;
+}
+
+
+/* Remaining */
+
+.card.dashboard-card.remaining {
+    background:
+        linear-gradient(135deg,
+            #00c6ff,
+            #00acc1) !important;
+}
+
+
+/* Categories */
+
+.card.dashboard-card.category {
+    background:
+        linear-gradient(135deg,
+            #7c4dff,
+            #512da8) !important;
+}
+
+
+/* =========================================================
+   CARD ICON
+========================================================= */
+
+.dashboard-card .card-icon {
+    position: absolute !important;
+
+    right: 20px;
+    bottom: 18px;
+
+    font-size: 55px;
+
+    color: #ffffff !important;
+
+    opacity: 0.15;
+
+    z-index: 1 !important;
+}
+
+
+/* =========================================================
+   GENERAL CARDS
+========================================================= */
+
+.main-content .card {
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transition: 0.3s ease;
+}
+
+
+/* =========================================================
+   ADD NEW BUDGET CARD
+========================================================= */
+
+.form-card {
+    background: #ffffff;
+
+    border: none !important;
+
+    border-radius: 20px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   ADD NEW BUDGET HEADER
+========================================================= */
+
+.form-card>.card-header {
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 15px 22px !important;
+
+    border: none !important;
+
+    border-radius: 20px 20px 0 0 !important;
+
+    background:
+        linear-gradient(135deg,
+            #f59e0b,
+            #f97316) !important;
+
+    background-color: #ff9800 !important;
+
+    color: #ffffff !important;
+    /* =========================================================
+   BACHAT BUDDY - BUDGET PAGE
+   CLEAN FINAL CSS
+========================================================= */
+
+
+    /* =========================================================
+   GLOBAL
+========================================================= */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+
+    /* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+    .main-content {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+
+    /* =========================================================
+   WELCOME CARD
+========================================================= */
+
+    .welcome-card {
+        position: relative;
+        overflow: hidden;
+
+        width: 100%;
+        min-height: 125px;
+
+        margin-bottom: 25px;
+        padding: 25px 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 25px;
+
+        box-sizing: border-box;
+
+        border-radius: 20px;
+
+        background: linear-gradient(135deg,
+                #07152d,
+                #12285c);
+
+        color: #ffffff;
+
+        box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+
+
+    /* Decorative circles */
+
+    .welcome-card::before {
+        content: "";
+
+        position: absolute;
+
+        width: 180px;
+        height: 180px;
+
+        left: -40px;
+        bottom: -60px;
+
+        background: rgba(255, 255, 255, 0.06);
+
+        border-radius: 50%;
+    }
+
+
+    .welcome-card::after {
+        content: "";
+
+        position: absolute;
+
+        width: 280px;
+        height: 280px;
+
+        right: -80px;
+        top: -80px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border-radius: 50%;
+    }
+
+
+    .welcome-card>* {
+        position: relative;
+        z-index: 2;
+    }
+
+
+    /* =========================================================
+   WELCOME CONTENT
+========================================================= */
+
+    .welcome-content {
+        flex: 1;
+    }
+
+
+    .welcome-content h2 {
+        margin: 0 0 8px;
+
+        font-size: 28px;
+        font-weight: 700;
+
+        color: #ffffff;
+    }
+
+
+    .welcome-message {
+        margin: 0;
+
+        font-size: 13px;
+
+        color: #bfdbfe;
+    }
+
+
+    /* =========================================================
+   WELCOME ACTIONS
+========================================================= */
+
+    .welcome-actions {
+        display: flex;
+
+        align-items: center;
+        justify-content: flex-end;
+
+        gap: 12px;
+
+        margin-left: auto;
+
+        flex-shrink: 0;
+    }
+
+
+    /* =========================================================
+   SEARCH
+========================================================= */
+
+    .welcome-search {
+        width: 230px;
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 9px;
+
+        padding: 0 13px;
+
+        box-sizing: border-box;
+
+        border-radius: 12px;
+
+        background: rgba(255, 255, 255, 0.13);
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+
+    .welcome-search i {
+        color: #dbeafe;
+
+        font-size: 15px;
+
+        flex-shrink: 0;
+    }
+
+
+    .welcome-search input {
+        width: 100%;
+        height: 100%;
+
+        padding: 0;
+
+        border: none;
+        outline: none;
+
+        background: transparent;
+
+        color: #ffffff;
+
+        font-size: 13px;
+    }
+
+
+    .welcome-search input::placeholder {
+        color: #cbd5e1;
+    }
+
+
+    /* =========================================================
+   NOTIFICATION
+========================================================= */
+
+    .notification-btn {
+        width: 42px;
+        height: 42px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+
+        border: 1px solid rgba(255, 255, 255, 0.25);
+
+        border-radius: 12px;
+
+        background: rgba(255, 255, 255, 0.13);
+
+        color: #ffffff;
+
+        cursor: pointer;
+
+        transition: 0.2s ease;
+    }
+
+
+    .notification-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+
+        transform: translateY(-2px);
+    }
+
+
+    .notification-btn i {
+        font-size: 16px;
+    }
+
+
+    /* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+    .dashboard-card {
+        position: relative;
+
+        width: 100% !important;
+
+        min-width: 0 !important;
+        max-width: none !important;
+
+        min-height: 185px;
+
+        margin: 0 !important;
+
+        padding: 30px !important;
+
+        box-sizing: border-box;
+
+        overflow: hidden;
+
+        border: none !important;
+
+        border-radius: 24px !important;
+
+        color: #ffffff !important;
+
+        box-shadow:
+            0 18px 40px rgba(0, 0, 0, 0.18);
+
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease;
+
+        cursor: pointer;
+    }
+
+
+    /* Decorative circle */
+
+    .dashboard-card::before {
+        content: "";
+
+        position: absolute;
+
+        width: 200px;
+        height: 200px;
+
+        right: -70px;
+        top: -70px;
+
+        background: rgba(255, 255, 255, 0.12);
+
+        border-radius: 50%;
+    }
+
+
+    .dashboard-card>* {
+        position: relative;
+
+        z-index: 2;
+    }
+
+
+    /* Hover */
+
+    .dashboard-card:hover {
+        transform: translateY(-8px);
+
+        box-shadow:
+            0 25px 45px rgba(0, 0, 0, 0.25);
+    }
+
+
+    /* Card text */
+
+    .dashboard-card h6 {
+        margin: 0;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        color: #ffffff !important;
+
+        opacity: 0.95;
+    }
+
+
+    .dashboard-card h2 {
+        margin: 10px 0 0;
+
+        font-size: 38px;
+        font-weight: 700;
+
+        line-height: 1.2;
+
+        color: #ffffff !important;
+    }
+
+
+    .dashboard-card small {
+        display: block;
+
+        margin-top: 8px;
+
+        font-size: 12px;
+
+        color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+
+    /* =========================================================
+   SUMMARY CARD COLORS
+========================================================= */
+
+
+    /* Total Budget */
+
+    .card.dashboard-card.budget {
+        background:
+            linear-gradient(135deg,
+                #00d26a,
+                #00b84f) !important;
+    }
+
+
+    /* Total Spent */
+
+    .card.dashboard-card.spent {
+        background:
+            linear-gradient(135deg,
+                #ff4b5c,
+                #ff1744) !important;
+    }
+
+
+    /* Remaining */
+
+    .card.dashboard-card.remaining {
+        background:
+            linear-gradient(135deg,
+                #00c6ff,
+                #00acc1) !important;
+    }
+
+
+    /* Categories */
+
+    .card.dashboard-card.category {
+        background:
+            linear-gradient(135deg,
+                #7c4dff,
+                #512da8) !important;
+    }
+
+
+    /* =========================================================
+   CARD ICON
+========================================================= */
+
+    .dashboard-card .card-icon {
+        position: absolute !important;
+
+        right: 20px;
+        bottom: 18px;
+
+        font-size: 55px;
+
+        color: #ffffff !important;
+
+        opacity: 0.15;
+
+        z-index: 1 !important;
+    }
+
+
+    /* =========================================================
+   GENERAL CARDS
+========================================================= */
+
+    .main-content .card {
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        transition: 0.3s ease;
+    }
+
+
+    /* =========================================================
+   ADD NEW BUDGET CARD
+========================================================= */
+
+    .form-card {
+        background: #ffffff;
+
+        border: none !important;
+
+        border-radius: 20px !important;
+
+        overflow: hidden !important;
+
+        box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* =========================================================
+   ADD NEW BUDGET HEADER
+========================================================= */
+
+    .form-card>.card-header {
+        min-height: 58px;
+
+        display: flex;
+        align-items: center;
+
+        padding: 15px 22px !important;
+
+        border: none !important;
+
+        border-radius: 20px 20px 0 0 !important;
+
+        background:
+            linear-gradient(135deg,
+                #f59e0b,
+                #ff9800) !important;
+
+        background-color: #ff9800 !important;
+
+        color: #ffffff !important;
+    }
+
+
+    /* Header title */
+
+    .form-card>.card-header h5 {
+        margin: 0 !important;
+
+        display: flex;
+        align-items: center;
+
+        gap: 10px;
+
+        font-size: 18px !important;
+        font-weight: 700 !important;
+
+        color: #ffffff !important;
+    }
+
+
+    /* Header icon */
+
+    .form-card>.card-header h5 i {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-size: 20px;
+
+        color: #ffffff !important;
+    }
+
+
+    /* =========================================================
+   ADD BUDGET BODY
+========================================================= */
+
+    .form-card>.card-body {
+        padding: 25px !important;
+
+        background: #ffffff;
+
+        color: #1f2937;
+    }
+
+
+    /* =========================================================
+   FORM LABELS
+========================================================= */
+
+    .form-card .form-label {
+        font-size: 13px;
+
+        font-weight: 600;
+
+        color: #475569;
+    }
+
+
+    /* =========================================================
+   FORM INPUTS
+========================================================= */
+
+    .form-card .form-control,
+    .form-card .form-select {
+        min-height: 42px;
+
+        border-radius: 10px;
+
+        border: 1px solid #dbe3ef;
+
+        background: #ffffff;
+
+        color: #1f2937;
+
+        font-size: 13px;
+
+        box-shadow: none;
+
+        transition: 0.2s ease;
+    }
+
+
+    .form-card .form-control::placeholder {
+        color: #6b7280;
+    }
+
+
+    .form-card .form-control:focus,
+    .form-card .form-select:focus {
+        background: #ffffff;
+
+        color: #1f2937;
+
+        border-color: #2563eb;
+
+        box-shadow:
+            0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+
+    /* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+    .form-card .btn-primary {
+        min-height: 42px;
+
+        border: none !important;
+
+        border-radius: 10px !important;
+
+        background:
+            linear-gradient(135deg,
+                #2196f3,
+                #2563eb) !important;
+
+        color: #ffffff !important;
+
+        font-weight: 600;
+    }
+
+
+    .form-card .btn-primary:hover {
+        background:
+            linear-gradient(135deg,
+                #2563eb,
+                #1d4ed8) !important;
+
+        transform: translateY(-2px);
+    }
+
+
+    /* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+    .btn {
+        border-radius: 10px;
+
+        transition:
+            transform 0.2s ease,
+            box-shadow 0.2s ease;
+    }
+
+
+    .btn:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+
+    /* =========================================================
+   MONTHLY BUDGET USAGE
+========================================================= */
+
+    .monthly-budget-card {
+        border: none;
+    }
+
+
+    /* Generic card containing monthly usage */
+
+    .main-content>.card {
+        background: #ffffff;
+
+        color: #1f2937;
+
+        border: 1px solid #e5e7eb;
+
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+
+    .main-content>.card .card-body {
+        padding: 25px;
+    }
+
+
+    .main-content>.card h5 {
+        font-size: 18px;
+
+        font-weight: 700;
+
+        color: #17233c;
+    }
+
+
+    /* Percentage */
+
+    #monthlyBudgetPercentage {
+        color: #2563eb;
+
+        font-size: 16px;
+    }
+
+
+    /* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+    .progress {
+        height: 24px;
+
+        overflow: hidden;
+
+        border-radius: 12px;
+
+        background: #e5e7eb;
+    }
+
+
+    .progress-bar {
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 12px;
+
+        color: #ffffff;
+
+        font-size: 11px;
+
+        font-weight: 700;
+
+        transition:
+            width 0.5s ease,
+            background-color 0.3s ease;
+    }
+
+
+    /* =========================================================
+   CHART CARDS
+========================================================= */
+
+    .chart-card {
+        height: 100%;
+
+        border: none !important;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        background: #ffffff;
+
+        box-shadow:
+            0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+
+    .chart-card .card-header {
+        padding: 18px 22px;
+
+        background: #ffffff;
+
+        border-bottom: 1px solid #edf2f7;
+    }
+
+
+    .chart-card .card-header h5 {
+        margin: 0;
+
+        font-size: 17px;
+
+        font-weight: 700;
+
+        color: #17233c;
+    }
+
+
+    .chart-card .card-body {
+        position: relative;
+
+        background: #ffffff;
+    }
+
+
+    /* Charts */
+
+    #budgetChart,
+    #pieChart {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+
+    /* =========================================================
+   TABLE
+========================================================= */
+
+    .table-responsive {
+        width: 100%;
+
+        overflow-x: auto;
+    }
+
+
+    .table {
+        margin-bottom: 0;
+
+        vertical-align: middle;
+
+        color: #1f2937;
+    }
+
+
+    .table thead th {
+        padding: 14px;
+
+        background: #f8fafc;
+
+        border-bottom: 1px solid #e2e8f0;
+
+        color: #475569;
+
+        font-size: 13px;
+
+        font-weight: 700;
+
+        white-space: nowrap;
+    }
+
+
+    .table tbody td {
+        padding: 14px;
+
+        font-size: 13px;
+
+        color: #334155;
+
+        border-color: #e2e8f0;
+    }
+
+
+    .table tbody tr {
+        transition: 0.2s ease;
+    }
+
+
+    .table-hover tbody tr:hover {
+        background: #f8fafc;
+    }
+
+
+    /* =========================================================
+   BUDGET ACTIONS
+========================================================= */
+
+    .budget-actions {
+        text-align: center;
+
+        white-space: nowrap;
+    }
+
+
+    .budget-actions-header {
+        text-align: center;
+    }
+
+
+    .budget-actions .btn {
+        width: 34px;
+        height: 34px;
+
+        padding: 0;
+
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 8px;
+    }
+
+
+    /* =========================================================
+   BADGES
+========================================================= */
+
+    .badge {
+        padding: 7px 10px;
+
+        border-radius: 20px;
+
+        font-size: 11px;
+
+        font-weight: 600;
+    }
+
+
+    /* =========================================================
+   DARK MODE - GENERAL CARDS
+========================================================= */
+
+    body.dark-mode .main-content>.card,
+    body.dark-mode .chart-card,
+    body.dark-mode .form-card {
+        background: #0f2747 !important;
+
+        color: #ffffff !important;
+
+        border-color: #1e4670 !important;
+
+        box-shadow:
+            0 10px 25px rgba(0, 0, 0, 0.20);
+    }
+
+
+    /* =========================================================
+   DARK MODE - CARD BODY
+========================================================= */
+
+    body.dark-mode .form-card>.card-body,
+    body.dark-mode .chart-card .card-body,
+    body.dark-mode .main-content>.card .card-body {
+        background: #0f2747 !important;
+
+        color: #ffffff !important;
+    }
+
+
+    /* =========================================================
+   DARK MODE - GENERIC HEADERS
+========================================================= */
+
+    body.dark-mode .chart-card .card-header,
+    body.dark-mode .main-content>.card:not(.form-card) .card-header {
+        background: #0f2747 !important;
+
+        color: #ffffff !important;
+
+        border-color: #1e4670 !important;
+    }
+
+
+    body.dark-mode .chart-card .card-header h5,
+    body.dark-mode .main-content>.card:not(.form-card) .card-header h5 {
+        color: #ffffff !important;
+    }
+
+
+    /* =========================================================
+   DARK MODE - FORM LABELS
+========================================================= */
+
+    body.dark-mode .form-card .form-label {
+        color: #ffffff !important;
+    }
+
+
+    /* =========================================================
+   DARK MODE - FORM INPUTS
+========================================================= */
+
+    body.dark-mode .form-card .form-control,
+    body.dark-mode .form-card .form-select {
+        background: #132f52 !important;
+
+        color: #ffffff !important;
+
+        border-color: #315b82 !important;
+    }
+
+
+    body.dark-mode .form-card .form-control::placeholder {
+        color: #9fb3ca !important;
+    }
+
+
+    body.dark-mode .form-card .form-control:focus,
+    body.dark-mode .form-card .form-select:focus {
+        background: #132f52 !important;
+
+        color: #ffffff !important;
+
+        border-color: #38bdf8 !important;
+
+        box-shadow:
+            0 0 0 3px rgba(56, 189, 248, 0.15) !important;
+    }
+
+
+    body.dark-mode .form-card .form-select option {
+        background: #132f52;
+
+        color: #ffffff;
+    }
+
+
+    /* =========================================================
+   DARK MODE - PROGRESS
+========================================================= */
+
+    body.dark-mode .progress {
+        background: #24476b !important;
+    }
+
+
+    /* =========================================================
+   DARK MODE - MONTHLY USAGE TEXT
+========================================================= */
+
+    body.dark-mode .main-content>.card h5 {
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode .main-content>.card small {
+        color: #e5efff !important;
+    }
+
+
+    body.dark-mode #monthlyBudgetPercentage {
+        color: #38bdf8 !important;
+    }
+
+
+    body.dark-mode #monthlySpent {
+        color: #ff304f !important;
+    }
+
+
+    body.dark-mode #monthlyBudgetLimit {
+        color: #00e676 !important;
+    }
+
+
+    /* =========================================================
+   DARK MODE - TABLE
+========================================================= */
+
+    body.dark-mode .table {
+        --bs-table-bg: #0f2747;
+        --bs-table-color: #ffffff;
+        --bs-table-border-color: #24476b;
+
+        background: #0f2747 !important;
+
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode .table thead th {
+        background: #132f52 !important;
+
+        color: #ffffff !important;
+
+        border-color: #315b82 !important;
+    }
+
+
+    body.dark-mode .table tbody tr {
+        background: #0f2747 !important;
+    }
+
+
+    body.dark-mode .table tbody td {
+        background: #0f2747 !important;
+
+        color: #e5efff !important;
+
+        border-color: #24476b !important;
+    }
+
+
+    body.dark-mode .table-hover tbody tr:hover,
+    body.dark-mode .table-hover tbody tr:hover td {
+        background: #173b63 !important;
+    }
+
+
+    body.dark-mode .table tbody td strong {
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode .table tbody td small {
+        color: #9fb3ca !important;
+    }
+
+
+    /* =========================================================
+   DARK MODE - ACTION BUTTONS
+========================================================= */
+
+    body.dark-mode .budget-actions .btn-warning {
+        background: #f59e0b !important;
+
+        border-color: #f59e0b !important;
+
+        color: #111827 !important;
+    }
+
+
+    body.dark-mode .budget-actions .btn-danger {
+        background: #ef4444 !important;
+
+        border-color: #ef4444 !important;
+
+        color: #ffffff !important;
+    }
+
+
+    /* =========================================================
+   🔥 FINAL ORANGE HEADER
+   THIS MUST BE LAST
+========================================================= */
+
+    /*
+   IMPORTANT:
+   This selector is intentionally very specific.
+   It overrides the generic dark-mode .card-header rules.
+*/
+
+    body.dark-mode .main-content>.card.form-card.mb-4>.card-header.add-budget-header {
+        background: #ff9800 !important;
+
+        background-color: #ff9800 !important;
+
+        background-image:
+            linear-gradient(135deg,
+                #f59e0b,
+                #ff9800) !important;
+
+        color: #ffffff !important;
+
+        border: none !important;
+
+        border-bottom: none !important;
+    }
+
+
+    body.dark-mode .main-content>.card.form-card.mb-4>.card-header.add-budget-header h5 {
+        color: #ffffff !important;
+    }
+
+
+    body.dark-mode .main-content>.card.form-card.mb-4>.card-header.add-budget-header h5 i {
+        color: #ffffff !important;
+    }
+
+
+    /* =========================================================
+   BUTTON
+========================================================= */
+
+    .btn-primary {
+        background: #2563eb;
+
+        border-color: #2563eb;
+    }
+
+
+    .btn-primary:hover {
+        background: #1d4ed8;
+
+        border-color: #1d4ed8;
+    }
+
+
+    /* =========================================================
+   TABLET
+========================================================= */
+
+    @media (max-width: 992px) {
+
+        .main-content {
+            margin-left: 220px;
+
+            width: calc(100% - 220px);
+        }
+
+
+        .dashboard-card {
+            margin-bottom: 20px;
+        }
+
+
+        .form-card .card-body {
+            padding: 22px;
+        }
+
+
+        .chart-card .card-body {
+            height: 320px !important;
+        }
+
+    }
+
+
+    /* =========================================================
+   MOBILE
+========================================================= */
+
+    @media (max-width: 768px) {
+
+        .main-content {
+            margin-left: 0 !important;
+
+            width: 100% !important;
+
+            max-width: 100% !important;
+
+            padding: 0 12px !important;
+        }
+
+
+        .welcome-card {
+            flex-direction: column;
+
+            align-items: stretch;
+
+            gap: 18px;
+
+            padding: 22px;
+        }
+
+
+        .welcome-content h2 {
+            font-size: 24px;
+        }
+
+
+        .welcome-actions {
+            width: 100%;
+
+            margin-left: 0;
+        }
+
+
+        .welcome-search {
+            flex: 1;
+
+            width: auto;
+        }
+
+
+        .dashboard-card {
+            min-height: 170px;
+
+            padding: 25px !important;
+        }
+
+
+        .dashboard-card h2 {
+            font-size: 32px;
+        }
+
+
+        .form-card .card-body {
+            padding: 20px;
+        }
+
+
+        .chart-card .card-body {
+            height: 300px !important;
+        }
+
+    }
+
+
+    /* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+    @media (max-width: 576px) {
+
+        .main-content {
+            margin-left: 0 !important;
+
+            width: 100% !important;
+
+            padding: 0 10px !important;
+        }
+
+
+        .welcome-card {
+            padding: 18px;
+
+            border-radius: 16px;
+        }
+
+
+        .welcome-content h2 {
+            font-size: 21px;
+        }
+
+
+        .welcome-actions {
+            gap: 8px;
+        }
+
+
+        .welcome-search {
+            height: 40px;
+        }
+
+
+        .notification-btn {
+            width: 40px;
+
+            height: 40px;
+        }
+
+
+        .dashboard-card {
+            min-height: 185px;
+
+            padding: 25px !important;
+
+            border-radius: 20px;
+        }
+
+
+        .dashboard-card h2 {
+            font-size: 32px;
+        }
+
+
+        .dashboard-card .card-icon {
+            right: 20px;
+
+            bottom: 18px;
+
+            font-size: 50px;
+        }
+
+
+        .form-card .card-body {
+            padding: 18px;
+        }
+
+
+        .chart-card .card-body {
+            height: 280px !important;
+        }
+
+
+        .main-content>.card .card-body {
+            padding: 20px;
+        }
+
+
+        .table {
+            min-width: 750px;
+        }
+
+    }
+
+
+    /* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+    @media (max-width: 400px) {
+
+        .dashboard-card {
+            padding: 22px !important;
+        }
+
+
+        .dashboard-card h2 {
+            font-size: 29px;
+        }
+
+
+        .welcome-content h2 {
+            font-size: 20px;
+        }
+
+    }
+}
+
+
+/* Header title */
+
+.form-card>.card-header h5 {
+    margin: 0 !important;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 18px !important;
+    font-weight: 700 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* Header icon */
+
+.form-card>.card-header h5 i {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   ADD BUDGET BODY
+========================================================= */
+
+.form-card>.card-body {
+    padding: 25px !important;
+
+    background: #ffffff;
+
+    color: #1f2937;
+}
+
+
+/* =========================================================
+   FORM LABELS
+========================================================= */
+
+.form-card .form-label {
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #475569;
+}
+
+
+/* =========================================================
+   FORM INPUTS
+========================================================= */
+
+.form-card .form-control,
+.form-card .form-select {
+    min-height: 42px;
+
+    border-radius: 10px;
+
+    border: 1px solid #dbe3ef;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    font-size: 13px;
+
+    box-shadow: none;
+
+    transition: 0.2s ease;
+}
+
+
+.form-card .form-control::placeholder {
+    color: #6b7280;
+}
+
+
+.form-card .form-control:focus,
+.form-card .form-select:focus {
+    background: #ffffff;
+
+    color: #1f2937;
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================================
+   SAVE BUTTON
+========================================================= */
+
+.form-card .btn-primary {
+    min-height: 42px;
+
+    border: none !important;
+
+    border-radius: 10px !important;
+
+    background:
+        linear-gradient(135deg,
+            #2196f3,
+            #2563eb) !important;
+
+    color: #ffffff !important;
+
+    font-weight: 600;
+}
+
+
+.form-card .btn-primary:hover {
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #1d4ed8) !important;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+.btn {
+    border-radius: 10px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   MONTHLY BUDGET USAGE
+========================================================= */
+
+.monthly-budget-card {
+    border: none;
+}
+
+
+/* Generic card containing monthly usage */
+
+.main-content>.card {
+    background: #ffffff;
+
+    color: #1f2937;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+.main-content>.card .card-body {
+    padding: 25px;
+}
+
+
+.main-content>.card h5 {
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #17233c;
+}
+
+
+/* Percentage */
+
+#monthlyBudgetPercentage {
+    color: #2563eb;
 
     font-size: 16px;
 }
 
 
-/* ==========================================
-   RESPONSIVE
-========================================== */
+/* =========================================================
+   PROGRESS BAR
+========================================================= */
+
+.progress {
+    height: 24px;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+
+    background: #e5e7eb;
+}
+
+
+.progress-bar {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition:
+        width 0.5s ease,
+        background-color 0.3s ease;
+}
+
+
+/* =========================================================
+   CHART CARDS
+========================================================= */
+
+.chart-card {
+    height: 100%;
+
+    border: none !important;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+.chart-card .card-header {
+    padding: 18px 22px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #edf2f7;
+}
+
+
+.chart-card .card-header h5 {
+    margin: 0;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: #17233c;
+}
+
+
+.chart-card .card-body {
+    position: relative;
+
+    background: #ffffff;
+}
+
+
+/* Charts */
+
+#budgetChart,
+#pieChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-responsive {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.table {
+    margin-bottom: 0;
+
+    vertical-align: middle;
+
+    color: #1f2937;
+}
+
+
+.table thead th {
+    padding: 14px;
+
+    background: #f8fafc;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.table tbody td {
+    padding: 14px;
+
+    font-size: 13px;
+
+    color: #334155;
+
+    border-color: #e2e8f0;
+}
+
+
+.table tbody tr {
+    transition: 0.2s ease;
+}
+
+
+.table-hover tbody tr:hover {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   BUDGET ACTIONS
+========================================================= */
+
+.budget-actions {
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+.budget-actions-header {
+    text-align: center;
+}
+
+
+.budget-actions .btn {
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+}
+
+
+/* =========================================================
+   BADGES
+========================================================= */
+
+.badge {
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   DARK MODE - GENERAL CARDS
+========================================================= */
+
+body.dark-mode .main-content>.card,
+body.dark-mode .chart-card,
+body.dark-mode .form-card {
+    background: #0f2747 !important;
+
+    color: #ffffff !important;
+
+    border-color: #1e4670 !important;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.20);
+}
+
+
+/* =========================================================
+   DARK MODE - CARD BODY
+========================================================= */
+
+body.dark-mode .form-card>.card-body,
+body.dark-mode .chart-card .card-body,
+body.dark-mode .main-content>.card .card-body {
+    background: #0f2747 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   DARK MODE - GENERIC HEADERS
+========================================================= */
+
+body.dark-mode .chart-card .card-header,
+body.dark-mode .main-content>.card:not(.form-card) .card-header {
+    background: #0f2747 !important;
+
+    color: #ffffff !important;
+
+    border-color: #1e4670 !important;
+}
+
+
+body.dark-mode .chart-card .card-header h5,
+body.dark-mode .main-content>.card:not(.form-card) .card-header h5 {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   DARK MODE - FORM LABELS
+========================================================= */
+
+body.dark-mode .form-card .form-label {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   DARK MODE - FORM INPUTS
+========================================================= */
+
+body.dark-mode .form-card .form-control,
+body.dark-mode .form-card .form-select {
+    background: #132f52 !important;
+
+    color: #ffffff !important;
+
+    border-color: #315b82 !important;
+}
+
+
+body.dark-mode .form-card .form-control::placeholder {
+    color: #9fb3ca !important;
+}
+
+
+body.dark-mode .form-card .form-control:focus,
+body.dark-mode .form-card .form-select:focus {
+    background: #132f52 !important;
+
+    color: #ffffff !important;
+
+    border-color: #38bdf8 !important;
+
+    box-shadow:
+        0 0 0 3px rgba(56, 189, 248, 0.15) !important;
+}
+
+
+body.dark-mode .form-card .form-select option {
+    background: #132f52;
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   DARK MODE - PROGRESS
+========================================================= */
+
+body.dark-mode .progress {
+    background: #24476b !important;
+}
+
+
+/* =========================================================
+   DARK MODE - MONTHLY USAGE TEXT
+========================================================= */
+
+body.dark-mode .main-content>.card h5 {
+    color: #ffffff !important;
+}
+
+
+body.dark-mode .main-content>.card small {
+    color: #e5efff !important;
+}
+
+
+body.dark-mode #monthlyBudgetPercentage {
+    color: #38bdf8 !important;
+}
+
+
+body.dark-mode #monthlySpent {
+    color: #ff304f !important;
+}
+
+
+body.dark-mode #monthlyBudgetLimit {
+    color: #00e676 !important;
+}
+
+
+/* =========================================================
+   DARK MODE - TABLE
+========================================================= */
+
+body.dark-mode .table {
+    --bs-table-bg: #0f2747;
+    --bs-table-color: #ffffff;
+    --bs-table-border-color: #24476b;
+
+    background: #0f2747 !important;
+
+    color: #ffffff !important;
+}
+
+
+body.dark-mode .table thead th {
+    background: #132f52 !important;
+
+    color: #ffffff !important;
+
+    border-color: #315b82 !important;
+}
+
+
+body.dark-mode .table tbody tr {
+    background: #0f2747 !important;
+}
+
+
+body.dark-mode .table tbody td {
+    background: #0f2747 !important;
+
+    color: #e5efff !important;
+
+    border-color: #24476b !important;
+}
+
+
+body.dark-mode .table-hover tbody tr:hover,
+body.dark-mode .table-hover tbody tr:hover td {
+    background: #173b63 !important;
+}
+
+
+body.dark-mode .table tbody td strong {
+    color: #ffffff !important;
+}
+
+
+body.dark-mode .table tbody td small {
+    color: #9fb3ca !important;
+}
+
+
+/* =========================================================
+   DARK MODE - ACTION BUTTONS
+========================================================= */
+
+body.dark-mode .budget-actions .btn-warning {
+    background: #f59e0b !important;
+
+    border-color: #f59e0b !important;
+
+    color: #111827 !important;
+}
+
+
+body.dark-mode .budget-actions .btn-danger {
+    background: #ef4444 !important;
+
+    border-color: #ef4444 !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   🔥 FINAL ORANGE HEADER
+   THIS MUST BE LAST
+========================================================= */
+
+/*
+   IMPORTANT:
+   This selector is intentionally very specific.
+   It overrides the generic dark-mode .card-header rules.
+*/
+
+body.dark-mode .main-content>.card.form-card.mb-4>.card-header.add-budget-header {
+    background: #ff9800 !important;
+
+    background-color: #ff9800 !important;
+
+    background-image:
+        linear-gradient(135deg,
+            #f59e0b,
+            #ff9800) !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+
+    border-bottom: none !important;
+}
+
+
+body.dark-mode .main-content>.card.form-card.mb-4>.card-header.add-budget-header h5 {
+    color: #ffffff !important;
+}
+
+
+body.dark-mode .main-content>.card.form-card.mb-4>.card-header.add-budget-header h5 i {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn-primary {
+    background: #2563eb;
+
+    border-color: #2563eb;
+}
+
+
+.btn-primary:hover {
+    background: #1d4ed8;
+
+    border-color: #1d4ed8;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .main-content {
+        margin-left: 220px;
+
+        width: calc(100% - 220px);
+    }
+
+
+    .dashboard-card {
+        margin-bottom: 20px;
+    }
+
+
+    .form-card .card-body {
+        padding: 22px;
+    }
+
+
+    .chart-card .card-body {
+        height: 320px !important;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 768px) {
 
-    .welcome-card {
+    .main-content {
+        margin-left: 0 !important;
 
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        padding: 0 12px !important;
+    }
+
+
+    .welcome-card {
         flex-direction: column;
 
         align-items: stretch;
@@ -431,13 +2568,11 @@
 
 
     .welcome-content h2 {
-
         font-size: 24px;
     }
 
 
     .welcome-actions {
-
         width: 100%;
 
         margin-left: 0;
@@ -445,19 +2580,52 @@
 
 
     .welcome-search {
-
         flex: 1;
 
         width: auto;
     }
 
+
+    .dashboard-card {
+        min-height: 170px;
+
+        padding: 25px !important;
+    }
+
+
+    .dashboard-card h2 {
+        font-size: 32px;
+    }
+
+
+    .form-card .card-body {
+        padding: 20px;
+    }
+
+
+    .chart-card .card-body {
+        height: 300px !important;
+    }
+
 }
 
 
-@media (max-width: 480px) {
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+
+    .main-content {
+        margin-left: 0 !important;
+
+        width: 100% !important;
+
+        padding: 0 10px !important;
+    }
+
 
     .welcome-card {
-
         padding: 18px;
 
         border-radius: 16px;
@@ -465,28 +2633,194 @@
 
 
     .welcome-content h2 {
-
         font-size: 21px;
     }
 
 
     .welcome-actions {
-
         gap: 8px;
     }
 
 
     .welcome-search {
-
         height: 40px;
     }
 
 
     .notification-btn {
-
         width: 40px;
 
         height: 40px;
     }
 
+
+    .dashboard-card {
+        min-height: 185px;
+
+        padding: 25px !important;
+
+        border-radius: 20px;
+    }
+
+
+    .dashboard-card h2 {
+        font-size: 32px;
+    }
+
+
+    .dashboard-card .card-icon {
+        right: 20px;
+
+        bottom: 18px;
+
+        font-size: 50px;
+    }
+
+
+    .form-card .card-body {
+        padding: 18px;
+    }
+
+
+    .chart-card .card-body {
+        height: 280px !important;
+    }
+
+
+    .main-content>.card .card-body {
+        padding: 20px;
+    }
+
+
+    .table {
+        min-width: 750px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .dashboard-card {
+        padding: 22px !important;
+    }
+
+
+    .dashboard-card h2 {
+        font-size: 29px;
+    }
+
+
+    .welcome-content h2 {
+        font-size: 20px;
+    }
+
+}
+
+/* =========================================================
+   FORCE BLUE HEADER - BUDGET VS SPENT
+========================================================= */
+
+body.dark-mode .main-content .row .col-lg-8 .chart-card>.card-header {
+    background: linear-gradient(135deg, #2196f3, #1565c0) !important;
+    background-image: linear-gradient(135deg, #2196f3, #1565c0) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-bottom: none !important;
+}
+
+body.dark-mode .main-content .row .col-lg-8 .chart-card>.card-header h5 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .main-content .row .col-lg-8 .chart-card>.card-header h5 i {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   CHART HEADERS - DASHBOARD STYLE
+========================================================= */
+
+/* BUDGET VS SPENT - BLUE */
+
+body.dark-mode .main-content .row .col-lg-8 .chart-card>.card-header {
+    background: linear-gradient(135deg,
+            #2196f3,
+            #1565c0) !important;
+
+    background-image: linear-gradient(135deg,
+            #2196f3,
+            #1565c0) !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+}
+
+
+body.dark-mode .main-content .row .col-lg-8 .chart-card>.card-header h5,
+body.dark-mode .main-content .row .col-lg-8 .chart-card>.card-header h5 i {
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   CATEGORY DISTRIBUTION - GREEN
+========================================================= */
+
+body.dark-mode .main-content .row .col-lg-4 .chart-card>.card-header {
+    background: linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+
+    background-image: linear-gradient(135deg,
+            #00d26a,
+            #00b84f) !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+}
+
+
+body.dark-mode .main-content .row .col-lg-4 .chart-card>.card-header h5,
+body.dark-mode .main-content .row .col-lg-4 .chart-card>.card-header h5 i {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   BUDGET CATEGORIES - PINK GRADIENT HEADER
+========================================================= */
+
+body.dark-mode .main-content>.card.mb-4:last-child>.card-header {
+    background: linear-gradient(135deg,
+            #ff1493,
+            #c026ff) !important;
+
+    background-image: linear-gradient(135deg,
+            #ff1493,
+            #c026ff) !important;
+
+    color: #ffffff !important;
+
+    border: none !important;
+    border-bottom: none !important;
+}
+
+
+/* Title */
+
+body.dark-mode .main-content>.card.mb-4:last-child>.card-header h5 {
+    color: #ffffff !important;
+}
+
+
+/* Icon */
+
+body.dark-mode .main-content>.card.mb-4:last-child>.card-header h5 i {
+    color: #ffffff !important;
 }

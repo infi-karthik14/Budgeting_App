@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bachat Buddy - Savings Goals</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Your common CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Savings Goals CSS -->
+    <link rel="stylesheet" href="assets/css/savings-goals.css">
+</head>
+
+<body>
+
+    <!-- ==========================================================
+     NAVBAR
+========================================================== -->
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+
+        <div class="container-fluid px-4">
+
+            <a class="navbar-brand fw-bold" href="dashboard.html">
+                <i class="bi bi-wallet2 me-2"></i>
+                Bachat Buddy
+            </a>
+
+
+            <div class="ms-auto d-flex align-items-center gap-3">
+
+                <a href="dashboard.html" class="btn btn-outline-primary btn-sm">
+                    <i class="bi bi-house me-1"></i>
+                    Dashboard
+                </a>
+
+                <span id="userName" class="fw-semibold">
+                    User
+                </span>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ==========================================================
+     MAIN CONTENT
+========================================================== -->
+
+    <main class="container py-5">
+
+        <!-- ======================================================
+         PAGE HEADER
+    ======================================================= -->
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <div>
+
+                <h2 class="fw-bold mb-1">
+                    <i class="bi bi-bullseye me-2"></i>
+                    Savings Goals
+                </h2>
+
+                <p class="text-muted mb-0">
+                    Set goals and track your savings progress.
+                </p>
+
+            </div>
+
+            <a href="dashboard.html" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-1"></i>
+                Back
+            </a>
+
+        </div>
+
+
+        <!-- ======================================================
+         CREATE / UPDATE GOAL
+    ======================================================= -->
+
+        <div class="card shadow-sm mb-4">
+
+            <div class="card-body">
+
+                <h5 class="fw-bold mb-4">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Create Savings Goal
+                </h5>
+
+
+                <div class="row g-3">
+
+                    <!-- Goal Name -->
+
+                    <div class="col-md-6">
+
+                        <label for="goalName" class="form-label">
+                            Goal Name
+                        </label>
+
+                        <input type="text" id="goalName" class="form-control" placeholder="e.g. New Laptop">
+
+                    </div>
+
+
+                    <!-- Target -->
+
+                    <div class="col-md-6">
+
+                        <label for="goalTarget" class="form-label">
+                            Target Amount
+                        </label>
+
+                        <input type="number" id="goalTarget" class="form-control" placeholder="e.g. 80000" min="1">
+
+                    </div>
+
+
+                    <!-- Already Saved -->
+
+                    <div class="col-md-6">
+
+                        <label for="goalSaved" class="form-label">
+                            Amount Already Saved
+                        </label>
+
+                        <input type="number" id="goalSaved" class="form-control" placeholder="e.g. 20000" min="0">
+
+                    </div>
+
+
+                    <!-- Deadline -->
+
+                    <div class="col-md-6">
+
+                        <label for="goalDeadline" class="form-label">
+                            Target Date
+                        </label>
+
+                        <input type="date" id="goalDeadline" class="form-control">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="mt-4 d-flex gap-2">
+
+                    <button type="button" id="saveGoalBtn" class="btn btn-primary">
+                        <i class="bi bi-check-lg me-1"></i>
+                        Save Goal
+                    </button>
+
+                    <button type="button" id="resetGoalBtn" class="btn btn-outline-secondary">
+                        Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ======================================================
+         CURRENT GOAL
+    ======================================================= -->
+
+        <div id="goalCard" class="card shadow-sm">
+
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between align-items-start">
+
+                    <div>
+
+                        <small class="text-muted">
+                            Current Goal
+                        </small>
+
+                        <h3 id="displayGoalName" class="fw-bold mt-1">
+                            No Goal Set
+                        </h3>
+
+                    </div>
+
+                    <span id="displayPercentage" class="badge bg-primary fs-6">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <!-- Amounts -->
+
+                <div class="row mt-4">
+
+                    <div class="col-6">
+
+                        <small class="text-muted">
+                            Saved
+                        </small>
+
+                        <h5 id="displaySaved" class="text-success fw-bold">
+                            ₹0
+                        </h5>
+
+                    </div>
+
+
+                    <div class="col-6 text-end">
+
+                        <small class="text-muted">
+                            Target
+                        </small>
+
+                        <h5 id="displayTarget" class="fw-bold">
+                            ₹0
+                        </h5>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Progress -->
+
+                <div class="progress mt-3" style="height: 16px;">
+
+                    <div id="goalProgress" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0"
+                        aria-valuemin="0" aria-valuemax="100">
+                        0%
+                    </div>
+
+                </div>
+
+
+                <!-- Deadline -->
+
+                <div class="mt-3">
+
+                    <small class="text-muted">
+                        <i class="bi bi-calendar-event me-1"></i>
+                        Target Date:
+                    </small>
+
+                    <strong id="displayDeadline">
+                        Not set
+                    </strong>
+
+                </div>
+
+
+                <!-- Remaining -->
+
+                <div class="mt-2">
+
+                    <small class="text-muted">
+                        Remaining:
+                    </small>
+
+                    <strong id="displayRemaining" class="text-primary">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <!-- Delete -->
+
+                <div class="mt-4">
+
+                    <button type="button" id="deleteGoalBtn" class="btn btn-outline-danger">
+                        <i class="bi bi-trash me-1"></i>
+                        Delete Goal
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ==========================================================
+     FOOTER
+========================================================== -->
+
+    <footer class="text-center py-4 mt-5">
+
+        <p class="text-muted mb-0">
+            © 2026 Bachat Buddy. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <!-- ==========================================================
+     JAVASCRIPT
+========================================================== -->
+
+    <script src="assets/js/savings-goals.js"></script>
+
+</body>
+
+</html>
