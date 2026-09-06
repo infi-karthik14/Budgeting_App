@@ -1,5 +1,6 @@
 package com.budgetingapp.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -12,8 +13,8 @@ public class MLPredictionService {
 
     private final RestTemplate restTemplate;
 
-    private static final String ML_API_URL =
-            "http://localhost:5000/predict-expense";
+    @Value("${ml.api.url:http://localhost:5000/predict-expense}")
+    private String mlApiUrl;
 
     public MLPredictionService() {
         this.restTemplate = new RestTemplate();
@@ -46,7 +47,7 @@ public class MLPredictionService {
 
         ResponseEntity<Map> response =
                 restTemplate.postForEntity(
-                        ML_API_URL,
+                        mlApiUrl,
                         entity,
                         Map.class
                 );

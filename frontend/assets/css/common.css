@@ -77,6 +77,16 @@ body {
 
 /* Tagline */
 
+.footer-logo-image {
+    width: 210px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
 .footer-tagline {
     margin: 0 0 18px;
 

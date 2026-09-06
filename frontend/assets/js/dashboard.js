@@ -15,7 +15,8 @@ const TRANSACTION_API_URL =
 const BUDGET_API_URL =
   "https://budgetingapp-production-a92b.up.railway.app/api/budgets";
 
-const ML_API_URL = "http://localhost:5000";
+const ML_API_URL =
+  "https://budgetingapp-production-a92b.up.railway.app/api/ml";
 
 // ==========================================================
 // GLOBAL VARIABLES

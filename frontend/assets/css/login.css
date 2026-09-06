@@ -385,3 +385,12 @@ hr {
     }
 
 }
+
+.auth-logo {
+    width: 82px;
+    height: 82px;
+    object-fit: cover;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.25);
+}

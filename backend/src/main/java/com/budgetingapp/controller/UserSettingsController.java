@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 @CrossOrigin(origins = {
         "http://localhost:5500",
-        "http://127.0.0.1:5500"
+        "http://127.0.0.1:5500",
+        "https://gregarious-communication-production-6879.up.railway.app"
 })
 public class UserSettingsController {
 
