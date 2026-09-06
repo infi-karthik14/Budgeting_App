@@ -1,17 +1,21 @@
+"use strict";
+
 /* =========================================================
-   BUDGETING APP - INDEX PAGE JAVASCRIPT
+   BACHAT BUDDY - INDEX PAGE JAVASCRIPT
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("Bachat Buddy Index Page Loaded");
+
   /* =====================================================
-       NAVBAR - ACTIVE LINK
+       NAVBAR
     ===================================================== */
 
   const navLinks = document.querySelectorAll(".landing-navbar .nav-link");
 
-  navLinks.forEach((link) => {
+  navLinks.forEach(function (link) {
     link.addEventListener("click", function () {
-      navLinks.forEach((item) => {
+      navLinks.forEach(function (item) {
         item.classList.remove("active");
       });
 
@@ -23,11 +27,13 @@ document.addEventListener("DOMContentLoaded", function () {
        SMOOTH SCROLL
     ===================================================== */
 
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+
+  anchorLinks.forEach(function (anchor) {
     anchor.addEventListener("click", function (event) {
       const targetId = this.getAttribute("href");
 
-      if (targetId === "#") {
+      if (!targetId || targetId === "#") {
         return;
       }
 
@@ -53,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", function () {
     let currentSection = "";
 
-    sections.forEach((section) => {
+    sections.forEach(function (section) {
       const sectionTop = section.offsetTop - 120;
 
       if (window.scrollY >= sectionTop) {
@@ -62,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (currentSection === "features") {
-      navLinks.forEach((link) => {
+      navLinks.forEach(function (link) {
         link.classList.remove("active");
       });
 
@@ -74,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         featureLink.classList.add("active");
       }
     } else if (window.scrollY < 300) {
-      navLinks.forEach((link) => {
+      navLinks.forEach(function (link) {
         link.classList.remove("active");
       });
 
@@ -89,158 +95,169 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* =====================================================
-   COUNTER ANIMATION
-===================================================== */
+       COUNTER ANIMATION
+    ===================================================== */
 
   const counters = document.querySelectorAll(".stat-item h3");
 
-  const counterObserver = new IntersectionObserver(
-    function (entries, observer) {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) {
-          return;
-        }
-
-        const counter = entry.target;
-
-        /*
-         * Do not animate 24/7.
-         */
-        if (counter.innerText.includes("/")) {
-          observer.unobserve(counter);
-          return;
-        }
-
-        const originalText = counter.innerText.trim();
-
-        const target = parseInt(originalText.replace(/[^0-9]/g, ""), 10);
-
-        if (isNaN(target)) {
-          observer.unobserve(counter);
-          return;
-        }
-
-        let suffix = "";
-
-        if (originalText.includes("%")) {
-          suffix = "%";
-        } else if (originalText.includes("K")) {
-          suffix = "K+";
-        } else {
-          suffix = "+";
-        }
-
-        let current = 0;
-
-        const duration = 1200;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-          const elapsed = currentTime - startTime;
-
-          const progress = Math.min(elapsed / duration, 1);
-
-          const easedProgress = 1 - Math.pow(1 - progress, 3);
-
-          current = Math.floor(target * easedProgress);
-
-          counter.innerText = current + suffix;
-
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.innerText = target + suffix;
+  if ("IntersectionObserver" in window) {
+    const counterObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            return;
           }
-        }
 
-        requestAnimationFrame(updateCounter);
+          const counter = entry.target;
 
-        observer.unobserve(counter);
-      });
-    },
-    {
-      threshold: 0.5,
-    },
-  );
+          /*
+           * Do not animate 24/7.
+           */
 
-  counters.forEach((counter) => {
-    counterObserver.observe(counter);
-  });
+          if (counter.innerText.includes("/")) {
+            observer.unobserve(counter);
+
+            return;
+          }
+
+          const originalText = counter.innerText.trim();
+
+          const target = parseInt(originalText.replace(/[^0-9]/g, ""), 10);
+
+          if (isNaN(target)) {
+            observer.unobserve(counter);
+
+            return;
+          }
+
+          let suffix = "";
+
+          if (originalText.includes("%")) {
+            suffix = "%";
+          } else if (originalText.includes("K")) {
+            suffix = "K+";
+          } else {
+            suffix = "+";
+          }
+
+          let current = 0;
+
+          const duration = 1200;
+
+          const startTime = performance.now();
+
+          function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+
+            const progress = Math.min(elapsed / duration, 1);
+
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+            current = Math.floor(target * easedProgress);
+
+            counter.innerText = current + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(updateCounter);
+            } else {
+              counter.innerText = target + suffix;
+            }
+          }
+
+          requestAnimationFrame(updateCounter);
+
+          observer.unobserve(counter);
+        });
+      },
+      {
+        threshold: 0.5,
+      },
+    );
+
+    counters.forEach(function (counter) {
+      counterObserver.observe(counter);
+    });
+  }
+
   /* =====================================================
        FEATURE CARD ANIMATION
-       ===================================================== */
+    ===================================================== */
 
   const featureCards = document.querySelectorAll(".feature-card");
 
-  const featureObserver = new IntersectionObserver(
-    function (entries, observer) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
+  if ("IntersectionObserver" in window) {
+    const featureObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
 
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15,
-    },
-  );
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      },
+    );
 
-  featureCards.forEach((card) => {
-    card.classList.add("feature-hidden");
+    featureCards.forEach(function (card) {
+      card.classList.add("feature-hidden");
 
-    featureObserver.observe(card);
-  });
+      featureObserver.observe(card);
+    });
+  }
 
   /* =====================================================
        TESTIMONIAL CARD ANIMATION
-       ===================================================== */
+    ===================================================== */
 
   const testimonialCards = document.querySelectorAll(".testimonial-card");
 
-  const testimonialObserver = new IntersectionObserver(
-    function (entries, observer) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
+  if ("IntersectionObserver" in window) {
+    const testimonialObserver = new IntersectionObserver(
+      function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
 
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15,
-    },
-  );
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      },
+    );
 
-  testimonialCards.forEach((card) => {
-    card.classList.add("testimonial-hidden");
+    testimonialCards.forEach(function (card) {
+      card.classList.add("testimonial-hidden");
 
-    testimonialObserver.observe(card);
-  });
+      testimonialObserver.observe(card);
+    });
+  }
 
   /* =====================================================
-       BUTTON CLICK FEEDBACK
-       ===================================================== */
+       BUTTON CLICK EFFECT
+    ===================================================== */
 
   const actionButtons = document.querySelectorAll(
     ".primary-btn, .secondary-btn, .cta-btn",
   );
 
-  actionButtons.forEach((button) => {
+  actionButtons.forEach(function (button) {
     button.addEventListener("click", function () {
       this.classList.add("button-clicked");
 
-      setTimeout(() => {
-        this.classList.remove("button-clicked");
+      setTimeout(function () {
+        button.classList.remove("button-clicked");
       }, 250);
     });
   });
 
   /* =====================================================
        MOBILE NAVBAR AUTO CLOSE
-       ===================================================== */
+    ===================================================== */
 
   const navbarMenu = document.getElementById("mainMenu");
 
@@ -249,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (navbarMenu && navbarToggler) {
     const menuLinks = navbarMenu.querySelectorAll("a");
 
-    menuLinks.forEach((link) => {
+    menuLinks.forEach(function (link) {
       link.addEventListener("click", function () {
         if (window.innerWidth < 992 && navbarMenu.classList.contains("show")) {
           navbarToggler.click();
@@ -260,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* =====================================================
        BACK TO TOP BUTTON
-       ===================================================== */
+    ===================================================== */
 
   const backToTop = document.createElement("button");
 
@@ -289,122 +306,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* =====================================================
        CURRENT YEAR
-       ===================================================== */
+    ===================================================== */
 
   const yearElements = document.querySelectorAll(".current-year");
 
-  yearElements.forEach((element) => {
+  yearElements.forEach(function (element) {
     element.textContent = new Date().getFullYear();
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
-    /* ==========================================
-       MOBILE NAVBAR AUTO CLOSE
-    ========================================== */
+  /* =====================================================
+       TESTIMONIAL INTERACTION
+    ===================================================== */
 
-    const menu = document.getElementById("menu");
+  const testimonials = document.querySelectorAll(".testimonial-card");
 
-    if (menu) {
-      const links = menu.querySelectorAll(".nav-link");
-
-      links.forEach((link) => {
-        link.addEventListener("click", function () {
-          if (window.innerWidth < 992) {
-            const navbar = bootstrap.Collapse.getInstance(menu);
-
-            if (navbar) {
-              navbar.hide();
-            }
-          }
-        });
-      });
-    }
-
-    /* ==========================================
-       SMOOTH SCROLL
-    ========================================== */
-
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
-      link.addEventListener("click", function (event) {
-        const targetId = this.getAttribute("href");
-
-        if (!targetId || targetId === "#") {
-          return;
-        }
-
-        const target = document.querySelector(targetId);
-
-        if (target) {
-          event.preventDefault();
-
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      });
-    });
-
-    /* ==========================================
-       BUTTON CLICK EFFECT
-    ========================================== */
-
-    const buttons = document.querySelectorAll(".btn");
-
-    buttons.forEach((button) => {
-      button.addEventListener("click", function () {
-        this.classList.add("clicked");
-
-        setTimeout(() => {
-          this.classList.remove("clicked");
-        }, 200);
-      });
-    });
-
-    console.log("Budgeting App Index initialized");
-  });
-
-  /* ==========================================
-   FEATURE CARD INTERACTION
-========================================== */
-
-  const featureCards = document.querySelectorAll(".card");
-
-  featureCards.forEach((card) => {
-    const heading = card.querySelector("h4");
-
-    if (!heading) {
-      return;
-    }
-
-    card.addEventListener("mouseenter", function () {
-      this.style.cursor = "pointer";
-    });
-
+  testimonials.forEach(function (card) {
     card.addEventListener("click", function () {
-      const featureName = heading.textContent.trim();
-
-      console.log("Selected feature:", featureName);
-    });
-  });
-
-  /* ==========================================
-   TESTIMONIAL INTERACTION
-========================================== */
-
-  const testimonials = document.querySelectorAll(".testimonials .card");
-
-  testimonials.forEach((card) => {
-    card.addEventListener("click", function () {
-      // Remove selected state from other testimonials
-      testimonials.forEach((item) => {
+      testimonials.forEach(function (item) {
         item.classList.remove("testimonial-selected");
       });
 
-      // Select clicked testimonial
       this.classList.add("testimonial-selected");
     });
   });
-
-  console.log("Budgeting App Index Page Loaded");
 });
