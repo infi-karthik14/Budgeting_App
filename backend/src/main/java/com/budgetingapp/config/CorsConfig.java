@@ -20,7 +20,8 @@ public class CorsConfig {
                         .allowedOrigins(
                                 "http://127.0.0.1:5500",
                                 "http://localhost:5500",
-                                "https://gregarious-communication-production-6879.up.railway.app")
+                                "https://gregarious-communication-production-6879.up.railway.app",
+                                "https://bachatbuddy.co.in")
                         .allowedMethods(
                                 "GET",
                                 "POST",
