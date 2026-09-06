@@ -9,9 +9,11 @@
 // API
 // ==========================================================
 
-const TRANSACTION_API_URL = "http://localhost:8080/api/transactions";
+const TRANSACTION_API_URL =
+  "https://budgetingapp-production-a92b.up.railway.app/api/transactions";
 
-const BUDGET_API_URL = "http://localhost:8080/api/budgets";
+const BUDGET_API_URL =
+  "https://budgetingapp-production-a92b.up.railway.app/api/budgets";
 
 const ML_API_URL = "http://localhost:5000";
 

@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // API
   // ======================================================
 
-  const API_URL = `http://localhost:8080/api/users/${userId}/settings`;
+  const API_URL = `https://budgetingapp-production-a92b.up.railway.app/api/users/${userId}/settings`;
 
   // ======================================================
   // ELEMENTS

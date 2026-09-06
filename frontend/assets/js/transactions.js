@@ -10,7 +10,7 @@
 // API
 // ==========================================================
 
-const API_URL = "http://localhost:8080/api/transactions";
+const API_URL = "https://budgetingapp-production-a92b.up.railway.app/api/transactions";
 
 // ==========================================================
 // PAGE LOAD

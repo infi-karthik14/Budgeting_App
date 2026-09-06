@@ -22,7 +22,7 @@
   // API
   // ------------------------------------------------------
 
-  const SETTINGS_API = `http://localhost:8080/api/users/${userId}/settings`;
+  const SETTINGS_API = `https://budgetingapp-production-a92b.up.railway.app/api/users/${userId}/settings`;
 
   // ------------------------------------------------------
   // LOAD SETTINGS

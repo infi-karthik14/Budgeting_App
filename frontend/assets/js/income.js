@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
        API
     ===================================================== */
 
-  const TRANSACTION_API = "http://localhost:8080/api/transactions";
+  const TRANSACTION_API = "https://budgetingapp-production-a92b.up.railway.app/api/transactions";
 
   /* =====================================================
        ELEMENTS

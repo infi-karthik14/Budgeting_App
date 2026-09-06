@@ -189,15 +189,18 @@ document.addEventListener("DOMContentLoaded", function () {
                SEND DATA TO SPRING BOOT
             ================================================= */
 
-      const response = await fetch("http://localhost:8080/api/auth/register", {
-        method: "POST",
+      const response = await fetch(
+        "https://budgetingapp-production-a92b.up.railway.app/api/auth/register",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(userData),
         },
-
-        body: JSON.stringify(userData),
-      });
+      );
 
       /* =================================================
                GET SERVER RESPONSE

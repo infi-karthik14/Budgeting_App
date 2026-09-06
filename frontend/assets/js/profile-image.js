@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // API
   // ======================================================
 
-  const API_URL = "http://localhost:8080/api/users";
+  const API_URL = "https://budgetingapp-production-a92b.up.railway.app/api/users";
 
   const DEFAULT_IMAGE = "assets/images/default-user.png";
 

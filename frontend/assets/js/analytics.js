@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // =====================================================
 
     const API_URL =
-        "http://localhost:8080/api/transactions";
+        "https://budgetingapp-production-a92b.up.railway.app/api/transactions";
 
 
     // =====================================================

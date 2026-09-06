@@ -9,9 +9,9 @@
 // API
 // ==========================================================
 
-const BUDGET_API_URL = "http://localhost:8080/api/budgets";
+const BUDGET_API_URL = "https://budgetingapp-production-a92b.up.railway.app/api/budgets";
 
-const TRANSACTION_API_URL = "http://localhost:8080/api/transactions";
+const TRANSACTION_API_URL = "https://budgetingapp-production-a92b.up.railway.app/api/transactions";
 
 // ==========================================================
 // GLOBAL DATA

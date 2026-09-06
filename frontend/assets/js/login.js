@@ -136,15 +136,18 @@ document.addEventListener("DOMContentLoaded", function () {
         ================================================= */
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
-        method: "POST",
+      const response = await fetch(
+        "https://budgetingapp-production-a92b.up.railway.app/api/auth/login",
+        {
+          method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(loginData),
         },
-
-        body: JSON.stringify(loginData),
-      });
+      );
 
       /* =================================================
                READ RESPONSE
@@ -202,7 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log("Getting user profile...");
 
           const userResponse = await fetch(
-            "http://localhost:8080/api/auth/user?email=" +
+            "https://budgetingapp-production-a92b.up.railway.app/api/auth/user?email=" +
               encodeURIComponent(emailValue),
             {
               method: "GET",

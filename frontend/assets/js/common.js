@@ -37,7 +37,7 @@ async function loadSidebarProfile() {
   const userName = document.getElementById("userName");
 
   try {
-    const response = await fetch(`http://localhost:8080/api/users/${userId}`);
+    const response = await fetch(`https://budgetingapp-production-a92b.up.railway.app/api/users/${userId}`);
 
     if (!response.ok) {
       throw new Error("Unable to load user profile");
