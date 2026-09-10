@@ -2,36 +2,42 @@ package com.budgetingapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.List;
 
 @Configuration
 public class CorsConfig {
 
     @Bean
-    public WebMvcConfigurer corsConfigurer() {
+    public CorsFilter corsFilter() {
 
-        return new WebMvcConfigurer() {
+        CorsConfiguration config = new CorsConfiguration();
 
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
+        config.setAllowedOrigins(List.of(
+                "https://bachatbuddy.co.in",
+                "https://www.bachatbuddy.co.in",
+                "https://gregarious-communication-production-6879.up.railway.app",
+                "http://localhost:5500",
+                "http://127.0.0.1:5500"));
 
-                registry.addMapping("/**")
-                        .allowedOrigins(
-                                "http://127.0.0.1:5500",
-                                "http://localhost:5500",
-                                "https://gregarious-communication-production-6879.up.railway.app",
-                                "https://bachatbuddy.co.in",
-                                "https://www.bachatbuddy.co.in")
-                        .allowedMethods(
-                                "GET",
-                                "POST",
-                                "PUT",
-                                "DELETE",
-                                "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(true);
-            }
-        };
+        config.setAllowedMethods(List.of(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "OPTIONS"));
+
+        config.setAllowedHeaders(List.of("*"));
+
+        config.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+        source.registerCorsConfiguration("/**", config);
+
+        return new CorsFilter(source);
     }
 }
